@@ -15,4 +15,7 @@
     <string name="agree_to_terms_and_conditions">AGREE TO TERMS AND CONDITIONS</string>
     <string name="sign_up">Sign Up</string>
     <string name="i_m_already_registered">I\'m already registered</string>
+    <string name="i_am_a_customer">I am a customer</string>
+    <string name="company_landline">COMPANY LANDLINE</string>
+    <string name="i_want_to_be_a_customer">I want to be a customer</string>
 </resources>
