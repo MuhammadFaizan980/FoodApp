@@ -6,4 +6,13 @@
     <string name="password">PASSWORD</string>
     <string name="i_forgot_my_password">I FORGOT MY PASSWORD</string>
     <string name="i_don_t_have_an_account">I don\'t have an account</string>
+    <string name="i_want_to_be_a_trader">I want to be a trader</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="mobile_number">MOBILE NUMBER</string>
+    <string name="birthday">BIRTHDAY</string>
+    <string name="confirm_password">CONFIRM PASSWORD</string>
+    <string name="agree_to_terms_and_conditions">AGREE TO TERMS AND CONDITIONS</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="i_m_already_registered">I\'m already registered</string>
 </resources>
