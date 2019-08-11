@@ -42,4 +42,6 @@
     <string name="important_information_for_pickup">IMPORTANT INFORMATION FOR PICKUP</string>
     <string name="no_i_will_be_pickup_only">No, I will be pickup only</string>
     <string name="next"><![CDATA[Next >>]]></string>
+    <string name="upload_electronic_trade_licences">UPLOAD ELECTRONIC TRADE LICENCES</string>
+    <string name="done">Done!</string>
 </resources>
