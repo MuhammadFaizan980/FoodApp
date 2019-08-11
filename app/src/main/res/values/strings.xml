@@ -23,4 +23,14 @@
     <string name="cuisine_type_emirati_french_indian_etc">CUISINE TYPE (EMIRATI, FRENCH, INDIAN ETC)</string>
     <string name="brief_company_description">BRIEF COMPANY DESCRIPTION</string>
     <string name="upload_company_photo">UPLOAD COMPANY PHOTO</string>
+    <string name="working_hours">WORKING HOURS</string>
+    <string name="sunday">SUNDAY</string>
+    <string name="dash">-</string>
+    <string name="monday">MONDAY</string>
+    <string name="tuesday">TUESDAY</string>
+    <string name="wednesday">WEDNESDAY</string>
+    <string name="thursday">THURSDAY</string>
+    <string name="friday">FRIDAY</string>
+    <string name="saturday">SATURDAY</string>
+    <string name="your_location">YOUR LOCATION</string>
 </resources>
