@@ -33,4 +33,12 @@
     <string name="friday">FRIDAY</string>
     <string name="saturday">SATURDAY</string>
     <string name="your_location">YOUR LOCATION</string>
+    <string name="do_you_deliver">DO YOU DELIVER?</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="delivery_range">DELIVERY RANGE (Up to 10 KM)</string>
+    <string name="if_not_would_you_like_for_us_to_deliver_on_your_behalf_for_a_small_fee">IF NOT, WOULD YOU LIKE FOR US TO DELIVER ON YOUR BEHALF FOR A SMALL FEE?</string>
+    <string name="yes_please">Yes please</string>
+    <string name="important_information_for_pickup">IMPORTANT INFORMATION FOR PICKUP</string>
+    <string name="no_i_will_be_pickup_only">No, I will be pickup only</string>
 </resources>

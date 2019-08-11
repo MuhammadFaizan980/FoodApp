@@ -1,8 +1,10 @@
 package com.squadtechs.markhor.foodapp.trader
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.xw.repo.BubbleSeekBar
 
 class ActivityCompanyTimings : AppCompatActivity() {
 

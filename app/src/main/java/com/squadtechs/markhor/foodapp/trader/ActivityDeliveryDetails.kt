@@ -1,7 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 
 class ActivityDeliveryDetails : AppCompatActivity() {
