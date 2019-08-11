@@ -41,4 +41,5 @@
     <string name="yes_please">Yes please</string>
     <string name="important_information_for_pickup">IMPORTANT INFORMATION FOR PICKUP</string>
     <string name="no_i_will_be_pickup_only">No, I will be pickup only</string>
+    <string name="next"><![CDATA[Next >>]]></string>
 </resources>
