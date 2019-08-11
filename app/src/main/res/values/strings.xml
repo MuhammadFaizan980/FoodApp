@@ -18,4 +18,9 @@
     <string name="i_am_a_customer">I am a customer</string>
     <string name="company_landline">COMPANY LANDLINE</string>
     <string name="i_want_to_be_a_customer">I want to be a customer</string>
+    <string name="back"><![CDATA[<< Back]]></string>
+    <string name="company_name">COMPANY NAME</string>
+    <string name="cuisine_type_emirati_french_indian_etc">CUISINE TYPE (EMIRATI, FRENCH, INDIAN ETC)</string>
+    <string name="brief_company_description">BRIEF COMPANY DESCRIPTION</string>
+    <string name="upload_company_photo">UPLOAD COMPANY PHOTO</string>
 </resources>
