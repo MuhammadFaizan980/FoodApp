@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".trader.ActivityThankyou"></activity>
         <activity android:name=".trader.ActivityDeliveryDetails" />
         <activity android:name=".trader.ActivityElectronicLicense" />
         <activity android:name=".trader.ActivityCompanyTimings" />
@@ -16,9 +17,10 @@
         <activity android:name=".trader.ActivityTraderSignup" />
         <activity android:name=".customer.ActivityCustomerSignup" />
         <activity android:name=".trader.ActivityTraderLogin" />
-        <activity android:name=".customer.ActivityCustomerLogin" >
+        <activity android:name=".customer.ActivityCustomerLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
