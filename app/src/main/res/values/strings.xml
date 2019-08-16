@@ -44,4 +44,5 @@
     <string name="next"><![CDATA[Next >>]]></string>
     <string name="upload_electronic_trade_licences">UPLOAD ELECTRONIC TRADE LICENCES</string>
     <string name="done">Done!</string>
+    <string name="done_">Done</string>
 </resources>
