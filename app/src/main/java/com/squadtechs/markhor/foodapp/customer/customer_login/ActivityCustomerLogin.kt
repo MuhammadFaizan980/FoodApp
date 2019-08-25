@@ -28,6 +28,7 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
     private fun setListeners() {
         linearNoAccount.setOnClickListener {
             startActivity(Intent(this, ActivityCustomerSignup::class.java))
+            finish()
         }
         btnLogin.setOnClickListener {
             val email = edtEmail.text.toString().trim()

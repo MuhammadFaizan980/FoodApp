@@ -1,12 +1,11 @@
 package com.squadtechs.markhor.foodapp.customer.customer_signup
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 
 class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotracts.IView {
 
@@ -19,6 +18,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
     private lateinit var confirmPassword: EditText
     private lateinit var agreement: RadioButton
     private lateinit var btnRegister: Button
+    private lateinit var alreadyRegiseredView: LinearLayout
     private lateinit var mPresenter: CustomerRegistrationCnotracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +48,12 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
                 agreement.isChecked
             )
         }
+
+        alreadyRegiseredView.setOnClickListener {
+            startActivity(Intent(this@ActivityCustomerSignup, ActivityCustomerLogin::class.java))
+            finish()
+        }
+
     }
 
     private fun initViews() {
@@ -60,6 +66,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
         confirmPassword = findViewById(R.id.edt_customer_confirm_password)
         agreement = findViewById(R.id.radio_customer_terms_and_condition)
         btnRegister = findViewById(R.id.btn_customer_sign_up)
+        alreadyRegiseredView = findViewById(R.id.linear_customer_no_account)
         mPresenter = CustomerRegistrationPresenter(this@ActivityCustomerSignup, this)
     }
 
@@ -77,6 +84,11 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
         } else {
             Toast.makeText(this@ActivityCustomerSignup, "Registration failed", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this@ActivityCustomerSignup, ActivityCustomerLogin::class.java))
+        finish()
     }
 
 }
