@@ -1,11 +1,15 @@
 package com.squadtechs.markhor.foodapp.customer.customer_signup
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import org.json.JSONObject
 
 class CustomerRegistrationPresenter(
@@ -61,11 +65,9 @@ class CustomerRegistrationPresenter(
             Response.Listener { response ->
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
-                    Log.i("dxdiag", response)
                     mView.onRegistrationResult(false)
                 } else {
-                    Log.i("dxdiag", response)
-                    mView.onRegistrationResult(true)
+                    showDialog()
                 }
             },
             Response.ErrorListener { error ->
@@ -85,4 +87,20 @@ class CustomerRegistrationPresenter(
         }
         requestQueue.add(strinRequest)
     }
+
+    private fun showDialog() {
+        val dialog = AlertDialog.Builder(context)
+        dialog.setTitle("Message!")
+        dialog.setMessage("User created successfully\nYou can now login")
+        dialog.setCancelable(false)
+        dialog.setPositiveButton("Login") { dialogInterface, i ->
+            context.startActivity(Intent(context, ActivityCustomerLogin::class.java))
+            (context as Activity).finish()
+        }
+            .setNegativeButton("Close") { dialogInterface, i ->
+                dialogInterface.cancel()
+            }
+        dialog.show()
+    }
+
 }

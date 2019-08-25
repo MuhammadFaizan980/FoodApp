@@ -6,6 +6,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.trader.ActivityTraderLogin
 
 class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotracts.IView {
 
@@ -18,7 +19,8 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
     private lateinit var confirmPassword: EditText
     private lateinit var agreement: RadioButton
     private lateinit var btnRegister: Button
-    private lateinit var alreadyRegiseredView: LinearLayout
+    private lateinit var alreadyRegisteredView: LinearLayout
+    private lateinit var traderRegister: LinearLayout
     private lateinit var mPresenter: CustomerRegistrationCnotracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +51,13 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
             )
         }
 
-        alreadyRegiseredView.setOnClickListener {
+        alreadyRegisteredView.setOnClickListener {
             startActivity(Intent(this@ActivityCustomerSignup, ActivityCustomerLogin::class.java))
+            finish()
+        }
+
+        traderRegister.setOnClickListener {
+            startActivity(Intent(this@ActivityCustomerSignup, ActivityTraderLogin::class.java))
             finish()
         }
 
@@ -66,8 +73,9 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
         confirmPassword = findViewById(R.id.edt_customer_confirm_password)
         agreement = findViewById(R.id.radio_customer_terms_and_condition)
         btnRegister = findViewById(R.id.btn_customer_sign_up)
-        alreadyRegiseredView = findViewById(R.id.linear_customer_no_account)
+        alreadyRegisteredView = findViewById(R.id.linear_customer_no_account)
         mPresenter = CustomerRegistrationPresenter(this@ActivityCustomerSignup, this)
+        traderRegister = findViewById(R.id.linear_i_am_trader)
     }
 
     override fun onValidationResult(status: Boolean) {

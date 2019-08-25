@@ -9,10 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_signup.ActivityCustomerSignup
+import com.squadtechs.markhor.foodapp.trader.ActivityTraderLogin
 
 class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView {
 
     private lateinit var linearNoAccount: LinearLayout
+    private lateinit var linearTraderLogin: LinearLayout
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnLogin: Button
@@ -35,6 +37,12 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
             val password = edtPassword.text.toString().trim()
             mPresenter.initValidation(email, password)
         }
+
+        linearTraderLogin.setOnClickListener {
+            startActivity(Intent(this@ActivityCustomerLogin, ActivityTraderLogin::class.java))
+            finish()
+        }
+
     }
 
     private fun initViews() {
@@ -43,6 +51,7 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         edtPassword = findViewById(R.id.edt_customer_password)
         btnLogin = findViewById(R.id.btn_customer_login)
         mPresenter = CustomerLoginPresenter(this@ActivityCustomerLogin, this)
+        linearTraderLogin = findViewById(R.id.linear_i_am_trader)
     }
 
     override fun onValidationResult(status: Boolean) {
