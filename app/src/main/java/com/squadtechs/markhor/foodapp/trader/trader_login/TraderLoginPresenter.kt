@@ -42,7 +42,7 @@ class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, privat
                 progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
-                    mView.onLoginResult(false)
+                    mView.onLoginResult(false, "n/a")
                 } else {
                     pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     editor = pref.edit()
@@ -56,12 +56,12 @@ class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, privat
                     editor.putString("phone", obj.mobile)
                     editor.putString("account_status", obj.trader_status)
                     editor.apply()
-                    mView.onLoginResult(true)
+                    mView.onLoginResult(true, obj.trader_status)
                 }
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
-                mView.onLoginResult(false)
+                mView.onLoginResult(false, "n/a")
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()

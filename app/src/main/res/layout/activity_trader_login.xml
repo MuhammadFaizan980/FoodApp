@@ -9,7 +9,7 @@
     tools:context=".trader.trader_login.ActivityTraderLogin">
 
     <LinearLayout
-        android:id="@+id/linear_i_am_trader"
+        android:id="@+id/linear_i_am_customer"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -115,7 +115,7 @@
         android:textColor="@color/colorWhite" />
 
     <LinearLayout
-        android:id="@+id/linear_customer_no_account"
+        android:id="@+id/linear_trader_no_account"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
