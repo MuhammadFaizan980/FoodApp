@@ -11,7 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class CustomerLoginPresenter(val mView: CustomerLoginContracts.IView, val context: Context) :
+class CustomerLoginPresenter(private val mView: CustomerLoginContracts.IView, private  val context: Context) :
     CustomerLoginContracts.IPresenter {
 
     private lateinit var email: String

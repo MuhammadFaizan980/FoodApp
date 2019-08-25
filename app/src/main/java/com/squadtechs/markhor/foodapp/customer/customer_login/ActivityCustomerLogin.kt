@@ -52,8 +52,8 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         }
     }
 
-    override fun onLoginResult(success: Boolean) {
-        if (success) {
+    override fun onLoginResult(status: Boolean) {
+        if (status) {
             Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show()
