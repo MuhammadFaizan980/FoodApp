@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.ActivityTraderSignup
+import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
 class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
 
@@ -83,6 +83,9 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         }
     }
 
-    override fun onBackPressed() {}
+    override fun onBackPressed() {
+        startActivity(Intent(this@ActivityTraderLogin, ActivityCustomerLogin::class.java))
+        finish()
+    }
 
 }

@@ -1,14 +1,14 @@
-package com.squadtechs.markhor.foodapp.customer.customer_signup
+package com.squadtechs.markhor.foodapp.trader.trader_registration
 
-interface CustomerRegistrationCnotracts {
+interface TraderRegistrationContracts {
     interface IModel {
         fun validate(): Boolean
     }
 
     interface IPresenter {
         fun initValidation(
-            firstName: String, lastName: String, mobileNumber: String, birthday: String, email: String,
-            password: String, confirmPassword: String, userAgreement: Boolean
+            firstName: String, lastName: String, mobileNumber: String, companyMobile: String, email: String,
+            password: String, confirmPassword: String, agreement: Boolean
         )
 
         fun initRegistration()
@@ -18,5 +18,4 @@ interface CustomerRegistrationCnotracts {
         fun onValidationResult(status: Boolean)
         fun onRegistrationResult(status: Boolean)
     }
-
 }

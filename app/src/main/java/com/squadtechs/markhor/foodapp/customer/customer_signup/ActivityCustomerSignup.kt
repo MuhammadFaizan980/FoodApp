@@ -8,7 +8,7 @@ import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
-class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotracts.IView {
+class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContracts.IView {
 
     private lateinit var email: EditText
     private lateinit var lastName: EditText
@@ -21,7 +21,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotract
     private lateinit var btnRegister: Button
     private lateinit var alreadyRegisteredView: LinearLayout
     private lateinit var traderRegister: LinearLayout
-    private lateinit var mPresenter: CustomerRegistrationCnotracts.IPresenter
+    private lateinit var mPresenter: CustomerRegistrationContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
