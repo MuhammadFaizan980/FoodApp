@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_signup.ActivityCustomerSignup
-import com.squadtechs.markhor.foodapp.trader.ActivityTraderLogin
+import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView {
 

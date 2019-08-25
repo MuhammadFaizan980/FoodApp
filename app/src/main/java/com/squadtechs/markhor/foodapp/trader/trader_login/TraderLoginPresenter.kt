@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.customer_login
+package com.squadtechs.markhor.foodapp.trader.trader_login
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -10,20 +10,21 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class CustomerLoginPresenter(private val mView: CustomerLoginContracts.IView, private val context: Context) :
-    CustomerLoginContracts.IPresenter {
+
+class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, private val context: Context) :
+    TraderLoginContracts.IPresenter {
 
     private lateinit var email: String
     private lateinit var password: String
-    private lateinit var mModel: CustomerLoginContracts.IModel
-    private val API: String = "http://squadtechsolution.com//android/v1/register_login.php"
+    private lateinit var mModel: TraderLoginContracts.IModel
+    private val API: String = "http://squadtechsolution.com//android/v1/trader_login.php"
     private lateinit var pref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
     override fun initValidation(email: String, password: String) {
         this.email = email
         this.password = password
-        mModel = CustomerLoginModel(this.email, this.password)
+        mModel = TraderLoginModel(this.email, this.password)
         mView.onValidationResult(mModel.validateFields())
     }
 
@@ -45,15 +46,15 @@ class CustomerLoginPresenter(private val mView: CustomerLoginContracts.IView, pr
                 } else {
                     pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     editor = pref.edit()
-                    val obj: CustomerLoginResponseModel =
-                        Gson().fromJson(response, CustomerLoginResponseModel::class.java)
+                    val obj: TraderLoginResponseModel =
+                        Gson().fromJson(response, TraderLoginResponseModel::class.java)
                     editor.putString("id", obj.id)
                     editor.putString("first_name", obj.firstname)
                     editor.putString("last_name", obj.lastname)
                     editor.putString("user_email", obj.email)
                     editor.putString("user_password", obj.password)
-                    editor.putString("birthday", obj.birthday)
-                    editor.putString("phone", obj.phone)
+                    editor.putString("phone", obj.mobile)
+                    editor.putString("account_status", obj.trader_status)
                     editor.apply()
                     mView.onLoginResult(true)
                 }

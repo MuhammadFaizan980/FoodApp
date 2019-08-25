@@ -6,7 +6,7 @@
     android:background="@color/colorBackgroundLight"
     android:orientation="vertical"
     android:padding="48dp"
-    tools:context=".trader.ActivityTraderLogin">
+    tools:context=".trader.trader_login.ActivityTraderLogin">
 
     <LinearLayout
         android:id="@+id/linear_i_am_trader"
@@ -51,7 +51,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edt_customer_email"
+        android:id="@+id/edt_trader_email"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
@@ -70,7 +70,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edt_customer_password"
+        android:id="@+id/edt_trader_password"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
@@ -103,7 +103,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_customer_login"
+        android:id="@+id/btn_trader_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

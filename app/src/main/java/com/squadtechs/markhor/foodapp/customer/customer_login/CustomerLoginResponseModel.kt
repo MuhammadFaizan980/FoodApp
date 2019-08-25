@@ -7,12 +7,5 @@ class CustomerLoginResponseModel {
     var email: String = ""
     var password: String = ""
     var birthday: String = ""
-    var address1: String = ""
-    var address2: String = ""
-    var city: String = ""
-    var country: String = ""
-    var state: String = ""
-    var zipcode: String = ""
     var phone: String = ""
-    var registerationDate: String = ""
 }

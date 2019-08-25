@@ -6,7 +6,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.ActivityTraderLogin
+import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationCnotracts.IView {
 

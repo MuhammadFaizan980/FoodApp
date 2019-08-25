@@ -2,9 +2,9 @@ package com.squadtechs.markhor.foodapp.customer.customer_signup
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -58,11 +58,17 @@ class CustomerRegistrationPresenter(
     }
 
     override fun initRegistration() {
+        val progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Please wait")
+        progressDialog.setTitle("Message!")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
         val requestQueue = Volley.newRequestQueue(context)
         val strinRequest = object : StringRequest(
             Request.Method.POST,
             API,
             Response.Listener { response ->
+                progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
                     mView.onRegistrationResult(false)
@@ -71,7 +77,7 @@ class CustomerRegistrationPresenter(
                 }
             },
             Response.ErrorListener { error ->
-                Log.i("dxdiag", error.toString())
+                progressDialog.cancel()
                 mView.onRegistrationResult(false)
             }) {
             override fun getParams(): MutableMap<String, String> {

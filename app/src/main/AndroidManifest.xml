@@ -18,7 +18,7 @@
         <activity android:name=".trader.ActivityCompanyDetails" />
         <activity android:name=".trader.ActivityTraderSignup" />
         <activity android:name=".customer.customer_signup.ActivityCustomerSignup" />
-        <activity android:name=".trader.ActivityTraderLogin" />
+        <activity android:name=".trader.trader_login.ActivityTraderLogin" />
         <activity android:name=".customer.customer_login.ActivityCustomerLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
