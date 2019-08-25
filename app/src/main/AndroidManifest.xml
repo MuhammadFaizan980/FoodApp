@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.squadtechs.markhor.foodapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,9 +17,9 @@
         <activity android:name=".trader.ActivityCompanyTimings" />
         <activity android:name=".trader.ActivityCompanyDetails" />
         <activity android:name=".trader.ActivityTraderSignup" />
-        <activity android:name=".customer.ActivityCustomerSignup" />
+        <activity android:name=".customer.customer_signup.ActivityCustomerSignup" />
         <activity android:name=".trader.ActivityTraderLogin" />
-        <activity android:name=".customer.ActivityCustomerLogin">
+        <activity android:name=".customer.customer_login.ActivityCustomerLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

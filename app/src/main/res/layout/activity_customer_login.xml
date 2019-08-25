@@ -6,7 +6,7 @@
     android:background="@color/colorBackgroundLight"
     android:orientation="vertical"
     android:padding="48dp"
-    tools:context=".customer.ActivityCustomerLogin">
+    tools:context=".customer.customer_login.ActivityCustomerLogin">
 
     <LinearLayout
         android:id="@+id/linear_i_am_trader"

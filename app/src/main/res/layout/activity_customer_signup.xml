@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundLight"
-    tools:context=".customer.ActivityCustomerSignup">
+    tools:context=".customer.customer_signup.ActivityCustomerSignup">
 
     <LinearLayout
         android:layout_width="match_parent"

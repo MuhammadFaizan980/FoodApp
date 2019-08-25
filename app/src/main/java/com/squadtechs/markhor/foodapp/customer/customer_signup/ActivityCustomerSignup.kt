@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer
+package com.squadtechs.markhor.foodapp.customer.customer_signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
