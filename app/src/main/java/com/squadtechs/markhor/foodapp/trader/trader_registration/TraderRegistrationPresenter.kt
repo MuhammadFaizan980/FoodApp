@@ -1,8 +1,8 @@
 package com.squadtechs.markhor.foodapp.trader.trader_registration
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -71,11 +71,17 @@ class TraderRegistrationPresenter(
                 if (json.getString("status").equals("reg_failed")) {
                     mView.onRegistrationResult(false)
                 } else {
-                    showDialog()
+                    val trader_id: Int = JSONObject(response).getInt("trader_id")
+                    val pref = context.getSharedPreferences("trader_credentials", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putInt("trader_id", trader_id)
+                    editor.apply()
+                    mView.onRegistrationResult(true)
                 }
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
+                Log.i("dxdiag", error.toString())
                 mView.onRegistrationResult(false)
             }) {
             override fun getParams(): MutableMap<String, String> {
@@ -91,17 +97,6 @@ class TraderRegistrationPresenter(
             }
         }
         requestQueue.add(strinRequest)
-    }
-
-    private fun showDialog() {
-        val dialog = AlertDialog.Builder(context)
-        dialog.setTitle("Message!")
-        dialog.setMessage("Trader account created successfully\nYour account is pending for approval by admin")
-        dialog.setCancelable(false)
-        dialog.setPositiveButton("Close") { dialogInterface, i ->
-            dialogInterface.cancel()
-        }
-        dialog.show()
     }
 
 }

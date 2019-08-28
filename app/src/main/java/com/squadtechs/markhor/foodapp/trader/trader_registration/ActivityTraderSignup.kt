@@ -1,11 +1,13 @@
 package com.squadtechs.markhor.foodapp.trader.trader_registration
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.trader.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IView {
@@ -88,7 +90,7 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
 
     override fun onRegistrationResult(status: Boolean) {
         if (status) {
-            Toast.makeText(this@ActivityTraderSignup, "Registration success", Toast.LENGTH_LONG).show()
+            showDialog()
         } else {
             Toast.makeText(this@ActivityTraderSignup, "Registration error", Toast.LENGTH_LONG).show()
         }
@@ -97,6 +99,18 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     override fun onBackPressed() {
         startActivity(Intent(this@ActivityTraderSignup, ActivityTraderLogin::class.java))
         finish()
+    }
+
+    private fun showDialog() {
+        val dialog = AlertDialog.Builder(this@ActivityTraderSignup)
+        dialog.setTitle("Message!")
+        dialog.setMessage("Trader account created successfully\nYou will need to upload electronic lincense in the next screeen")
+        dialog.setCancelable(false)
+        dialog.setPositiveButton("Next") { dialogInterface, i ->
+            startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyTimings::class.java))
+            finish()
+        }
+        dialog.show()
     }
 
 }
