@@ -60,4 +60,14 @@
     <string name="bags">Bags</string>
     <string name="others">Others</string>
     <string name="if_other_then_please_specify">IF OTHER THEN PLEASE SPECIFY</string>
+    <string name="upload_dish">Upload Dish</string>
+    <string name="name_of_dish">NAME OF DISH</string>
+    <string name="description_of_the_dish">DESCRIPTION OF THE DISH</string>
+    <string name="price">PRICE</string>
+    <string name="list_dish_as">LIST DISH AS</string>
+    <string name="add_image">ADD IMAGE</string>
+    <string name="dish_contains">DISH CONTAINS</string>
+    <string name="meat">Meat</string>
+    <string name="gluten_free">Gluten free</string>
+    <string name="seafood">Seafood</string>
 </resources>
