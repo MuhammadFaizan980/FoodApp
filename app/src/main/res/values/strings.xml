@@ -45,4 +45,8 @@
     <string name="upload_electronic_trade_licences">UPLOAD ELECTRONIC TRADE LICENCES</string>
     <string name="done">Done!</string>
     <string name="done_">Done</string>
+    <string name="welcome">Welcome!</string>
+    <string name="please_select_who_you_are">Please select who you are</string>
+    <string name="customer">Customer</string>
+    <string name="trader">Trader</string>
 </resources>
