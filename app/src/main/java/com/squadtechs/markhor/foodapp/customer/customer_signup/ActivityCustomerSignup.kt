@@ -6,7 +6,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
+import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 
 class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContracts.IView {
 
@@ -57,7 +57,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
         }
 
         traderRegister.setOnClickListener {
-            startActivity(Intent(this@ActivityCustomerSignup, ActivityTraderLogin::class.java))
+            startActivity(Intent(this@ActivityCustomerSignup, ActivityCompanyType::class.java))
             finish()
         }
 
@@ -95,7 +95,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityCustomerSignup, ActivityCustomerLogin::class.java))
+        startActivity(Intent(this@ActivityCustomerSignup, ActivityCompanyType::class.java))
         finish()
     }
 

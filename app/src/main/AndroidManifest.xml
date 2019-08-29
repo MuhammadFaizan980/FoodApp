@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".trader.ActivityCompanyType"></activity>
         <activity android:name=".activity_select.ActivitySelect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,7 +27,7 @@
         <activity android:name=".trader.trader_registration.ActivityTraderSignup" />
         <activity android:name=".customer.customer_signup.ActivityCustomerSignup" />
         <activity android:name=".trader.trader_login.ActivityTraderLogin" />
-        <activity android:name=".customer.customer_login.ActivityCustomerLogin"/>
+        <activity android:name=".customer.customer_login.ActivityCustomerLogin" />
     </application>
 
 </manifest>

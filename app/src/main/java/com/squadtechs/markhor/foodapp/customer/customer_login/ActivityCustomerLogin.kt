@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.customer.customer_signup.ActivityCustomerSignup
-import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
+import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 
 class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView {
 
@@ -40,7 +40,7 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         }
 
         linearTraderLogin.setOnClickListener {
-            startActivity(Intent(this@ActivityCustomerLogin, ActivityTraderLogin::class.java))
+            startActivity(Intent(this@ActivityCustomerLogin, ActivityCompanyType::class.java))
             finish()
         }
 

@@ -49,4 +49,15 @@
     <string name="please_select_who_you_are">Please select who you are</string>
     <string name="customer">Customer</string>
     <string name="trader">Trader</string>
+    <string name="food">Food</string>
+    <string name="what_do_you_plan_on_selling">WHAT DO YOU PLAN ON SELLING</string>
+    <string name="clothes">Clothes</string>
+    <string name="accessories">Accessories</string>
+    <string name="skincare">Skincare</string>
+    <string name="homeware">Homeware</string>
+    <string name="toys">Toys</string>
+    <string name="shoes">Shoes</string>
+    <string name="bags">Bags</string>
+    <string name="others">Others</string>
+    <string name="if_other_then_please_specify">IF OTHER THEN PLEASE SPECIFY</string>
 </resources>

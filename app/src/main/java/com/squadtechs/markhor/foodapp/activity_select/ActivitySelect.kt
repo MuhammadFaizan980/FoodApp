@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivitySelect : AppCompatActivity() {
@@ -21,7 +22,7 @@ class ActivitySelect : AppCompatActivity() {
     }
 
     fun openTrader(view: View) {
-        startActivity(Intent(this, ActivityTraderLogin::class.java))
+        startActivity(Intent(this, ActivityCompanyType::class.java))
         finish()
     }
 

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".trader.ActivityCompanyType">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <LinearLayout
+            android:id="@+id/linear_go_back"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/what_do_you_plan_on_selling"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/m_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/food"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_clothes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clothes"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_accessories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accessories"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_skin_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skincare"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_home_ware"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/homeware"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_toys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/toys"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_shoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shoes"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_bags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bags"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/others"
+                android:textStyle="bold" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/if_other_then_please_specify"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:inputType="textMultiLine"
+            android:minHeight="100dp"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/btn_trader_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/button_background"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+</ScrollView>
