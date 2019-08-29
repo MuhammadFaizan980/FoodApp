@@ -70,4 +70,9 @@
     <string name="meat">Meat</string>
     <string name="gluten_free">Gluten free</string>
     <string name="seafood">Seafood</string>
+    <string name="vegan">Vegan</string>
+    <string name="nuts">Nuts</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="dairy">Dairy</string>
+    <string name="pork">Pork</string>
 </resources>
