@@ -75,4 +75,5 @@
     <string name="vegetarian">Vegetarian</string>
     <string name="dairy">Dairy</string>
     <string name="pork">Pork</string>
+    <string name="post_dish">Post Dish</string>
 </resources>
