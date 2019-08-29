@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".trader.ActivityAddNewDish"></activity>
+        <activity android:name=".customer.activity_phone_verification.ActivityPhoneVerification"></activity>
+        <activity android:name=".trader.ActivityAddNewDish" />
         <activity android:name=".trader.ActivityCompanyType" />
         <activity android:name=".activity_select.ActivitySelect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

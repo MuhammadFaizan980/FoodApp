@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customer.activity_phone_verification.ActivityPhoneVerification">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="150dp"
+        android:src="@drawable/back_7" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="48dp"
+        android:src="@drawable/back_2" />
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/back_10" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/back_9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="48dp">
+
+        <ImageView
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/thanku" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edt_verification_first"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/edit_text_background"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_verification_second"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/edit_text_background"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_verification_third"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/edit_text_background"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_verification_fourth"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/edit_text_background"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_thank_you_done"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_background"
+            android:text="@string/done_"
+            android:textColor="@color/colorWhite" />
+
+        <LinearLayout
+            android:id="@+id/linear_trader_already_registered"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/i_didn_t_receive_a_code"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
