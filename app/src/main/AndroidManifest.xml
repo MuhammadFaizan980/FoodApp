@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".customer.activity_phone_verification.ActivityPhoneVerification"></activity>
+        <activity android:name=".customer.activity_customer_main.ActivityCustomerMain"></activity>
+        <activity android:name=".customer.activity_phone_verification.ActivityPhoneVerification" />
         <activity android:name=".trader.ActivityAddNewDish" />
         <activity android:name=".trader.ActivityCompanyType" />
         <activity android:name=".activity_select.ActivitySelect">

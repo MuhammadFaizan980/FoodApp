@@ -15,8 +15,6 @@ class ActivityDeliveryDetails : AppCompatActivity() {
 
     private lateinit var txtDeliverPositive: TextView
     private lateinit var txtDeliverNegative: TextView
-    private lateinit var txtWeDeliverPositive: TextView
-    private lateinit var txtWeDeliverNegative: TextView
     private lateinit var btnNext: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +27,6 @@ class ActivityDeliveryDetails : AppCompatActivity() {
     private fun initViews() {
         txtDeliverPositive = findViewById(R.id.txt_deliver_yes)
         txtDeliverNegative = findViewById(R.id.txt_deliver_no)
-        txtWeDeliverPositive = findViewById(R.id.txt_deliver_on_behalf_yes)
-        txtWeDeliverNegative = findViewById(R.id.txt_deliver_on_behalf_no)
         btnNext = findViewById(R.id.btn_trader_next)
     }
 
@@ -45,15 +41,6 @@ class ActivityDeliveryDetails : AppCompatActivity() {
             txtDeliverNegative.setBackgroundColor(Color.parseColor("#4c4c4c"))
             txtDeliverPositive.setBackgroundColor(Color.parseColor("#FBFBFB"))
         }
-        txtWeDeliverPositive.setOnClickListener {
-            txtWeDeliverPositive.setBackgroundColor(Color.parseColor("#4c4c4c"))
-            txtWeDeliverNegative.setBackgroundColor(Color.parseColor("#FBFBFB"))
-        }
-        txtWeDeliverNegative.setOnClickListener {
-            txtWeDeliverNegative.setBackgroundColor(Color.parseColor("#4c4c4c"))
-            txtWeDeliverPositive.setBackgroundColor(Color.parseColor("#FBFBFB"))
-        }
-
 
         btnNext.setOnClickListener {
             val progressDialgo = ProgressDialog(this)
