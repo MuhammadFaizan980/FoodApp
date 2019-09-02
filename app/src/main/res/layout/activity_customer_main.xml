@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundLight"
     tools:context=".customer.activity_customer_main.ActivityCustomerMain">
 
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp" />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="55dp" />
+        android:layout_height="55dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/colorWhite"
+        app:itemIconTint="@color/nav_icons_color"
+        app:itemTextColor="@color/colorBrown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_nav" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
