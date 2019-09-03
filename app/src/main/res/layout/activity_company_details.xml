@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".trader.ActivityCompanyDetails">
+    tools:context=".trader.activity_company_details.ActivityCompanyDetails">
 
 
     <LinearLayout
@@ -89,7 +89,7 @@
             android:background="@drawable/edit_text_background"
             android:inputType="textMultiLine"
             android:minHeight="100dp"
-            android:paddingLeft="16dp"
+            android:padding="16dp"
             android:textSize="13sp" />
 
         <TextView

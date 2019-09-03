@@ -23,6 +23,7 @@ class ActivityCompanyType : AppCompatActivity() {
     private lateinit var radioShoes: RadioButton
     private lateinit var radioBags: RadioButton
     private lateinit var radioOthers: RadioButton
+    private lateinit var linearback: LinearLayout
     private lateinit var selectedValue: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +41,11 @@ class ActivityCompanyType : AppCompatActivity() {
             }
 
             if (selectedValue.equals("")) {
-                Toast.makeText(this, "Select a proper type first, if others then please specify", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Select a proper type first, if others then please specify",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
                 val pref = getSharedPreferences("info", Context.MODE_PRIVATE)
                 val editor = pref.edit()
@@ -53,7 +58,7 @@ class ActivityCompanyType : AppCompatActivity() {
 
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             if (radioFood.isChecked) {
-                selectedValue = "Food"
+                selectedValue = "Food & beverages"
             } else if (radioClothes.isChecked) {
                 selectedValue = "Clothes"
             } else if (radioAccessories.isChecked) {
@@ -73,6 +78,11 @@ class ActivityCompanyType : AppCompatActivity() {
             }
         }
 
+        linearback.setOnClickListener {
+            startActivity(Intent(this, ActivitySelect::class.java))
+            finish()
+        }
+
     }
 
     private fun initViews() {
@@ -88,6 +98,7 @@ class ActivityCompanyType : AppCompatActivity() {
         radioShoes = findViewById(R.id.radio_shoes)
         radioBags = findViewById(R.id.radio_bags)
         radioOthers = findViewById(R.id.radio_other)
+        linearback = findViewById(R.id.linear_go_back)
         selectedValue = ""
     }
 

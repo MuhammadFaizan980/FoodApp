@@ -72,7 +72,8 @@ class TraderRegistrationPresenter(
                     mView.onRegistrationResult(false)
                 } else {
                     val trader_id: Int = JSONObject(response).getInt("trader_id")
-                    val pref = context.getSharedPreferences("trader_credentials", Context.MODE_PRIVATE)
+                    val pref =
+                        context.getSharedPreferences("trader_credentials", Context.MODE_PRIVATE)
                     val editor = pref.edit()
                     editor.putInt("trader_id", trader_id)
                     editor.apply()
