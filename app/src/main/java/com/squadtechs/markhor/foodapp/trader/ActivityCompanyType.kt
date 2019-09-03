@@ -47,7 +47,7 @@ class ActivityCompanyType : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                val pref = getSharedPreferences("info", Context.MODE_PRIVATE)
+                val pref = getSharedPreferences("trader_credentials", Context.MODE_PRIVATE)
                 val editor = pref.edit()
                 editor.putString("trader_category", selectedValue)
                 editor.apply()

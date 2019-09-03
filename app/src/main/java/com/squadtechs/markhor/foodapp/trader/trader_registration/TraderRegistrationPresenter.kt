@@ -3,11 +3,14 @@ package com.squadtechs.markhor.foodapp.trader.trader_registration
 import android.app.ProgressDialog
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Exception
 
 class TraderRegistrationPresenter(
     private val mView: TraderRegistrationContracts.IView,
@@ -54,6 +57,7 @@ class TraderRegistrationPresenter(
         }
         mView.onValidationResult(mModel.validate())
     }
+
 
     override fun initRegistration() {
         val progressDialog = ProgressDialog(context)
