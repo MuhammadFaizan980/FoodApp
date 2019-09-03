@@ -84,7 +84,7 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityTraderLogin, ActivityCustomerLogin::class.java))
+        startActivity(Intent(this@ActivityTraderLogin, ActivityTraderSignup::class.java))
         finish()
     }
 

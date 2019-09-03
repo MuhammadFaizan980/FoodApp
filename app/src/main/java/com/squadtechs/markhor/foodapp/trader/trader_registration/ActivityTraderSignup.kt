@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyTimings
+import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IView {
@@ -84,7 +85,8 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         if (status) {
             mPresenter.initRegistration()
         } else {
-            Toast.makeText(this@ActivityTraderSignup, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityTraderSignup, "Invalid credentials", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -92,12 +94,13 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         if (status) {
             showDialog()
         } else {
-            Toast.makeText(this@ActivityTraderSignup, "Registration error", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityTraderSignup, "Registration error", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityTraderSignup, ActivityTraderLogin::class.java))
+        startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyType::class.java))
         finish()
     }
 
