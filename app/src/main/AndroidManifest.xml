@@ -5,32 +5,74 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".customer.activity_customer_main.ActivityCustomerMain">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".customer.activity_customer_main.ActivityCustomerMain"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".customer.activity_phone_verification.ActivityPhoneVerification" />
-        <activity android:name=".trader.ActivityAddNewDish" />
-        <activity android:name=".trader.ActivityCompanyType" />
-        <activity android:name=".activity_select.ActivitySelect"/>
-        <activity android:name=".trader.ActivityThankyou" />
-        <activity android:name=".trader.ActivityDeliveryDetails" />
-        <activity android:name=".trader.ActivityElectronicLicense" />
-        <activity android:name=".trader.ActivityCompanyTimings" />
-        <activity android:name=".trader.activity_company_details.ActivityCompanyDetails" />
-        <activity android:name=".trader.trader_registration.ActivityTraderSignup" />
-        <activity android:name=".customer.customer_signup.ActivityCustomerSignup" />
-        <activity android:name=".trader.trader_login.ActivityTraderLogin" />
-        <activity android:name=".customer.customer_login.ActivityCustomerLogin" />
+        <activity
+            android:name=".customer.activity_phone_verification.ActivityPhoneVerification"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.ActivityAddNewDish"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.ActivityCompanyType"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity_select.ActivitySelect"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.ActivityThankyou"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.ActivityDeliveryDetails"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.ActivityElectronicLicense"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.ActivityCompanyTimings"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.activity_company_details.ActivityCompanyDetails"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.trader_registration.ActivityTraderSignup"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".customer.customer_signup.ActivityCustomerSignup"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".trader.trader_login.ActivityTraderLogin"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".customer.customer_login.ActivityCustomerLogin"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
