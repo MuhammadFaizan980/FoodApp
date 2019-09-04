@@ -9,7 +9,7 @@
     <string name="i_want_to_be_a_trader">I want to be a trader</string>
     <string name="first_name">FIRST NAME</string>
     <string name="last_name">LAST NAME</string>
-    <string name="mobile_number">MOBILE NUMBER</string>
+    <string name="mobile_number">MOBILE NUMBER (without dashes)</string>
     <string name="birthday">BIRTHDAY</string>
     <string name="confirm_password">CONFIRM PASSWORD</string>
     <string name="agree_to_terms_and_conditions">AGREE TO TERMS AND CONDITIONS</string>

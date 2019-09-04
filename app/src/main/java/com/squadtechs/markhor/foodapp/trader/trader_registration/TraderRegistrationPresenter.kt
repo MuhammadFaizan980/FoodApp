@@ -86,7 +86,7 @@ class TraderRegistrationPresenter(
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
-                Log.i("dxdiag", error.toString())
+                error.printStackTrace()
                 mView.onRegistrationResult(false)
             }) {
             override fun getParams(): MutableMap<String, String> {

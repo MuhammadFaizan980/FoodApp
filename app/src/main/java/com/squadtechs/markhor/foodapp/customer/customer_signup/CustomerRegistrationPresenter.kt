@@ -64,7 +64,7 @@ class CustomerRegistrationPresenter(
         progressDialog.setCancelable(false)
         progressDialog.show()
         val requestQueue = Volley.newRequestQueue(context)
-        val strinRequest = object : StringRequest(
+        val stringRequest = object : StringRequest(
             Request.Method.POST,
             API,
             Response.Listener { response ->
@@ -73,7 +73,7 @@ class CustomerRegistrationPresenter(
                 if (json.getString("status").equals("reg_failed")) {
                     mView.onRegistrationResult(false)
                 } else {
-                    showDialog()
+                    mView.onRegistrationResult(true)
                 }
             },
             Response.ErrorListener { error ->
@@ -91,22 +91,22 @@ class CustomerRegistrationPresenter(
                 return map
             }
         }
-        requestQueue.add(strinRequest)
+        requestQueue.add(stringRequest)
     }
 
-    private fun showDialog() {
-        val dialog = AlertDialog.Builder(context)
-        dialog.setTitle("Message!")
-        dialog.setMessage("User created successfully\nYou can now login")
-        dialog.setCancelable(false)
-        dialog.setPositiveButton("Login") { dialogInterface, i ->
-            context.startActivity(Intent(context, ActivityCustomerLogin::class.java))
-            (context as Activity).finish()
-        }
-            .setNegativeButton("Close") { dialogInterface, i ->
-                dialogInterface.cancel()
-            }
-        dialog.show()
-    }
+//    private fun showDialog() {
+//        val dialog = AlertDialog.Builder(context)
+//        dialog.setTitle("Message!")
+//        dialog.setMessage("User created successfully\nYou can now login")
+//        dialog.setCancelable(false)
+//        dialog.setPositiveButton("Login") { dialogInterface, i ->
+//            context.startActivity(Intent(context, ActivityCustomerLogin::class.java))
+//            (context as Activity).finish()
+//        }
+//            .setNegativeButton("Close") { dialogInterface, i ->
+//                dialogInterface.cancel()
+//            }
+//        dialog.show()
+//    }
 
 }

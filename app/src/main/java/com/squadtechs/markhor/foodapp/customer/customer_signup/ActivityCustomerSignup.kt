@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_phone_verification.ActivityPhoneVerification
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 
@@ -82,15 +83,19 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
         if (status) {
             mPresenter.initRegistration()
         } else {
-            Toast.makeText(this@ActivityCustomerSignup, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityCustomerSignup, "Invalid credentials", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
     override fun onRegistrationResult(status: Boolean) {
         if (status) {
-            Toast.makeText(this@ActivityCustomerSignup, "Registration success", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, ActivityPhoneVerification::class.java)
+            intent.putExtra("phone_number", mobile.text.toString().trim())
+            startActivity(intent)
         } else {
-            Toast.makeText(this@ActivityCustomerSignup, "Registration failed", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityCustomerSignup, "Registration failed", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
