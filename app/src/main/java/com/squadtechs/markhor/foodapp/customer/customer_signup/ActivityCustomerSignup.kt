@@ -93,6 +93,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
             val intent = Intent(this, ActivityPhoneVerification::class.java)
             intent.putExtra("phone_number", mobile.text.toString().trim())
             startActivity(intent)
+            finish()
         } else {
             Toast.makeText(this@ActivityCustomerSignup, "Registration failed", Toast.LENGTH_LONG)
                 .show()
