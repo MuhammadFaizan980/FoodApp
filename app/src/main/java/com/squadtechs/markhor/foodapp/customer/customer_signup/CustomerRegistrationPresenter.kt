@@ -1,15 +1,12 @@
 package com.squadtechs.markhor.foodapp.customer.customer_signup
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import org.json.JSONObject
 
 class CustomerRegistrationPresenter(
@@ -72,12 +69,14 @@ class CustomerRegistrationPresenter(
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
                     mView.onRegistrationResult(false)
+                    Log.i("dxdiag", response)
                 } else {
                     mView.onRegistrationResult(true)
                 }
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
+                Log.i("dxdiag", error.toString())
                 mView.onRegistrationResult(false)
             }) {
             override fun getParams(): MutableMap<String, String> {

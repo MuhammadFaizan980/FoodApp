@@ -18,7 +18,7 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
     private lateinit var edtFifth: EditText
     private lateinit var edtSixth: EditText
     private lateinit var btnVerify: Button
-    private lateinit var linearBack: LinearLayout
+    private lateinit var linearResendCode: LinearLayout
     private lateinit var phoneAuthProvider: PhoneAuthProvider
     private lateinit var phone_number: String
     private lateinit var mPresenter: PhoneVerificationContracts.IPresenter
@@ -28,6 +28,13 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         setContentView(R.layout.activity_phone_verification)
         initViews()
         mPresenter.sendVerificationCode(phone_number)
+        setListener()
+    }
+
+    private fun setListener() {
+        linearResendCode.setOnClickListener {
+            mPresenter.sendVerificationCode(phone_number)
+        }
     }
 
     private fun initViews() {
@@ -38,7 +45,7 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         edtFifth = findViewById(R.id.edt_verification_fifth)
         edtSixth = findViewById(R.id.edt_verification_sixth)
         btnVerify = findViewById(R.id.btn_thank_you_done)
-        linearBack = findViewById(R.id.linear_trader_already_registered)
+        linearResendCode = findViewById(R.id.linear_resend_verification_code)
         phoneAuthProvider = PhoneAuthProvider.getInstance()
         phone_number = intent!!.extras!!.getString("phone_number", "n/a")
         mPresenter = PhoneVerificationPresenter(this@ActivityPhoneVerification, this)
