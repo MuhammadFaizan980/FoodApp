@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseException
-import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.squadtechs.markhor.foodapp.R
-import java.util.concurrent.TimeUnit
 
-class ActivityPhoneVerification : AppCompatActivity() {
+class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContracts.IView {
 
     private lateinit var edtFirst: EditText
     private lateinit var edtSecond: EditText
@@ -23,33 +21,13 @@ class ActivityPhoneVerification : AppCompatActivity() {
     private lateinit var linearBack: LinearLayout
     private lateinit var phoneAuthProvider: PhoneAuthProvider
     private lateinit var phone_number: String
+    private lateinit var mPresenter: PhoneVerificationContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_verification)
         initViews()
-        initPhoneAuthentication()
-    }
-
-    private fun initPhoneAuthentication() {
-        phoneAuthProvider.verifyPhoneNumber(
-            phone_number,
-            60L,
-            TimeUnit.SECONDS, this,
-            object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onVerificationFailed(p0: FirebaseException) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
-                    TODO("not implemented")
-                }
-
-            })
+        mPresenter.sendVerificationCode(phone_number)
     }
 
     private fun initViews() {
@@ -63,6 +41,29 @@ class ActivityPhoneVerification : AppCompatActivity() {
         linearBack = findViewById(R.id.linear_trader_already_registered)
         phoneAuthProvider = PhoneAuthProvider.getInstance()
         phone_number = intent!!.extras!!.getString("phone_number", "n/a")
+        mPresenter = PhoneVerificationPresenter(this@ActivityPhoneVerification, this)
     }
 
+    override fun onSendVerificationCodeError() {
+        Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onCodeSentResult(id: String) {
+        btnVerify.setOnClickListener {
+            val code =
+                edtFirst.text.toString().trim() + edtSecond.text.toString().trim() + edtThird.text.toString().trim() + edtFourth.text.toString().trim() + edtFifth.text.toString().trim() + edtSixth.text.toString().trim()
+            val credentials = PhoneAuthProvider.getCredential(id, code)
+            mPresenter.verifyCode(credentials)
+        }
+    }
+
+    override fun onCodeVerificationResult(status: Boolean) {
+        if (status) {
+            Toast.makeText(this, "Verification success", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Verification error", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onBackPressed() {}
 }
