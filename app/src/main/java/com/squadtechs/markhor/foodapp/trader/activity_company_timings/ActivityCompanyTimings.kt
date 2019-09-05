@@ -1,5 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader.activity_company_timings
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -29,6 +31,7 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     private lateinit var btnNext: Button
     private lateinit var imgLocation: ImageView
     private lateinit var linearback: LinearLayout
+    private lateinit var coordinates: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,12 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
 
     private fun setListeners() {
         imgLocation.setOnClickListener {
-            startActivity(Intent(this@ActivityCompanyTimings, ActivityPickLocation::class.java))
+            startActivityForResult(
+                Intent(
+                    this@ActivityCompanyTimings,
+                    ActivityPickLocation::class.java
+                ), 120
+            )
         }
     }
 
@@ -73,6 +81,15 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
 
     override fun onLocationResult(city: String, coordinates: String) {
         //TODO: not implemented
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 120 && resultCode == Activity.RESULT_OK) {
+            coordinates = getSharedPreferences("coordinates", Context.MODE_PRIVATE).getString(
+                "coordinates",
+                "n/a"
+            ) as String
+        }
     }
 
 }
