@@ -47,9 +47,9 @@ class ActivityCompanyType : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                val pref = getSharedPreferences("trader_credentials", Context.MODE_PRIVATE)
+                val pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                 val editor = pref.edit()
-                editor.putString("trader_category", selectedValue)
+                editor.putString("company_type", selectedValue)
                 editor.apply()
                 startActivity(Intent(this, ActivityTraderSignup::class.java))
                 finish()
@@ -59,21 +59,30 @@ class ActivityCompanyType : AppCompatActivity() {
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             if (radioFood.isChecked) {
                 selectedValue = "Food & beverages"
+                edtType.isEnabled = false
             } else if (radioClothes.isChecked) {
                 selectedValue = "Clothes"
+                edtType.isEnabled = false
             } else if (radioAccessories.isChecked) {
                 selectedValue = "Accessories"
+                edtType.isEnabled = false
             } else if (radioSkincare.isChecked) {
                 selectedValue = "Skincare"
+                edtType.isEnabled = false
             } else if (radioHomeware.isChecked) {
                 selectedValue = "Homeware"
+                edtType.isEnabled = false
             } else if (radioToys.isChecked) {
                 selectedValue = "Toys"
+                edtType.isEnabled = false
             } else if (radioShoes.isChecked) {
                 selectedValue = "Shoes"
+                edtType.isEnabled = false
             } else if (radioBags.isChecked) {
                 selectedValue = "Bags"
+                edtType.isEnabled = false
             } else if (radioOthers.isChecked) {
+                edtType.isEnabled = true
                 selectedValue = ""
             }
         }
@@ -100,6 +109,7 @@ class ActivityCompanyType : AppCompatActivity() {
         radioOthers = findViewById(R.id.radio_other)
         linearback = findViewById(R.id.linear_go_back)
         selectedValue = ""
+        edtType.isEnabled = false
     }
 
     override fun onBackPressed() {

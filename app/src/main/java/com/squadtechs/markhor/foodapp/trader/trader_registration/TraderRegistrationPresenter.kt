@@ -2,15 +2,11 @@ package com.squadtechs.markhor.foodapp.trader.trader_registration
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONArray
 import org.json.JSONObject
-import java.lang.Exception
 
 class TraderRegistrationPresenter(
     private val mView: TraderRegistrationContracts.IView,
@@ -75,11 +71,11 @@ class TraderRegistrationPresenter(
                 if (json.getString("status").equals("reg_failed")) {
                     mView.onRegistrationResult(false)
                 } else {
-                    val trader_id: Int = JSONObject(response).getInt("trader_id")
+                    val trader_id = JSONObject(response).getInt("trader_id").toString()
                     val pref =
-                        context.getSharedPreferences("trader_credentials", Context.MODE_PRIVATE)
+                        context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     val editor = pref.edit()
-                    editor.putInt("trader_id", trader_id)
+                    editor.putString("trader_id", trader_id)
                     editor.apply()
                     mView.onRegistrationResult(true)
                 }

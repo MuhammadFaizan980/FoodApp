@@ -1,14 +1,16 @@
 package com.squadtechs.markhor.foodapp.trader.trader_registration
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
+import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IView {
@@ -24,6 +26,8 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     private lateinit var btnRegister: Button
     private lateinit var traderLogin: LinearLayout
     private lateinit var iAmCustomer: LinearLayout
+    private lateinit var pref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
     private lateinit var mPresenter: TraderRegistrationContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +82,8 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         confirmPassword = findViewById(R.id.edt_trader_confirm_password)
         agreement = findViewById(R.id.radio_trader_terms_and_condition)
         btnRegister = findViewById(R.id.btn_trader_sign_up)
+        pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+        editor = pref.edit()
         mPresenter = TraderRegistrationPresenter(this@ActivityTraderSignup, this)
     }
 
@@ -107,10 +113,12 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     private fun showDialog() {
         val dialog = AlertDialog.Builder(this@ActivityTraderSignup)
         dialog.setTitle("Message!")
-        dialog.setMessage("Trader account created successfully\nYou will need to upload electronic lincense in the next screeen")
+        dialog.setMessage("Trader account created successfully\nYou will need to upload electronic license in the next screen")
         dialog.setCancelable(false)
         dialog.setPositiveButton("Next") { dialogInterface, i ->
-            startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyTimings::class.java))
+            editor.putString("redirect_screen", "company_details")
+            editor.apply()
+            startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyDetails::class.java))
             finish()
         }
         dialog.show()

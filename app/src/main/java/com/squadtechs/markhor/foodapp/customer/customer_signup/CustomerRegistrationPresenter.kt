@@ -71,6 +71,10 @@ class CustomerRegistrationPresenter(
                     mView.onRegistrationResult(false)
                     Log.i("dxdiag", response)
                 } else {
+                    val pref =
+                        context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putString("trader_id", json.getInt("trader_id").toString())
                     mView.onRegistrationResult(true)
                 }
             },
