@@ -403,16 +403,15 @@
             android:textSize="13sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/edt_company_location"
+
+        <ImageView
+            android:id="@+id/img_company_location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:minHeight="35dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text=""
+            android:padding="32dp"
+            android:src="@drawable/ic_add"
             android:textSize="13sp" />
 
 

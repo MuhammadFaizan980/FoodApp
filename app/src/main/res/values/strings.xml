@@ -87,4 +87,5 @@
     <string name="browse_through_all_our_home_made_goods">Browse through all our home made goods</string>
     <string name="food_2">Food</string>
     <string name="mobile">MOBILE</string>
+    <string name="title_activity_pick_location">Map</string>
 </resources>

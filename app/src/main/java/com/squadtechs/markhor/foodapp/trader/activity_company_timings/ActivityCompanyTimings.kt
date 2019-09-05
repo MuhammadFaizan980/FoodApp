@@ -1,11 +1,14 @@
 package com.squadtechs.markhor.foodapp.trader.activity_company_timings
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.activity_pick_location.ActivityPickLocation
 
 class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IView {
 
@@ -24,6 +27,7 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     private lateinit var edtSaturdayStart: EditText
     private lateinit var edtSaturdayEnd: EditText
     private lateinit var btnNext: Button
+    private lateinit var imgLocation: ImageView
     private lateinit var linearback: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +38,13 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     }
 
     private fun setListeners() {
+        imgLocation.setOnClickListener {
+            startActivity(Intent(this@ActivityCompanyTimings, ActivityPickLocation::class.java))
+        }
     }
 
     private fun initViews() {
+        imgLocation = findViewById(R.id.img_company_location)
         edtSundayStart = findViewById(R.id.edt_open_sunday)
         edtSundayEnd = findViewById(R.id.edt_close_sunday)
         edtMondayStart = findViewById(R.id.edt_open_monday)
@@ -56,15 +64,15 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     }
 
     override fun onValidationResult(status: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO: not implemented
     }
 
     override fun onAddCompanyTimingsResult(status: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO: not implemented
     }
 
     override fun onLocationResult(city: String, coordinates: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO: not implemented
     }
 
 }
