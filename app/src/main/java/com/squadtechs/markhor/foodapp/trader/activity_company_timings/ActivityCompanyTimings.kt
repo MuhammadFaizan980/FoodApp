@@ -89,7 +89,16 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
                 "coordinates",
                 "n/a"
             ) as String
+            imgLocation.setImageResource(R.drawable.marker_pin)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("current_screen", "trader company timings")
+        editor.apply()
     }
 
 }

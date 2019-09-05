@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader.activity_company_details
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -84,6 +85,14 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
             uri = data.data!!
             imgCompany.setImageURI(uri)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("current_screen", "trader company details")
+        editor.apply()
     }
 
 }

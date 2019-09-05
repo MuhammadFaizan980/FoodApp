@@ -82,7 +82,7 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         confirmPassword = findViewById(R.id.edt_trader_confirm_password)
         agreement = findViewById(R.id.radio_trader_terms_and_condition)
         btnRegister = findViewById(R.id.btn_trader_sign_up)
-        pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+        pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
         editor = pref.edit()
         mPresenter = TraderRegistrationPresenter(this@ActivityTraderSignup, this)
     }
@@ -116,12 +116,16 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         dialog.setMessage("Trader account created successfully\nYou will need to upload electronic license in the next screen")
         dialog.setCancelable(false)
         dialog.setPositiveButton("Next") { dialogInterface, i ->
-            editor.putString("redirect_screen", "company_details")
-            editor.apply()
             startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyDetails::class.java))
             finish()
         }
         dialog.show()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        editor.putString("current_screen", "trader registration")
+        editor.apply()
     }
 
 }

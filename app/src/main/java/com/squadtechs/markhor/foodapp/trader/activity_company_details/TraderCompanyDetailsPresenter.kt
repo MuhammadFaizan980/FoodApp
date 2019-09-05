@@ -57,11 +57,6 @@ class TraderCompanyDetailsPresenter(
                 pd.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("update_success")) {
-                    val pref =
-                        context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
-                    val editor = pref.edit()
-                    editor.putString("redirect_screen", "company_timings")
-                    editor.apply()
                     mView.onAddCompanyDetailsResult(true)
                 } else {
                     mView.onAddCompanyDetailsResult(false)
