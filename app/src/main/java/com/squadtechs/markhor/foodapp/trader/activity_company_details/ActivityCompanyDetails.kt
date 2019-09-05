@@ -95,4 +95,9 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
         editor.apply()
     }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, ActivityTraderSignup::class.java))
+        finish()
+    }
+
 }

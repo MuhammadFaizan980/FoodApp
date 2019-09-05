@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 import com.squadtechs.markhor.foodapp.trader.activity_pick_location.ActivityPickLocation
 
 class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IView {
@@ -49,6 +50,12 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
                 ), 120
             )
         }
+
+        linearback.setOnClickListener {
+            startActivity(Intent(this, ActivityCompanyDetails::class.java))
+            finish()
+        }
+
     }
 
     private fun initViews() {
@@ -99,6 +106,11 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
         val editor = pref.edit()
         editor.putString("current_screen", "trader company timings")
         editor.apply()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, ActivityCompanyDetails::class.java))
+        finish()
     }
 
 }

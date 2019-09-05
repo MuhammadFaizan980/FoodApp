@@ -80,7 +80,7 @@ class TraderCompanyDetailsPresenter(
 
                 val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
                 val stream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream)
                 val byteArr = stream.toByteArray()
                 val imageString =
                     "data:image/png;base64,${Base64.encodeToString(byteArr, Base64.DEFAULT)}"
