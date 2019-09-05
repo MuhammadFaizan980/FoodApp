@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyTimings
+import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
 class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContracts.IView {
 
@@ -35,6 +36,12 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
             val description = edtDescrption.text.toString().trim()
             mPresenter.initValidation(name, cuisine, description, uri)
         }
+
+        linearback.setOnClickListener {
+            startActivity(Intent(this, ActivityTraderSignup::class.java))
+            finish()
+        }
+
     }
 
     private fun initImagePicker() {
