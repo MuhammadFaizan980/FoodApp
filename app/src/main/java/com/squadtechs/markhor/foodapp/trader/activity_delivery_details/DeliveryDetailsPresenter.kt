@@ -6,6 +6,7 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class DeliveryDetailsPresenter(
     private val mView: DeliveryDetailsContracts.IView,
@@ -19,7 +20,7 @@ class DeliveryDetailsPresenter(
     private lateinit var mModel: DeliveryDetailsContracts.IModel
 
     override fun initValidation(deliver: Boolean, range: String, pickupInformation: String) {
-        mModel = DeliveryDetailsModel(deliver, range, pickupInformation)
+        mModel = DeliveryDetailsModel(range, pickupInformation)
         this.deliver = deliver
         this.range = range
         this.pickupInformation = pickupInformation
@@ -38,9 +39,20 @@ class DeliveryDetailsPresenter(
             API,
             Response.Listener { response ->
                 pd.cancel()
+                try {
+                    val json = JSONObject(response)
+                    if (json.getString("status").equals("update_success")) {
+                        mView.onAddDeliveryDetailsResult(true)
+                    } else {
+                        mView.onAddDeliveryDetailsResult(false)
+                    }
+                } catch (exc: Exception) {
+                    mView.onAddDeliveryDetailsResult(false)
+                }
                 Log.i("resp", response)
             },
             Response.ErrorListener { error ->
+                mView.onAddDeliveryDetailsResult(false)
                 pd.cancel()
                 Log.i("resp", error.toString())
             }) {
