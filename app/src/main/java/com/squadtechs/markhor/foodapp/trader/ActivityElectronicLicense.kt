@@ -3,6 +3,7 @@ package com.squadtechs.markhor.foodapp.trader
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
@@ -72,7 +74,12 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
                         dialog.setMessage("Your license has been uploaded and your account is pending for approval by admin\nYou will be able to login once your account is approved")
                         dialog.setCancelable(false)
                         dialog.setNegativeButton("Close") { dialogInterface, i ->
-                            startActivity(Intent(this@ActivityElectronicLicense, ActivityTraderLogin::class.java))
+                            startActivity(
+                                Intent(
+                                    this@ActivityElectronicLicense,
+                                    ActivityTraderLogin::class.java
+                                )
+                            )
                             finish()
                         }
                         dialog.show()
@@ -96,6 +103,19 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
             val uri = data.data!!
             imgLicenseThird.setImageURI(uri)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("current_screen", "trader license")
+        editor.apply()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, ActivityDeliveryDetails::class.java))
+        finish()
     }
 
 }

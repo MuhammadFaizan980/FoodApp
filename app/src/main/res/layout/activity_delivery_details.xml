@@ -117,7 +117,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edt_company_location"
+        android:id="@+id/edt_pick_up_information"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
