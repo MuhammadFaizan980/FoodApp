@@ -8,11 +8,9 @@ interface CompanyTimingsContracts {
     interface IView {
         fun onValidationResult(status: Boolean)
         fun onAddCompanyTimingsResult(status: Boolean)
-        fun onLocationResult(city: String, coordinates: String)
     }
 
     interface IPresenter {
-        fun getLocation()
         fun initValidation(
             sundayOpen: String,
             sundayClose: String,
@@ -28,7 +26,7 @@ interface CompanyTimingsContracts {
             fridayClose: String,
             saturdayOpen: String,
             saturdayClose: String,
-            location: String
+            location: String?
         )
 
         fun addCompanyTimings()

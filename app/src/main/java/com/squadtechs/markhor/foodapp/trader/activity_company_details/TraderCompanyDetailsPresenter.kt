@@ -57,6 +57,10 @@ class TraderCompanyDetailsPresenter(
                 pd.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("update_success")) {
+                    val pref = context.getSharedPreferences("company_data", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putString("company_id", json.getString("company_id"))
+                    editor.apply()
                     mView.onAddCompanyDetailsResult(true)
                 } else {
                     mView.onAddCompanyDetailsResult(false)
@@ -80,7 +84,7 @@ class TraderCompanyDetailsPresenter(
 
                 val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
                 val stream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream)
                 val byteArr = stream.toByteArray()
                 val imageString =
                     "data:image/png;base64,${Base64.encodeToString(byteArr, Base64.DEFAULT)}"

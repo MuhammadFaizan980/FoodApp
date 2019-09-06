@@ -4,12 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 import com.squadtechs.markhor.foodapp.trader.activity_pick_location.ActivityPickLocation
 
@@ -32,7 +30,8 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     private lateinit var btnNext: Button
     private lateinit var imgLocation: ImageView
     private lateinit var linearback: LinearLayout
-    private lateinit var coordinates: String
+    private var coordinates: String? = null
+    private lateinit var mPresenter: CompanyTimingsContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +49,39 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
                 ), 120
             )
         }
+        btnNext.setOnClickListener {
+            val sundayOpen = edtSundayStart.text.toString().trim()
+            val sundayClose = edtSundayEnd.text.toString().trim()
+            val mondayOpen = edtMondayStart.text.toString().trim()
+            val mondayClose = edtMondayEnd.text.toString().trim()
+            val tuesdayOpen = edtTuesdayStart.text.toString().trim()
+            val tuesdayClose = edtTuesdayEnd.text.toString().trim()
+            val wednesdayOpen = edtWednesdayStart.text.toString().trim()
+            val wednesdayClose = edtWednesdayEnd.text.toString().trim()
+            val thursdayOpen = edtThursdayStart.text.toString().trim()
+            val thursdayClose = edtThursdayEnd.text.toString().trim()
+            val fridayOpen = edtFridayStart.text.toString().trim()
+            val fridayClose = edtFridayEnd.text.toString().trim()
+            val saturdayOpen = edtSaturdayStart.text.toString().trim()
+            val saturdayClose = edtSaturdayEnd.text.toString().trim()
+            mPresenter.initValidation(
+                sundayOpen,
+                sundayClose,
+                mondayOpen,
+                mondayClose,
+                tuesdayOpen,
+                tuesdayClose,
+                wednesdayOpen,
+                wednesdayClose,
+                thursdayOpen,
+                thursdayClose,
+                fridayOpen,
+                fridayClose,
+                saturdayOpen,
+                saturdayClose,
+                coordinates
+            )
+        }
 
         linearback.setOnClickListener {
             startActivity(Intent(this, ActivityCompanyDetails::class.java))
@@ -59,6 +91,7 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     }
 
     private fun initViews() {
+        mPresenter = CompanyTimingsPresenter(this@ActivityCompanyTimings, this)
         imgLocation = findViewById(R.id.img_company_location)
         edtSundayStart = findViewById(R.id.edt_open_sunday)
         edtSundayEnd = findViewById(R.id.edt_close_sunday)
@@ -79,15 +112,20 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     }
 
     override fun onValidationResult(status: Boolean) {
-        //TODO: not implemented
+        if (status) {
+            mPresenter.addCompanyTimings()
+        } else {
+            Toast.makeText(this, "Invalid data entry", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onAddCompanyTimingsResult(status: Boolean) {
-        //TODO: not implemented
-    }
-
-    override fun onLocationResult(city: String, coordinates: String) {
-        //TODO: not implemented
+        if (status) {
+            startActivity(Intent(this, ActivityDeliveryDetails::class.java))
+            finish()
+        } else {
+            Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,12 +1,19 @@
 package com.squadtechs.markhor.foodapp.trader.activity_company_timings
 
+import android.app.ProgressDialog
 import android.content.Context
+import android.util.Log
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class CompanyTimingsPresenter constructor(
     private val mView: CompanyTimingsContracts.IView,
     private val context: Context
 ) : CompanyTimingsContracts.IPresenter {
 
+    private val API = "http://squadtechsolution.com/android/v1/company_Timing.php"
     private lateinit var mModel: CompanyTimingsContracts.IModel
     private lateinit var sundayStart: String
     private lateinit var sundayEnd: String
@@ -22,7 +29,7 @@ class CompanyTimingsPresenter constructor(
     private lateinit var fridayEnd: String
     private lateinit var saturdayStart: String
     private lateinit var saturdayEnd: String
-    private lateinit var location: String
+    private var location: String? = null
 
     override fun initValidation(
         sundayOpen: String,
@@ -39,7 +46,7 @@ class CompanyTimingsPresenter constructor(
         fridayClose: String,
         saturdayOpen: String,
         saturdayClose: String,
-        location: String
+        location: String?
     ) {
         sundayStart = sundayOpen
         sundayEnd = sundayClose
@@ -77,11 +84,51 @@ class CompanyTimingsPresenter constructor(
     }
 
     override fun addCompanyTimings() {
-        TODO("not implemented")
-    }
-
-    override fun getLocation() {
-        TODO("not implemented")
+        val pd = ProgressDialog(context)
+        pd.setTitle("Please Wait")
+        pd.setMessage("Adding company timings")
+        pd.setCancelable(false)
+        pd.show()
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = object : StringRequest(
+            Method.POST,
+            API,
+            Response.Listener { response ->
+                pd.cancel()
+                try {
+                    val json = JSONObject(response)
+                    if (json.getString("status").equals("Timing Update SuccuessFull")) {
+                        mView.onAddCompanyTimingsResult(true)
+                    } else {
+                        mView.onAddCompanyTimingsResult(false)
+                    }
+                } catch (exc: Exception) {
+                    mView.onAddCompanyTimingsResult(false)
+                }
+            },
+            Response.ErrorListener { error ->
+                pd.cancel()
+                mView.onAddCompanyTimingsResult(false)
+                Log.i("resp", error.toString())
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val map = HashMap<String, String>()
+                val company_id = context.getSharedPreferences("company_data", Context.MODE_PRIVATE)
+                    .getString("company_id", "n/a") as String
+                map["Monday"] = "$mondayStart, $mondayEnd"
+                map["Tuesday"] = "$tuesdayStart, $tuesdayEnd"
+                map["Wednesday"] = "$wednesdayStart, $wednesdayEnd"
+                map["Thursday"] = "$thursdayStart, $thursdayEnd"
+                map["Friday"] = "$fridayStart, $fridayEnd"
+                map["Saturday"] = "$saturdayStart, $saturdayEnd"
+                map["Sunday"] = "$sundayStart, $sundayEnd"
+                map["company_id"] = company_id
+                map["address"] = location!!
+                Log.i("timings", map.toString())
+                return map
+            }
+        }
+        requestQueue.add(stringRequest)
     }
 
 }

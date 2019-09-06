@@ -15,7 +15,7 @@ class CompanyTimingsModel(
     private val fridayClose: String,
     private val saturdayOpen: String,
     private val saturdayClose: String,
-    private val location: String
+    private val location: String?
 ) : CompanyTimingsContracts.IModel {
 
     override fun validate(): Boolean = !sundayOpen.equals("") && !sundayClose.equals("")
@@ -23,6 +23,6 @@ class CompanyTimingsModel(
             && !tuesdayClose.equals("") && !wednesdayOpen.equals("") && !wednesdayClose.equals("")
             && !thursdayOpen.equals("") && !thursdayClose.equals("") && !fridayOpen.equals("")
             && !fridayClose.equals("") && !saturdayOpen.equals("") && !saturdayClose.equals("")
-            && !location.equals("")
+            && location != null && !location.equals("")
 
 }
