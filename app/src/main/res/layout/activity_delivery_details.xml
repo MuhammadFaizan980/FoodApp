@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context=".trader.ActivityDeliveryDetails">
+    tools:context=".trader.activity_delivery_details.ActivityDeliveryDetails">
 
     <LinearLayout
         android:id="@+id/linear_go_back"
@@ -123,7 +123,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_background"
         android:inputType="textMultiLine"
-        android:paddingLeft="16dp"
+        android:padding="16dp"
         android:text=""
         android:textSize="13sp" />
 
