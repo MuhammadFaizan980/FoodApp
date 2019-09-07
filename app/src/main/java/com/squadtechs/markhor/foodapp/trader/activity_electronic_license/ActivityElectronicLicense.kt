@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.activity_electronic_license
+package com.squadtechs.markhor.foodapp.trader.activity_electronic_license
 
 import android.app.Activity
 import android.content.Context
@@ -48,7 +48,11 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener,
         imgLicenseSecond = findViewById(R.id.img_licence_second)
         imgLicenseThird = findViewById(R.id.img_licence_third)
         btnDone = findViewById(R.id.btn_done)
-        mPresenter = ElectronicLicensePresenter(this@ActivityElectronicLicense, this)
+        mPresenter =
+            ElectronicLicensePresenter(
+                this@ActivityElectronicLicense,
+                this
+            )
         linearBack = findViewById(R.id.linear_go_back)
     }
 

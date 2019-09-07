@@ -4,10 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.activity_electronic_license.ActivityElectronicLicense
+import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
@@ -31,6 +32,7 @@ class ActivitySelect : AppCompatActivity() {
             "current_screen",
             "null"
         ) as String
+        Toast.makeText(this, isRegInProgress, Toast.LENGTH_LONG).show()
         if (!isRegInProgress.equals("null") && !isRegInProgress.equals("reg_complete")) {
             val dialog = AlertDialog.Builder(this)
             dialog.setTitle("Message!")

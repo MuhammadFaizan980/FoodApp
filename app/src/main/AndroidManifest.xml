@@ -54,7 +54,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity_electronic_license.ActivityElectronicLicense"
+            android:name=".trader.activity_electronic_license.ActivityElectronicLicense"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity

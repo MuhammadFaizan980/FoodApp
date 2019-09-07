@@ -3,6 +3,7 @@ package com.squadtechs.markhor.foodapp.trader.trader_login
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -40,6 +41,7 @@ class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, privat
             API,
             Response.Listener { response ->
                 progressDialog.cancel()
+                Log.i("m_resp", response)
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
                     mView.onLoginResult(false, "n/a")
@@ -60,6 +62,7 @@ class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, privat
                 }
             },
             Response.ErrorListener { error ->
+                Log.i("m_resp", error.toString())
                 progressDialog.cancel()
                 mView.onLoginResult(false, "n/a")
             }) {

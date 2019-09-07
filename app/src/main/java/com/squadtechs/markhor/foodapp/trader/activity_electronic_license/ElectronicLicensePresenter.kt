@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.activity_electronic_license
+package com.squadtechs.markhor.foodapp.trader.activity_electronic_license
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -27,7 +27,12 @@ class ElectronicLicensePresenter(
     private lateinit var uri3: Uri
 
     override fun initValidation(uri1: Uri?, uri2: Uri?, uri3: Uri?) {
-        mModel = ElectronicLicenseModel(uri1, uri2, uri3)
+        mModel =
+            ElectronicLicenseModel(
+                uri1,
+                uri2,
+                uri3
+            )
         if (mModel.validate()) {
             mView.onValidationResult(true)
             this.uri1 = uri1!!

@@ -122,10 +122,4 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         dialog.show()
     }
 
-    override fun onStart() {
-        super.onStart()
-        editor.putString("current_screen", "trader registration")
-        editor.apply()
-    }
-
 }

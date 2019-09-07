@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.activity_electronic_license
+package com.squadtechs.markhor.foodapp.trader.activity_electronic_license
 
 import android.net.Uri
 

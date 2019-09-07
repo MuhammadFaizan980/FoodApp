@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.activity_electronic_license.ActivityElectronicLicense
+import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.xw.repo.BubbleSeekBar
 
