@@ -68,20 +68,19 @@ class CustomerRegistrationPresenter(
                 progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
-                    mView.onRegistrationResult(false)
+                    mView.onRegistrationResult(
+                        false,
+                        json.getString("label") + " try with different credentials"
+                    )
                     Log.i("dxdiag", response)
                 } else {
-                    val pref =
-                        context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
-                    val editor = pref.edit()
-                    editor.putString("trader_id", json.getInt("trader_id").toString())
-                    mView.onRegistrationResult(true)
+                    mView.onRegistrationResult(true, "")
                 }
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
                 Log.i("dxdiag", error.toString())
-                mView.onRegistrationResult(false)
+                mView.onRegistrationResult(false, "")
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()

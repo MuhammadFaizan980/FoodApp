@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.activity_phone_verification
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -54,8 +55,9 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         mPresenter = PhoneVerificationPresenter(this@ActivityPhoneVerification, this)
     }
 
-    override fun onSendVerificationCodeError() {
-        Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
+    override fun onSendVerificationCodeError(error: String) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+        Log.e("firebase_error", error)
     }
 
     override fun onCodeSentResult(id: String) {

@@ -10,7 +10,10 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class CustomerLoginPresenter(private val mView: CustomerLoginContracts.IView, private val context: Context) :
+class CustomerLoginPresenter(
+    private val mView: CustomerLoginContracts.IView,
+    private val context: Context
+) :
     CustomerLoginContracts.IPresenter {
 
     private lateinit var email: String
@@ -41,7 +44,10 @@ class CustomerLoginPresenter(private val mView: CustomerLoginContracts.IView, pr
                 progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
-                    mView.onLoginResult(false)
+                    mView.onLoginResult(
+                        false,
+                        json.getString("label") + " try using different credentials"
+                    )
                 } else {
                     pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     editor = pref.edit()
@@ -55,12 +61,12 @@ class CustomerLoginPresenter(private val mView: CustomerLoginContracts.IView, pr
                     editor.putString("birthday", obj.birthday)
                     editor.putString("phone", obj.phone)
                     editor.apply()
-                    mView.onLoginResult(true)
+                    mView.onLoginResult(true, "")
                 }
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
-                mView.onLoginResult(false)
+                mView.onLoginResult(false, "")
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()

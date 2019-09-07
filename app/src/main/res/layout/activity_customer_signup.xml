@@ -110,7 +110,8 @@
                         android:layout_height="35dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/edit_text_background"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -136,7 +137,8 @@
                         android:layout_height="35dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/edit_text_background"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -171,7 +173,8 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/edit_text_background"
                         android:inputType="phone"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -198,7 +201,8 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/edit_text_background"
                         android:inputType="date"
-                        android:paddingLeft="16dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -220,7 +224,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="textEmailAddress"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:textSize="13sp" />
 
             <TextView
@@ -239,7 +244,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="textPassword"
-                android:paddingLeft="16dp" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -257,7 +263,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="textPassword"
-                android:paddingLeft="16dp" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp" />
 
             <LinearLayout
                 android:id="@+id/linear_customer_forgot_password"

@@ -30,7 +30,7 @@ class DeliveryDetailsPresenter(
     override fun addDeliveryDetails() {
         val pd = ProgressDialog(context)
         pd.setTitle("Please Wait")
-        pd.setMessage("Adding company timings")
+        pd.setMessage("Adding delivery details")
         pd.setCancelable(false)
         pd.show()
         val requestQueue = Volley.newRequestQueue(context)

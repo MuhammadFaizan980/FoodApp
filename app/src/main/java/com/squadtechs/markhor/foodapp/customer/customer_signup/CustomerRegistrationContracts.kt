@@ -7,8 +7,14 @@ interface CustomerRegistrationContracts {
 
     interface IPresenter {
         fun initValidation(
-            firstName: String, lastName: String, mobileNumber: String, birthday: String, email: String,
-            password: String, confirmPassword: String, userAgreement: Boolean
+            firstName: String,
+            lastName: String,
+            mobileNumber: String,
+            birthday: String,
+            email: String,
+            password: String,
+            confirmPassword: String,
+            userAgreement: Boolean
         )
 
         fun initRegistration()
@@ -16,7 +22,7 @@ interface CustomerRegistrationContracts {
 
     interface IView {
         fun onValidationResult(status: Boolean)
-        fun onRegistrationResult(status: Boolean)
+        fun onRegistrationResult(status: Boolean, message: String)
     }
 
 }

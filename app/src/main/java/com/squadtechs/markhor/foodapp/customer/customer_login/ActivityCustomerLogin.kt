@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
+import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 import com.squadtechs.markhor.foodapp.customer.customer_signup.ActivityCustomerSignup
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 
@@ -63,9 +64,12 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         }
     }
 
-    override fun onLoginResult(status: Boolean) {
+    override fun onLoginResult(status: Boolean, message: String) {
         if (status) {
-            Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, ActivityCustomerMain::class.java))
+            finish()
+        } else if (!message.equals("")) {
+            Toast.makeText(this, "Login Failed, $message", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show()
         }

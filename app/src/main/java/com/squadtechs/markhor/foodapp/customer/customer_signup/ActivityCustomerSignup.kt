@@ -88,12 +88,19 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
         }
     }
 
-    override fun onRegistrationResult(status: Boolean) {
+    override fun onRegistrationResult(status: Boolean, message: String) {
         if (status) {
             val intent = Intent(this, ActivityPhoneVerification::class.java)
             intent.putExtra("phone_number", mobile.text.toString().trim())
             startActivity(intent)
             finish()
+        } else if (!message.equals("")) {
+            Toast.makeText(
+                this@ActivityCustomerSignup,
+                "Registration failed $message",
+                Toast.LENGTH_LONG
+            )
+                .show()
         } else {
             Toast.makeText(this@ActivityCustomerSignup, "Registration failed", Toast.LENGTH_LONG)
                 .show()

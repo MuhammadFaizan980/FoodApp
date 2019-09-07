@@ -9,7 +9,7 @@ interface PhoneVerificationContracts {
     }
 
     interface IView {
-        fun onSendVerificationCodeError()
+        fun onSendVerificationCodeError(error: String)
         fun onCodeSentResult(id: String)
         fun onCodeVerificationResult(status: Boolean)
     }

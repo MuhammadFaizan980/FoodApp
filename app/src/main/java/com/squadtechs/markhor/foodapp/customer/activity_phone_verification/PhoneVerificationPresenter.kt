@@ -36,7 +36,7 @@ class PhoneVerificationPresenter(
 
                 override fun onVerificationFailed(p0: FirebaseException) {
                     pd.cancel()
-                    mView.onSendVerificationCodeError()
+                    mView.onSendVerificationCodeError(p0.message!!)
                 }
 
                 override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {

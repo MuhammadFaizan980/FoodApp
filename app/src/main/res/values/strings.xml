@@ -90,4 +90,6 @@
     <string name="title_activity_pick_location">Map</string>
     <string name="coordinates">23.656444, 54.006528</string>
     <string name="pick_this_location">Pick this location?</string>
+    <string name="start">OPEN</string>
+    <string name="close">CLOSE</string>
 </resources>
