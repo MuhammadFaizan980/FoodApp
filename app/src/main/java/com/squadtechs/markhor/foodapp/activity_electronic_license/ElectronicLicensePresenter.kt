@@ -7,10 +7,13 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+
 
 class ElectronicLicensePresenter(
     private val mView: ElectronicLicenseContracts.IView,
@@ -30,6 +33,8 @@ class ElectronicLicensePresenter(
             this.uri1 = uri1!!
             this.uri2 = uri2!!
             this.uri3 = uri3!!
+        } else {
+            mView.onValidationResult(false)
         }
     }
 
@@ -47,7 +52,16 @@ class ElectronicLicensePresenter(
             API,
             Response.Listener { response ->
                 pd.cancel()
-                Log.i("m_resp", response)
+                val json = JSONObject(response)
+                try {
+                    if (json.getString("status").equals("License Uploaded")) {
+                        mView.onSaveLicenseResult(true)
+                    } else {
+                        mView.onSaveLicenseResult(false)
+                    }
+                } catch (exc: Exception) {
+                    mView.onSaveLicenseResult(false)
+                }
             },
             Response.ErrorListener { error ->
                 pd.cancel()
@@ -67,6 +81,11 @@ class ElectronicLicensePresenter(
                 return map
             }
         }
+        stringRequest.retryPolicy = DefaultRetryPolicy(
+            10000,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
         requestQueue.add(stringRequest)
     }
 

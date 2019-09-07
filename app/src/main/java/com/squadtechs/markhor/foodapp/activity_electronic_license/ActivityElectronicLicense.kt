@@ -1,26 +1,32 @@
 package com.squadtechs.markhor.foodapp.activity_electronic_license
 
 import android.app.Activity
-import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.ActivityThankyou
 import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
-import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
-class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
+class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener,
+    ElectronicLicenseContracts.IView {
 
     private lateinit var imgLicenseFirst: ImageView
     private lateinit var imgLicenseSecond: ImageView
     private lateinit var imgLicenseThird: ImageView
     private lateinit var btnDone: Button
+    private lateinit var mPresenter: ElectronicLicenseContracts.IPresenter
+    private lateinit var linearBack: LinearLayout
+    private var uri1: Uri? = null
+    private var uri2: Uri? = null
+    private var uri3: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +40,7 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
         imgLicenseSecond.setOnClickListener(this)
         imgLicenseThird.setOnClickListener(this)
         btnDone.setOnClickListener(this)
+        linearBack.setOnClickListener(this)
     }
 
     private fun iniViews() {
@@ -41,6 +48,8 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
         imgLicenseSecond = findViewById(R.id.img_licence_second)
         imgLicenseThird = findViewById(R.id.img_licence_third)
         btnDone = findViewById(R.id.btn_done)
+        mPresenter = ElectronicLicensePresenter(this@ActivityElectronicLicense, this)
+        linearBack = findViewById(R.id.linear_go_back)
     }
 
     override fun onClick(p0: View?) {
@@ -61,47 +70,42 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener {
                 startActivityForResult(intent, 14)
             }
             R.id.btn_done -> {
-                val progressDialgo = ProgressDialog(this)
-                progressDialgo.setCancelable(false)
-                progressDialgo.setTitle("Please Wait!")
-                progressDialgo.setMessage("Uploading licence")
-                progressDialgo.show()
-                object : CountDownTimer(5000, 100) {
-                    override fun onFinish() {
-                        progressDialgo.cancel()
-                        val dialog = AlertDialog.Builder(this@ActivityElectronicLicense)
-                        dialog.setTitle("Info!")
-                        dialog.setMessage("Your license has been uploaded and your account is pending for approval by admin\nYou will be able to login once your account is approved")
-                        dialog.setCancelable(false)
-                        dialog.setNegativeButton("Close") { dialogInterface, i ->
-                            startActivity(
-                                Intent(
-                                    this@ActivityElectronicLicense,
-                                    ActivityTraderLogin::class.java
-                                )
-                            )
-                            finish()
-                        }
-                        dialog.show()
-                    }
-
-                    override fun onTick(p0: Long) {
-                    }
-                }.start()
+                mPresenter.initValidation(uri1, uri2, uri3)
+            }
+            R.id.linear_go_back -> {
+                startActivity(Intent(this, ActivityDeliveryDetails::class.java))
+                finish()
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 12 && resultCode == RESULT_OK && data != null) {
-            val uri = data.data!!
-            imgLicenseFirst.setImageURI(uri)
+            uri1 = data.data!!
+            imgLicenseFirst.setImageURI(uri1)
         } else if (requestCode == 13 && resultCode == Activity.RESULT_OK && data != null) {
-            val uri = data.data!!
-            imgLicenseSecond.setImageURI(uri)
+            uri2 = data.data!!
+            imgLicenseSecond.setImageURI(uri2)
         } else if (requestCode == 14 && resultCode == Activity.RESULT_OK && data != null) {
-            val uri = data.data!!
-            imgLicenseThird.setImageURI(uri)
+            uri3 = data.data!!
+            imgLicenseThird.setImageURI(uri3)
+        }
+    }
+
+    override fun onValidationResult(status: Boolean) {
+        if (status) {
+            mPresenter.saveLicense()
+        } else {
+            Toast.makeText(this, "Please select all license files first", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onSaveLicenseResult(status: Boolean) {
+        if (status) {
+            startActivity(Intent(this@ActivityElectronicLicense, ActivityThankyou::class.java))
+            finish()
+        } else {
+            Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
         }
     }
 

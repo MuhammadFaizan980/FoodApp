@@ -8,8 +8,8 @@
     tools:context=".trader.ActivityThankyou">
 
     <ImageView
-        android:layout_width="320dp"
-        android:layout_height="320dp"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="124dp"
         android:src="@drawable/thank_you_logo" />
