@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.trader
+package com.squadtechs.markhor.foodapp.activity_electronic_license
 
 import android.app.Activity
 import android.app.AlertDialog
