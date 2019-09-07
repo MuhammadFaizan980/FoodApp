@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.trader.trader_login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
 class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
@@ -41,7 +43,7 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         }
 
         linearTraderNoAccount.setOnClickListener {
-            startActivity(Intent(this@ActivityTraderLogin, ActivityTraderSignup::class.java))
+            startActivity(Intent(this@ActivityTraderLogin, ActivityCompanyType::class.java))
             finish()
         }
 
@@ -60,17 +62,19 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         if (status) {
             mPresenter.initLogin()
         } else {
-            Toast.makeText(this@ActivityTraderLogin, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityTraderLogin, "Invalid credentials", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
-    override fun onLoginResult(status: Boolean, approval: String) {
+    override fun onLoginResult(status: Boolean, approval: String, message: String) {
         if (status) {
+            Log.i("m_resp", approval)
             if (approval.equals("pending")) {
                 val dialog = AlertDialog.Builder(this)
                 dialog.setCancelable(false)
                 dialog.setTitle("Message!")
-                dialog.setMessage("Your account is not approved yet\nYou will be able to login once your account is approved by admin")
+                dialog.setMessage("Your account is not approved yet\nYou will be able to login once your account is approved by admin\nIncomplete registration will result in account suspension")
                 dialog.setPositiveButton("Ok") { dialogInterface, i ->
                     dialogInterface.cancel()
                 }
@@ -79,7 +83,8 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                 Toast.makeText(this@ActivityTraderLogin, "Login success", Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(this@ActivityTraderLogin, "Login error", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityTraderLogin, "Login error, $message", Toast.LENGTH_LONG)
+                .show()
         }
     }
 

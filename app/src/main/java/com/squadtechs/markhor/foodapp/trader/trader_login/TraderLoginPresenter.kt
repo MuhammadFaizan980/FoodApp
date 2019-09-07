@@ -12,7 +12,10 @@ import com.google.gson.Gson
 import org.json.JSONObject
 
 
-class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, private val context: Context) :
+class TraderLoginPresenter(
+    private val mView: TraderLoginContracts.IView,
+    private val context: Context
+) :
     TraderLoginContracts.IPresenter {
 
     private lateinit var email: String
@@ -44,7 +47,11 @@ class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, privat
                 Log.i("m_resp", response)
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
-                    mView.onLoginResult(false, "n/a")
+                    mView.onLoginResult(
+                        false,
+                        "n/a",
+                        json.getString("label") + " with other credentials"
+                    )
                 } else {
                     pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     editor = pref.edit()
@@ -56,15 +63,18 @@ class TraderLoginPresenter(private val mView: TraderLoginContracts.IView, privat
                     editor.putString("user_email", obj.email)
                     editor.putString("user_password", obj.password)
                     editor.putString("phone", obj.mobile)
-                    editor.putString("account_status", obj.trader_status)
+                    editor.putString("account_status", obj.Profile_Status)
+                    editor.putString("trader_license_1", obj.traderlicense1)
+                    editor.putString("trader_license_2", obj.traderlicense2)
+                    editor.putString("trader_license_3", obj.traderlicense3)
                     editor.apply()
-                    mView.onLoginResult(true, obj.trader_status)
+                    mView.onLoginResult(true, obj.Profile_Status, "n/a")
                 }
             },
             Response.ErrorListener { error ->
                 Log.i("m_resp", error.toString())
                 progressDialog.cancel()
-                mView.onLoginResult(false, "n/a")
+                mView.onLoginResult(false, "n/a", "n/a")
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
