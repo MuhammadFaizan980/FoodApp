@@ -32,7 +32,6 @@ class ActivitySelect : AppCompatActivity() {
             "current_screen",
             "null"
         ) as String
-        Toast.makeText(this, isRegInProgress, Toast.LENGTH_LONG).show()
         if (!isRegInProgress.equals("null") && !isRegInProgress.equals("reg_complete")) {
             val dialog = AlertDialog.Builder(this)
             dialog.setTitle("Message!")

@@ -69,7 +69,7 @@ class TraderRegistrationPresenter(
                 progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
-                    mView.onRegistrationResult(false)
+                    mView.onRegistrationResult(false, json.getString("label"))
                 } else {
                     val trader_id = JSONObject(response).getInt("trader_id").toString()
                     val pref =
@@ -77,13 +77,13 @@ class TraderRegistrationPresenter(
                     val editor = pref.edit()
                     editor.putString("trader_id", trader_id)
                     editor.apply()
-                    mView.onRegistrationResult(true)
+                    mView.onRegistrationResult(true, "n/a")
                 }
             },
             Response.ErrorListener { error ->
                 progressDialog.cancel()
                 error.printStackTrace()
-                mView.onRegistrationResult(false)
+                mView.onRegistrationResult(false, "")
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()

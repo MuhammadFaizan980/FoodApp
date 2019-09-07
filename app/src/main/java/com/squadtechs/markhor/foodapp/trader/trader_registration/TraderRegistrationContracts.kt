@@ -16,6 +16,6 @@ interface TraderRegistrationContracts {
 
     interface IView {
         fun onValidationResult(status: Boolean)
-        fun onRegistrationResult(status: Boolean)
+        fun onRegistrationResult(status: Boolean, message: String)
     }
 }

@@ -96,11 +96,15 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         }
     }
 
-    override fun onRegistrationResult(status: Boolean) {
+    override fun onRegistrationResult(status: Boolean, message: String) {
         if (status) {
             showDialog()
         } else {
-            Toast.makeText(this@ActivityTraderSignup, "Registration error", Toast.LENGTH_LONG)
+            Toast.makeText(
+                this@ActivityTraderSignup,
+                "Registration error $message",
+                Toast.LENGTH_LONG
+            )
                 .show()
         }
     }
