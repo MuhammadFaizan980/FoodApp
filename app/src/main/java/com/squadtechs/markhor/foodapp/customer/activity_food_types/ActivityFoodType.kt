@@ -1,10 +1,12 @@
 package com.squadtechs.markhor.foodapp.customer.activity_food_types
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 
 class ActivityFoodType : AppCompatActivity() {
 
@@ -64,6 +66,11 @@ class ActivityFoodType : AppCompatActivity() {
         firstTab = findViewById(R.id.txt_first_tab)
         secondTab = findViewById(R.id.txt_second_tab)
         thirdTab = findViewById(R.id.txt_third_tab)
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this@ActivityFoodType, ActivityCustomerMain::class.java))
+        finish()
     }
 
 }

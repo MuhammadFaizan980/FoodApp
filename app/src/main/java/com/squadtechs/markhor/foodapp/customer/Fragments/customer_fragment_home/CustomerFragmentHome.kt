@@ -33,6 +33,7 @@ class CustomerFragmentHome : Fragment() {
     private fun setListener() {
         touchView.setOnClickListener {
             startActivity(Intent(activity!!.applicationContext, ActivityFoodType::class.java))
+            activity!!.finish()
         }
     }
 
