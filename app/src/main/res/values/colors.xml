@@ -10,4 +10,5 @@
     <color name="colorGray">#D9E3D3</color>
     <color name="colorBrown">#FF7132</color>
     <color name="colorSelected">#DADADA</color>
+    <color name="colorTabBack">#C58352</color>
 </resources>

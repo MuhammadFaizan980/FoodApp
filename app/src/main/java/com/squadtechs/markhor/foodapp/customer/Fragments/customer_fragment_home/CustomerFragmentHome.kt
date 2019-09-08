@@ -1,7 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home
 
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_food_types.ActivityFoodType
 
 class CustomerFragmentHome : Fragment() {
 
@@ -17,7 +18,6 @@ class CustomerFragmentHome : Fragment() {
     private lateinit var list: ArrayList<String>
     private lateinit var adapter: CustomerFragmentHomeAdapter
     private lateinit var touchView: View
-    private lateinit var callbackObj: FragmentHomeCallback
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class CustomerFragmentHome : Fragment() {
 
     private fun setListener() {
         touchView.setOnClickListener {
-            callbackObj.onFoodSelected()
+            startActivity(Intent(activity!!.applicationContext, ActivityFoodType::class.java))
         }
     }
 
@@ -63,11 +63,6 @@ class CustomerFragmentHome : Fragment() {
                 list
             )
         touchView = view.findViewById(R.id.touch_view)
-    }
-
-    override fun onAttach(activity: Activity?) {
-        super.onAttach(activity)
-        callbackObj = activity as FragmentHomeCallback
     }
 
 }

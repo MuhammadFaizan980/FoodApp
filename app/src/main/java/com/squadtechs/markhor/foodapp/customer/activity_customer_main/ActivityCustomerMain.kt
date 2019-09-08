@@ -3,23 +3,22 @@ package com.squadtechs.markhor.foodapp.customer.activity_customer_main
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me.CustomerFragmentAroundMe
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_cart.CustomerFragmentCart
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home.CustomerFragmentHome
-import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home.FragmentHomeCallback
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_orders.CustomerFragmentOrders
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_profile.CustomerFragmentProfile
-import com.squadtechs.markhor.foodapp.customer.Fragments.fragment_food.FragmentFood
 
 class ActivityCustomerMain : AppCompatActivity(),
-    BottomNavigationView.OnNavigationItemSelectedListener, FragmentHomeCallback {
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var bottomNavigation: BottomNavigationView
-    private lateinit var fragmentFood: FragmentFood
-    private var isInFoodFragment: Boolean = false
+    private lateinit var fragmentHome: CustomerFragmentHome
+    private lateinit var mainLayout: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,8 @@ class ActivityCustomerMain : AppCompatActivity(),
     }
 
     private fun initViews() {
-        fragmentFood = FragmentFood()
+        mainLayout = findViewById(R.id.main_layout)
+        fragmentHome = CustomerFragmentHome()
         bottomNavigation = findViewById(R.id.bottom_navigation_view)
         changeFragment(CustomerFragmentHome())
     }
@@ -41,7 +41,7 @@ class ActivityCustomerMain : AppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_home -> {
-                changeFragment(CustomerFragmentHome())
+                changeFragment(fragmentHome)
             }
             R.id.item_location -> {
                 changeFragment(CustomerFragmentAroundMe())
@@ -59,24 +59,11 @@ class ActivityCustomerMain : AppCompatActivity(),
         return true
     }
 
-    override fun onFoodSelected() {
-        isInFoodFragment = true
-        changeFragment(fragmentFood)
-    }
-
     private fun changeFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
         transaction.commit()
-    }
 
-    override fun onBackPressed() {
-        if (isInFoodFragment) {
-            changeFragment(CustomerFragmentHome())
-            isInFoodFragment = false
-        } else {
-            finish()
-        }
     }
 
 }
