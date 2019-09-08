@@ -1,10 +1,12 @@
-package com.squadtechs.markhor.foodapp.customer.customer_fragment_home
+package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
 
 class CustomerFragmentHomeAdapter(
@@ -27,10 +29,12 @@ class CustomerFragmentHomeAdapter(
     override fun getItemViewType(position: Int): Int = position
 
     override fun onBindViewHolder(holder: CustomerFragmentHomeViewHolder, position: Int) {
-        //TODO: bind data to your views hereA
+        holder.txtTitle.text = list[position]
     }
 
     inner class CustomerFragmentHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //TODO: declare and initialize your views here
+        val imgCategory: RoundedImageView = view.findViewById(R.id.img_category)
+        val txtTitle: TextView = view.findViewById(R.id.txt_item_title)
+        val touchView: View = view.findViewById(R.id.touch_view)
     }
 }

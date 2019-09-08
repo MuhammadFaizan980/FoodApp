@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.customer_fragment_cart
+package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me
 
 
 import android.os.Bundle
@@ -12,14 +12,14 @@ import com.squadtechs.markhor.foodapp.R
 /**
  * A simple [Fragment] subclass.
  */
-class CustomerFragmentCart : Fragment() {
+class CustomerFragmentAroundMe : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.customer_fragment_cart, container, false)
+        return inflater.inflate(R.layout.customer_fragment_around_me, container, false)
     }
 
 

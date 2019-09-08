@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="32dp"
-    android:paddingRight="32dp"
     android:paddingTop="32dp"
-    tools:context=".customer.customer_fragment_home.CustomerFragmentHome">
+    android:paddingRight="32dp"
+    tools:context=".customer.Fragments.customer_fragment_home.CustomerFragmentHome">
 
     <EditText
         android:id="@+id/edt_customer_home_search"
@@ -46,9 +46,11 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            android:paddingBottom="32dp"
+            android:scaleType="fitXY"
             android:src="@drawable/food"
-            app:riv_corner_radius="24dp" />
+            app:riv_corner_radius_top_left="24dp"
+            app:riv_corner_radius_top_right="24dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -60,6 +62,11 @@
             android:textColor="@color/colorWhite"
             android:textSize="21sp"
             android:textStyle="bold" />
+
+        <View
+            android:id="@+id/touch_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 

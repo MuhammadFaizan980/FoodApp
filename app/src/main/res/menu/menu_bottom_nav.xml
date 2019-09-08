@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/item_home"
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
     <item
-        android:title="@string/near_me"
         android:id="@+id/item_location"
-        android:icon="@drawable/ic_location" />
+        android:icon="@drawable/ic_location"
+        android:title="@string/near_me" />
     <item
-        android:title="@string/cart"
         android:id="@+id/item_cart"
-        android:icon="@drawable/ic_cart" />
+        android:icon="@drawable/ic_cart"
+        android:title="@string/cart" />
     <item
-        android:title="@string/my_orders"
         android:id="@+id/item_orders"
-        android:icon="@drawable/ic_notes" />
+        android:icon="@drawable/ic_notes"
+        android:title="@string/my_orders" />
     <item
-        android:title="@string/profile"
         android:id="@+id/item_profile"
-        android:icon="@drawable/ic_person" />
+        android:icon="@drawable/ic_person"
+        android:title="@string/profile" />
 </menu>

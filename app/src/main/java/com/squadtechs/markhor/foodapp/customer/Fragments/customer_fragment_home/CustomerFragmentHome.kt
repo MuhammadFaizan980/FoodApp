@@ -1,6 +1,7 @@
-package com.squadtechs.markhor.foodapp.customer.customer_fragment_home
+package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ class CustomerFragmentHome : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var list: ArrayList<String>
     private lateinit var adapter: CustomerFragmentHomeAdapter
+    private lateinit var touchView: View
+    private lateinit var callbackObj: FragmentHomeCallback
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,24 +26,48 @@ class CustomerFragmentHome : Fragment() {
         val view = inflater.inflate(R.layout.customer_fragment_home, container, false)
         initViews(view)
         populateRecyclerView(view)
+        setListener()
         return view
+    }
+
+    private fun setListener() {
+        touchView.setOnClickListener {
+            callbackObj.onFoodSelected()
+        }
     }
 
     private fun populateRecyclerView(view: View) {
         recyclerView.layoutManager =
-            LinearLayoutManager(activity!!.applicationContext, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(
+                activity!!.applicationContext,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
         recyclerView.adapter = adapter
     }
 
     private fun initViews(view: View) {
         recyclerView = view.findViewById(R.id.recycler_customer_home)
         list = ArrayList()
-        list.add("Faizan")
-        list.add("Faizan")
-        list.add("Faizan")
-        list.add("Faizan")
-        list.add("Faizan")
-        adapter = CustomerFragmentHomeAdapter(activity!!.applicationContext, list)
+        list.add("Clothes")
+        list.add("Accessories")
+        list.add("Skincare")
+        list.add("Homeware")
+        list.add("Toys")
+        list.add("Sheos")
+        list.add("Bags")
+        list.add("Other")
+        adapter =
+            CustomerFragmentHomeAdapter(
+                activity!!.applicationContext,
+                list
+            )
+        touchView = view.findViewById(R.id.touch_view)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        callbackObj = activity as FragmentHomeCallback
     }
 
 }
