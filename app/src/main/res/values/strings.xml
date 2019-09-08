@@ -92,11 +92,9 @@
     <string name="pick_this_location">Pick this location?</string>
     <string name="start">OPEN</string>
     <string name="close">CLOSE</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_cooked_meals">HOME COOKED MEALS</string>
-    <string name="from_uor_home_to_yours">From uor home to yours</string>
+    <string name="from_uor_home_to_yours">From our home to yours</string>
     <string name="closest_to_me">Closest to me</string>
     <string name="by_cuisine">By cuisine</string>
     <string name="delivery_only">Delivery only</string>
