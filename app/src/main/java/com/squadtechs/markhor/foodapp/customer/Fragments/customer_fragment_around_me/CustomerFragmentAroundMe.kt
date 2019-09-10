@@ -11,12 +11,14 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.squadtechs.markhor.foodapp.R
+import com.xw.repo.BubbleSeekBar
 
 class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContracts.IView {
 
     private lateinit var mapView: SupportMapFragment
     private lateinit var map: GoogleMap
     private lateinit var mPresenter: AroundMeContracts.IPresenter
+    private lateinit var distanceSeeker: BubbleSeekBar
     private var permissionCheck: Boolean = false
 
     override fun onCreateView(
@@ -25,21 +27,50 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
     ): View? {
         val view = inflater.inflate(R.layout.customer_fragment_around_me, container, false)
         initViews(view)
-        mPresenter.checkPermissions()
+        setSeekListener(view)
         return view
+    }
+
+    private fun setSeekListener(view: View) {
+        distanceSeeker.onProgressChangedListener =
+            object : BubbleSeekBar.OnProgressChangedListener {
+                override fun onProgressChanged(
+                    bubbleSeekBar: BubbleSeekBar?,
+                    progress: Int,
+                    progressFloat: Float,
+                    fromUser: Boolean
+                ) {
+                }
+
+                override fun getProgressOnActionUp(
+                    bubbleSeekBar: BubbleSeekBar?,
+                    progress: Int,
+                    progressFloat: Float
+                ) {
+                    //TODO: calculate distance
+                }
+
+                override fun getProgressOnFinally(
+                    bubbleSeekBar: BubbleSeekBar?,
+                    progress: Int,
+                    progressFloat: Float,
+                    fromUser: Boolean
+                ) {
+                }
+            }
     }
 
     private fun initViews(view: View) {
         mapView = childFragmentManager.findFragmentById(R.id.map_around_me) as SupportMapFragment
         mapView.getMapAsync(this)
         mPresenter = AroundMePresenter(this, activity!!.applicationContext, activity!!)
+        distanceSeeker = view.findViewById(R.id.distance_seeker)
     }
 
     override fun onPerssionsResult(status: Boolean) {
         permissionCheck = status
         if (status) {
-            Toast.makeText(activity!!.applicationContext, "Permission granted", Toast.LENGTH_LONG)
-                .show()
+            mPresenter.setCurrentLocation(map)
         } else {
             Toast.makeText(activity!!.applicationContext, "Permission denied", Toast.LENGTH_LONG)
                 .show()
@@ -48,6 +79,7 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
 
     override fun onMapReady(p0: GoogleMap?) {
         map = p0!!
+        mPresenter.checkPermissions()
     }
 
     override fun onRequestPermissionsResult(

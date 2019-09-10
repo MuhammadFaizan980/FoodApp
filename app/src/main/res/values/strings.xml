@@ -102,5 +102,5 @@
     <string name="what_s_around_me">WHAT\'S AROUND ME?</string>
     <string name="map_api_key">AIzaSyB1a0nO_APsnrNxBTkGDJ9wRoTvQFEJmOc</string>
     <string name="explore_the_vicinity_to_see_what_s_close">Explore the vicinity to see what\'s close</string>
-    <string name="under_minutes">Under 7 minutes</string>
+    <string name="under_minutes">In Meters</string>
 </resources>
