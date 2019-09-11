@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -21,6 +22,7 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
     private lateinit var map: GoogleMap
     private lateinit var mPresenter: AroundMeContracts.IPresenter
     private lateinit var distanceSeeker: BubbleSeekBar
+    private var distance: Int = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +50,7 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
                     progress: Int,
                     progressFloat: Float
                 ) {
-                    //TODO: calculate distance
+                    mPresenter.setMarkers(map, progress)
                 }
 
                 override fun getProgressOnFinally(
@@ -76,7 +78,13 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
 
     override fun onFetchHttpDataResult(status: Boolean) {
         if (status) {
-            TODO("set markers")
+            mPresenter.setMarkers(map, distance)
+        } else {
+            Toast.makeText(
+                activity!!.applicationContext,
+                "There was an error fetching data",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

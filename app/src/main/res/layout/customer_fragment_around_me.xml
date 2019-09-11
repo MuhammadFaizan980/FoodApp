@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/what_s_around_me"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/under_minutes"
         android:textColor="@color/colorBlack"
         android:textSize="13sp"
@@ -57,7 +57,7 @@
         android:id="@+id/map_around_me"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="430dp"
         tools:context=".customer.activity_around_me.ActivityAroundMe" />
 
 </LinearLayout>

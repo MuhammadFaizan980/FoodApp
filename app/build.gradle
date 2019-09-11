@@ -45,6 +45,8 @@ dependencies {
     api 'com.google.android.material:material:1.0.0'
     //Location services
     api 'com.google.android.gms:play-services-location:17.0.0'
+    //Map Util
+    api 'com.google.maps.android:android-maps-utils:0.5+'
 
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.google.firebase:firebase-auth:19.0.0'
