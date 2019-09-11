@@ -7,7 +7,15 @@ import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -49,7 +57,27 @@ class AroundMePresenter(
     }
 
     override fun fetchHttpData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val API = "http://squadtechsolution.com/android/v1/allcompany.php"
+        val requestQueue = Volley.newRequestQueue(mActivity)
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            API,
+            Response.Listener { response ->
+                Log.i("dxdiag", response)
+                mView.onFetchHttpDataResult(true)
+                Toast.makeText(context, response, Toast.LENGTH_LONG).show()
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show()
+                Log.i("dxdiag", error.printStackTrace().toString())
+                mView.onFetchHttpDataResult(false)
+            })
+        stringRequest.retryPolicy = DefaultRetryPolicy(
+            10000,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+        requestQueue.add(stringRequest)
     }
 
     private fun showErrorDialog() {
