@@ -1,7 +1,9 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me
 
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +12,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.squadtechs.markhor.foodapp.R
 import com.xw.repo.BubbleSeekBar
+
 
 class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContracts.IView {
 
@@ -80,6 +84,25 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
     override fun onMapReady(p0: GoogleMap?) {
         map = p0!!
         mPresenter.checkPermissions()
+
+
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            val success = map.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    activity!!.applicationContext, com.squadtechs.markhor.foodapp.R.raw.maps_style
+                )
+            )
+
+            if (!success) {
+                Log.e("MapsActivityRaw", "Style parsing failed.")
+            }
+        } catch (e: Resources.NotFoundException) {
+            Log.e("MapsActivityRaw", "Can't find style.", e)
+        }
+
+
     }
 
     override fun onRequestPermissionsResult(
