@@ -1,13 +1,11 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me
 
-import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -68,6 +66,18 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
         mapView.getMapAsync(this)
         mPresenter = AroundMePresenter(this, activity!!.applicationContext, activity!!)
         distanceSeeker = view.findViewById(R.id.distance_seeker)
+    }
+
+    override fun setCurrentLocationResult(status: Boolean) {
+        if (status) {
+            mPresenter.fetchHttpData()
+        }
+    }
+
+    override fun onFetchHttpDataResult(status: Boolean) {
+        if (status) {
+            TODO("set markers")
+        }
     }
 
     override fun onMapReady(p0: GoogleMap?) {

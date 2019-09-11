@@ -5,12 +5,9 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Location
 import android.provider.Settings
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -35,10 +32,13 @@ class AroundMePresenter(
                     map.uiSettings.isMyLocationButtonEnabled = true
                     val latLng = LatLng(location.latitude, location.longitude)
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                    mView.setCurrentLocationResult(true)
                 } catch (exc: Exception) {
                     showErrorDialog()
+                    mView.setCurrentLocationResult(false)
                 }
             } else {
+                mView.setCurrentLocationResult(false)
                 Toast.makeText(
                     context,
                     "There was an error getting your location",
@@ -46,6 +46,10 @@ class AroundMePresenter(
                 ).show()
             }
         }
+    }
+
+    override fun fetchHttpData() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun showErrorDialog() {
