@@ -4,11 +4,9 @@ import com.google.android.gms.maps.GoogleMap
 
 interface AroundMeContracts {
     interface IPresenter {
-        fun checkPermissions()
         fun setCurrentLocation(map: GoogleMap)
     }
 
     interface IView {
-        fun onPerssionsResult(status: Boolean)
     }
 }

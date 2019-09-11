@@ -23,7 +23,6 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
     private lateinit var map: GoogleMap
     private lateinit var mPresenter: AroundMeContracts.IPresenter
     private lateinit var distanceSeeker: BubbleSeekBar
-    private var permissionCheck: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,57 +70,20 @@ class CustomerFragmentAroundMe : Fragment(), OnMapReadyCallback, AroundMeContrac
         distanceSeeker = view.findViewById(R.id.distance_seeker)
     }
 
-    override fun onPerssionsResult(status: Boolean) {
-        permissionCheck = status
-        if (status) {
-            mPresenter.setCurrentLocation(map)
-        } else {
-            Toast.makeText(activity!!.applicationContext, "Permission denied", Toast.LENGTH_LONG)
-                .show()
-        }
-    }
-
     override fun onMapReady(p0: GoogleMap?) {
         map = p0!!
-        mPresenter.checkPermissions()
-
-
+        mPresenter.setCurrentLocation(map)
         try {
-            // Customise the styling of the base map using a JSON object defined
-            // in a raw resource file.
             val success = map.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                     activity!!.applicationContext, com.squadtechs.markhor.foodapp.R.raw.maps_style
                 )
             )
-
             if (!success) {
                 Log.e("MapsActivityRaw", "Style parsing failed.")
             }
         } catch (e: Resources.NotFoundException) {
             Log.e("MapsActivityRaw", "Can't find style.", e)
         }
-
-
     }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == 99 && grantResults.isNotEmpty()) {
-            for (i in grantResults) {
-                if (i == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(
-                        activity!!.applicationContext,
-                        "Permissions are required for app to work properly",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    return
-                }
-            }
-        }
-    }
-
 }

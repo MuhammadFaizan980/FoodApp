@@ -48,26 +48,6 @@ class AroundMePresenter(
         }
     }
 
-    override fun checkPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                context,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_DENIED
-            || ContextCompat.checkSelfPermission(
-                context,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_DENIED
-        ) {
-            val permissionArray = arrayOfNulls<String>(2)
-            permissionArray[0] = android.Manifest.permission.ACCESS_FINE_LOCATION
-            permissionArray[1] = android.Manifest.permission.ACCESS_COARSE_LOCATION
-            ActivityCompat.requestPermissions(mActivity, permissionArray, 99)
-            mView.onPerssionsResult(false)
-        } else {
-            mView.onPerssionsResult(true)
-        }
-    }
-
     private fun showErrorDialog() {
         val dialog = AlertDialog.Builder(mActivity)
         dialog.setTitle("Message!")
