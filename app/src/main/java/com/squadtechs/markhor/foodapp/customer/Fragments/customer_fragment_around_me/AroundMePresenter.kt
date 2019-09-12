@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.maps.android.SphericalUtil
+import com.squadtechs.markhor.foodapp.R
 import org.json.JSONArray
 
 class AroundMePresenter(
@@ -100,7 +101,7 @@ class AroundMePresenter(
                 marker.title(i.company_name)
                 marker.snippet(i.company_description)
                 marker.position(latLng)
-                marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.dark_marker))
                 map.addMarker(marker)
             }
         }

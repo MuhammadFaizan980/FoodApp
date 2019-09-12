@@ -30,6 +30,32 @@ class CustomerFragmentHomeAdapter(
 
     override fun onBindViewHolder(holder: CustomerFragmentHomeViewHolder, position: Int) {
         holder.txtTitle.text = list[position]
+        when (position) {
+            0 -> {
+                holder.imgCategory.setImageResource(R.drawable.clothes)
+            }
+            1 -> {
+                holder.imgCategory.setImageResource(R.drawable.accessories)
+            }
+            2 -> {
+                holder.imgCategory.setImageResource(R.drawable.skincare)
+            }
+            3 -> {
+                holder.imgCategory.setImageResource(R.drawable.homeware)
+            }
+            4 -> {
+                holder.imgCategory.setImageResource(R.drawable.toys)
+            }
+            5 -> {
+                holder.imgCategory.setImageResource(R.drawable.shoes)
+            }
+            6 -> {
+                holder.imgCategory.setImageResource(R.drawable.bags)
+            }
+            7 -> {
+                holder.imgCategory.setImageResource(R.drawable.others)
+            }
+        }
     }
 
     inner class CustomerFragmentHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
