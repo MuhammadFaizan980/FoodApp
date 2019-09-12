@@ -17,7 +17,7 @@ class FoodViewPagerAdapter(
     override fun getItem(position: Int): Fragment {
         val fragmentInFood = FragmentInsideFood()
         val bundle = Bundle()
-        bundle.putString("key", list[position])
+        bundle.putInt("key", position)
         fragmentInFood.arguments = bundle
         return fragmentInFood
     }

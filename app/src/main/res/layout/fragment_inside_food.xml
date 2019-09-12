@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="32dp"
     tools:context=".customer.Fragments.fragment_inside_food.FragmentInsideFood">
 
     <EditText
         android:id="@+id/edt_customer_home_search"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/edit_text_background"
         android:drawableLeft="@drawable/ic_search"
