@@ -12,7 +12,8 @@ import com.squareup.picasso.Picasso
 
 class InsideFoodAdapter(
     private val list: ArrayList<InsIdeFoodModel>,
-    private val context: Context
+    private val context: Context,
+    private val tabPosition: Int
 ) : RecyclerView.Adapter<InsideFoodAdapter.FoodHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodHolder =

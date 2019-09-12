@@ -69,7 +69,11 @@ class FragmentInsideFood : Fragment() {
 //                }
 
                 recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
-                val adapter = InsideFoodAdapter(list, activity!!.applicationContext)
+                val adapter = InsideFoodAdapter(
+                    list,
+                    activity!!.applicationContext,
+                    arguments!!.getInt("key")
+                )
                 recyclerView.adapter = adapter
 
             },
