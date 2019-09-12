@@ -23,4 +23,5 @@ class FoodViewPagerAdapter(
     }
 
     override fun getCount(): Int = list.size
+
 }
