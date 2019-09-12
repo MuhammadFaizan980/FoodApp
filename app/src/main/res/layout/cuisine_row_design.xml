@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/food"
-        app:riv_corner_radius="32dp" />
+        app:riv_corner_radius="24dp" />
 
     <View
         android:id="@+id/view_overlap"
@@ -27,7 +27,7 @@
         android:gravity="center"
         android:text="@string/pakistani"
         android:textColor="@color/colorWhite"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
 </FrameLayout>
