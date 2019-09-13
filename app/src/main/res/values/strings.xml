@@ -119,7 +119,6 @@
     <string name="sign_out">Sign out</string>
     <string name="hello_susan">Hello Susan!</string>
     <string name="_50_minutes">50 minutes</string>
-    <string name="_21">(21)</string>
     <string name="this_is_just_a_demo_description_in_order_to_check_the_behaviour_of_the_layout_and_also_to_examine_the_user_experience_that_the_layout_offers_incase_the_company_s_description_gets_too_lengthy_or_too_short_in_this_case_we_are_trying_to_insert_a_long_description_that_this_app_might_come_across_currently_the_design_contains_only_4_rows_but_in_reality_these_lines_may_exceed_even_to_7_or_may_be_eight">This is just a demo description in order to check the behaviour of the layout and also to examine the user experience that the layout offers incase the company\'s description gets too lengthy or too short, in this case, we are trying to insert a long description that this app might come across, currently, the design contains only 4 rows but in reality, these lines may exceed even to 7 or may be eight.</string>
     <string name="all">All</string>
     <string name="starters">Starters</string>

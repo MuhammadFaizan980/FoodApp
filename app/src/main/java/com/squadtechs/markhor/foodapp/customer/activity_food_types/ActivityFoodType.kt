@@ -38,6 +38,9 @@ class ActivityFoodType : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
+            }
+
+            override fun onPageSelected(position: Int) {
                 when (position) {
                     0 -> {
                         firstTab.setBackgroundResource(R.drawable.tab_back_selected)
@@ -55,9 +58,8 @@ class ActivityFoodType : AppCompatActivity() {
                         thirdTab.setBackgroundResource(R.drawable.tab_back_selected)
                     }
                 }
-            }
 
-            override fun onPageSelected(position: Int) {}
+            }
         })
     }
 
