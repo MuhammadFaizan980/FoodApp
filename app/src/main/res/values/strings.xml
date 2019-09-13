@@ -126,4 +126,8 @@
     <string name="main_course">Main course</string>
     <string name="sides">Sides</string>
     <string name="deserts">Deserts</string>
+    <string name="biryani">Biryani</string>
+    <string name="this_is_just_a_demo_description_in_order_to_dtect_the_behaviour_of_the_food_row_design_and_determine_whether_this_row_design_needs_to_be_changed_or_onot">This is just a demo description in order to dtect the behaviour of the food row design and determine whether this row design needs to be changed or onot</string>
+    <string name="aed">AED</string>
+    <string name="_23">23</string>
 </resources>

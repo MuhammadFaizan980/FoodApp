@@ -12,4 +12,5 @@
     <color name="colorSelected">#DADADA</color>
     <color name="colorTabBack">#C58352</color>
     <color name="colorCuisineBack">#5E000000</color>
+    <color name="colorBrownText">#FF8808</color>
 </resources>

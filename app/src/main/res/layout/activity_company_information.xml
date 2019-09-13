@@ -120,6 +120,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/tab_back_selected"
+            android:gravity="center"
             android:text="@string/all"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
@@ -131,6 +133,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/starters"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
@@ -142,6 +145,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/main_course"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
@@ -153,6 +157,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/sides"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
@@ -164,6 +169,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/deserts"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
@@ -172,6 +178,9 @@
 
     </LinearLayout>
 
-    <include layout="@layout/recycler_view" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/company_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

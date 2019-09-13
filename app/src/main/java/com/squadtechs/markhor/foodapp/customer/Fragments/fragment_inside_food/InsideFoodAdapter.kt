@@ -34,7 +34,7 @@ class InsideFoodAdapter(
         } else {
             return FoodHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.other_food_row_design,
+                    R.layout.other_company_row_design,
                     parent,
                     false
                 )
