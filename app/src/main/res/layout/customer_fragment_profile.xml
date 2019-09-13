@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="@string/my_account"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
@@ -73,24 +73,6 @@
                     android:paddingLeft="32dp"
                     android:paddingRight="32dp"
                     android:text="@string/my_addresses"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dotted_dash"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/txt_customer_payment"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:drawableEnd="@drawable/ic_greater_than"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="32dp"
-                    android:paddingRight="32dp"
-                    android:text="@string/payment_methods"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
