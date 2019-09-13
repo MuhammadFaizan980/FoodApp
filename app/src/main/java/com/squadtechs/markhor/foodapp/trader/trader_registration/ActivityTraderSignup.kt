@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
-import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
+import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IView {
@@ -110,17 +110,17 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyType::class.java))
+        startActivity(Intent(this@ActivityTraderSignup, ActivitySelect::class.java))
         finish()
     }
 
     private fun showDialog() {
         val dialog = AlertDialog.Builder(this@ActivityTraderSignup)
         dialog.setTitle("Message!")
-        dialog.setMessage("Trader account created successfully\nYou will need to upload electronic license in the next screen")
+        dialog.setMessage("Trader account has been created\nYou will need to upload electronic license in order to confirm your trader account in the next screen")
         dialog.setCancelable(false)
         dialog.setPositiveButton("Next") { dialogInterface, i ->
-            startActivity(Intent(this@ActivityTraderSignup, ActivityCompanyDetails::class.java))
+            startActivity(Intent(this@ActivityTraderSignup, ActivityElectronicLicense::class.java))
             finish()
         }
         dialog.show()

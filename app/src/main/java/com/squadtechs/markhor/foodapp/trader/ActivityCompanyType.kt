@@ -7,7 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
-import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
+import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 
 class ActivityCompanyType : AppCompatActivity() {
 
@@ -25,6 +25,8 @@ class ActivityCompanyType : AppCompatActivity() {
     private lateinit var radioOthers: RadioButton
     private lateinit var linearback: LinearLayout
     private lateinit var selectedValue: String
+    private val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+    private val editor = pref.edit()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +53,7 @@ class ActivityCompanyType : AppCompatActivity() {
                 val editor = pref.edit()
                 editor.putString("company_type", selectedValue)
                 editor.apply()
-                startActivity(Intent(this, ActivityTraderSignup::class.java))
+                startActivity(Intent(this, ActivityCompanyDetails::class.java))
                 finish()
             }
         }
@@ -110,6 +112,12 @@ class ActivityCompanyType : AppCompatActivity() {
         linearback = findViewById(R.id.linear_go_back)
         selectedValue = ""
         edtType.isEnabled = false
+    }
+
+    override fun onStart() {
+        super.onStart()
+        editor.putString("current_screen", "company type")
+        editor.apply()
     }
 
     override fun onBackPressed() {

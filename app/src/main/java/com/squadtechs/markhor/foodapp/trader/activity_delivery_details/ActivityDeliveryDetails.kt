@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.xw.repo.BubbleSeekBar
 
@@ -20,6 +19,8 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
     private lateinit var bubbleSeekBar: BubbleSeekBar
     private lateinit var mPresenter: DeliveryDetailsContracts.IPresenter
     private var deliver: Boolean = false
+    private val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+    private val editor = pref.edit()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,8 +70,10 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
 
     override fun onAddDeliveryDetailsResult(status: Boolean) {
         if (status) {
-            startActivity(Intent(this, ActivityElectronicLicense::class.java))
-            finish()
+            editor.putString("current_screen", "prof_complete")
+            editor.apply()
+            Toast.makeText(this, "Profile completed", Toast.LENGTH_LONG).show()
+            TODO("take user to trader main screen")
         } else {
             Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
         }
@@ -78,8 +81,6 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
 
     override fun onStart() {
         super.onStart()
-        val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
-        val editor = pref.edit()
         editor.putString("current_screen", "trader delivery details")
         editor.apply()
     }
@@ -88,6 +89,5 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
         startActivity(Intent(this, ActivityCompanyTimings::class.java))
         finish()
     }
-
 
 }

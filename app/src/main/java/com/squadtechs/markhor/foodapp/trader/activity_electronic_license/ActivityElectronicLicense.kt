@@ -113,14 +113,6 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
-        val editor = pref.edit()
-        editor.putString("current_screen", "trader license")
-        editor.apply()
-    }
-
     override fun onBackPressed() {
         startActivity(Intent(this, ActivityDeliveryDetails::class.java))
         finish()

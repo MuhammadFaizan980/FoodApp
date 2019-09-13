@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
+import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.activity_pick_location.ActivityPickLocation
 
 class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IView {

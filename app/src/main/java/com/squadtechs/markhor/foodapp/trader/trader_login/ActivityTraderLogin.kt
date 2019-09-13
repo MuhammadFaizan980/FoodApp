@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.trader_login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
+import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
+import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
+import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
 class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
@@ -81,6 +85,35 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                 dialog.show()
             } else {
                 Toast.makeText(this@ActivityTraderLogin, "Login success", Toast.LENGTH_LONG).show()
+
+                val isProfileInProgress =
+                    getSharedPreferences("reg_progress", Context.MODE_PRIVATE).getString(
+                        "current_screen",
+                        "null"
+                    ) as String
+                if (!isProfileInProgress.equals("null") && !isProfileInProgress.equals("prof_complete")) {
+
+                    when (isProfileInProgress) {
+                        "trader company details" -> {
+                            startActivity(Intent(this, ActivityCompanyDetails::class.java))
+                            finish()
+                        }
+                        "trader company timings" -> {
+                            startActivity(Intent(this, ActivityCompanyTimings::class.java))
+                            finish()
+                        }
+                        "trader delivery details" -> {
+                            startActivity(Intent(this, ActivityDeliveryDetails::class.java))
+                            finish()
+                        }
+                        else -> {
+                            startActivity(Intent(this, ActivityCompanyType::class.java))
+                            finish()
+                        }
+                    }
+                } else {
+                    //TODO: take trader to main screen
+                }
             }
         } else {
             Toast.makeText(this@ActivityTraderLogin, "Login error, $message", Toast.LENGTH_LONG)
