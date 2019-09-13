@@ -35,9 +35,15 @@ class ElectronicLicensePresenter(
             )
         if (mModel.validate()) {
             mView.onValidationResult(true)
-            this.uri1 = uri1!!
-            this.uri2 = uri2!!
-            this.uri3 = uri3!!
+            if (uri1 != null) {
+                this.uri1 = uri1
+            }
+            if (uri2 != null) {
+                this.uri2 = uri2
+            }
+            if (uri3 != null) {
+                this.uri3 = uri3
+            }
         } else {
             mView.onValidationResult(false)
         }
