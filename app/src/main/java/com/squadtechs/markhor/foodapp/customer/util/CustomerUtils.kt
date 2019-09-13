@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.util
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.provider.Settings
@@ -41,6 +42,14 @@ class CustomerUtils {
                 if (task.isSuccessful) {
                     location = task.result
                     if (location != null) {
+                        val pref = mActivity.getSharedPreferences(
+                            "customer_current_location",
+                            Context.MODE_PRIVATE
+                        )
+                        val editor = pref.edit()
+                        editor.putString("lat", location!!.latitude.toString())
+                        editor.putString("lng", location!!.longitude.toString())
+                        editor.apply()
                         mView.onGetLocationResponse(true, location)
                     } else {
                         mView.onGetLocationResponse(false, null)
