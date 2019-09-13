@@ -2,11 +2,8 @@ package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_arou
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.location.Location
-import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import com.android.volley.DefaultRetryPolicy
@@ -24,6 +21,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
 import org.json.JSONArray
 
 class AroundMePresenter(
@@ -48,7 +46,7 @@ class AroundMePresenter(
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 15f))
                     mView.setCurrentLocationResult(true)
                 } catch (exc: Exception) {
-                    showErrorDialog()
+                    CustomerUtils.showLocationError(mActivity)
                     mView.setCurrentLocationResult(false)
                 }
             } else {
@@ -94,7 +92,7 @@ class AroundMePresenter(
     override fun setMarkers(map: GoogleMap, distance: Int) {
         map.clear()
         for (i in responseHandlerList) {
-            val latLng = decodeCoordinates(i.address)
+            val latLng = CustomerUtils.decodeCoordinates(i.address)
             val calculatedDistance = SphericalUtil.computeDistanceBetween(myLatLng, latLng)
             if (calculatedDistance <= distance) {
                 val marker = MarkerOptions() as MarkerOptions
@@ -106,38 +104,4 @@ class AroundMePresenter(
             }
         }
     }
-
-    private fun decodeCoordinates(address: String): LatLng {
-        var lat: String = ""
-        var lng: String = ""
-        var flag = true
-
-        for (i in address) {
-            if (i.equals(',') || i.equals(' ')) {
-                flag = false
-                continue
-            }
-            if (flag) {
-                lat += i
-            } else {
-                lng += i
-            }
-        }
-        return LatLng(lat.toDouble(), lng.toDouble())
-    }
-
-    private fun showErrorDialog() {
-        val dialog = AlertDialog.Builder(mActivity)
-        dialog.setTitle("Message!")
-        dialog.setMessage("Location currently not available\nTry high accuracy mode?")
-        dialog.setCancelable(false)
-        dialog.setPositiveButton("Yes") { dialogInterface, i ->
-            context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-            mActivity.finish()
-        }.setNegativeButton("Cancel") { dialogInterface, i ->
-            dialogInterface.cancel()
-        }
-        dialog.show()
-    }
-
 }

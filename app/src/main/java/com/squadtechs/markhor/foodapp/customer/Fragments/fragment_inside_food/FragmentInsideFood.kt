@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.fragment_inside_food
 
 import android.app.ProgressDialog
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +14,22 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
+import kotlinx.android.synthetic.main.recycler_view.*
 
-class FragmentInsideFood : Fragment() {
+class FragmentInsideFood : Fragment(), InsideFoodContracts {
 
     private lateinit var mView: View
     private lateinit var recyclerView: RecyclerView
-    private lateinit var mList: ArrayList<InsIdeFoodModel>
+    private lateinit var deliverOnlyList: ArrayList<InsIdeFoodModel>
+    private lateinit var nearMeList: ArrayList<InsIdeFoodModel>
+    private lateinit var list: ArrayList<InsIdeFoodModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,42 +70,23 @@ class FragmentInsideFood : Fragment() {
             Response.Listener { response ->
                 pd.cancel()
                 val type = object : TypeToken<ArrayList<InsIdeFoodModel>>() {}.type
-                val list: ArrayList<InsIdeFoodModel> = Gson().fromJson(response, type)
+                list = Gson().fromJson(response, type)
                 if (tabPosition == 2) {
-                    mList = ArrayList<InsIdeFoodModel>()
+                    deliverOnlyList = ArrayList<InsIdeFoodModel>()
                     for (i in list) {
                         if (i.company_type.equals("Food & beverages")) {
-                            mList.add(i)
+                            deliverOnlyList.add(i)
                         }
                     }
-                }
-
-                recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
-                when (tabPosition) {
-                    0 -> {
-                        val adapter = InsideFoodAdapter(
-                            list,
-                            activity!!.applicationContext,
-                            tabPosition
-                        )
-                        recyclerView.adapter = adapter
-                    }
-                    1 -> {
-                        val adapter = InsideFoodAdapter(
-                            list,
-                            activity!!.applicationContext,
-                            tabPosition
-                        )
-                        recyclerView.adapter = adapter
-                    }
-                    2 -> {
-                        val adapter = InsideFoodAdapter(
-                            mList,
-                            activity!!.applicationContext,
-                            tabPosition
-                        )
-                        recyclerView.adapter = adapter
-                    }
+                    populateListAccordingly(tabPosition)
+                } else if (tabPosition == 0) {
+                    CustomerUtils.getCurrentLocation(
+                        this,
+                        LocationServices.getFusedLocationProviderClient(activity!!),
+                        activity!!
+                    )
+                } else {
+                    populateListAccordingly(1)
                 }
 
             },
@@ -110,6 +99,54 @@ class FragmentInsideFood : Fragment() {
                 ).show()
             })
         requestQueue.add(stringRequest)
+    }
+
+    private fun populateListAccordingly(tabPosition: Int) {
+        recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
+        when (tabPosition) {
+            1 -> {
+                val adapter = InsideFoodAdapter(
+                    list,
+                    activity!!.applicationContext,
+                    tabPosition
+                )
+                recyclerView.adapter = adapter
+            }
+            2 -> {
+                val adapter = InsideFoodAdapter(
+                    deliverOnlyList,
+                    activity!!.applicationContext,
+                    tabPosition
+                )
+                recyclerView.adapter = adapter
+            }
+        }
+    }
+
+    override fun onGetLocationResponse(status: Boolean, location: Location?) {
+        if (status) {
+            val mLatLng = LatLng(location!!.latitude, location!!.longitude)
+            nearMeList = ArrayList()
+            for (i in list) {
+                val companyLatLng = CustomerUtils.decodeCoordinates(i.address)
+                if (SphericalUtil.computeDistanceBetween(
+                        mLatLng,
+                        companyLatLng
+                    ) <= 5000
+                ) {
+                    nearMeList.add(i)
+                }
+            }
+            recyclerView.layoutManager = LinearLayoutManager(activity!!)
+            val adapter = InsideFoodAdapter(
+                nearMeList,
+                activity!!.applicationContext,
+                0
+            )
+            recyclerView.adapter = adapter
+        } else {
+            CustomerUtils.showLocationError(activity!!)
+        }
     }
 
     private fun initViews() {
