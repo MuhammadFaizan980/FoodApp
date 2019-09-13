@@ -21,6 +21,7 @@ class FragmentInsideFood : Fragment() {
 
     private lateinit var mView: View
     private lateinit var recyclerView: RecyclerView
+    private lateinit var mList: ArrayList<InsIdeFoodModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,18 +37,18 @@ class FragmentInsideFood : Fragment() {
         val position = arguments!!.getInt("key")
         when (position) {
             0 -> {
-                //TODO: load nearby only
+                makeRequest(0)
             }
             1 -> {
-                makeRequest()
+                makeRequest(1)
             }
             2 -> {
-                //TODO: load deliver only
+                makeRequest(2)
             }
         }
     }
 
-    private fun makeRequest() {
+    private fun makeRequest(tabPosition: Int) {
         val pd = ProgressDialog(activity!!)
         pd.setCancelable(false)
         pd.setTitle("Loading")
@@ -62,19 +63,42 @@ class FragmentInsideFood : Fragment() {
                 pd.cancel()
                 val type = object : TypeToken<ArrayList<InsIdeFoodModel>>() {}.type
                 val list: ArrayList<InsIdeFoodModel> = Gson().fromJson(response, type)
-                var count = 0
-//                for (i in list) {
-//                    if (!i.company_type.equals("Food"))
-//                        list.remove(i)
-//                }
+                if (tabPosition == 2) {
+                    mList = ArrayList<InsIdeFoodModel>()
+                    for (i in list) {
+                        if (i.company_type.equals("Food & beverages")) {
+                            mList.add(i)
+                        }
+                    }
+                }
 
                 recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
-                val adapter = InsideFoodAdapter(
-                    list,
-                    activity!!.applicationContext,
-                    arguments!!.getInt("key")
-                )
-                recyclerView.adapter = adapter
+                when (tabPosition) {
+                    0 -> {
+                        val adapter = InsideFoodAdapter(
+                            list,
+                            activity!!.applicationContext,
+                            tabPosition
+                        )
+                        recyclerView.adapter = adapter
+                    }
+                    1 -> {
+                        val adapter = InsideFoodAdapter(
+                            list,
+                            activity!!.applicationContext,
+                            tabPosition
+                        )
+                        recyclerView.adapter = adapter
+                    }
+                    2 -> {
+                        val adapter = InsideFoodAdapter(
+                            mList,
+                            activity!!.applicationContext,
+                            tabPosition
+                        )
+                        recyclerView.adapter = adapter
+                    }
+                }
 
             },
             Response.ErrorListener { error ->

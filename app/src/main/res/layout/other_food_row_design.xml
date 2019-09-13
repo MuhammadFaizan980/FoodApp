@@ -70,7 +70,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txt_delivery_time"
+            android:id="@+id/txt_delivery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/delivery_pickup"
