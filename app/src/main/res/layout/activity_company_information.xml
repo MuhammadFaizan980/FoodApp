@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/img_go_back"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="16dp"
             android:src="@drawable/ic_left_arrow" />
 
@@ -179,6 +179,8 @@
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:id="@+id/company_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
