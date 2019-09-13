@@ -22,9 +22,9 @@ class ElectronicLicensePresenter(
 
     private val API = "http://squadtechsolution.com/android/v1/traderlicense.php"
     private lateinit var mModel: ElectronicLicenseContracts.IModel
-    private lateinit var uri1: Uri
-    private lateinit var uri2: Uri
-    private lateinit var uri3: Uri
+    private var uri1: Uri? = null
+    private var uri2: Uri? = null
+    private var uri3: Uri? = null
 
     override fun initValidation(uri1: Uri?, uri2: Uri?, uri3: Uri?) {
         mModel =
@@ -94,12 +94,17 @@ class ElectronicLicensePresenter(
         requestQueue.add(stringRequest)
     }
 
-    private fun getImageString(uri: Uri): String {
-        val stream = ByteArrayOutputStream()
-        val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
-        bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream)
-        val arr = stream.toByteArray()
-        return "data:image/png;base64,${Base64.encodeToString(arr, Base64.DEFAULT)}"
+    private fun getImageString(uri: Uri?): String {
+
+        if (uri == null) {
+            return "n/a"
+        } else {
+            val stream = ByteArrayOutputStream()
+            val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream)
+            val arr = stream.toByteArray()
+            return "data:image/png;base64,${Base64.encodeToString(arr, Base64.DEFAULT)}"
+        }
     }
 
 }

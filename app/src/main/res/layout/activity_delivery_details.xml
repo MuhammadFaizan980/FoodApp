@@ -1,143 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="32dp"
     tools:context=".trader.activity_delivery_details.ActivityDeliveryDetails">
 
     <LinearLayout
-        android:id="@+id/linear_go_back"
-        android:layout_width="65dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/linear_go_back"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent" />
+
+
+        </LinearLayout>
+
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/do_you_deliver"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:weightSum="2">
+
+
+            <TextView
+                android:id="@+id/txt_deliver_yes"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center"
+                android:text="@string/yes"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_deliver_no"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/txt_back_selected"
+                android:gravity="center"
+                android:text="@string/no"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/delivery_range"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/delivery_range"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/back"
+            android:layout_marginTop="8dp"
+            app:bsb_bubble_text_color="@color/colorWhite"
+            app:bsb_max="10.0"
+            app:bsb_min="0.0"
+            app:bsb_progress="7.0"
+            app:bsb_section_count="10"
+            app:bsb_section_text_position="bottom_sides"
+            app:bsb_show_progress_in_float="true"
+            app:bsb_show_section_mark="true"
+            app:bsb_show_section_text="true"
+            app:bsb_show_thumb_text="true"
+            app:bsb_track_color="@color/colorBackTrack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/important_information_for_pickup"
             android:textColor="@color/colorBlack"
-            android:textSize="18sp"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
-        <View
+        <EditText
+            android:id="@+id/edt_pick_up_information"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent" />
-
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/do_you_deliver"
-        android:textColor="@color/colorBlack"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:weightSum="2">
-
-
-        <TextView
-            android:id="@+id/txt_deliver_yes"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:gravity="center"
-            android:text="@string/yes"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_deliver_no"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/txt_back_selected"
-            android:gravity="center"
-            android:text="@string/no"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
+            android:inputType="textMultiLine"
+            android:padding="16dp"
+            android:text=""
+            android:textSize="13sp" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/delivery_range"
-        android:textColor="@color/colorBlack"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-
-    <com.xw.repo.BubbleSeekBar
-        android:id="@+id/delivery_range"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:bsb_bubble_text_color="@color/colorWhite"
-        app:bsb_max="10.0"
-        app:bsb_min="0.0"
-        app:bsb_progress="7.0"
-        app:bsb_section_count="10"
-        app:bsb_section_text_position="bottom_sides"
-        app:bsb_show_progress_in_float="true"
-        app:bsb_show_section_mark="true"
-        app:bsb_show_section_text="true"
-        app:bsb_show_thumb_text="true"
-        app:bsb_track_color="@color/colorBackTrack" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/important_information_for_pickup"
-        android:textColor="@color/colorBlack"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edt_pick_up_information"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edit_text_background"
-        android:inputType="textMultiLine"
-        android:padding="16dp"
-        android:text=""
-        android:textSize="13sp" />
-
 
     <Button
         android:id="@+id/btn_trader_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginRight="32dp"
+        android:layout_marginBottom="16"
         android:background="@drawable/button_background"
         android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite" />
 
-</LinearLayout>
+</FrameLayout>

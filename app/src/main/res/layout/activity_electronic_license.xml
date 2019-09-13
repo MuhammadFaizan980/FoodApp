@@ -1,91 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".trader.activity_electronic_license.ActivityElectronicLicense">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="32dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/linear_go_back"
-            android:layout_width="65dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <LinearLayout
+                android:id="@+id/linear_go_back"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorAccent" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/back"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/upload_electronic_trade_licences"
+                android:textAlignment="center"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <View
+            <ImageView
+                android:id="@+id/img_licence_first"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorAccent" />
+                android:layout_height="130dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="32dp"
+                android:src="@drawable/ic_add"
+                android:textSize="13sp" />
 
+            <ImageView
+                android:id="@+id/img_licence_second"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="32dp"
+                android:src="@drawable/ic_add"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/img_licence_third"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="32dp"
+                android:src="@drawable/ic_add"
+                android:textSize="13sp" />
 
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/upload_electronic_trade_licences"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background"
+        android:text="@string/done"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite" />
 
-        <ImageView
-            android:id="@+id/img_licence_first"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:padding="32dp"
-            android:src="@drawable/ic_add"
-            android:textSize="13sp" />
-
-        <ImageView
-            android:id="@+id/img_licence_second"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_background"
-            android:padding="32dp"
-            android:src="@drawable/ic_add"
-            android:textSize="13sp" />
-
-        <ImageView
-            android:id="@+id/img_licence_third"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_background"
-            android:padding="32dp"
-            android:src="@drawable/ic_add"
-            android:textSize="13sp" />
-
-        <Button
-            android:id="@+id/btn_done"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
-            android:background="@drawable/button_background"
-            android:text="@string/done"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite" />
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>
