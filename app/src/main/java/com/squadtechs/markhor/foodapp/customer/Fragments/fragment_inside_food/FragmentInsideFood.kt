@@ -21,7 +21,6 @@ import com.google.gson.reflect.TypeToken
 import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
-import kotlinx.android.synthetic.main.recycler_view.*
 
 class FragmentInsideFood : Fragment(), InsideFoodContracts {
 
@@ -71,6 +70,15 @@ class FragmentInsideFood : Fragment(), InsideFoodContracts {
                 pd.cancel()
                 val type = object : TypeToken<ArrayList<InsIdeFoodModel>>() {}.type
                 list = Gson().fromJson(response, type)
+
+                var count = (list.size - 1)
+                while (count >= 0) {
+                    if (list[count].delivery_type.equals("")) {
+                        list.removeAt(count)
+                    }
+                    count--
+                }
+
                 if (tabPosition == 2) {
                     deliverOnlyList = ArrayList<InsIdeFoodModel>()
                     for (i in list) {

@@ -92,15 +92,19 @@ class AroundMePresenter(
     override fun setMarkers(map: GoogleMap, distance: Int) {
         map.clear()
         for (i in responseHandlerList) {
-            val latLng = CustomerUtils.decodeCoordinates(i.address)
-            val calculatedDistance = SphericalUtil.computeDistanceBetween(myLatLng, latLng)
-            if (calculatedDistance <= distance) {
-                val marker = MarkerOptions() as MarkerOptions
-                marker.title(i.company_name)
-                marker.snippet(i.company_description)
-                marker.position(latLng)
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.dark_marker))
-                map.addMarker(marker)
+            if (!i.delivery_type.equals("")) {
+                val latLng = CustomerUtils.decodeCoordinates(i.address)
+                val calculatedDistance = SphericalUtil.computeDistanceBetween(myLatLng, latLng)
+                if (calculatedDistance <= distance) {
+                    val marker = MarkerOptions() as MarkerOptions
+                    marker.title(i.company_name)
+                    marker.snippet(i.company_description)
+                    marker.position(latLng)
+                    marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.dark_marker))
+                    map.addMarker(marker)
+                }
+            } else {
+                continue
             }
         }
     }
