@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.activity_customer_edit_profile.ActivityCustomerEditProfile"></activity>
-        <activity android:name=".customer.activity_company_information.ActivityCompanyInformation" />
+        <activity
+            android:name=".customer.activity_customer_edit_profile.ActivityCustomerEditProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".customer.activity_company_information.ActivityCompanyInformation"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

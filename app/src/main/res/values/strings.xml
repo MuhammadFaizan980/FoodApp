@@ -129,4 +129,10 @@
     <string name="this_is_just_a_demo_description_in_order_to_dtect_the_behaviour_of_the_food_row_design_and_determine_whether_this_row_design_needs_to_be_changed_or_onot">This is just a demo description in order to dtect the behaviour of the food row design and determine whether this row design needs to be changed or onot</string>
     <string name="aed">AED</string>
     <string name="_23">23</string>
+    <string name="my_detials_c">MY DETAILS</string>
+    <string name="tell_us_about_yourself">Tell us about yourself</string>
+    <string name="first_name_s">First Name</string>
+    <string name="last_name_s">Last Name</string>
+    <string name="mobile_number_s">Mobile Number</string>
+    <string name="save_changes">SAVE CHANGES</string>
 </resources>
