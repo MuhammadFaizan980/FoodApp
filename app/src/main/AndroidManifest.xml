@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".customer.activity_customer_clothes.ActivityCustomerClothes"></activity>
         <activity
             android:name=".customer.activity_customer_edit_profile.ActivityCustomerEditProfile"
             android:screenOrientation="portrait" />

@@ -20,8 +20,8 @@ class CustomerFragmentHome : Fragment() {
     private lateinit var touchView: View
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.customer_fragment_home, container, false)
         initViews(view)
@@ -39,11 +39,11 @@ class CustomerFragmentHome : Fragment() {
 
     private fun populateRecyclerView(view: View) {
         recyclerView.layoutManager =
-            LinearLayoutManager(
-                activity!!.applicationContext,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+                LinearLayoutManager(
+                        activity!!.applicationContext,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                )
         recyclerView.adapter = adapter
     }
 
@@ -59,10 +59,7 @@ class CustomerFragmentHome : Fragment() {
         list.add("Bags")
         list.add("Other")
         adapter =
-            CustomerFragmentHomeAdapter(
-                activity!!.applicationContext,
-                list
-            )
+                CustomerFragmentHomeAdapter(activity!!.applicationContext, list, activity!!)
         touchView = view.findViewById(R.id.touch_view)
     }
 

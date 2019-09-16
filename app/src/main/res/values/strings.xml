@@ -135,4 +135,9 @@
     <string name="last_name_s">Last Name</string>
     <string name="mobile_number_s">Mobile Number</string>
     <string name="save_changes">SAVE CHANGES</string>
+    <string name="clothes_c">CLOTHES</string>
+    <string name="browse_to_find_your_next_new_outfit">Browse to find your next new outfit</string>
+    <string name="women">Women</string>
+    <string name="men">Men</string>
+    <string name="children">Children</string>
 </resources>

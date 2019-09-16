@@ -1,6 +1,8 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,20 +10,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_clothes.ActivityCustomerClothes
 
-class CustomerFragmentHomeAdapter(
-    private val context: Context,
-    private val list: ArrayList<String>
-) : RecyclerView.Adapter<CustomerFragmentHomeAdapter.CustomerFragmentHomeViewHolder>() {
+class CustomerFragmentHomeAdapter(private val context: Context, private val list: ArrayList<String>, private val mActivity: Activity)
+    : RecyclerView.Adapter<CustomerFragmentHomeAdapter.CustomerFragmentHomeViewHolder>() {
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+            parent: ViewGroup,
+            viewType: Int
     ): CustomerFragmentHomeViewHolder = CustomerFragmentHomeViewHolder(
-        LayoutInflater.from(context).inflate(
-            R.layout.customer_home_row_design,
-            parent,
-            false
-        )
+            LayoutInflater.from(context).inflate(
+                    R.layout.customer_home_row_design,
+                    parent,
+                    false
+            )
     )
 
     override fun getItemCount(): Int = list.size
@@ -56,6 +57,16 @@ class CustomerFragmentHomeAdapter(
                 holder.imgCategory.setImageResource(R.drawable.others)
             }
         }
+
+        holder.touchView.setOnClickListener {
+            when (position) {
+                0 -> {
+                    context.startActivity(Intent(context, ActivityCustomerClothes::class.java))
+                    mActivity.finish()
+                }
+            }
+        }
+
     }
 
     inner class CustomerFragmentHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
