@@ -2,6 +2,8 @@ package com.squadtechs.markhor.foodapp.customer.activity_phone_verification
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -31,8 +33,9 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_verification)
         initViews()
-        mPresenter.sendVerificationCode(phone_number)
-        setListener()
+//        mPresenter.sendVerificationCode(phone_number)
+        //  setListener()
+        addTextWatchrs()
     }
 
     private fun setListener() {
@@ -51,7 +54,7 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         btnVerify = findViewById(R.id.btn_thank_you_done)
         linearResendCode = findViewById(R.id.linear_resend_verification_code)
         phoneAuthProvider = PhoneAuthProvider.getInstance()
-        phone_number = intent!!.extras!!.getString("phone_number", "n/a")
+        //    phone_number = intent!!.extras!!.getString("phone_number", "n/a")
         mPresenter = PhoneVerificationPresenter(this@ActivityPhoneVerification, this)
     }
 
@@ -93,4 +96,74 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
     }
 
     override fun onBackPressed() {}
+
+    private fun addTextWatchrs() {
+        edtFirst.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null && p0.length >= 1) {
+                    edtSecond.requestFocus()
+                }
+            }
+        })
+        edtSecond.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null && p0.length >= 1) {
+                    edtThird.requestFocus()
+                }
+            }
+        })
+        edtThird.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null && p0.length >= 1) {
+                    edtFourth.requestFocus()
+                }
+            }
+        })
+        edtFourth.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null && p0.length >= 1) {
+                    edtFifth.requestFocus()
+                }
+            }
+        })
+        edtFifth.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null && p0.length >= 1) {
+                    edtSixth.requestFocus()
+                }
+            }
+        })
+        edtSixth.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null && p0.length >= 1) {
+                    edtSixth.clearFocus()
+                }
+            }
+        })
+    }
+
 }
