@@ -1,20 +1,25 @@
-package com.squadtechs.markhor.foodapp.customer.Fragments.fragment_food
+package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_food
 
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+
 import com.squadtechs.markhor.foodapp.R
 
+/**
+ * A simple [Fragment] subclass.
+ */
 class CustomerFragmentFood : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.customer_fragmetn_food, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.customer_fragment_food, container, false)
     }
 
 

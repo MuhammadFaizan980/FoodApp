@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.fragment_inside_food
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_information.ActivityCustomerFoodCompanyInformation
 import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
 import com.squareup.picasso.Picasso
 import java.math.RoundingMode
@@ -52,6 +54,9 @@ class InsideFoodAdapter(
             Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
                 .into(holder.imageView)
             holder.txtCuisine.text = obj.cuisine
+            holder.txtCuisine.setOnClickListener {
+                context.startActivity(Intent(context, ActivityCustomerFoodCompanyInformation::class.java))
+            }
         } else {
 
             val lat = context.getSharedPreferences(
@@ -79,6 +84,9 @@ class InsideFoodAdapter(
             holder.txtTitle.text = obj.company_name
             holder.txtCuisine.text = obj.cuisine
             holder.txtDeliveryType.text = obj.delivery_type
+            holder.touchView.setOnClickListener {
+                context.startActivity(Intent(context, ActivityCustomerFoodCompanyInformation::class.java))
+            }
         }
     }
 
@@ -96,6 +104,7 @@ class InsideFoodAdapter(
         lateinit var txtTime: TextView
         lateinit var txtDeliveryType: TextView
         lateinit var rattingBar: RatingBar
+        lateinit var touchView: View
 
         init {
             if (tabPosition == 1) {
@@ -109,6 +118,7 @@ class InsideFoodAdapter(
                 txtTime = view.findViewById(R.id.txt_time)
                 txtDeliveryType = view.findViewById(R.id.txt_delivery)
                 rattingBar = view.findViewById(R.id.ratting_bar)
+                touchView = view.findViewById(R.id.touch_view)
             }
         }
 

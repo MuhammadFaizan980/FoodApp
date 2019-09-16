@@ -1,10 +1,10 @@
-package com.squadtechs.markhor.foodapp.customer.activity_food_company_information
+package com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_information
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.squadtechs.markhor.foodapp.customer.Fragments.fragment_food.CustomerFragmentFood
+import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_food.CustomerFragmentFood
 
 class CompanyInformationPagerAdapter(manager: FragmentManager) :
     FragmentStatePagerAdapter(manager) {
