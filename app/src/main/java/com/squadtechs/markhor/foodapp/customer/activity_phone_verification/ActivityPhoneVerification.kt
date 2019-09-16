@@ -33,8 +33,8 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_verification)
         initViews()
-//        mPresenter.sendVerificationCode(phone_number)
-        //  setListener()
+        mPresenter.sendVerificationCode(phone_number)
+        setListener()
         addTextWatchrs()
     }
 
@@ -54,7 +54,7 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
         btnVerify = findViewById(R.id.btn_thank_you_done)
         linearResendCode = findViewById(R.id.linear_resend_verification_code)
         phoneAuthProvider = PhoneAuthProvider.getInstance()
-        //    phone_number = intent!!.extras!!.getString("phone_number", "n/a")
+        phone_number = intent!!.extras!!.getString("phone_number", "n/a")
         mPresenter = PhoneVerificationPresenter(this@ActivityPhoneVerification, this)
     }
 
