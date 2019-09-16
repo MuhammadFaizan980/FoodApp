@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_clothes.FragmentCustomerClothes
 
-class ClothesPagerAdapter(private val list: ArrayList<String>, manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+class ClothesPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
     override fun getItem(position: Int): Fragment {
         val fragment = FragmentCustomerClothes()
         val bundle = Bundle()
@@ -15,5 +15,5 @@ class ClothesPagerAdapter(private val list: ArrayList<String>, manager: Fragment
         return fragment
     }
 
-    override fun getCount(): Int = list.size
+    override fun getCount(): Int = 4
 }

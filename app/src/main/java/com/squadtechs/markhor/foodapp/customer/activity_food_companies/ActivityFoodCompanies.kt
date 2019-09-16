@@ -24,12 +24,7 @@ class ActivityFoodCompanies : AppCompatActivity() {
     }
 
     private fun populateViewPager() {
-        val list = ArrayList<String>()
-        list.add("close")
-        list.add("cuisine")
-        list.add("deliver")
-        viewPager.adapter =
-            FoodViewPagerAdapter(list, this, supportFragmentManager)
+        viewPager.adapter = FoodViewPagerAdapter(supportFragmentManager)
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 

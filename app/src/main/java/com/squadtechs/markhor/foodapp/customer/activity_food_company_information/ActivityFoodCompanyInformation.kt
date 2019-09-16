@@ -5,7 +5,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.Fragments.fragment_food.CompanyInformationPagerAdapter
 
 class ActivityFoodCompanyInformation : AppCompatActivity() {
     private lateinit var viewPackage: ViewPager
@@ -23,13 +22,8 @@ class ActivityFoodCompanyInformation : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        val list = ArrayList<String>()
-        list.add("All")
-        list.add("Starters")
-        list.add("Main course")
-        list.add("Side")
-        list.add("Deserts")
-        viewPackage.adapter = CompanyInformationPagerAdapter(list, supportFragmentManager)
+        viewPackage.adapter =
+            CompanyInformationPagerAdapter(supportFragmentManager)
         viewPackage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 

@@ -21,16 +21,7 @@ class ActivityCustomerClothesCompaniesDetails : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        val list = ArrayList<String>()
-        list.add("All")
-        list.add("Women")
-        list.add("Men")
-        list.add("Children")
-        viewPackage.adapter =
-            ClothesPagerAdapter(
-                list,
-                supportFragmentManager
-            )
+        viewPackage.adapter = ClothesPagerAdapter(supportFragmentManager)
         viewPackage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
