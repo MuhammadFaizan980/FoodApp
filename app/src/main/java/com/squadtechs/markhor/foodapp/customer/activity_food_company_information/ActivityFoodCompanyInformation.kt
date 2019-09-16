@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.activity_company_information
+package com.squadtechs.markhor.foodapp.customer.activity_food_company_information
 
 import android.os.Bundle
 import android.widget.TextView
@@ -7,7 +7,7 @@ import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.Fragments.fragment_food.CompanyInformationPagerAdapter
 
-class ActivityCompanyInformation : AppCompatActivity() {
+class ActivityFoodCompanyInformation : AppCompatActivity() {
     private lateinit var viewPackage: ViewPager
     private lateinit var txtAll: TextView
     private lateinit var txtStarters: TextView
@@ -17,7 +17,7 @@ class ActivityCompanyInformation : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_company_information)
+        setContentView(R.layout.activity_food_company_information)
         initViews()
         setListeners()
     }

@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.activity_food_types
+package com.squadtechs.markhor.foodapp.customer.activity_food_companies
 
 import android.content.Context
 import android.os.Bundle

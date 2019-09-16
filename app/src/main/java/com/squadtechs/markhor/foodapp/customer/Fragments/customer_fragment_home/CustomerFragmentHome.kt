@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.activity_food_types.ActivityFoodType
+import com.squadtechs.markhor.foodapp.customer.activity_food_companies.ActivityFoodCompanies
 
 class CustomerFragmentHome : Fragment() {
 
@@ -32,7 +32,7 @@ class CustomerFragmentHome : Fragment() {
 
     private fun setListener() {
         touchView.setOnClickListener {
-            startActivity(Intent(activity!!.applicationContext, ActivityFoodType::class.java))
+            startActivity(Intent(activity!!.applicationContext, ActivityFoodCompanies::class.java))
             activity!!.finish()
         }
     }

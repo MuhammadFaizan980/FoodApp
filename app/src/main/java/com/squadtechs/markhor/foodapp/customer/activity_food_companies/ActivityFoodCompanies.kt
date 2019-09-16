@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.activity_food_types
+package com.squadtechs.markhor.foodapp.customer.activity_food_companies
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 
-class ActivityFoodType : AppCompatActivity() {
+class ActivityFoodCompanies : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
     private lateinit var firstTab: TextView
@@ -18,7 +18,7 @@ class ActivityFoodType : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_type)
+        setContentView(R.layout.activity_food_companies)
         initView()
         populateViewPager()
     }
@@ -71,7 +71,7 @@ class ActivityFoodType : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityFoodType, ActivityCustomerMain::class.java))
+        startActivity(Intent(this@ActivityFoodCompanies, ActivityCustomerMain::class.java))
         finish()
     }
 

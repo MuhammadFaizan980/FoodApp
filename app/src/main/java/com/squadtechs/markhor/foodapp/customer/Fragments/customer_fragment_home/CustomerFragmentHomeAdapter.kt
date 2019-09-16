@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.activity_customer_clothes.ActivityCustomerClothes
+import com.squadtechs.markhor.foodapp.customer.activity_customer_clothes_companies.ActivityCustomerClothesCompanies
 
 class CustomerFragmentHomeAdapter(private val context: Context, private val list: ArrayList<String>, private val mActivity: Activity)
     : RecyclerView.Adapter<CustomerFragmentHomeAdapter.CustomerFragmentHomeViewHolder>() {
@@ -61,7 +61,7 @@ class CustomerFragmentHomeAdapter(private val context: Context, private val list
         holder.touchView.setOnClickListener {
             when (position) {
                 0 -> {
-                    context.startActivity(Intent(context, ActivityCustomerClothes::class.java))
+                    context.startActivity(Intent(context, ActivityCustomerClothesCompanies::class.java))
                     mActivity.finish()
                 }
             }

@@ -7,7 +7,7 @@
     android:paddingLeft="32dp"
     android:paddingTop="32dp"
     android:paddingRight="32dp"
-    tools:context=".customer.activity_food_types.ActivityFoodType">
+    tools:context=".customer.activity_food_companies.ActivityFoodCompanies">
 
     <TextView
         android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".customer.activity_company_information.ActivityCompanyInformation">
+    tools:context=".customer.activity_customer_clothes_companies_details.ActivityCustomerClothesCompaniesDetails">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/food" />
+            android:src="@drawable/clothes" />
 
         <ImageView
             android:id="@+id/img_go_back"
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/beit_hessa"
+        android:text="@string/abaya_sellers"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
         android:textSize="24sp"
@@ -113,7 +113,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="4">
 
         <TextView
             android:id="@+id/txt_all"
@@ -125,64 +125,51 @@
             android:text="@string/all"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txt_starters"
+            android:id="@+id/txt_women"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/starters"
+            android:text="@string/women"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txt_main_course"
+            android:id="@+id/txt_men"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/main_course"
+            android:text="@string/men"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txt_sides"
+            android:id="@+id/txt_children"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/sides"
+            android:text="@string/children"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_deserts"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/deserts"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/company_view_pager"
+        android:id="@+id/clothes_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 </LinearLayout>
+

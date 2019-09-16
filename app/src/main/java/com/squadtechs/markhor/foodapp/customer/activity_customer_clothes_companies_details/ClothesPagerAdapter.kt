@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.activity_customer_clothes
+package com.squadtechs.markhor.foodapp.customer.activity_customer_clothes_companies_details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
