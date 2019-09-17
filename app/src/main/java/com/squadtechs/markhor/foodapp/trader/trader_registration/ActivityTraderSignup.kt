@@ -1,6 +1,5 @@
 package com.squadtechs.markhor.foodapp.trader.trader_registration
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
@@ -115,10 +115,12 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     }
 
     private fun showDialog() {
-        val dialog = AlertDialog.Builder(this@ActivityTraderSignup)
-        dialog.setTitle("Message!")
-        dialog.setMessage("Trader account has been created\nYou will need to upload electronic license in order to confirm your trader account in the next screen")
-        dialog.setCancelable(false)
+        val dialog = MainUtils.getMessageDialog(
+            this,
+            "Message!",
+            "Trader account has been created\nYou will need to upload electronic license in order to confirm your trader account in the next screen",
+            false
+        )
         dialog.setPositiveButton("Next") { dialogInterface, i ->
             startActivity(Intent(this@ActivityTraderSignup, ActivityElectronicLicense::class.java))
             finish()

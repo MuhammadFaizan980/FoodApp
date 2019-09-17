@@ -9,11 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.PhoneAuthProvider
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 
 class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContracts.IView {
 
@@ -81,10 +81,12 @@ class ActivityPhoneVerification : AppCompatActivity(), PhoneVerificationContract
     }
 
     private fun showDialog() {
-        val dialog = AlertDialog.Builder(this)
-        dialog.setTitle("Message!")
-        dialog.setMessage("Your phone number has been verified\nYou can now log in")
-        dialog.setCancelable(false)
+        val dialog = MainUtils.getMessageDialog(
+            this,
+            "Message!",
+            "Your phone number has been verified\nYou can now log in",
+            false
+        )
         dialog.setPositiveButton("Login") { dialogInterface, i ->
             startActivity(Intent(this@ActivityPhoneVerification, ActivityCustomerLogin::class.java))
             finish()

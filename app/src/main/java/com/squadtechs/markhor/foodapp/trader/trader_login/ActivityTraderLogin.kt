@@ -8,13 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
+import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
@@ -75,10 +75,12 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         if (status) {
             Log.i("m_resp", approval)
             if (approval.equals("pending")) {
-                val dialog = AlertDialog.Builder(this)
-                dialog.setCancelable(false)
-                dialog.setTitle("Message!")
-                dialog.setMessage("Your account is not approved yet\nYou will be able to login once your account is approved by admin\nIncomplete registration will result in account suspension")
+                val dialog = MainUtils.getMessageDialog(
+                    this,
+                    "Message!",
+                    "Your account is not approved yet\nYou will be able to login once your account is approved by admin\nIncomplete registration will result in account suspension",
+                    false
+                )
                 dialog.setPositiveButton("Ok") { dialogInterface, i ->
                     dialogInterface.cancel()
                 }
