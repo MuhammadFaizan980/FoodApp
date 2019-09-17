@@ -91,7 +91,7 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                         "current_screen",
                         "null"
                     ) as String
-                if (!isProfileInProgress.equals("null") && !isProfileInProgress.equals("prof_complete")) {
+                if (!isProfileInProgress.equals("prof_complete")) {
 
                     when (isProfileInProgress) {
                         "trader company details" -> {
@@ -112,6 +112,8 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                         }
                     }
                 } else {
+                    Toast.makeText(this@ActivityTraderLogin, "Profile Completed", Toast.LENGTH_LONG)
+                        .show()
                     //TODO: take trader to main screen
                 }
             }

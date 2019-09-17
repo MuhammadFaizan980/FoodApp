@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.trader
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -25,8 +26,8 @@ class ActivityCompanyType : AppCompatActivity() {
     private lateinit var radioOthers: RadioButton
     private lateinit var linearback: LinearLayout
     private lateinit var selectedValue: String
-    private val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
-    private val editor = pref.edit()
+    private lateinit var pref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,6 +111,8 @@ class ActivityCompanyType : AppCompatActivity() {
         radioBags = findViewById(R.id.radio_bags)
         radioOthers = findViewById(R.id.radio_other)
         linearback = findViewById(R.id.linear_go_back)
+        pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+        editor = pref.edit()
         selectedValue = ""
         edtType.isEnabled = false
     }

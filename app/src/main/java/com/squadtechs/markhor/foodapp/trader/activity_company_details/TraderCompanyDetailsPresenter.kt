@@ -7,6 +7,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -54,6 +55,7 @@ class TraderCompanyDetailsPresenter(
             Method.POST,
             API,
             Response.Listener { response ->
+                Toast.makeText(context, response, Toast.LENGTH_LONG).show()
                 pd.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("update_success")) {
@@ -65,7 +67,6 @@ class TraderCompanyDetailsPresenter(
                 } else {
                     mView.onAddCompanyDetailsResult(false)
                 }
-                Log.i("m_response", response)
             },
             Response.ErrorListener { error ->
                 pd.cancel()
