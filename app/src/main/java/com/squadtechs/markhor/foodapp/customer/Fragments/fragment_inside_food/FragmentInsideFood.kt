@@ -73,7 +73,7 @@ class FragmentInsideFood : Fragment(), InsideFoodContracts {
 
                 var count = (list.size - 1)
                 while (count >= 0) {
-                    if (list[count].delivery_type.equals("")) {
+                    if (!list[count].company_type.equals("Food & beverages")) {
                         list.removeAt(count)
                     }
                     count--
@@ -82,7 +82,7 @@ class FragmentInsideFood : Fragment(), InsideFoodContracts {
                 if (tabPosition == 2) {
                     deliverOnlyList = ArrayList<InsIdeFoodModel>()
                     for (i in list) {
-                        if (i.company_type.equals("Food & beverages")) {
+                        if (i.delivery_type.equals("yes")) {
                             deliverOnlyList.add(i)
                         }
                     }

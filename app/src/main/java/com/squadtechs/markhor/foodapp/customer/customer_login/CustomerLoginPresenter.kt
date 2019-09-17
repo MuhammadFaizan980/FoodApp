@@ -60,6 +60,7 @@ class CustomerLoginPresenter(
                     editor.putString("user_password", obj.password)
                     editor.putString("birthday", obj.birthday)
                     editor.putString("phone", obj.phone)
+                    editor.putBoolean("customer_logged_in", true)
                     editor.apply()
                     mView.onLoginResult(true, "")
                 }
