@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.trader
+package com.squadtechs.markhor.foodapp.trader.activity_company_type
 
 import android.content.Context
 import android.content.Intent

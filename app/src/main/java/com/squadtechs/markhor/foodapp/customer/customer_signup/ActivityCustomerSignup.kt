@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_phone_verification.ActivityPhoneVerification
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
+import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
 
 class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContracts.IView {
 

@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.util
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.location.Location
@@ -79,6 +80,18 @@ class CustomerUtils {
             dialog.show()
         }
 
+        fun getLoadingDialog(
+            context: Context,
+            title: String,
+            message: String,
+            flag: Boolean
+        ): ProgressDialog {
+            val pd = ProgressDialog(context)
+            pd.setTitle(title)
+            pd.setMessage(message)
+            pd.setCancelable(flag)
+            return pd
+        }
     }
 
 }

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
+import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails

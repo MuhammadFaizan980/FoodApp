@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trader.ActivityCompanyType">
+    tools:context=".trader.activity_company_type.ActivityCompanyType">
 
     <ScrollView
         android:layout_width="match_parent"
