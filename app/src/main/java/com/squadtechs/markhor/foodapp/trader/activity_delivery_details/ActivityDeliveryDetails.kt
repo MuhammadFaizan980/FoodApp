@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.trader.activity_delivery_details
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +20,8 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
     private lateinit var bubbleSeekBar: BubbleSeekBar
     private lateinit var mPresenter: DeliveryDetailsContracts.IPresenter
     private var deliver: Boolean = false
-    private val pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
-    private val editor = pref.edit()
+    private lateinit var pref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +59,8 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
         mPresenter = DeliveryDetailsPresenter(this@ActivityDeliveryDetails, this)
         bubbleSeekBar = findViewById(R.id.delivery_range)
         edtPickUpInformation = findViewById(R.id.edt_pick_up_information)
+        pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
+        editor = pref.edit()
     }
 
     override fun onValidationResult(status: Boolean) {
@@ -73,7 +76,7 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
             editor.putString("current_screen", "prof_complete")
             editor.apply()
             Toast.makeText(this, "Profile completed", Toast.LENGTH_LONG).show()
-            TODO("take user to trader main screen")
+            //TODO: take user to next screen
         } else {
             Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
         }

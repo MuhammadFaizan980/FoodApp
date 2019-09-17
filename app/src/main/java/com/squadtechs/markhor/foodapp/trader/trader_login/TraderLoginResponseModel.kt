@@ -10,5 +10,5 @@ class TraderLoginResponseModel {
     var traderlicense1: String = ""
     var traderlicense2: String = ""
     var traderlicense3: String = ""
-    var Profile_Status: String = ""
+    var account_status: String = ""
 }

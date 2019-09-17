@@ -63,12 +63,12 @@ class TraderLoginPresenter(
                     editor.putString("user_email", obj.email)
                     editor.putString("user_password", obj.password)
                     editor.putString("phone", obj.mobile)
-                    editor.putString("account_status", obj.Profile_Status)
+                    editor.putString("account_status", obj.account_status)
                     editor.putString("trader_license_1", obj.traderlicense1)
                     editor.putString("trader_license_2", obj.traderlicense2)
                     editor.putString("trader_license_3", obj.traderlicense3)
                     editor.apply()
-                    mView.onLoginResult(true, obj.Profile_Status, "n/a")
+                    mView.onLoginResult(true, obj.account_status, "n/a")
                 }
             },
             Response.ErrorListener { error ->

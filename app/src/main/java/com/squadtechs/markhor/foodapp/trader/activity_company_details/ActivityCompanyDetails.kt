@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
@@ -19,7 +21,7 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
     private lateinit var edtDescrption: EditText
     private lateinit var imgCompany: ImageView
     private lateinit var btnNext: Button
-    private lateinit var linearback: LinearLayout
+    //    private lateinit var linearback: LinearLayout
     private lateinit var mPresenter: TraderCompanyDetailsContracts.IPresenter
     private var uri: Uri? = null
 
@@ -39,10 +41,10 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
             mPresenter.initValidation(name, cuisine, description, uri)
         }
 
-        linearback.setOnClickListener {
-            startActivity(Intent(this, ActivityCompanyType::class.java))
-            finish()
-        }
+//        linearback.setOnClickListener {
+//            startActivity(Intent(this, ActivityCompanyType::class.java))
+//            finish()
+//        }
 
     }
 
@@ -60,7 +62,7 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
         edtDescrption = findViewById(R.id.edt_company_description)
         imgCompany = findViewById(R.id.img_company_photo)
         btnNext = findViewById(R.id.btn_trader_next)
-        linearback = findViewById(R.id.linear_go_back)
+        //      linearback = findViewById(R.id.linear_go_back)
         mPresenter = TraderCompanyDetailsPresenter(this@ActivityCompanyDetails, this)
     }
 
