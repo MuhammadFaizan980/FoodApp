@@ -88,7 +88,6 @@ class ElectronicLicensePresenter(
                 map["traderlicense1_image"] = getImageString(uri1)
                 map["traderlicense2_image"] = getImageString(uri2)
                 map["traderlicense3_image"] = getImageString(uri3)
-                map["profile_complete"] = "yes"
                 return map
             }
         }

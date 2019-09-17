@@ -69,7 +69,7 @@ class DeliveryDetailsPresenter(
                 }
                 map["delivery_pickupinfo"] = pickupInformation
                 map["trader_id"] = trader_id
-                Log.i("delivery_details", map.toString())
+                map["is-profile-complete"] = "yes"
                 return map
             }
         }
