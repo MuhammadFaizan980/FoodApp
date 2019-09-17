@@ -1,6 +1,5 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.fragment_inside_food
 
-import android.app.ProgressDialog
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +19,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
+import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 
 class FragmentInsideFood : Fragment(), InsideFoodContracts {
 
@@ -56,10 +56,12 @@ class FragmentInsideFood : Fragment(), InsideFoodContracts {
     }
 
     private fun makeRequest(tabPosition: Int) {
-        val pd = ProgressDialog(activity!!)
-        pd.setCancelable(false)
-        pd.setTitle("Loading")
-        pd.setMessage("Please wait")
+        val pd = MainUtils.getLoadingDialog(
+            activity!!.applicationContext,
+            "Loading",
+            "Please wait",
+            false
+        )
         pd.show()
         val API = "http://squadtechsolution.com/android/v1/allcompany.php"
         val requestQueue = Volley.newRequestQueue(activity!!.applicationContext)

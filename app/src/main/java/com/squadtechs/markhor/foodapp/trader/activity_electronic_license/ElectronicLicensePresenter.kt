@@ -1,6 +1,5 @@
 package com.squadtechs.markhor.foodapp.trader.activity_electronic_license
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
@@ -11,6 +10,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 
@@ -51,10 +51,7 @@ class ElectronicLicensePresenter(
 
     override fun saveLicense() {
 
-        val pd = ProgressDialog(context)
-        pd.setTitle("Please Wait")
-        pd.setMessage("Adding License")
-        pd.setCancelable(false)
+        val pd = MainUtils.getLoadingDialog(context, "Please Wait", "Adding license", false)
         pd.show()
 
         val requestQueue = Volley.newRequestQueue(context)

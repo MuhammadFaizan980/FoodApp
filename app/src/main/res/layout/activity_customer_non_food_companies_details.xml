@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".customer.activity_customer_clothes_companies_details.ActivityCustomerClothesCompaniesDetails">
+    tools:context=".customer.activity_customer_non_food_companies_details.ActivityCustomerNonFoodCompaniesDetails">
 
     <FrameLayout
         android:layout_width="match_parent"

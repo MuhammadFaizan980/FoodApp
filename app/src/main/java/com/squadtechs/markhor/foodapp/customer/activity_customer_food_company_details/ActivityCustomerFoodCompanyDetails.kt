@@ -11,7 +11,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
+import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
 import com.squareup.picasso.Picasso
 import java.math.RoundingMode
 import java.text.DecimalFormat

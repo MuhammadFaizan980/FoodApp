@@ -9,6 +9,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
 
@@ -33,10 +34,7 @@ class TraderLoginPresenter(
     }
 
     override fun initLogin() {
-        val progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Please wait")
-        progressDialog.setTitle("Message!")
-        progressDialog.setCancelable(false)
+        val progressDialog = MainUtils.getLoadingDialog(context, "Loading", "Please Wait", false)
         progressDialog.show()
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(

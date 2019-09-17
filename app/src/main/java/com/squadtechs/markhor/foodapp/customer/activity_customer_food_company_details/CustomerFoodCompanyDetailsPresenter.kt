@@ -1,11 +1,11 @@
 package com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_details
 
-import android.app.ProgressDialog
 import android.content.Context
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONArray
 
 class CustomerFoodCompanyDetailsPresenter(
@@ -13,10 +13,7 @@ class CustomerFoodCompanyDetailsPresenter(
     private val context: Context
 ) : CustomerFoodCompanyDetailsContracts.IPresenter {
     override fun getCompanyData(companyID: String) {
-        val pd = ProgressDialog(context)
-        pd.setCancelable(false)
-        pd.setTitle("Loading")
-        pd.setMessage("Please wait")
+        val pd = MainUtils.getLoadingDialog(context, "Please Wait", "Loading company data", false)
         pd.show()
         val API = "http://squadtechsolution.com/android/v1/singleCompanyDetail.php"
         val requestQueue = Volley.newRequestQueue(context)

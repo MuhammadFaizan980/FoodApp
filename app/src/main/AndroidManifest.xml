@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.activity_customer_clothes_companies_details.ActivityCustomerClothesCompaniesDetails" />
-        <activity android:name=".customer.activity_customer_clothes_companies.ActivityCustomerClothesCompanies" />
+        <activity android:name=".customer.activity_customer_non_food_companies_details.ActivityCustomerNonFoodCompaniesDetails" />
+        <activity android:name=".customer.activity_customer_non_food_companies.ActivityCustomerNonFoodCompanies" />
         <activity
             android:name=".customer.activity_customer_edit_profile.ActivityCustomerEditProfile"
             android:screenOrientation="portrait" />
@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".trader.ActivityThankyou"
+            android:name=".trader.activity_thank_you.ActivityThankyou"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity

@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.ActivityThankyou
+import com.squadtechs.markhor.foodapp.trader.activity_thank_you.ActivityThankyou
 import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 
 class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener,

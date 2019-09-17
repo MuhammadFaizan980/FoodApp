@@ -1,11 +1,11 @@
 package com.squadtechs.markhor.foodapp.trader.trader_registration
 
-import android.app.ProgressDialog
 import android.content.Context
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
 class TraderRegistrationPresenter(
@@ -56,10 +56,7 @@ class TraderRegistrationPresenter(
 
 
     override fun initRegistration() {
-        val progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Please wait")
-        progressDialog.setTitle("Message!")
-        progressDialog.setCancelable(false)
+        val progressDialog = MainUtils.getLoadingDialog(context, "Loading", "Please Wait", false)
         progressDialog.show()
         val requestQueue = Volley.newRequestQueue(context)
         val strinRequest = object : StringRequest(

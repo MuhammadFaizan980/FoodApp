@@ -13,7 +13,7 @@ import com.google.maps.android.SphericalUtil
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_details.ActivityCustomerFoodCompanyDetails
-import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
+import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
 import com.squareup.picasso.Picasso
 import java.math.RoundingMode
 import java.text.DecimalFormat

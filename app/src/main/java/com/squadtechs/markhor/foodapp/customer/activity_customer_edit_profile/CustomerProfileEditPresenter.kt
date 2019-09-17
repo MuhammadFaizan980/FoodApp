@@ -5,7 +5,7 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
 class CustomerProfileEditPresenter(
@@ -37,7 +37,7 @@ class CustomerProfileEditPresenter(
 
     override fun editProfile() {
         val pd =
-            CustomerUtils.getLoadingDialog(context, "Please Wait", "Updating your profile", false)
+            MainUtils.getLoadingDialog(context, "Please Wait", "Updating your profile", false)
         pd.show()
         val API = "http://squadtechsolution.com/android/v1/update_customer_details.php"
         val requestQueue = Volley.newRequestQueue(context)

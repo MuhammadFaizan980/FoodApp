@@ -8,6 +8,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import java.util.concurrent.TimeUnit
 
 class PhoneVerificationPresenter(
@@ -19,10 +20,7 @@ class PhoneVerificationPresenter(
     private lateinit var mAuth: FirebaseAuth
 
     override fun sendVerificationCode(phone_number: String) {
-        val pd = ProgressDialog(context)
-        pd.setCancelable(false)
-        pd.setTitle("Wait")
-        pd.setMessage("Sending verification message")
+        val pd = MainUtils.getLoadingDialog(context, "Wait", "Sending verification message", false)
         pd.show()
         phoneAuthProvider = PhoneAuthProvider.getInstance()
         phoneAuthProvider.verifyPhoneNumber(

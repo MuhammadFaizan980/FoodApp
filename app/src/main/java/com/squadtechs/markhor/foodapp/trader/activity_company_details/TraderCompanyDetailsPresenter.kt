@@ -1,6 +1,5 @@
 package com.squadtechs.markhor.foodapp.trader.activity_company_details
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
@@ -12,6 +11,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 
@@ -44,10 +44,7 @@ class TraderCompanyDetailsPresenter(
     }
 
     override fun addCompanyDetails() {
-        val pd = ProgressDialog(context)
-        pd.setTitle("Please Wait")
-        pd.setMessage("Adding company")
-        pd.setCancelable(false)
+        val pd = MainUtils.getLoadingDialog(context, "Please Wait", "Adding data", false)
         pd.show()
         val API = "http://squadtechsolution.com//android/v1/compnay_profile.php"
         val requestQueue = Volley.newRequestQueue(context)

@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.customer.activity_customer_clothes_companies_details
+package com.squadtechs.markhor.foodapp.customer.activity_customer_non_food_companies_details
 
 import android.os.Bundle
 import android.widget.TextView
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
 
-class ActivityCustomerClothesCompaniesDetails : AppCompatActivity() {
+class ActivityCustomerNonFoodCompaniesDetails : AppCompatActivity() {
     private lateinit var viewPackage: ViewPager
     private lateinit var txtAll: TextView
     private lateinit var txtWomen: TextView
@@ -15,7 +15,7 @@ class ActivityCustomerClothesCompaniesDetails : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_customer_clothes_companies_details)
+        setContentView(R.layout.activity_customer_non_food_companies_details)
         initViews()
         setListeners()
     }

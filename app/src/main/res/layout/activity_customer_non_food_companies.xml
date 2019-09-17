@@ -7,7 +7,7 @@
     android:paddingLeft="32dp"
     android:paddingTop="32dp"
     android:paddingRight="32dp"
-    tools:context=".customer.activity_customer_clothes_companies.ActivityCustomerClothesCompanies">
+    tools:context=".customer.activity_customer_non_food_companies.ActivityCustomerNonFoodCompanies">
 
     <EditText
         android:id="@+id/edt_customer_home_search"

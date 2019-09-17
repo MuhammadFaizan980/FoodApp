@@ -21,7 +21,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
+import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
 import org.json.JSONArray
 
 class AroundMePresenter(

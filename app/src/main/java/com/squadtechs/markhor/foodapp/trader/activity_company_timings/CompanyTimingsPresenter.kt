@@ -6,6 +6,7 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
 class CompanyTimingsPresenter constructor(
@@ -84,10 +85,7 @@ class CompanyTimingsPresenter constructor(
     }
 
     override fun addCompanyTimings() {
-        val pd = ProgressDialog(context)
-        pd.setTitle("Please Wait")
-        pd.setMessage("Adding company timings")
-        pd.setCancelable(false)
+        val pd = MainUtils.getLoadingDialog(context, "Please Wait", "Adding data", false)
         pd.show()
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(

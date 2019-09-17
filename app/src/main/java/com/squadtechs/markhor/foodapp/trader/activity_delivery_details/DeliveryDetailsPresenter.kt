@@ -1,11 +1,11 @@
 package com.squadtechs.markhor.foodapp.trader.activity_delivery_details
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
 class DeliveryDetailsPresenter(
@@ -28,10 +28,7 @@ class DeliveryDetailsPresenter(
     }
 
     override fun addDeliveryDetails() {
-        val pd = ProgressDialog(context)
-        pd.setTitle("Please Wait")
-        pd.setMessage("Adding delivery details")
-        pd.setCancelable(false)
+        val pd = MainUtils.getLoadingDialog(context, "Please Wait", "Adding data", false)
         pd.show()
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(

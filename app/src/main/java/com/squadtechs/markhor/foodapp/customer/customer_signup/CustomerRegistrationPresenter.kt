@@ -1,12 +1,12 @@
 package com.squadtechs.markhor.foodapp.customer.customer_signup
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
 class CustomerRegistrationPresenter(
@@ -55,10 +55,7 @@ class CustomerRegistrationPresenter(
     }
 
     override fun initRegistration() {
-        val progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Please wait")
-        progressDialog.setTitle("Message!")
-        progressDialog.setCancelable(false)
+        val progressDialog = MainUtils.getLoadingDialog(context, "Message!", "Please wait", false)
         progressDialog.show()
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
