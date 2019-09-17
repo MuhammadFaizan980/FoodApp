@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_d
 
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
@@ -17,20 +18,21 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_food_company_details)
+        Toast.makeText(this, intent!!.extras!!.get("company_id") as String, Toast.LENGTH_LONG).show()
         initViews()
         setListeners()
     }
 
     private fun setListeners() {
         viewPackage.adapter =
-            CompanyInformationPagerAdapter(supportFragmentManager)
+                CompanyInformationPagerAdapter(supportFragmentManager)
         viewPackage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
             override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
             ) {
             }
 
