@@ -16,5 +16,5 @@ class CustomerRegistrationModel(
                 && password.equals(confirmPassword) && userAgreement && android.util.Patterns.EMAIL_ADDRESS.matcher(
             email
         ).matches()
-                && !mobileNumber.contains("-") && mobileNumber.startsWith("+")
+                && !mobileNumber.contains("-") && mobileNumber.startsWith("+") && password.length >= 6
 }
