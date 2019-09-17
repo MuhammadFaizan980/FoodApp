@@ -19,7 +19,7 @@
             android:name=".customer.activity_customer_edit_profile.ActivityCustomerEditProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".customer.activity_customer_food_company_information.ActivityCustomerFoodCompanyInformation"
+            android:name=".customer.activity_customer_food_company_details.ActivityCustomerFoodCompanyDetails"
             android:screenOrientation="portrait" />
 
         <meta-data

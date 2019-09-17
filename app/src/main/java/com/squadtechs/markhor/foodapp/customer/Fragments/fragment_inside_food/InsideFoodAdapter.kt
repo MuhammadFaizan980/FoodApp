@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_information.ActivityCustomerFoodCompanyInformation
+import com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_details.ActivityCustomerFoodCompanyDetails
 import com.squadtechs.markhor.foodapp.customer.util.CustomerUtils
 import com.squareup.picasso.Picasso
 import java.math.RoundingMode
@@ -55,7 +55,7 @@ class InsideFoodAdapter(
                 .into(holder.imageView)
             holder.txtCuisine.text = obj.cuisine
             holder.txtCuisine.setOnClickListener {
-                context.startActivity(Intent(context, ActivityCustomerFoodCompanyInformation::class.java))
+                context.startActivity(Intent(context, ActivityCustomerFoodCompanyDetails::class.java))
             }
         } else {
 
@@ -85,7 +85,7 @@ class InsideFoodAdapter(
             holder.txtCuisine.text = obj.cuisine
             holder.txtDeliveryType.text = obj.delivery_type
             holder.touchView.setOnClickListener {
-                context.startActivity(Intent(context, ActivityCustomerFoodCompanyInformation::class.java))
+                context.startActivity(Intent(context, ActivityCustomerFoodCompanyDetails::class.java))
             }
         }
     }
