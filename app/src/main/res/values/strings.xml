@@ -111,7 +111,6 @@
     <string name="scroll_for_morecategories"><![CDATA[Scroll for more categories >>]]></string>
     <string name="my_account">MY ACCOUNT</string>
     <string name="my_details">My Details</string>
-    <string name="dotted_dash">------------------------------------------------------------------------------------------</string>
     <string name="my_addresses">My Addresses</string>
     <string name="payment_methods">Payment Methods</string>
     <string name="change_password">Change Password</string>
@@ -142,4 +141,10 @@
     <string name="children">Children</string>
     <string name="abaya">Abaya</string>
     <string name="abaya_sellers">FANCY CLOTHES SELLERS</string>
+    <string name="must_be_6_or_more_characters">* Must be 6 or more characters</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password *</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password_n">CHANGE PASSWORD</string>
+    <string name="keep_your_details_safe">Keep your details safe</string>
 </resources>
