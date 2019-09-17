@@ -6,7 +6,10 @@ interface CustomerFoodCompanyDetailsContracts {
     }
 
     interface IView {
-        fun onGetCompanyDataResult(error: Boolean, responseObj: CustomerFoodCompanyDetailsResponseHandler?)
+        fun onGetCompanyDataResult(
+            error: Boolean,
+            responseObj: CustomerFoodCompanyDetailsResponseHandler?
+        )
     }
 
 }

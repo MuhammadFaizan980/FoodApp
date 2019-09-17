@@ -10,8 +10,7 @@ import org.json.JSONArray
 
 class CustomerFoodCompanyDetailsPresenter(
     private val mView: CustomerFoodCompanyDetailsContracts.IView,
-    private val context: Context,
-    private val companyID: String
+    private val context: Context
 ) : CustomerFoodCompanyDetailsContracts.IPresenter {
     override fun getCompanyData(companyID: String) {
         val pd = ProgressDialog(context)
@@ -31,7 +30,7 @@ class CustomerFoodCompanyDetailsPresenter(
                     json.toString(),
                     CustomerFoodCompanyDetailsResponseHandler::class.java
                 )
-                mView.onGetCompanyDataResult(true, obj)
+                mView.onGetCompanyDataResult(false, obj)
             },
             Response.ErrorListener { error ->
                 pd.cancel()

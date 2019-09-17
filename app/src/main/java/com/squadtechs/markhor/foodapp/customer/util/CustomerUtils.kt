@@ -33,7 +33,7 @@ class CustomerUtils {
         }
 
         fun getCurrentLocation(
-            mView: InsideFoodContracts,
+            mView: InsideFoodContracts?,
             locationProvider: FusedLocationProviderClient,
             mActivity: Activity
         ) {
@@ -50,9 +50,9 @@ class CustomerUtils {
                         editor.putString("lat", location!!.latitude.toString())
                         editor.putString("lng", location!!.longitude.toString())
                         editor.apply()
-                        mView.onGetLocationResponse(true, location)
+                        mView?.onGetLocationResponse(true, location)
                     } else {
-                        mView.onGetLocationResponse(false, null)
+                        mView?.onGetLocationResponse(false, null)
                     }
                 } else {
                     Toast.makeText(
@@ -60,7 +60,7 @@ class CustomerUtils {
                         "There was an error getting your location",
                         Toast.LENGTH_LONG
                     ).show()
-                    mView.onGetLocationResponse(false, null)
+                    mView?.onGetLocationResponse(false, null)
                 }
             }
         }

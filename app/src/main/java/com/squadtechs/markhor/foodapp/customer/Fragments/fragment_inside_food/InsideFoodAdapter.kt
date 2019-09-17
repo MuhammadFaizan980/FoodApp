@@ -19,27 +19,27 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class InsideFoodAdapter(
-        private val list: ArrayList<InsIdeFoodModel>,
-        private val context: Context,
-        private val tabPosition: Int
+    private val list: ArrayList<InsIdeFoodModel>,
+    private val context: Context,
+    private val tabPosition: Int
 ) : RecyclerView.Adapter<InsideFoodAdapter.FoodHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodHolder {
         if (tabPosition == 1) {
             return FoodHolder(
-                    LayoutInflater.from(parent.context).inflate(
-                            R.layout.cuisine_row_design,
-                            parent,
-                            false
-                    )
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.cuisine_row_design,
+                    parent,
+                    false
+                )
             )
         } else {
             return FoodHolder(
-                    LayoutInflater.from(parent.context).inflate(
-                            R.layout.other_company_row_design,
-                            parent,
-                            false
-                    )
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.other_company_row_design,
+                    parent,
+                    false
+                )
             )
         }
     }
@@ -52,49 +52,55 @@ class InsideFoodAdapter(
         val obj = list[position]
         if (tabPosition == 1) {
             Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
-                    .into(holder.imageView)
+                .into(holder.imageView)
             holder.txtCuisine.text = obj.cuisine
             holder.txtCuisine.setOnClickListener {
                 context.startActivity(
-                        Intent(
-                                context,
-                                ActivityCustomerFoodCompanyDetails::class.java
-                        ).putExtra("company_id", obj.id))
+                    Intent(
+                        context,
+                        ActivityCustomerFoodCompanyDetails::class.java
+                    ).putExtra("company_id", obj.id)
+                )
             }
         } else {
 
             val lat = context.getSharedPreferences(
-                    "customer_current_location", Context.MODE_PRIVATE
+                "customer_current_location", Context.MODE_PRIVATE
             ).getString("lat", "n/a")!!.toDouble()
 
             val lng = context.getSharedPreferences(
-                    "customer_current_location", Context.MODE_PRIVATE
+                "customer_current_location", Context.MODE_PRIVATE
             ).getString("lng", "n/a")!!.toDouble()
             val companyLatLng = CustomerUtils.decodeCoordinates(obj.address)
 
             if (!lat.equals("n/a")) {
                 val mLatLng = LatLng(lat, lng)
                 val time = roundOffDecimal(
-                        (((SphericalUtil.computeDistanceBetween(
-                                mLatLng,
-                                companyLatLng
-                        ) / 1000) / 50) / 60))
+                    (((SphericalUtil.computeDistanceBetween(
+                        mLatLng,
+                        companyLatLng
+                    ) / 1000) / 50) / 60)
+                )
                 holder.txtTime.text = "$time minutes"
             }
 
             Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
-                    .into(holder.imageView)
+                .into(holder.imageView)
             holder.txtTitle.text = obj.company_name
             holder.txtCuisine.text = obj.cuisine
             holder.txtDeliveryType.text = obj.delivery_type
             holder.touchView.setOnClickListener {
                 context.startActivity(
-                        Intent(context, ActivityCustomerFoodCompanyDetails::class.java).putExtra("company_id", obj.id))
+                    Intent(
+                        context,
+                        ActivityCustomerFoodCompanyDetails::class.java
+                    ).putExtra("company_id", obj.id)
+                )
             }
         }
     }
 
-    fun roundOffDecimal(number: Double): Double? {
+    private fun roundOffDecimal(number: Double): Double? {
         val df = DecimalFormat("#.#")
         df.roundingMode = RoundingMode.CEILING
         return df.format(number).toDouble()
