@@ -57,7 +57,7 @@ class FragmentInsideFood : Fragment(), InsideFoodContracts {
 
     private fun makeRequest(tabPosition: Int) {
         val pd = MainUtils.getLoadingDialog(
-            activity!!.applicationContext,
+            activity!!,
             "Loading",
             "Please wait",
             false

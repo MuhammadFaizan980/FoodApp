@@ -58,6 +58,7 @@ class CustomerChangePasswordPresenter(
                             context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                         val editor = pref.edit()
                         editor.putString("user_password", newPassword)
+                        editor.putBoolean("customer_logged_in", false)
                         editor.apply()
                         mView.onChangePasswordResult(true)
                     } else {

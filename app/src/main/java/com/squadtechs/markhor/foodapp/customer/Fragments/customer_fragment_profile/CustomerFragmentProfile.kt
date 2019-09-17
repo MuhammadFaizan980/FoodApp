@@ -11,12 +11,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_change_password.ActivityCustomerChangePassword
 import com.squadtechs.markhor.foodapp.customer.activity_customer_edit_profile.ActivityCustomerEditProfile
 
 class CustomerFragmentProfile : Fragment() {
 
     private lateinit var mView: View
     private lateinit var txtMyDetails: TextView
+    private lateinit var txtChangePassword: TextView
     private lateinit var txtUserName: TextView
     private lateinit var pref: SharedPreferences
 
@@ -36,6 +38,12 @@ class CustomerFragmentProfile : Fragment() {
             startActivity(Intent(activity!!, ActivityCustomerEditProfile::class.java))
             activity!!.finish()
         }
+
+        txtChangePassword.setOnClickListener {
+            startActivity(Intent(activity!!, ActivityCustomerChangePassword::class.java))
+            activity!!.finish()
+        }
+
     }
 
     private fun populateUserName() {
@@ -45,6 +53,7 @@ class CustomerFragmentProfile : Fragment() {
 
     private fun initViews() {
         txtMyDetails = mView.findViewById(R.id.txt_customer_profile)
+        txtChangePassword = mView.findViewById(R.id.txt_customer_change_password)
         txtUserName = mView.findViewById(R.id.txt_customer_name)
         pref = activity!!.applicationContext.getSharedPreferences(
             "user_credentials",
