@@ -151,4 +151,7 @@
     <string name="add_address">ADD ADDRESS</string>
     <string name="mention_your_whereabouts">Mention your whereabouts</string>
     <string name="default_address">Default address</string>
+    <string name="my_addresses_s">MY ADDRESSES</string>
+    <string name="set_your_preferred_delivery_location">Set your preferred delivery location</string>
+    <string name="add_new_address">Add New Address</string>
 </resources>
