@@ -12,4 +12,6 @@ class TraderLoginResponseModel {
     var traderlicense3: String = ""
     var is_profile_complete: String = ""
     var account_status: String = ""
+    var company_id: String = ""
+    var company_type: String = ""
 }
