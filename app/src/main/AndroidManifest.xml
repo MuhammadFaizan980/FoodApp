@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.activity_customer_address.ActivityCustomerAddress"></activity>
+        <activity android:name=".trader.activity_trader_edit_company_timings.ActivityTraderEditCompanyTimings"></activity>
+        <activity android:name=".trader.activity_trader_edit_company_details_third_screen.ActivityTraderEditCompanyDetailsThirdScreen" />
+        <activity android:name=".trader.activity_trader_edit_company_details_second_screen.ActivityTraderEditCompanyDetailsSecondScreen" />
+        <activity android:name=".trader.activity_trader_edit_company_details_first_screen.ActivityTraderEditCompanyDetailsFirstScreen" />
+        <activity android:name=".customer.activity_customer_address.ActivityCustomerAddress" />
         <activity android:name=".customer.activity_customer_add_address.ActivityCustomerAddAddress" />
         <activity android:name=".trader.activity_trader_edit_profile.ActivityTraderEditProfile" />
         <activity android:name=".trader.activity_trader_change_password.ActivityTraderChangePassword" />
@@ -60,6 +64,7 @@
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
