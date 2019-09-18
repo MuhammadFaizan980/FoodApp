@@ -40,7 +40,7 @@ class ActivityCustomerEditProfile : AppCompatActivity(), CustomerProfileEditCont
         }
     }
 
-    fun initViews() {
+    private fun initViews() {
         btnBack = findViewById(R.id.img_go_back)
         edtFirstName = findViewById(R.id.edt_first_name)
         edtLastName = findViewById(R.id.edt_last_name)
