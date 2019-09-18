@@ -56,6 +56,7 @@ class ActivityCustomerAddAddress : AppCompatActivity(), CustomerAddAddressMainCo
 
     override fun onSaveAddressResult(status: Boolean) {
         if (status) {
+            Toast.makeText(this, "Address added successfully", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, ActivityCustomerMain::class.java))
             finish()
         } else {
