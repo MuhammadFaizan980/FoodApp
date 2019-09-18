@@ -11,7 +11,7 @@ import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 import com.squadtechs.markhor.foodapp.customer.customer_signup.ActivityCustomerSignup
-import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
+import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView {
 
@@ -41,7 +41,7 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         }
 
         linearTraderLogin.setOnClickListener {
-            startActivity(Intent(this@ActivityCustomerLogin, ActivityCompanyType::class.java))
+            startActivity(Intent(this@ActivityCustomerLogin, ActivityTraderLogin::class.java))
             finish()
         }
 

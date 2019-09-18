@@ -14,6 +14,8 @@ class ActivityTraderMain : AppCompatActivity(),
 
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var fragmentHome: TraderFargmentHome
+    private lateinit var fragmentProfile: TraderFragmentProfile
+    private var currentFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class ActivityTraderMain : AppCompatActivity(),
 
     private fun initViews() {
         fragmentHome = TraderFargmentHome()
+        fragmentProfile = TraderFragmentProfile()
         bottomNavigation = findViewById(R.id.bottom_navigation_view)
         changeFragment(fragmentHome)
     }
@@ -36,8 +39,9 @@ class ActivityTraderMain : AppCompatActivity(),
     private fun changeFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
-
+        currentFragment = fragment
     }
 
 
