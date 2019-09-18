@@ -47,7 +47,7 @@ class ActivityCustomerChangePassword : AppCompatActivity(),
         }
     }
 
-    fun initViews() {
+   private  fun initViews() {
         btnBack = findViewById(R.id.img_go_back)
         edtCurrentPassword = findViewById(R.id.edt_current_password)
         edtNewPassword = findViewById(R.id.edt_new_password)

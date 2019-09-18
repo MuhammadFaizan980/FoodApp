@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
+import com.squadtechs.markhor.foodapp.trader.activity_trader_change_password.ActivityTraderChangePassword
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class TraderFragmentProfile : Fragment() {
@@ -39,6 +40,8 @@ class TraderFragmentProfile : Fragment() {
         }
 
         txtChangePassword.setOnClickListener {
+            startActivity(Intent(activity!!, ActivityTraderChangePassword::class.java))
+            activity!!.finish()
         }
 
         txtSignOut.setOnClickListener {
