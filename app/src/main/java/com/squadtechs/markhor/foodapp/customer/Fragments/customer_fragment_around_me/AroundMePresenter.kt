@@ -103,8 +103,6 @@ class AroundMePresenter(
                     marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.dark_marker))
                     map.addMarker(marker)
                 }
-            } else {
-                continue
             }
         }
     }
