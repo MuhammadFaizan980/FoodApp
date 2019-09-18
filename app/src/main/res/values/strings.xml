@@ -148,4 +148,7 @@
     <string name="change_password_n">CHANGE PASSWORD</string>
     <string name="keep_your_details_safe">Keep your details safe</string>
     <string name="completed_orders">Completed Orders</string>
+    <string name="add_address">ADD ADDRESS</string>
+    <string name="mention_your_whereabouts">Mention your whereabouts</string>
+    <string name="default_address">Default address</string>
 </resources>
