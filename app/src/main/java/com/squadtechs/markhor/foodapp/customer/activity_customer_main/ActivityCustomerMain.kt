@@ -117,7 +117,7 @@ class ActivityCustomerMain : AppCompatActivity(),
             isInFoodCompanies = false
             changeFragment(fragmentHome)
         } else {
-            super.onBackPressed()
+            finish()
         }
     }
 
