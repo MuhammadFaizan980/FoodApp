@@ -125,16 +125,18 @@
                         android:textStyle="bold" />
 
 
-                    <EditText
-                        android:id="@+id/edt_dish_type"
+                    <FrameLayout
+                        android:layout_marginLeft="3dp"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text_background"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:background="@drawable/edit_text_background">
+
+                        <Spinner
+                            android:id="@+id/spinner_list_dish_as"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </FrameLayout>
 
                 </LinearLayout>
 
