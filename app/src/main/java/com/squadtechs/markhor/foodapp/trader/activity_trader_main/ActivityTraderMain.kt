@@ -57,4 +57,8 @@ class ActivityTraderMain : AppCompatActivity(),
         return true
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
 }

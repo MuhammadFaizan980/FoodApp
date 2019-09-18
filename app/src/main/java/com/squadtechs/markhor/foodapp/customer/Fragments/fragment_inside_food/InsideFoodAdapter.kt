@@ -28,7 +28,7 @@ class InsideFoodAdapter(
         if (tabPosition == 1) {
             return FoodHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.cuisine_row_design,
+                    R.layout.customer_cuisine_row_design,
                     parent,
                     false
                 )
@@ -36,7 +36,7 @@ class InsideFoodAdapter(
         } else {
             return FoodHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.other_company_row_design,
+                    R.layout.food_company_row_design,
                     parent,
                     false
                 )
