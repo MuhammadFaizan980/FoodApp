@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".trader.activity_trader_main.ActivityTraderMain"></activity>
+        <activity android:name=".trader.activity_trader_change_password.ActivityTraderChangePassword"></activity>
+        <activity android:name=".trader.activity_trader_main.ActivityTraderMain" />
         <activity android:name=".customer.activity_customer_change_password.ActivityCustomerChangePassword" />
         <activity android:name=".customer.activity_customer_non_food_companies_details.ActivityCustomerNonFoodCompaniesDetails" />
         <activity android:name=".customer.activity_customer_non_food_companies.ActivityCustomerNonFoodCompanies" />
