@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundLight"
-    tools:context=".customer.activity_customer_main.ActivityCustomerMain">
+    tools:context=".trader.activity_trader_main.ActivityTraderMain">
 
     <FrameLayout
         android:id="@+id/main_frame"
@@ -26,6 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_nav_customer" />
+        app:menu="@menu/menu_bottom_nav_trader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

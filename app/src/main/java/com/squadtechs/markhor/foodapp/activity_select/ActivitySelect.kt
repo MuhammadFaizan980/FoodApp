@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
 class ActivitySelect : AppCompatActivity() {
@@ -37,7 +38,8 @@ class ActivitySelect : AppCompatActivity() {
             startActivity(Intent(this, ActivityCustomerMain::class.java))
             finish()
         } else if (traderStatus) {
-            //TODO: take user to trade main screen
+            startActivity(Intent(this, ActivityTraderMain::class.java))
+            finish()
         }
     }
 

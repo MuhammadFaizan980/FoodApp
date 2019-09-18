@@ -16,6 +16,7 @@ import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCo
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
 class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
@@ -71,7 +72,12 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         }
     }
 
-    override fun onLoginResult(status: Boolean, approval: String, message: String) {
+    override fun onLoginResult(
+        status: Boolean,
+        approval: String,
+        profileStatus: String,
+        message: String
+    ) {
         if (status) {
             Log.i("m_resp", approval)
             if (approval.equals("pending")) {
@@ -86,14 +92,12 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                 }
                 dialog.show()
             } else {
-                Toast.makeText(this@ActivityTraderLogin, "Login success", Toast.LENGTH_LONG).show()
-
                 val isProfileInProgress =
                     getSharedPreferences("reg_progress", Context.MODE_PRIVATE).getString(
                         "current_screen",
                         "null"
                     ) as String
-                if (!isProfileInProgress.equals("prof_complete")) {
+                if (!isProfileInProgress.equals("prof_complete") && !profileStatus.equals("yes")) {
 
                     when (isProfileInProgress) {
                         "trader company details" -> {
@@ -114,9 +118,8 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                         }
                     }
                 } else {
-                    Toast.makeText(this@ActivityTraderLogin, "Profile Completed", Toast.LENGTH_LONG)
-                        .show()
-                    //TODO: take trader to main screen
+                    startActivity(Intent(this, ActivityTraderMain::class.java))
+                    finish()
                 }
             }
         } else {

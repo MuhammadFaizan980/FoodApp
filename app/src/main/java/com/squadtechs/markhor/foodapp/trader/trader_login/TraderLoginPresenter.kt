@@ -1,6 +1,5 @@
 package com.squadtechs.markhor.foodapp.trader.trader_login
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
@@ -48,6 +47,7 @@ class TraderLoginPresenter(
                     mView.onLoginResult(
                         false,
                         "n/a",
+                        "n/a",
                         json.getString("label") + " with other credentials"
                     )
                 } else {
@@ -63,13 +63,13 @@ class TraderLoginPresenter(
                     editor.putString("phone", obj.mobile)
                     editor.putBoolean("trader_logged_in", true)
                     editor.apply()
-                    mView.onLoginResult(true, obj.account_status, "n/a")
+                    mView.onLoginResult(true, obj.account_status, obj.is_profile_complete, "n/a")
                 }
             },
             Response.ErrorListener { error ->
                 Log.i("m_resp", error.toString())
                 progressDialog.cancel()
-                mView.onLoginResult(false, "n/a", "n/a")
+                mView.onLoginResult(false, "n/a", "n/a", "n/a")
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
