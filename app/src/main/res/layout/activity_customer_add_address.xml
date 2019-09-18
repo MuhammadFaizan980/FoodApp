@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="48dp"
-            android:text="@string/last_name_s"
+            android:text="Address"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textStyle="bold" />
