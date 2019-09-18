@@ -38,7 +38,7 @@ class TraderEditProfilePresenter(
         val pd =
             MainUtils.getLoadingDialog(context, "Please Wait", "Updating your profile", false)
         pd.show()
-        val API = "http://squadtechsolution.com//android/v1/update_trader_profile.php"
+        val API = "http://squadtechsolution.com//android/v1/trader_login.php"
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Method.POST,
