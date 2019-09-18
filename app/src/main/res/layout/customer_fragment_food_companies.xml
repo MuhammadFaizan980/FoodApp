@@ -7,7 +7,7 @@
     android:paddingLeft="32dp"
     android:paddingTop="32dp"
     android:paddingRight="32dp"
-    tools:context=".customer.activity_customer_food_companies.ActivityCustomerFoodCompanies">
+    tools:context=".customer.Fragments.customer_fragment_food_companies.CustomerFragmentFoodCompanies">
 
     <TextView
         android:layout_width="match_parent"
@@ -81,3 +81,5 @@
         android:layout_marginTop="8dp" />
 
 </LinearLayout>
+
+

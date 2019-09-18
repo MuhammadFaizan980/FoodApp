@@ -1,30 +1,39 @@
-package com.squadtechs.markhor.foodapp.customer.activity_customer_food_companies
+package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_food_companies
 
-import android.content.Intent
+
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 
-class ActivityCustomerFoodCompanies : AppCompatActivity() {
+class CustomerFragmentFoodCompanies : Fragment() {
 
     private lateinit var viewPager: ViewPager
     private lateinit var firstTab: TextView
     private lateinit var secondTab: TextView
     private lateinit var thirdTab: TextView
+    private lateinit var mView: View
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_customer_food_companies)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        mView = inflater.inflate(R.layout.customer_fragment_food_companies, container, false)
         initView()
         populateViewPager()
+        return mView
     }
 
     private fun populateViewPager() {
-        viewPager.adapter = FoodViewPagerAdapter(supportFragmentManager)
+        viewPager.adapter =
+            FoodViewPagerAdapter(
+                childFragmentManager
+            )
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
@@ -59,15 +68,10 @@ class ActivityCustomerFoodCompanies : AppCompatActivity() {
     }
 
     private fun initView() {
-        viewPager = findViewById(R.id.food_view_pager)
-        firstTab = findViewById(R.id.txt_first_tab)
-        secondTab = findViewById(R.id.txt_second_tab)
-        thirdTab = findViewById(R.id.txt_third_tab)
-    }
-
-    override fun onBackPressed() {
-        startActivity(Intent(this@ActivityCustomerFoodCompanies, ActivityCustomerMain::class.java))
-        finish()
+        viewPager = mView.findViewById(R.id.food_view_pager)
+        firstTab = mView.findViewById(R.id.txt_first_tab)
+        secondTab = mView.findViewById(R.id.txt_second_tab)
+        thirdTab = mView.findViewById(R.id.txt_third_tab)
     }
 
 }

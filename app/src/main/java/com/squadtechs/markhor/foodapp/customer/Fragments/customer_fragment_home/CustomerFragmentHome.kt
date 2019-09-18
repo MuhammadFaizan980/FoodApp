@@ -1,7 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home
 
 
-import android.content.Intent
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.activity_customer_food_companies.ActivityCustomerFoodCompanies
+import com.squadtechs.markhor.foodapp.customer.activity_customer_main.CustomerFoodFragmetnCallback
 
 class CustomerFragmentHome : Fragment() {
 
@@ -18,10 +18,11 @@ class CustomerFragmentHome : Fragment() {
     private lateinit var list: ArrayList<String>
     private lateinit var adapter: CustomerFragmentHomeAdapter
     private lateinit var touchView: View
+    private lateinit var mCallBack: CustomerFoodFragmetnCallback
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.customer_fragment_home, container, false)
         initViews(view)
@@ -32,18 +33,17 @@ class CustomerFragmentHome : Fragment() {
 
     private fun setListener() {
         touchView.setOnClickListener {
-            startActivity(Intent(activity!!.applicationContext, ActivityCustomerFoodCompanies::class.java))
-            activity!!.finish()
+            mCallBack.onFoodSelected()
         }
     }
 
     private fun populateRecyclerView(view: View) {
         recyclerView.layoutManager =
-                LinearLayoutManager(
-                        activity!!.applicationContext,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                )
+            LinearLayoutManager(
+                activity!!.applicationContext,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
         recyclerView.adapter = adapter
     }
 
@@ -59,8 +59,13 @@ class CustomerFragmentHome : Fragment() {
         list.add("Bags")
         list.add("Other")
         adapter =
-                CustomerFragmentHomeAdapter(activity!!.applicationContext, list, activity!!)
+            CustomerFragmentHomeAdapter(activity!!.applicationContext, list, activity!!)
         touchView = view.findViewById(R.id.touch_view)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        mCallBack = activity!! as CustomerFoodFragmetnCallback
     }
 
 }

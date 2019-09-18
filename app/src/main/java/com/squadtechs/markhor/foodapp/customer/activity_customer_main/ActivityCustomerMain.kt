@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -14,15 +13,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me.CustomerFragmentAroundMe
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_cart.CustomerFragmentCart
+import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_food_companies.CustomerFragmentFoodCompanies
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home.CustomerFragmentHome
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_orders.CustomerFragmentOrders
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_profile.CustomerFragmentProfile
 
 class ActivityCustomerMain : AppCompatActivity(),
-    BottomNavigationView.OnNavigationItemSelectedListener {
-
+    BottomNavigationView.OnNavigationItemSelectedListener, CustomerFoodFragmetnCallback {
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var fragmentHome: CustomerFragmentHome
+    private var isInFoodCompanies: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +65,7 @@ class ActivityCustomerMain : AppCompatActivity(),
     private fun changeFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
 
     }
@@ -103,6 +104,20 @@ class ActivityCustomerMain : AppCompatActivity(),
                 }
             }
             changeFragment(CustomerFragmentAroundMe())
+        }
+    }
+
+    override fun onFoodSelected() {
+        isInFoodCompanies = true
+        changeFragment(CustomerFragmentFoodCompanies())
+    }
+
+    override fun onBackPressed() {
+        if (isInFoodCompanies) {
+            isInFoodCompanies = false
+            changeFragment(fragmentHome)
+        } else {
+            super.onBackPressed()
         }
     }
 
