@@ -147,4 +147,5 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="change_password_n">CHANGE PASSWORD</string>
     <string name="keep_your_details_safe">Keep your details safe</string>
+    <string name="completed_orders">Completed Orders</string>
 </resources>

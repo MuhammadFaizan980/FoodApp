@@ -23,7 +23,6 @@ class ActivityCustomerMain : AppCompatActivity(),
 
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var fragmentHome: CustomerFragmentHome
-    private lateinit var mainLayout: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +36,6 @@ class ActivityCustomerMain : AppCompatActivity(),
     }
 
     private fun initViews() {
-        mainLayout = findViewById(R.id.main_layout)
         fragmentHome = CustomerFragmentHome()
         bottomNavigation = findViewById(R.id.bottom_navigation_view)
         changeFragment(CustomerFragmentHome())

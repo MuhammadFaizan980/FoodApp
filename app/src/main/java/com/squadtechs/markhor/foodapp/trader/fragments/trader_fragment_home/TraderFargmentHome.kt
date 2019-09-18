@@ -1,12 +1,11 @@
-package com.squadtechs.markhor.foodapp.trader.fragments
+package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import com.squadtechs.markhor.foodapp.R
 
 /**
