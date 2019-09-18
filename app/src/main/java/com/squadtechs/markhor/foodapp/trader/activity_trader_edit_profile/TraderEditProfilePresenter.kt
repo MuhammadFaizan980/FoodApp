@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_edit_profile
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -38,7 +39,7 @@ class TraderEditProfilePresenter(
         val pd =
             MainUtils.getLoadingDialog(context, "Please Wait", "Updating your profile", false)
         pd.show()
-        val API = "http://squadtechsolution.com//android/v1/trader_login.php"
+        val API = "http://squadtechsolution.com//android/v1/update_trader_profile.php"
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Method.POST,
@@ -57,7 +58,8 @@ class TraderEditProfilePresenter(
                         editor.apply()
                         mView.onEditProfileResult(true)
                     } else {
-                        mView.onValidationResult(false)
+                        Toast.makeText(context, response, Toast.LENGTH_LONG).show()
+                        mView.onEditProfileResult(false)
                     }
                 } catch (exc: Exception) {
                     mView.onEditProfileResult(false)
@@ -70,10 +72,11 @@ class TraderEditProfilePresenter(
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
+                map["trader_id"] = traderID
                 map["firstName"] = firstName
                 map["lastName"] = lastName
                 map["mobile"] = phone
-                map["id"] = traderID
+                Log.i("dxdiag", map.toString())
                 return map
             }
         }

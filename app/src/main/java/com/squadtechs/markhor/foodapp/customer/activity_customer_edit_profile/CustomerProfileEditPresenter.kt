@@ -58,7 +58,7 @@ class CustomerProfileEditPresenter(
                         editor.apply()
                         mView.onEditProfileResult(true)
                     } else {
-                        mView.onValidationResult(false)
+                        mView.onEditProfileResult(false)
                     }
                 } catch (exc: Exception) {
                     mView.onEditProfileResult(false)
