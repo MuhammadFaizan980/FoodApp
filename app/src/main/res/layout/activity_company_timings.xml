@@ -95,15 +95,25 @@
                     android:textStyle="bold" />
 
 
-                <EditText
-                    android:id="@+id/edt_open_sunday"
+                <FrameLayout
                     android:layout_width="70dp"
                     android:layout_height="25dp"
-                    android:layout_marginLeft="32dp"
-                    android:background="@drawable/edit_text_background"
-                    android:inputType="time"
-                    android:textAlignment="center"
-                    android:textSize="13sp" />
+                    android:layout_marginLeft="32dp">
+
+                    <EditText
+                        android:id="@+id/edt_open_sunday"
+                        android:layout_width="70dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/edit_text_background"
+                        android:inputType="time"
+                        android:textAlignment="center"
+                        android:textSize="13sp" />
+
+                    <View
+                        android:id="@+id/open_time_vew"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
 
                 <TextView
                     android:layout_width="10dp"
@@ -116,14 +126,24 @@
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/edt_close_sunday"
+                <FrameLayout
                     android:layout_width="70dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/edit_text_background"
-                    android:inputType="time"
-                    android:textAlignment="center"
-                    android:textSize="13sp" />
+                    android:layout_height="25dp">
+
+                    <EditText
+                        android:id="@+id/edt_close_sunday"
+                        android:layout_width="70dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/edit_text_background"
+                        android:inputType="time"
+                        android:textAlignment="center"
+                        android:textSize="13sp" />
+
+                    <View
+                        android:id="@+id/close_time_vew"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
 
             </LinearLayout>
 

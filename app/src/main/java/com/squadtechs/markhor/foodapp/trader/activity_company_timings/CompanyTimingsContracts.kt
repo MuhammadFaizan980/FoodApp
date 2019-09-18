@@ -8,6 +8,7 @@ interface CompanyTimingsContracts {
     interface IView {
         fun onValidationResult(status: Boolean)
         fun onAddCompanyTimingsResult(status: Boolean)
+        fun onTimePickerResult(timeValue: String, key: String)
     }
 
     interface IPresenter {
@@ -30,5 +31,6 @@ interface CompanyTimingsContracts {
         )
 
         fun addCompanyTimings()
+        fun initTimePicker(key: String)
     }
 }

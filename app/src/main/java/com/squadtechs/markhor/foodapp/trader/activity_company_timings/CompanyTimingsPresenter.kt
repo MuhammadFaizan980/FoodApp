@@ -1,6 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.activity_company_timings
 
-import android.app.ProgressDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.util.Log
 import com.android.volley.Response
@@ -9,10 +9,21 @@ import com.android.volley.toolbox.Volley
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
+
 class CompanyTimingsPresenter constructor(
     private val mView: CompanyTimingsContracts.IView,
     private val context: Context
 ) : CompanyTimingsContracts.IPresenter {
+
+    override fun initTimePicker(key: String) {
+        val timePickerDialog = TimePickerDialog(
+            context,
+            TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minutes ->
+                mView.onTimePickerResult("$hourOfDay:$minutes", key)
+            }, 0, 0, false
+        )
+        timePickerDialog.show()
+    }
 
     private val API = "http://squadtechsolution.com/android/v1/company_Timing.php"
     private lateinit var mModel: CompanyTimingsContracts.IModel

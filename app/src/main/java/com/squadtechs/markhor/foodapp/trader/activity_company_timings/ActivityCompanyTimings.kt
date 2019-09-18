@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
@@ -27,6 +28,8 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     private lateinit var edtFridayEnd: EditText
     private lateinit var edtSaturdayStart: EditText
     private lateinit var edtSaturdayEnd: EditText
+    private lateinit var openView: View
+    private lateinit var closeView: View
     private lateinit var btnNext: Button
     private lateinit var imgLocation: ImageView
     private lateinit var linearback: LinearLayout
@@ -41,6 +44,15 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
     }
 
     private fun setListeners() {
+
+        openView.setOnClickListener {
+            mPresenter.initTimePicker("sunday_start")
+        }
+
+        closeView.setOnClickListener {
+            mPresenter.initTimePicker("sunday_end")
+        }
+
         imgLocation.setOnClickListener {
             startActivityForResult(
                 Intent(
@@ -109,6 +121,28 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
         edtSaturdayEnd = findViewById(R.id.edt_close_saturday)
         linearback = findViewById(R.id.linear_go_back)
         btnNext = findViewById(R.id.btn_trader_next)
+        openView = findViewById(R.id.open_time_vew)
+        closeView = findViewById(R.id.close_time_vew)
+    }
+
+    override fun onTimePickerResult(timeValue: String, key: String) {
+        if (key.equals("sunday_start")) {
+            edtSundayStart.setText(timeValue)
+            edtMondayStart.setText(timeValue)
+            edtTuesdayStart.setText(timeValue)
+            edtWednesdayStart.setText(timeValue)
+            edtThursdayStart.setText(timeValue)
+            edtFridayStart.setText(timeValue)
+            edtSaturdayStart.setText(timeValue)
+        } else {
+            edtSundayEnd.setText(timeValue)
+            edtMondayEnd.setText(timeValue)
+            edtTuesdayEnd.setText(timeValue)
+            edtWednesdayEnd.setText(timeValue)
+            edtThursdayEnd.setText(timeValue)
+            edtFridayEnd.setText(timeValue)
+            edtSaturdayEnd.setText(timeValue)
+        }
     }
 
     override fun onValidationResult(status: Boolean) {
