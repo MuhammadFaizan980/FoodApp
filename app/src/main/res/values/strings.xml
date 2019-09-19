@@ -52,7 +52,6 @@
     <string name="food">Food &amp; Beverages</string>
     <string name="what_do_you_plan_on_selling">WHAT DO YOU PLAN ON SELLING</string>
     <string name="clothes">Clothes</string>
-    <string name="accessories">Accessories</string>
     <string name="skincare">Skincare</string>
     <string name="homeware">Homeware</string>
     <string name="toys">Toys</string>
@@ -162,4 +161,6 @@
     <string name="company_description">Company Description</string>
     <string name="shop_type">Shop Type</string>
     <string name="accessories">Accessories</string>
+    <string name="upload_company_photo_n">Upload Company Photo</string>
+    <string name="your_location_n">Your Location</string>
 </resources>
