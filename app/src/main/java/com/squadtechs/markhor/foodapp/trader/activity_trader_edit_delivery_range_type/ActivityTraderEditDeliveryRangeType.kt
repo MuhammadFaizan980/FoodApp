@@ -88,10 +88,10 @@ class ActivityTraderEditDeliveryRangeType : AppCompatActivity(), EditDeliveryRan
                 intent!!.extras!!.get("company_description") as String
             )
             mIntent.putExtra("company_cuisine", intent!!.extras!!.get("company_cuisine") as String)
-            mIntent.putExtra(
-                "company_logo_uri",
-                intent!!.extras!!.get("company_logo_uri") as String
-            )
+//            mIntent.putExtra(
+//                "company_logo",
+//                intent!!.extras!!.get("company_logo") as String
+//            )
             mIntent.putExtra(
                 "company_coordinates",
                 intent!!.extras!!.get("company_coordinates") as String

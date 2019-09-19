@@ -3,8 +3,12 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_edit_company_logo
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,6 +17,7 @@ import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_pick_location.ActivityPickLocation
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen
+import java.io.ByteArrayOutputStream
 
 class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IView {
 
@@ -22,6 +27,7 @@ class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IVi
     private lateinit var btnNext: Button
     private var coordinates: String? = null
     private var uri: Uri? = null
+    private lateinit var bitmap: Bitmap
     private lateinit var mPresenter: EditLogoContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,12 +79,17 @@ class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IVi
             imgLocation.setImageResource(R.drawable.marker_pin)
         } else if (requestCode == 68 && resultCode == Activity.RESULT_OK) {
             uri = data!!.data!!
-            imgLogo.setImageURI(uri)
+            imgLogo.setImageURI(uri!!)
         }
     }
 
     override fun onValidationResult(status: Boolean) {
         if (status) {
+            val imageString = getImageString()
+            val pref = getSharedPreferences("logo_string", Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putString("image_string", imageString)
+            editor.apply()
             val companyName = intent!!.extras!!.get("company_name") as String
             val companyCuisine = intent!!.extras!!.get("company_cuisine") as String
             val companyPhone = intent!!.extras!!.get("company_phone") as String
@@ -88,13 +99,23 @@ class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IVi
             mIntent.putExtra("company_cuisine", companyCuisine)
             mIntent.putExtra("company_phone", companyPhone)
             mIntent.putExtra("company_description", companyDescription)
-            mIntent.putExtra("company_logo_uri", uri!!.toString())
+          //  mIntent.putExtra("company_logo", imageString)
             mIntent.putExtra("company_coordinates", coordinates!!)
             startActivity(mIntent)
             finish()
         } else {
             Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun getImageString(): String {
+        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream)
+        val byteArr = stream.toByteArray()
+        val imageString =
+            "data:image/png;base64,${Base64.encodeToString(byteArr, Base64.DEFAULT)}"
+        return imageString
     }
 
     override fun onBackPressed() {

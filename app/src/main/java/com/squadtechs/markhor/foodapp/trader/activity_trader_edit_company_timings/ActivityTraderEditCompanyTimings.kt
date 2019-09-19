@@ -116,7 +116,7 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
 
     override fun onValidationResult(status: Boolean) {
         if (status) {
-            //TODO: call editCompanyTimings() on presenter
+            mPresenter.editCompanyTimings()
         } else {
             Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
         }
@@ -133,8 +133,7 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
                 intent!!.extras!!.get("company_delivery_range") as String,
                 intent!!.extras!!.get("company_pick_up_info") as String,
                 intent!!.extras!!.get("company_coordinates") as String,
-                intent!!.extras!!.get("company_delivery_type") as String,
-                intent!!.extras!!.get("company_logo_uri") as String
+                intent!!.extras!!.get("company_delivery_type") as String
             )
         } else {
             Toast.makeText(this, "There was an error updating timings", Toast.LENGTH_LONG).show()

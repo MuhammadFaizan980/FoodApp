@@ -39,8 +39,7 @@ interface EditTimingContracts {
             companyDeliveryRange: String,
             companyDeliveryPickUpInfo: String,
             companyCoordinates: String,
-            companyDeliveryType: String,
-            companyLogoUri: String
+            companyDeliveryType: String
         )
 
         fun editCompanyTimings()

@@ -3,10 +3,13 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_edit_company_timin
 import android.app.TimePickerDialog
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
+import org.json.JSONObject
 
 class EditTimingPresenter(
     private val mView: EditTimingContracts.IView,
@@ -90,10 +93,9 @@ class EditTimingPresenter(
         companyDeliveryRange: String,
         companyDeliveryPickUpInfo: String,
         companyCoordinates: String,
-        companyDeliveryType: String,
-        companyLogoUri: String
+        companyDeliveryType: String
     ) {
-
+        Toast.makeText(context, companyDeliveryType, Toast.LENGTH_LONG).show()
         val pd = MainUtils.getLoadingDialog(context, "Updating Profile", "Please wait", false)
         pd.show()
 
@@ -105,6 +107,16 @@ class EditTimingPresenter(
             Response.Listener { response ->
                 pd.cancel()
                 Log.i("dxdiag", response)
+                val json = JSONObject(response)
+                try {
+                    if (json.getString("status").equals("update_success")) {
+                        mView.onEditCompanyInformationResult(true)
+                    } else {
+                        mView.onEditCompanyInformationResult(false)
+                    }
+                } catch (exc: Exception) {
+                    mView.onEditCompanyInformationResult(false)
+                }
             },
             Response.ErrorListener { error ->
                 pd.cancel()
@@ -132,13 +144,17 @@ class EditTimingPresenter(
                     map["company_type"] = companyType
                 }
 
-                map["id"] = companyID
+                map["id"] = "1" //TODO: change id after test
                 map["company_name"] = companyName
 
                 map["company_description"] = companyDescription
                 map["delivery_type"] = companyDeliveryType
                 map["company_phone"] = companyPhone
                 map["delivery_pickupinfo"] = companyDeliveryPickUpInfo
+                map["logo_img"] = context.getSharedPreferences(
+                    "logo_string",
+                    Context.MODE_PRIVATE
+                ).getString("image_string", "n/a") as String
                 map["address"] = companyCoordinates
                 if (companyDeliveryType.equals("yes")) {
                     map["delivery_fee"] = companyDeliveryTime
@@ -147,9 +163,12 @@ class EditTimingPresenter(
                     map["delivery_fee"] = "n/a"
                     map["delivery_range"] = "n/a"
                 }
+                Log.i("dxdiag", map.toString())
                 return map
             }
         }
+        stringRequest.setRetryPolicy(
+            DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy. DEFAULT_BACKOFF_MULT))
         requestQueue.add(stringRequest)
     }
 
@@ -175,6 +194,16 @@ class EditTimingPresenter(
             Response.Listener { response ->
                 pd.cancel()
                 Log.i("dxdiag", response)
+                val json = JSONObject(response)
+                try {
+                    if (json.getString("status").equals("update_success")) {
+                        mView.onEditCompanyTimingsResult(true)
+                    } else {
+                        mView.onEditCompanyTimingsResult(false)
+                    }
+                } catch (exc: Exception) {
+                    mView.onEditCompanyTimingsResult(false)
+                }
             },
             Response.ErrorListener { error ->
                 pd.cancel()
@@ -190,7 +219,7 @@ class EditTimingPresenter(
                 map["Friday"] = "$fridayStart,$fridayEnd"
                 map["Saturday"] = "$saturdayStart,$saturdayEnd"
                 map["Sunday"] = "$sundayStart,$sundayEnd"
-                map["company_id"] = companyID
+                map["company_id"] = "1" //TODO: change id after test
                 return map
             }
         }
