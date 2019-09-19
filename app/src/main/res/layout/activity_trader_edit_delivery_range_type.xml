@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen">
+    tools:context=".trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +39,80 @@
             android:text="@string/company_name_s"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:weightSum="2">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+
+                <TextView
+                    android:id="@+id/txt_deliver_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="@string/yes"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:id="@+id/txt_deliver_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/txt_edit_range_selected"
+                    android:gravity="center"
+                    android:text="@string/no"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/time_neede_to_deliver"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -47,18 +121,20 @@
             android:layout_marginLeft="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/colorWhite"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp">
 
             <EditText
-                android:id="@+id/edt_company_name"
+                android:id="@+id/edt_delivery_time"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:backgroundTint="@color/colorWhite"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:textSize="12sp" />
-
+                android:text=""
+                android:textSize="13sp" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -66,39 +142,38 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="16dp"
-            android:text="@string/cuisine_type"
+            android:text="@string/delivery_range"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/delivery_range"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="4dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <EditText
-                android:id="@+id/edt_cuisine_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorWhite"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:textSize="12sp" />
-
-        </androidx.cardview.widget.CardView>
+            app:bsb_bubble_text_color="@color/colorWhite"
+            app:bsb_max="10.0"
+            app:bsb_min="0.0"
+            app:bsb_progress="7.0"
+            app:bsb_section_count="10"
+            app:bsb_section_text_position="bottom_sides"
+            app:bsb_show_progress_in_float="true"
+            app:bsb_show_section_mark="true"
+            app:bsb_show_section_text="true"
+            app:bsb_show_thumb_text="true"
+            app:bsb_track_color="@color/colorBackTrack" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="16dp"
-            android:text="@string/company_description"
+            android:text="@string/important_information_for_pickup"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -112,12 +187,11 @@
             app:cardElevation="4dp">
 
             <EditText
-                android:id="@+id/edt_company_description"
+                android:id="@+id/edt_pick_up_nformation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:backgroundTint="@color/colorWhite"
                 android:inputType="textMultiLine"
-                android:minHeight="60dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textSize="12sp" />
@@ -151,6 +225,9 @@
         android:src="@drawable/ic_left_arrow_filled" />
 
 </FrameLayout>
+
+
+
 
 
 

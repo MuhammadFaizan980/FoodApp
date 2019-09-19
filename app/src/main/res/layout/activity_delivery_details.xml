@@ -85,6 +85,29 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/time_neede_to_deliver"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/edt_delivery_time"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edit_text_background"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text=""
+            android:textSize="13sp" />
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
