@@ -113,11 +113,29 @@ class EditTimingPresenter(
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
+                val arr = arrayOfNulls<String>(8)
+                arr[0] = "Clothes"
+                arr[1] = "Accessories"
+                arr[2] = "Skincare"
+                arr[3] = "Homeware"
+                arr[4] = "Toys"
+                arr[5] = "Sheos"
+                arr[6] = "Bags"
+                arr[7] = "Other"
+
+
+                if (arr.contains(companyCuisine)) {
+                    map["cuisine"] = "n/a"
+                    map["company_type"] = companyCuisine
+                } else {
+                    map["cuisine"] = companyCuisine
+                    map["company_type"] = companyType
+                }
+
                 map["id"] = companyID
                 map["company_name"] = companyName
-                map["cuisine"] = companyCuisine
+
                 map["company_description"] = companyDescription
-                map["company_type"] = companyType
                 map["delivery_type"] = companyDeliveryType
                 map["company_phone"] = companyPhone
                 map["delivery_pickupinfo"] = companyDeliveryPickUpInfo
