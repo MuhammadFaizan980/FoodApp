@@ -13,16 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType">
+        <activity android:name=".trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType"/>
+        <activity android:name=".trader.activity_trader_edit_company_logo.ActivityTraderEditCompanyLogo" />
+        <activity android:name=".trader.activity_trader_edit_non_food_company_details_first_screen.ActivityTraderEditNonFoodCompanyDetailsFirstScreen" />
+        <activity android:name=".trader.activity_trader_edit_company_timings.ActivityTraderEditCompanyTimings" />
+        <activity android:name=".trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".trader.activity_trader_edit_company_logo.ActivityTraderEditCompanyLogo" />
-        <activity android:name=".trader.activity_trader_edit_non_food_company_details_first_screen.ActivityTraderEditNonFoodCompanyDetailsFirstScreen" />
-        <activity android:name=".trader.activity_trader_edit_company_timings.ActivityTraderEditCompanyTimings" />
-        <activity android:name=".trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen" />
         <activity android:name=".customer.activity_customer_address.ActivityCustomerAddress" />
         <activity android:name=".customer.activity_customer_add_address.ActivityCustomerAddAddress" />
         <activity android:name=".trader.activity_trader_edit_profile.ActivityTraderEditProfile" />

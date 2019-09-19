@@ -445,7 +445,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_trader_edit_company_next"
+        android:id="@+id/btn_save_changes"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
@@ -454,7 +454,7 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_background"
-        android:text="@string/next"
+        android:text="@string/save_changes"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="15sp"

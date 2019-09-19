@@ -10,7 +10,7 @@ class EditDeliveryRangeModel(
         if (doYouDeliver.equals("yes")) {
             return !deliveryTime.equals("") && !deliveryRange.equals("0") && !pickUpInfo.equals("")
         } else {
-            return !deliveryRange.equals("0") && !pickUpInfo.equals("")
+            return !pickUpInfo.equals("")
         }
     }
 }

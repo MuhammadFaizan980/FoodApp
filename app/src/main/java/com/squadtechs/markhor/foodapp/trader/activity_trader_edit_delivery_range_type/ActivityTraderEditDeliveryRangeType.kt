@@ -96,7 +96,7 @@ class ActivityTraderEditDeliveryRangeType : AppCompatActivity(), EditDeliveryRan
                 "company_coordinates",
                 intent!!.extras!!.get("company_coordinates") as String
             )
-            mIntent.putExtra("company_deliver", doYouDeliver)
+            mIntent.putExtra("company_delivery_type", doYouDeliver)
             mIntent.putExtra("company_delivery_range", deliveryRange)
             mIntent.putExtra("company_pick_up_info", pickUpInfo)
             mIntent.putExtra("company_delivery_time", deliveryTime)
