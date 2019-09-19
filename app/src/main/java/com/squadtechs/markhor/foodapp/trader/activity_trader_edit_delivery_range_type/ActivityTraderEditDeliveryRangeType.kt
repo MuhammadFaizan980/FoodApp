@@ -2,25 +2,26 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_edit_delivery_rang
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.xw.repo.BubbleSeekBar
 
-class ActivityTraderEditDeliveryRangeType : AppCompatActivity() {
+class ActivityTraderEditDeliveryRangeType : AppCompatActivity(), EditDeliveryRangeContracts.IView {
 
     private lateinit var txtDeliverYes: TextView
     private lateinit var txtDeliverNo: TextView
     private lateinit var txtTimeTitle: TextView
-    private lateinit var rangeSLider: BubbleSeekBar
-    private lateinit var edtTime: EditText
+    private lateinit var rangeSlider: BubbleSeekBar
+    private lateinit var edtDeliveryTime: EditText
     private lateinit var edtPickUpInfo: EditText
     private lateinit var btnNext: Button
     private lateinit var imgGoBack: ImageView
-    private var deliver: Boolean = false
+    private var doYouDeliver: String = "no"
+    private lateinit var deliveryTime: String
+    private lateinit var deliveryRange: String
+    private lateinit var pickUpInfo: String
+    private lateinit var mPresenter: EditDeliveryRangeContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +31,24 @@ class ActivityTraderEditDeliveryRangeType : AppCompatActivity() {
     }
 
     private fun setListeners() {
+
+        btnNext.setOnClickListener {
+            deliveryTime = edtDeliveryTime.text.toString().trim()
+            deliveryRange = rangeSlider.progress.toString()
+            pickUpInfo = edtPickUpInfo.text.toString().trim()
+            mPresenter.initValidation(doYouDeliver, deliveryTime, deliveryRange, pickUpInfo)
+        }
+
         txtDeliverYes.setOnClickListener {
-            deliver = true
-            edtTime.visibility = View.VISIBLE
+            doYouDeliver = "yes"
+            edtDeliveryTime.visibility = View.VISIBLE
             txtTimeTitle.visibility = View.VISIBLE
             txtDeliverYes.setBackgroundResource(R.drawable.txt_edit_range_selected)
             txtDeliverNo.setBackgroundResource(R.drawable.txt_edit_range_unselected)
         }
         txtDeliverNo.setOnClickListener {
-            deliver = false
-            edtTime.visibility = View.GONE
+            doYouDeliver = "no"
+            edtDeliveryTime.visibility = View.GONE
             txtTimeTitle.visibility = View.GONE
             txtDeliverYes.setBackgroundResource(R.drawable.txt_edit_range_unselected)
             txtDeliverNo.setBackgroundResource(R.drawable.txt_edit_range_selected)
@@ -49,17 +58,26 @@ class ActivityTraderEditDeliveryRangeType : AppCompatActivity() {
     private fun initViews() {
         txtDeliverYes = findViewById(R.id.txt_deliver_yes)
         txtDeliverNo = findViewById(R.id.txt_deliver_no)
-        edtTime = findViewById(R.id.edt_delivery_time)
-        rangeSLider = findViewById(R.id.delivery_range)
+        edtDeliveryTime = findViewById(R.id.edt_delivery_time)
+        rangeSlider = findViewById(R.id.delivery_range)
         edtPickUpInfo = findViewById(R.id.edt_pick_up_information)
         btnNext = findViewById(R.id.btn_trader_edit_company_next)
         imgGoBack = findViewById(R.id.img_go_back)
         txtTimeTitle = findViewById(R.id.txt_time_title)
+        mPresenter = EditDeliveryRangePresenter(this@ActivityTraderEditDeliveryRangeType)
+    }
+
+    override fun onValidationResult(status: Boolean) {
+        if (status) {
+            //TODO: take user to next screen
+        } else {
+            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        edtTime.visibility = View.GONE
+        edtDeliveryTime.visibility = View.GONE
         txtTimeTitle.visibility = View.GONE
     }
 

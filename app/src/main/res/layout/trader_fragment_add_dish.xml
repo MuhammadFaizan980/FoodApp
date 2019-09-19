@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trader.fragments.trader_fragment_food.TraderFragmentFood">
+    tools:context=".trader.fragments.trader_fragment_add_dish.TraderFragmentAddDish">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -88,7 +88,7 @@ class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IVi
             mIntent.putExtra("company_cuisine", companyCuisine)
             mIntent.putExtra("company_phone", companyPhone)
             mIntent.putExtra("company_description", companyDescription)
-            mIntent.putExtra("company_logo_uri", uri!!)
+            mIntent.putExtra("company_logo_uri", uri!!.toString())
             mIntent.putExtra("company_coordinates", coordinates!!)
             startActivity(mIntent)
             finish()

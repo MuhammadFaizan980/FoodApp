@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragmetn_food.TraderFragmentFood
+import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_food.TraderFragmentFood
 
 class TraderHomePagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
     override fun getItem(position: Int): Fragment {
