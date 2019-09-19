@@ -165,4 +165,7 @@
     <string name="your_location_n">Your Location</string>
     <string name="time_neede_to_deliver">TIME NEEDED TO DELIVER</string>
     <string name="company_phone">Company Phone</string>
+    <string name="current_default">Current Default</string>
+    <string name="edit">EDIT</string>
+    <string name="quarter_330_10_ghazi_camp_paf_base_kohat">Quarter 330/10, Ghazi Camp, PAF Base Kohat</string>
 </resources>
