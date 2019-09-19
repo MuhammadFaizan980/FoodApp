@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_company_details_second_screen.ActivityTraderEditCompanyDetailsSecondScreen
+import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_company_logo.ActivityTraderEditCompanyLogo
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_profile.ActivityTraderEditProfile
 
 class ActivityTraderEditFoodCompanyDetailsFirstScreen : AppCompatActivity(),
@@ -61,7 +61,7 @@ class ActivityTraderEditFoodCompanyDetailsFirstScreen : AppCompatActivity(),
 
     override fun onValidationResult(status: Boolean) {
         if (status) {
-            val intent = Intent(this, ActivityTraderEditCompanyDetailsSecondScreen::class.java)
+            val intent = Intent(this, ActivityTraderEditCompanyLogo::class.java)
             intent.putExtra("company_name", companyName)
             intent.putExtra("company_cuisine", companyCuisine)
             intent.putExtra("company_phone", companyPhone)

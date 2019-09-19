@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.activity_trader_edit_profile
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen
+import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_non_food_company_details_first_screen.ActivityTraderEditNonFoodCompanyDetailsFirstScreen
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 
 class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainContracts.IView {
@@ -61,12 +63,26 @@ class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainCont
 
     override fun onEditProfileResult(status: Boolean) {
         if (status) {
-            startActivity(
-                Intent(
-                    this,
-                    ActivityTraderEditFoodCompanyDetailsFirstScreen::class.java::class.java
+
+            if (getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("company_type", "n/a").equals("Food & beverages")
+            ) {
+                startActivity(
+                    Intent(
+                        this,
+                        ActivityTraderEditFoodCompanyDetailsFirstScreen::class.java::class.java
+                    )
                 )
-            )
+            } else {
+                startActivity(
+                    Intent(
+                        this,
+                        ActivityTraderEditNonFoodCompanyDetailsFirstScreen::class.java::class.java
+                    )
+                )
+            }
             finish()
         } else {
             Toast.makeText(this, "There was an error updating your profile", Toast.LENGTH_LONG)
