@@ -66,6 +66,37 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="16dp"
+            android:text="@string/company_phone"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <EditText
+                android:id="@+id/edt_company_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorWhite"
+                android:paddingLeft="16dp"
+                android:inputType="phone"
+                android:paddingRight="16dp"
+                android:textSize="12sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
             android:text="@string/shop_type"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
