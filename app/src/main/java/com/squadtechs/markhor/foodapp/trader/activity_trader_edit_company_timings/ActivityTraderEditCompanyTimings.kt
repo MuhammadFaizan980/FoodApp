@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 
 class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContracts.IView {
 
@@ -110,6 +111,7 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
         openView = findViewById(R.id.open_time_vew)
         closeView = findViewById(R.id.close_time_vew)
         btnGoBack = findViewById(R.id.img_go_back)
+        mPresenter = EditTimingPresenter(this@ActivityTraderEditCompanyTimings, this)
     }
 
     override fun onValidationResult(status: Boolean) {
@@ -141,7 +143,8 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
 
     override fun onEditCompanyInformationResult(status: Boolean) {
         if (status) {
-
+            startActivity(Intent(this, ActivityTraderMain::class.java))
+            finish()
         } else {
             Toast.makeText(this, "There was an error updating company profile", Toast.LENGTH_LONG)
                 .show()

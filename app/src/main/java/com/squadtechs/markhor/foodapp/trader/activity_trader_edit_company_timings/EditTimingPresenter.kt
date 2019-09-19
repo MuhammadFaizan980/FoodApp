@@ -6,6 +6,7 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 
 class EditTimingPresenter(
     private val mView: EditTimingContracts.IView,
@@ -92,15 +93,21 @@ class EditTimingPresenter(
         companyDeliveryType: String,
         companyLogoUri: String
     ) {
+
+        val pd = MainUtils.getLoadingDialog(context, "Updating Profile", "Please wait", false)
+        pd.show()
+
         val API = "http://squadtechsolution.com//android/v1/update_company_profile.php"
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Method.POST,
             API,
             Response.Listener { response ->
+                pd.cancel()
                 Log.i("dxdiag", response)
             },
             Response.ErrorListener { error ->
+                pd.cancel()
                 mView.onEditCompanyInformationResult(false)
                 Log.i("dxdiag", error.toString())
             }) {
@@ -139,15 +146,20 @@ class EditTimingPresenter(
         ).getString("company_type", "n/a") as String
 
         //http start
+        val pd = MainUtils.getLoadingDialog(context, "Updating Timings", "Please wait", false)
+        pd.show()
+
         val API = "http://squadtechsolution.com//android/v1/update_company_timing.php"
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Method.POST,
             API,
             Response.Listener { response ->
+                pd.cancel()
                 Log.i("dxdiag", response)
             },
             Response.ErrorListener { error ->
+                pd.cancel()
                 mView.onEditCompanyTimingsResult(false)
                 Log.i("dxdiag", error.toString())
             }) {

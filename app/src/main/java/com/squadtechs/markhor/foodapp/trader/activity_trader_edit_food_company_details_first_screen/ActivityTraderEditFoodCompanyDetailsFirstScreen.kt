@@ -24,7 +24,7 @@ class ActivityTraderEditFoodCompanyDetailsFirstScreen : AppCompatActivity(),
     private lateinit var companyName: String
     private lateinit var companyCuisine: String
     private lateinit var companyPhone: String
-    private lateinit var companyDescrption: String
+    private lateinit var companyDescription: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +44,8 @@ class ActivityTraderEditFoodCompanyDetailsFirstScreen : AppCompatActivity(),
             companyName = edtTitle.text.toString().trim()
             companyCuisine = edtCuisine.text.toString().trim()
             companyPhone = edtPhone.text.toString().trim()
-            companyDescrption = edtDescription.text.toString().trim()
-            mPresenter.initValidation(companyName, companyPhone, companyCuisine, companyDescrption)
+            companyDescription = edtDescription.text.toString().trim()
+            mPresenter.initValidation(companyName, companyPhone, companyCuisine, companyDescription)
         }
     }
 
@@ -65,7 +65,7 @@ class ActivityTraderEditFoodCompanyDetailsFirstScreen : AppCompatActivity(),
             intent.putExtra("company_name", companyName)
             intent.putExtra("company_cuisine", companyCuisine)
             intent.putExtra("company_phone", companyPhone)
-            intent.putExtra("company_description", companyDescrption)
+            intent.putExtra("company_description", companyDescription)
             startActivity(intent)
             finish()
         } else {
