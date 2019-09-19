@@ -186,7 +186,7 @@
             app:cardElevation="4dp">
 
             <EditText
-                android:id="@+id/edt_pick_up_nformation"
+                android:id="@+id/edt_pick_up_information"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:backgroundTint="@color/colorWhite"
