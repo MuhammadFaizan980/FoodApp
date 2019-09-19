@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -99,7 +98,7 @@ class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IVi
             mIntent.putExtra("company_cuisine", companyCuisine)
             mIntent.putExtra("company_phone", companyPhone)
             mIntent.putExtra("company_description", companyDescription)
-          //  mIntent.putExtra("company_logo", imageString)
+            //  mIntent.putExtra("company_logo", imageString)
             mIntent.putExtra("company_coordinates", coordinates!!)
             startActivity(mIntent)
             finish()
@@ -111,10 +110,9 @@ class ActivityTraderEditCompanyLogo : AppCompatActivity(), EditLogoContracts.IVi
     private fun getImageString(): String {
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
         val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream)
         val byteArr = stream.toByteArray()
-        val imageString =
-            "data:image/png;base64,${Base64.encodeToString(byteArr, Base64.DEFAULT)}"
+        val imageString = Base64.encodeToString(byteArr, Base64.DEFAULT)
         return imageString
     }
 

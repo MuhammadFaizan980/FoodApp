@@ -95,7 +95,6 @@ class EditTimingPresenter(
         companyCoordinates: String,
         companyDeliveryType: String
     ) {
-        Toast.makeText(context, companyDeliveryType, Toast.LENGTH_LONG).show()
         val pd = MainUtils.getLoadingDialog(context, "Updating Profile", "Please wait", false)
         pd.show()
 

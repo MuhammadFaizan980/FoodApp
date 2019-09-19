@@ -103,9 +103,9 @@ class ElectronicLicensePresenter(
         } else {
             val stream = ByteArrayOutputStream()
             val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream)
             val arr = stream.toByteArray()
-            return "data:image/png;base64,${Base64.encodeToString(arr, Base64.DEFAULT)}"
+            return Base64.encodeToString(arr, Base64.DEFAULT)
         }
     }
 
