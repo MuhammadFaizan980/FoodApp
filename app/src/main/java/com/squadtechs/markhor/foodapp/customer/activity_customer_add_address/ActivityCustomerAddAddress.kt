@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_address.ActivityCustomerAddress
 import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 
 class ActivityCustomerAddAddress : AppCompatActivity(), CustomerAddAddressMainContracts.IView {
@@ -24,7 +25,7 @@ class ActivityCustomerAddAddress : AppCompatActivity(), CustomerAddAddressMainCo
 
     private fun setListeners() {
         imgGoBack.setOnClickListener {
-            startActivity(Intent(this, ActivityCustomerAddAddress::class.java))
+            startActivity(Intent(this, ActivityCustomerAddress::class.java))
             finish()
         }
         btnSaveAddress.setOnClickListener {
@@ -65,7 +66,7 @@ class ActivityCustomerAddAddress : AppCompatActivity(), CustomerAddAddressMainCo
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityCustomerAddAddress::class.java))
+        startActivity(Intent(this, ActivityCustomerAddress::class.java))
         finish()
     }
 
