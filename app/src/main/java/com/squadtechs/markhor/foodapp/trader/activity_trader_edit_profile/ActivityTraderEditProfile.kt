@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 
 class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainContracts.IView {
@@ -60,7 +61,12 @@ class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainCont
 
     override fun onEditProfileResult(status: Boolean) {
         if (status) {
-            startActivity(Intent(this, ActivityTraderMain::class.java))
+            startActivity(
+                Intent(
+                    this,
+                    ActivityTraderEditFoodCompanyDetailsFirstScreen::class.java::class.java
+                )
+            )
             finish()
         } else {
             Toast.makeText(this, "There was an error updating your profile", Toast.LENGTH_LONG)

@@ -155,4 +155,11 @@
     <string name="set_your_preferred_delivery_location">Set your preferred delivery location</string>
     <string name="add_new_address">Add New Address</string>
     <string name="add">Add</string>
+    <string name="company_details">COMPANY DETAILS</string>
+    <string name="tell_us_about_your_shop">Tell us about your shop</string>
+    <string name="company_name_s">Company Name</string>
+    <string name="cuisine_type">Cuisine Type</string>
+    <string name="company_description">Company Description</string>
+    <string name="shop_type">Shop Type</string>
+    <string name="accessories">Accessories</string>
 </resources>
