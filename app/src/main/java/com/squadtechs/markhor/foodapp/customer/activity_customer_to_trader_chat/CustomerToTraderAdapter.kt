@@ -41,7 +41,6 @@ class CustomerToTraderAdapter(
             holder.txtCustomerMessage.text = obj.message_body
             holder.txtCustomerMessageDate.text = obj.message_date
         }
-        Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
     }
 
     inner class CustomerToTraderHolder(view: View) : RecyclerView.ViewHolder(view) {
