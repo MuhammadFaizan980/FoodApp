@@ -395,6 +395,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/linear_one_size"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -415,7 +416,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_add_dish"
+                android:id="@+id/btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"

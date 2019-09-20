@@ -175,4 +175,6 @@
     <string name="description_of_product">DESCRIPTION OF PRODUCT</string>
     <string name="list_item_as">LIST ITEM AS</string>
     <string name="product_sizing">PRODUCT SIZING</string>
+    <string name="add_up_to_3_images_of_the_product">ADD UP TO 3 IMAGES OF THE PRODUCT</string>
+    <string name="upload">Upload</string>
 </resources>

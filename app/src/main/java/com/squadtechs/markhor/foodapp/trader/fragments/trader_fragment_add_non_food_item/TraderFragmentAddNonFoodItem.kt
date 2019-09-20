@@ -1,26 +1,27 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.TraderMainCallBack
 
 class TraderFragmentAddNonFoodItem : Fragment() {
 
     private lateinit var spinnerSizes: Spinner
     private lateinit var spinnerListItemAs: Spinner
     private lateinit var mView: View
+    private lateinit var btnNext: Button
     private lateinit var linearDeliveryPrice: LinearLayout
     private lateinit var linearXsXl: LinearLayout
     private lateinit var linearChildren: LinearLayout
     private lateinit var linearOneSize: LinearLayout
+    private lateinit var obj: TraderMainCallBack
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +31,15 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         initViews()
         populateListItemAsSpinner()
         populateSizeSpinner()
+        setListeners()
         return mView
     }
 
+    private fun setListeners() {
+        btnNext.setOnClickListener {
+            obj.onFragmentTap("images")
+        }
+    }
 
     private fun populateSizeSpinner() {
         val arr = arrayOfNulls<String>(3)
@@ -92,6 +99,12 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         linearXsXl = mView.findViewById(R.id.linear_xs_xl)
         linearChildren = mView.findViewById(R.id.linear_children)
         linearOneSize = mView.findViewById(R.id.linear_one_size)
+        btnNext = mView.findViewById(R.id.btn_next)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        obj = activity!! as TraderMainCallBack
     }
 
 }
