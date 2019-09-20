@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.squadtechs.markhor.foodapp.R
@@ -40,6 +41,7 @@ class CustomerToTraderAdapter(
             holder.txtCustomerMessage.text = obj.message_body
             holder.txtCustomerMessageDate.text = obj.message_date
         }
+        Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
     }
 
     inner class CustomerToTraderHolder(view: View) : RecyclerView.ViewHolder(view) {
