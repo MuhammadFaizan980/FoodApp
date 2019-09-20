@@ -85,7 +85,19 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
         }
 
         btnGoBack.setOnClickListener {
-            startActivity(Intent(this, ActivityTraderEditDeliveryRangeType::class.java))
+            val mIntent = Intent(this, ActivityTraderEditDeliveryRangeType::class.java)
+            mIntent.putExtra("company_name", intent!!.extras!!.get("company_name") as String)
+            mIntent.putExtra("company_cuisine", intent!!.extras!!.get("company_cuisine") as String)
+            mIntent.putExtra("company_phone", intent!!.extras!!.get("company_phone") as String)
+            mIntent.putExtra(
+                "company_coordinates",
+                intent!!.extras!!.get("company_coordinates") as String
+            )
+            mIntent.putExtra(
+                "company_description",
+                intent!!.extras!!.get("company_description") as String
+            )
+            startActivity(mIntent)
             finish()
         }
 
@@ -171,8 +183,22 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityTraderEditDeliveryRangeType::class.java))
+
+        val mIntent = Intent(this, ActivityTraderEditDeliveryRangeType::class.java)
+        mIntent.putExtra("company_name", intent!!.extras!!.get("company_name") as String)
+        mIntent.putExtra("company_cuisine", intent!!.extras!!.get("company_cuisine") as String)
+        mIntent.putExtra("company_phone", intent!!.extras!!.get("company_phone") as String)
+        mIntent.putExtra(
+            "company_coordinates",
+            intent!!.extras!!.get("company_coordinates") as String
+        )
+        mIntent.putExtra(
+            "company_description",
+            intent!!.extras!!.get("company_description") as String
+        )
+        startActivity(mIntent)
         finish()
+
     }
 
 }
