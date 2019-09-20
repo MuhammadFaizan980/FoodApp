@@ -168,4 +168,6 @@
     <string name="current_default">Current Default</string>
     <string name="edit">EDIT</string>
     <string name="quarter_330_10_ghazi_camp_paf_base_kohat">Quarter 330/10, Ghazi Camp, PAF Base Kohat</string>
+    <string name="delivery_price">DELIVERY PRICE</string>
+    <string name="main">Main</string>
 </resources>
