@@ -49,21 +49,24 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         spinnerSizes.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
 
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                if (p2.equals(0)) {
-                    linearXsXl.visibility = View.VISIBLE
-                    linearChildren.visibility = View.GONE
-                    linearOneSize.visibility = View.GONE
-                } else if (p2.equals(1)) {
-                    linearXsXl.visibility = View.GONE
-                    linearChildren.visibility = View.VISIBLE
-                    linearOneSize.visibility = View.GONE
-                } else {
-                    linearXsXl.visibility = View.GONE
-                    linearChildren.visibility = View.GONE
-                    linearOneSize.visibility = View.VISIBLE
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) =
+                when (p2) {
+                    0 -> {
+                        linearXsXl.visibility = View.VISIBLE
+                        linearChildren.visibility = View.GONE
+                        linearOneSize.visibility = View.GONE
+                    }
+                    1 -> {
+                        linearXsXl.visibility = View.GONE
+                        linearChildren.visibility = View.VISIBLE
+                        linearOneSize.visibility = View.GONE
+                    }
+                    else -> {
+                        linearXsXl.visibility = View.GONE
+                        linearChildren.visibility = View.GONE
+                        linearOneSize.visibility = View.VISIBLE
+                    }
                 }
-            }
 
         }
     }
