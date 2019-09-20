@@ -70,14 +70,17 @@ class TraderLoginPresenter(
                         .signInWithEmailAndPassword(obj.email, obj.password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                mView.onLoginResult(true, obj.account_status, obj.is_profile_complete, "n/a")
+                                mView.onLoginResult(
+                                    true,
+                                    obj.account_status,
+                                    obj.is_profile_complete,
+                                    "n/a"
+                                )
                             } else {
                                 mView.onLoginResult(false, "n/a", "n/a", "n/a")
                                 progressDialog.cancel()
                             }
                         }
-
-                    mView.onLoginResult(true, obj.account_status, obj.is_profile_complete, "n/a")
                 }
             },
             Response.ErrorListener { error ->

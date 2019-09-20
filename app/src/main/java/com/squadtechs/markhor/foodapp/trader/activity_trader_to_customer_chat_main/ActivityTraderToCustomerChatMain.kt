@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_main
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 
 class ActivityTraderToCustomerChatMain : AppCompatActivity() {
 
@@ -60,6 +62,11 @@ class ActivityTraderToCustomerChatMain : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_trader_chat_main)
         list = ArrayList()
         adapter = TraderToCustomerMainAdapter(list, this)
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, ActivityTraderMain::class.java))
+        finish()
     }
 
 }

@@ -4,12 +4,12 @@ package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_main.ActivityTraderToCustomerChatMain
+import java.lang.Exception
 
 class TraderFargmentHome : Fragment() {
 
@@ -35,6 +36,7 @@ class TraderFargmentHome : Fragment() {
     private lateinit var mView: View
     private lateinit var txtNewMessage: TextView
     private lateinit var imgChat: ImageView
+    private var serverTimeValue: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,12 +55,25 @@ class TraderFargmentHome : Fragment() {
                 "user_credentials",
                 Context.MODE_PRIVATE
             ).getString("company_id", "none")}"
-        )
+        ).child("timestamp")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {}
 
             override fun onDataChange(p0: DataSnapshot) {
-                Log.i("dxdiag", p0.childrenCount.toString())
+                try {
+                    if (p0.exists()) {
+                        serverTimeValue = p0.value as Long
+                        if (serverTimeValue > activity!!.getSharedPreferences(
+                                "trader_time_stamp",
+                                Context.MODE_PRIVATE
+                            ).getLong("value", 0)
+                        ) {
+                            txtNewMessage.visibility = View.VISIBLE
+                        }
+                    }
+                } catch (exc: Exception) {
+
+                }
             }
         })
     }
@@ -119,6 +134,10 @@ class TraderFargmentHome : Fragment() {
         })
 
         imgChat.setOnClickListener {
+            val editor =
+                activity!!.getSharedPreferences("trader_time_stamp", Context.MODE_PRIVATE).edit()
+            editor.putLong("value", serverTimeValue)
+            editor.apply()
             takeUserToChatScreen()
         }
 
@@ -134,7 +153,7 @@ class TraderFargmentHome : Fragment() {
             ).getString("company_id", "n/a") as String
         )
         startActivity(mIntent)
-
+        activity!!.finish()
     }
 
 
