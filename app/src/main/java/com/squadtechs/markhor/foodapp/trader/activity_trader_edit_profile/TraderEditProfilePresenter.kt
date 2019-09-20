@@ -45,6 +45,7 @@ class TraderEditProfilePresenter(
             Method.POST,
             API,
             Response.Listener { response ->
+                Log.i("m_resp", response)
                 pd.cancel()
                 val json = JSONObject(response)
                 try {
@@ -62,6 +63,7 @@ class TraderEditProfilePresenter(
                         mView.onEditProfileResult(false)
                     }
                 } catch (exc: Exception) {
+                    Log.i("m_resp", exc.toString())
                     mView.onEditProfileResult(false)
                 }
             },

@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="32dp"
-            android:text="@string/company_name_s"
+            android:text="@string/do_you_deliver"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="13sp"

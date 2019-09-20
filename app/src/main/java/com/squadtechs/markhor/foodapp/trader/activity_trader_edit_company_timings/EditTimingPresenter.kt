@@ -143,7 +143,7 @@ class EditTimingPresenter(
                     map["company_type"] = companyType
                 }
 
-                map["id"] = "1" //TODO: change id after test
+                map["id"] = companyID
                 map["company_name"] = companyName
 
                 map["company_description"] = companyDescription
@@ -218,7 +218,7 @@ class EditTimingPresenter(
                 map["Friday"] = "$fridayStart,$fridayEnd"
                 map["Saturday"] = "$saturdayStart,$saturdayEnd"
                 map["Sunday"] = "$sundayStart,$sundayEnd"
-                map["company_id"] = "1" //TODO: change id after test
+                map["company_id"] = companyID
                 return map
             }
         }

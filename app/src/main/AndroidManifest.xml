@@ -13,23 +13,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_edit_company_logo.ActivityTraderEditCompanyLogo" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_edit_non_food_company_details_first_screen.ActivityTraderEditNonFoodCompanyDetailsFirstScreen" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_edit_company_timings.ActivityTraderEditCompanyTimings" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".customer.activity_customer_address.ActivityCustomerAddress" android:screenOrientation="portrait"/>
-        <activity android:name=".customer.activity_customer_add_address.ActivityCustomerAddAddress" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_edit_profile.ActivityTraderEditProfile" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_change_password.ActivityTraderChangePassword" android:screenOrientation="portrait"/>
-        <activity android:name=".trader.activity_trader_main.ActivityTraderMain" android:screenOrientation="portrait"/>
-        <activity android:name=".customer.activity_customer_change_password.ActivityCustomerChangePassword"  android:screenOrientation="portrait"/>
-        <activity android:name=".customer.activity_customer_non_food_companies_details.ActivityCustomerNonFoodCompaniesDetails" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_edit_company_logo.ActivityTraderEditCompanyLogo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_edit_non_food_company_details_first_screen.ActivityTraderEditNonFoodCompanyDetailsFirstScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_edit_company_timings.ActivityTraderEditCompanyTimings"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".customer.activity_customer_address.ActivityCustomerAddress"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".customer.activity_customer_add_address.ActivityCustomerAddAddress"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_edit_profile.ActivityTraderEditProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_change_password.ActivityTraderChangePassword"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trader.activity_trader_main.ActivityTraderMain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".customer.activity_customer_change_password.ActivityCustomerChangePassword"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".customer.activity_customer_non_food_companies_details.ActivityCustomerNonFoodCompaniesDetails"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".customer.activity_customer_non_food_companies.ActivityCustomerNonFoodCompanies"
             android:screenOrientation="portrait"
@@ -67,7 +86,12 @@
         <activity
             android:name=".activity_select.ActivitySelect"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".trader.activity_thank_you.ActivityThankyou"
             android:screenOrientation="portrait"

@@ -73,14 +73,6 @@ class FragmentInsideFood : Fragment(), InsideFoodContracts {
                 val type = object : TypeToken<ArrayList<InsIdeFoodModel>>() {}.type
                 list = Gson().fromJson(response, type)
 
-                var count = (list.size - 1)
-                while (count >= 0) {
-                    if (!list[count].company_type.equals("Food & beverages")) {
-                        list.removeAt(count)
-                    }
-                    count--
-                }
-
                 if (tabPosition == 2) {
                     deliverOnlyList = ArrayList<InsIdeFoodModel>()
                     for (i in list) {

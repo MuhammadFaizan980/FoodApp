@@ -27,6 +27,7 @@ class ActivityCustomerMain : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_main)
+        checkPermissions()
         initViews()
         setNavigationListener()
     }
@@ -47,7 +48,7 @@ class ActivityCustomerMain : AppCompatActivity(),
                 changeFragment(fragmentHome)
             }
             R.id.item_location -> {
-                checkPermissions()
+                changeFragment(CustomerFragmentAroundMe())
             }
             R.id.item_cart -> {
                 changeFragment(CustomerFragmentCart())
@@ -80,7 +81,7 @@ class ActivityCustomerMain : AppCompatActivity(),
             permissionArray[0] = android.Manifest.permission.ACCESS_FINE_LOCATION
             ActivityCompat.requestPermissions(this@ActivityCustomerMain, permissionArray, 99)
         } else {
-            changeFragment(CustomerFragmentAroundMe())
+            return
         }
     }
 
@@ -103,7 +104,6 @@ class ActivityCustomerMain : AppCompatActivity(),
                     return
                 }
             }
-            changeFragment(CustomerFragmentAroundMe())
         }
     }
 

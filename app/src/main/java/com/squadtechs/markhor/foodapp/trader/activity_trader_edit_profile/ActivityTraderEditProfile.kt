@@ -72,14 +72,14 @@ class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainCont
                 startActivity(
                     Intent(
                         this,
-                        ActivityTraderEditFoodCompanyDetailsFirstScreen::class.java::class.java
+                        ActivityTraderEditFoodCompanyDetailsFirstScreen::class.java
                     )
                 )
             } else {
                 startActivity(
                     Intent(
                         this,
-                        ActivityTraderEditNonFoodCompanyDetailsFirstScreen::class.java::class.java
+                        ActivityTraderEditNonFoodCompanyDetailsFirstScreen::class.java
                     )
                 )
             }
