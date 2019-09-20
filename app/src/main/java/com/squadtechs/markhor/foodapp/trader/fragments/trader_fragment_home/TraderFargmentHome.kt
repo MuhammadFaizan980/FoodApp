@@ -4,6 +4,7 @@ package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_main.ActivityTraderToCustomerChatMain
 
@@ -37,8 +42,25 @@ class TraderFargmentHome : Fragment() {
     ): View? {
         mView = inflater.inflate(R.layout.trader_fargment_home, container, false)
         initViews()
+        getChatCuont()
         setListeners()
         return mView
+    }
+
+    private fun getChatCuont() {
+        val dbRef = FirebaseDatabase.getInstance().getReference("companies").child(
+            "company${activity!!.getSharedPreferences(
+                "user_credentials",
+                Context.MODE_PRIVATE
+            ).getString("company_id", "none")}"
+        )
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {}
+
+            override fun onDataChange(p0: DataSnapshot) {
+                Log.i("dxdiag", p0.childrenCount.toString())
+            }
+        })
     }
 
     private fun setListeners() {

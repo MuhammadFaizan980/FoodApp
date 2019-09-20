@@ -41,12 +41,15 @@ class ActivityTraderToCustomerChatMain : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.exists()) {
                     list.clear()
-                    for (i in p0.children) {
-                        val obj: TraderToCustomerMainModel =
-                            i.getValue(TraderToCustomerMainModel::class.java)!!
-                        obj.uid = i.key!!
-                        list.add(obj)
-                        adapter.notifyDataSetChanged()
+                    try {
+                        for (i in p0.children) {
+                            val obj: TraderToCustomerMainModel =
+                                i.getValue(TraderToCustomerMainModel::class.java)!!
+                            obj.uid = i.key!!
+                            list.add(obj)
+                            adapter.notifyDataSetChanged()
+                        }
+                    } catch (exc: Exception) {
                     }
                 }
             }

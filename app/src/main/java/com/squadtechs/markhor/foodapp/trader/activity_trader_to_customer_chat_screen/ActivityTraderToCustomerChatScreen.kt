@@ -61,27 +61,43 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
                 "user_credentials",
                 Context.MODE_PRIVATE
             ).getString("last_name", "n/a")}"
-            dbRef.updateChildren(headerMap).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val map = HashMap<String, String>()
-                    map["message_body"] = message
-                    map["message_by"] = FirebaseAuth.getInstance().uid!!
-                    val sdf = SimpleDateFormat("dd/MM/YYYY")
-                    val date = sdf.format(Date())
-                    map["message_date"] = date
-                    dbRef.push().setValue(map).addOnCompleteListener { mTask ->
-                        if (!mTask.isSuccessful) {
-                            Toast.makeText(this, mTask.exception!!.message!!, Toast.LENGTH_LONG)
-                                .show()
+            val serverTimeMap = HashMap<String, Any>()
+            serverTimeMap["timestamp"] = ServerValue.TIMESTAMP
+
+
+
+
+            FirebaseDatabase.getInstance().getReference("companies")
+                .child(
+                    "company${getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).getString("company_id", "no_data")}"
+                ).updateChildren(serverTimeMap).addOnSuccessListener {
+                    dbRef.updateChildren(headerMap).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val map = HashMap<String, String>()
+                            map["message_body"] = message
+                            map["message_by"] = FirebaseAuth.getInstance().uid!!
+                            val sdf = SimpleDateFormat("dd/MM/YYYY")
+                            val date = sdf.format(Date())
+                            map["message_date"] = date
+                            dbRef.push().setValue(map).addOnCompleteListener { mTask ->
+                                if (!mTask.isSuccessful) {
+                                    Toast.makeText(this, mTask.exception!!.message!!, Toast.LENGTH_LONG)
+                                        .show()
+                                } else {
+                                    edtMessage.setText("")
+                                    hideKeyboard()
+                                }
+                            }
                         } else {
-                            edtMessage.setText("")
-                            hideKeyboard()
+                            Toast.makeText(this, task.exception!!.message!!, Toast.LENGTH_LONG).show()
                         }
                     }
-                } else {
-                    Toast.makeText(this, task.exception!!.message!!, Toast.LENGTH_LONG).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
                 }
-            }
         }
     }
 
