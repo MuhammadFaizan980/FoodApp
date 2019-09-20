@@ -4,4 +4,5 @@ class TraderToCustomerMainModel {
     var last_message: String = ""
     var user_name: String = ""
     var uid: String = ""
+    var status: String = ""
 }

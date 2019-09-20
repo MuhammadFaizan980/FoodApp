@@ -44,6 +44,7 @@ class ActivityCustomerToTraderChat : AppCompatActivity() {
             val headerMap = HashMap<String, Any>()
             headerMap["timestamp"] = ServerValue.TIMESTAMP
             headerMap["last_message"] = message
+            headerMap["status"] = "unseen"
             headerMap["user_name"] = "${getSharedPreferences(
                 "user_credentials",
                 Context.MODE_PRIVATE

@@ -2,7 +2,6 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_s
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
@@ -27,6 +26,8 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
     private lateinit var edtMessage: EditText
     private lateinit var list: ArrayList<CustomerToTraderModel>
     private lateinit var adapter: CustomerToTraderAdapter
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var listener: ValueEventListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
         initViews()
         fetchData()
         sendData()
+        updateLocalCount()
         imgSend.setOnClickListener {
             sendData()
         }
@@ -54,6 +56,7 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
             val headerMap = HashMap<String, Any>()
             headerMap["timestamp"] = ServerValue.TIMESTAMP
             headerMap["last_message"] = message
+            headerMap["status"] = "seen"
             headerMap["user_name"] = "${getSharedPreferences(
                 "user_credentials",
                 Context.MODE_PRIVATE
@@ -63,9 +66,6 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
             ).getString("last_name", "n/a")}"
             val serverTimeMap = HashMap<String, Any>()
             serverTimeMap["timestamp"] = ServerValue.TIMESTAMP
-
-
-
 
             FirebaseDatabase.getInstance().getReference("companies")
                 .child(
@@ -84,7 +84,11 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
                             map["message_date"] = date
                             dbRef.push().setValue(map).addOnCompleteListener { mTask ->
                                 if (!mTask.isSuccessful) {
-                                    Toast.makeText(this, mTask.exception!!.message!!, Toast.LENGTH_LONG)
+                                    Toast.makeText(
+                                        this,
+                                        mTask.exception!!.message!!,
+                                        Toast.LENGTH_LONG
+                                    )
                                         .show()
                                 } else {
                                     edtMessage.setText("")
@@ -92,7 +96,8 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
                                 }
                             }
                         } else {
-                            Toast.makeText(this, task.exception!!.message!!, Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, task.exception!!.message!!, Toast.LENGTH_LONG)
+                                .show()
                         }
                     }
                 }.addOnFailureListener {
@@ -134,7 +139,27 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
                 }
             }
         })
+    }
 
+    private fun updateLocalCount() {
+        dbRef = FirebaseDatabase.getInstance().getReference("companies")
+            .child(
+                "company${getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("company_id", "no_data")}"
+            ).child("timestamp")
+        listener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {}
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val editor =
+                    getSharedPreferences("trader_time_stamp", Context.MODE_PRIVATE).edit()
+                editor.putLong("value", p0.value!! as Long)
+                editor.apply()
+            }
+        }
+        dbRef.addValueEventListener(listener)
     }
 
     private fun initViews() {
@@ -155,6 +180,11 @@ class ActivityTraderToCustomerChatScreen : AppCompatActivity() {
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
         }
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        dbRef.removeEventListener(listener)
     }
 
 }

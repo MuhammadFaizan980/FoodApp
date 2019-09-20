@@ -2,6 +2,8 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_m
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ class TraderToCustomerMainAdapter(
     private val list: ArrayList<TraderToCustomerMainModel>,
     private val context: Context
 ) : RecyclerView.Adapter<TraderToCustomerMainAdapter.TraderToCustomerHolder>() {
+    private lateinit var pref: SharedPreferences
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TraderToCustomerHolder =
         TraderToCustomerHolder(
             LayoutInflater.from(context).inflate(
@@ -38,6 +41,10 @@ class TraderToCustomerMainAdapter(
                     ActivityTraderToCustomerChatScreen::class.java
                 ).putExtra("customer_uid", obj.uid)
             )
+        }
+        if (obj.status.equals("unseen")) {
+            holder.txtUserName.setTypeface(null, Typeface.BOLD)
+            holder.txtUserLastMessage.setTypeface(null, Typeface.BOLD)
         }
     }
 
