@@ -170,4 +170,9 @@
     <string name="quarter_330_10_ghazi_camp_paf_base_kohat">Quarter 330/10, Ghazi Camp, PAF Base Kohat</string>
     <string name="delivery_price">DELIVERY PRICE</string>
     <string name="main">Main</string>
+    <string name="upload_new_item">UPLOAD NEW ITEM</string>
+    <string name="name_of_product">NAME OF PRODUCT</string>
+    <string name="description_of_product">DESCRIPTION OF PRODUCT</string>
+    <string name="list_item_as">LIST ITEM AS</string>
+    <string name="product_sizing">PRODUCT SIZING</string>
 </resources>

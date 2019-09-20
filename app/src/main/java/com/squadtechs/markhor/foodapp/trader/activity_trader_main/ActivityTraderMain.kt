@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_dish.TraderFragmentAddDish
+import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item.TraderFragmentAddNonFoodItem
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home.TraderFargmentHome
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_profile.TraderFragmentProfile
 
@@ -17,6 +18,7 @@ class ActivityTraderMain : AppCompatActivity(),
     private lateinit var fragmentHome: TraderFargmentHome
     private lateinit var fragmentProfile: TraderFragmentProfile
     private lateinit var fragmentAddFood: TraderFragmentAddDish
+    private lateinit var fragmentAddNonFood: TraderFragmentAddNonFoodItem
     private var currentFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,7 @@ class ActivityTraderMain : AppCompatActivity(),
         fragmentHome = TraderFargmentHome()
         fragmentProfile = TraderFragmentProfile()
         fragmentAddFood = TraderFragmentAddDish()
+        fragmentAddNonFood = TraderFragmentAddNonFoodItem()
         bottomNavigation = findViewById(R.id.bottom_navigation_view)
         changeFragment(fragmentHome)
     }
@@ -57,7 +60,7 @@ class ActivityTraderMain : AppCompatActivity(),
                 changeFragment(TraderFragmentProfile())
             }
             R.id.item_add_item -> {
-                changeFragment(fragmentAddFood)
+                changeFragment(fragmentAddNonFood)
             }
         }
         return true
