@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_address.ActivityCustomerAddress
 import com.squadtechs.markhor.foodapp.customer.activity_customer_change_password.ActivityCustomerChangePassword
@@ -56,6 +57,7 @@ class CustomerFragmentProfile : Fragment() {
         }
 
         txtSignOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             val dialog = MainUtils.getMessageDialog(
                 activity!!,
                 "Message!",

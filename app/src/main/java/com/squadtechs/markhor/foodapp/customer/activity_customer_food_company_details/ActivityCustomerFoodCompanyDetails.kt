@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_d
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,9 +10,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.auth.FirebaseAuth
 import com.google.maps.android.SphericalUtil
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_to_trader_chat.ActivityCustomerToTraderChat
 import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squareup.picasso.Picasso
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -29,7 +33,9 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
     private lateinit var txtTime: TextView
     private lateinit var txtDeliveryType: TextView
     private lateinit var txtDescription: TextView
+    private lateinit var txtNewMessage: TextView
     private lateinit var imgCompany: ImageView
+    private lateinit var imgChat: ImageView
     private lateinit var imgBack: ImageView
     private lateinit var mPresenter: CustomerFoodCompanyDetailsContracts.IPresenter
 
@@ -100,9 +106,22 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
             finish()
         }
 
+        imgChat.setOnClickListener {
+            takeUserToChatScreen()
+        }
+
+    }
+
+    private fun takeUserToChatScreen() {
+        val mIntent = Intent(this, ActivityCustomerToTraderChat::class.java)
+        mIntent.putExtra("company_id", intent!!.extras!!.get("company_id") as String)
+        startActivity(mIntent)
+
     }
 
     private fun initViews() {
+        imgChat = findViewById(R.id.img_chat)
+        txtNewMessage = findViewById(R.id.new_message_badge)
         viewPackage = findViewById(R.id.company_view_pager)
         txtAll = findViewById(R.id.txt_all)
         txtStarters = findViewById(R.id.txt_starters)

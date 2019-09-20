@@ -6,6 +6,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
@@ -38,7 +39,6 @@ class CustomerLoginPresenter(
             Request.Method.POST,
             API,
             Response.Listener { response ->
-                progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
                     mView.onLoginResult(
@@ -59,7 +59,16 @@ class CustomerLoginPresenter(
                     editor.putString("phone", obj.phone)
                     editor.putBoolean("customer_logged_in", true)
                     editor.apply()
-                    mView.onLoginResult(true, "")
+                    FirebaseAuth.getInstance()
+                        .signInWithEmailAndPassword(obj.email, obj.password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                mView.onLoginResult(true, "")
+                            } else {
+                                mView.onLoginResult(false, task.exception!!.message!!)
+                                progressDialog.cancel()
+                            }
+                        }
                 }
             },
             Response.ErrorListener { error ->

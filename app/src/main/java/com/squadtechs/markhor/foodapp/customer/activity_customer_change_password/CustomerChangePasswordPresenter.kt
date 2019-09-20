@@ -5,6 +5,7 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
@@ -60,7 +61,14 @@ class CustomerChangePasswordPresenter(
                         editor.putString("user_password", newPassword)
                         editor.putBoolean("customer_logged_in", false)
                         editor.apply()
-                        mView.onChangePasswordResult(true)
+                        FirebaseAuth.getInstance().currentUser!!.updatePassword(newPassword)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    mView.onChangePasswordResult(true)
+                                } else {
+                                    mView.onChangePasswordResult(false)
+                                }
+                            }
                     } else {
                         mView.onValidationResult(false)
                     }

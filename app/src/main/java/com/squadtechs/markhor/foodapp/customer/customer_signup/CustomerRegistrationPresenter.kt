@@ -6,6 +6,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
@@ -71,7 +72,16 @@ class CustomerRegistrationPresenter(
                     )
                     Log.i("dxdiag", response)
                 } else {
-                    mView.onRegistrationResult(true, "")
+                    FirebaseAuth.getInstance()
+                        .signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                mView.onRegistrationResult(true, "")
+                            } else {
+                                mView.onRegistrationResult(false, task.exception!!.message!!)
+                                progressDialog.cancel()
+                            }
+                        }
                 }
             },
             Response.ErrorListener { error ->
