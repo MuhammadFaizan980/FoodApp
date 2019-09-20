@@ -5,6 +5,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
@@ -74,7 +75,17 @@ class TraderRegistrationPresenter(
                     val editor = pref.edit()
                     editor.putString("trader_id", trader_id)
                     editor.apply()
-                    mView.onRegistrationResult(true, "n/a")
+
+                    FirebaseAuth.getInstance()
+                        .createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                mView.onRegistrationResult(true, "n/a")
+                            } else {
+                                mView.onRegistrationResult(false, "")
+                                progressDialog.cancel()
+                            }
+                        }
                 }
             },
             Response.ErrorListener { error ->

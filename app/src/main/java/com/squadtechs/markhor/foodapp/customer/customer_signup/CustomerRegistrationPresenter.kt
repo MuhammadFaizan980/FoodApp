@@ -63,7 +63,6 @@ class CustomerRegistrationPresenter(
             Request.Method.POST,
             API,
             Response.Listener { response ->
-                progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
                     mView.onRegistrationResult(
@@ -73,7 +72,7 @@ class CustomerRegistrationPresenter(
                     Log.i("dxdiag", response)
                 } else {
                     FirebaseAuth.getInstance()
-                        .signInWithEmailAndPassword(email, password)
+                        .createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 mView.onRegistrationResult(true, "")
