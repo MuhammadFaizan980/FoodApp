@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.activity_customer_to_trader_chat.ActivityCustomerToTraderChat"></activity>
+        <activity android:name=".trader.activity_trader_to_customer_chat_screen.ActivityTraderToCustomerChatScreen"></activity>
+        <activity android:name=".trader.activity_trader_to_customer_chat_main.ActivityTraderToCustomerChatMain" />
+        <activity android:name=".customer.activity_customer_to_trader_chat.ActivityCustomerToTraderChat" />
         <activity
             android:name=".trader.activity_trader_edit_delivery_range_type.ActivityTraderEditDeliveryRangeType"
             android:screenOrientation="portrait" />
