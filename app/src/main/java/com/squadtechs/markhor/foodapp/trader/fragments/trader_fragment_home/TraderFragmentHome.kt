@@ -1,9 +1,9 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home
 
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +12,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_main.ActivityTraderToCustomerChatMain
-import java.lang.Exception
+import com.squareup.picasso.Picasso
+import org.json.JSONArray
 
-class TraderFargmentHome : Fragment() {
+class TraderFragmentHome : Fragment() {
 
     private lateinit var viewPackage: ViewPager
     private lateinit var txtAll: TextView
@@ -44,12 +48,49 @@ class TraderFargmentHome : Fragment() {
     ): View? {
         mView = inflater.inflate(R.layout.trader_fargment_home, container, false)
         initViews()
-        getChatCuont()
+        getChatCount()
         setListeners()
+        fetchSingleCompanyData()
         return mView
     }
 
-    private fun getChatCuont() {
+    private fun fetchSingleCompanyData() {
+        val API = "http://squadtechsolution.com/android/v1/singleCompanyDetail.php"
+        val requestQueue = Volley.newRequestQueue(activity!!)
+        val stringRequest = object : StringRequest(Method.POST, API,
+            Response.Listener { response ->
+                Log.i("dxdiag", response)
+                try {
+                    val json = JSONArray(response).getJSONObject(0)
+                    Picasso.get()
+                        .load("http://squadtechsolution.com/android/v1/${json.getString("company_logo")}")
+                        .into(imgCompany)
+                    txtTitle.text = json.getString("company_name")
+                    txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"
+                    txtTime.text = json.getString("delivery_fee")
+                    txtDescription.text = json.getString("company_description")
+
+                } catch (exc: Exception) {
+                    Log.i("dxdiag", exc.toString())
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(activity!!, error.toString(), Toast.LENGTH_LONG).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val map = HashMap<String, String>()
+                map["id"] = activity!!.getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("company_id", "none") as String
+                Log.i("dxdiag", map["id"])
+                return map
+            }
+        }
+        requestQueue.add(stringRequest)
+    }
+
+    private fun getChatCount() {
         val dbRef = FirebaseDatabase.getInstance().getReference("companies").child(
             "company${activity!!.getSharedPreferences(
                 "user_credentials",
