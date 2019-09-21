@@ -43,7 +43,7 @@ class AroundMePresenter(
                     map.isMyLocationEnabled = true
                     map.uiSettings.isMyLocationButtonEnabled = true
                     myLatLng = LatLng(location.latitude, location.longitude)
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 15f))
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 14f))
                     mView.setCurrentLocationResult(true)
                 } catch (exc: Exception) {
                     CustomerUtils.showLocationError(mActivity)
