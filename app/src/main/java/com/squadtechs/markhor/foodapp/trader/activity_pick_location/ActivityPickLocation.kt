@@ -22,6 +22,7 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var btnPickLocation: TextView
     private lateinit var marker: MarkerOptions
+    private lateinit var latLng: LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
         mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
             override fun onMarkerDragEnd(p0: Marker?) {
                 btnPickLocation.visibility = View.VISIBLE
+                latLng = LatLng(p0!!.position.latitude, p0.position.longitude)
             }
 
             override fun onMarkerDragStart(p0: Marker?) {
@@ -80,7 +82,7 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
             val editor = pref.edit()
             editor.putString(
                 "coordinates",
-                "${marker.position.latitude}, ${marker.position.longitude}"
+                "${latLng.latitude}, ${latLng.longitude}"
             )
             editor.apply()
             setResult(Activity.RESULT_OK, returnIntent)
