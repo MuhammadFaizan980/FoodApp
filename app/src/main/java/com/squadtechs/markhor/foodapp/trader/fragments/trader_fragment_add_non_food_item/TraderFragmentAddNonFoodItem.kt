@@ -27,6 +27,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     private lateinit var linearXsXl: LinearLayout
     private lateinit var linearChildren: LinearLayout
     private lateinit var linearOneSize: LinearLayout
+    private lateinit var map: HashMap<String, String>
     //CHECK_BOXES
     private lateinit var checkBoxZeroToSix: CheckBox //done
     private lateinit var checkBoxSixYears: CheckBox //done
@@ -110,18 +111,6 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     }
 
     private fun sendData() {
-        if (activity!!.getSharedPreferences(
-                "add_item_preferences",
-                Context.MODE_PRIVATE
-            ).getBoolean(
-                "is_edit",
-                false
-            )
-        ) {
-            API = "http://squadtechsolution.com/android/v1/update_nonFood.php"
-        } else {
-            API = "http://squadtechsolution.com/android/v1/non_food_item.php"
-        }
         val price = edtPrice.text.toString().trim()
         deliveryPrice = edtDeliveryPrice.text.toString()
         val description = edtDescription.text.toString().trim()
@@ -132,6 +121,40 @@ class TraderFragmentAddNonFoodItem : Fragment() {
 
             val pd = MainUtils.getLoadingDialog(activity!!, "Adding", "Please wait", false)
             pd.show()
+
+            map = HashMap<String, String>()
+            if (activity!!.getSharedPreferences(
+                    "add_item_preferences",
+                    Context.MODE_PRIVATE
+                ).getBoolean(
+                    "is_edit",
+                    false
+                )
+            ) {
+                API = "http://squadtechsolution.com/android/v1/update_nonFood.php"
+                map["title"] = title
+                map["description"] = description
+                map["price"] = price
+                map["list_item_as"] = listIteamAs
+                map["delivery_price"] = deliveryPrice
+                map["size"] = size!!
+                map["id"] = activity!!.getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("id", "na") as String
+            } else {
+                API = "http://squadtechsolution.com/android/v1/non_food_item.php"
+                map["title"] = title
+                map["description"] = description
+                map["price"] = price
+                map["list_item_as"] = listIteamAs
+                map["delivery_price"] = deliveryPrice
+                map["size"] = size!!
+                map["trader_id"] = activity!!.getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("id", "na") as String
+            }
 
             val stringRequest = object : StringRequest(
                 Method.POST,
@@ -161,17 +184,6 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                     Toast.makeText(activity!!, error.toString(), Toast.LENGTH_LONG).show()
                 }) {
                 override fun getParams(): MutableMap<String, String> {
-                    val map = HashMap<String, String>()
-                    map["title"] = title
-                    map["description"] = description
-                    map["price"] = price
-                    map["list_item_as"] = listIteamAs
-                    map["delivery_price"] = deliveryPrice
-                    map["size"] = size!!
-                    map["trader_id"] = activity!!.getSharedPreferences(
-                        "user_credentials",
-                        Context.MODE_PRIVATE
-                    ).getString("id", "na") as String
                     Log.i("dxdiag", "\n\n\n${map}\n\n\n$API")
                     return map
                 }

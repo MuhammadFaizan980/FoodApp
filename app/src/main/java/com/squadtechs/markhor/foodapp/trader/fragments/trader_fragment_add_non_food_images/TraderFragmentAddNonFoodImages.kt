@@ -44,6 +44,7 @@ class TraderFragmentAddNonFoodImages : Fragment() {
     private var uri3: Uri? = null
     private lateinit var mView: View
     private lateinit var obj: TraderMainCallBack
+    private lateinit var map: HashMap<String, String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,7 +92,7 @@ class TraderFragmentAddNonFoodImages : Fragment() {
         btnUpload.setOnClickListener {
             if (uri1 != null && uri2 != null && uri3 != null) {
 
-
+                map = HashMap<String, String>()
                 if (activity!!.getSharedPreferences(
                         "add_item_preferences",
                         Context.MODE_PRIVATE
@@ -101,8 +102,16 @@ class TraderFragmentAddNonFoodImages : Fragment() {
                     )
                 ) {
                     API = "http://squadtechsolution.com/android/v1/update_NonFoodImages.php"
+                    map["id"] = pref.getString("value", "null") as String
+                    map["nonFoodImage"] = getImageString(uri1)
+                    map["nonFoodImage2"] = getImageString(uri2)
+                    map["nonFoodImage3"] = getImageString(uri3)
                 } else {
                     API = "http://squadtechsolution.com/android/v1/nonFoodImages.php"
+                    map["nonFood_id"] = pref.getString("value", "null") as String
+                    map["nonFoodImage"] = getImageString(uri1)
+                    map["nonFoodImage2"] = getImageString(uri2)
+                    map["nonFoodImage3"] = getImageString(uri3)
                 }
 
                 val pd = MainUtils.getLoadingDialog(activity!!, "Adding", "Please wait", false)
@@ -134,11 +143,6 @@ class TraderFragmentAddNonFoodImages : Fragment() {
                         pd.cancel()
                     }) {
                     override fun getParams(): MutableMap<String, String> {
-                        val map = HashMap<String, String>()
-                        map["nonFood_id"] = pref.getString("value", "null") as String
-                        map["nonFoodImage"] = getImageString(uri1)
-                        map["nonFoodImage2"] = getImageString(uri2)
-                        map["nonFoodImage3"] = getImageString(uri3)
                         return map
                     }
                 }
