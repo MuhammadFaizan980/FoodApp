@@ -152,7 +152,7 @@ class TraderFragmentAddNonFoodImages : Fragment() {
                         DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
                     )
-                );
+                )
                 requestQueue.add(stringRequest)
 
             } else {
