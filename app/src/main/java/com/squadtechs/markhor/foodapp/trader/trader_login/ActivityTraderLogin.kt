@@ -91,6 +91,9 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                     dialogInterface.cancel()
                 }
                 dialog.show()
+            } else if (profileStatus.equals("yes")) {
+                startActivity(Intent(this, ActivityTraderMain::class.java))
+                finish()
             } else {
                 val isProfileInProgress =
                     getSharedPreferences("reg_progress", Context.MODE_PRIVATE).getString(

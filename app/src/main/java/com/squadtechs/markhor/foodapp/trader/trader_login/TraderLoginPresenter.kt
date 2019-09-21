@@ -61,6 +61,7 @@ class TraderLoginPresenter(
                     editor.putString("user_email", obj.email)
                     editor.putString("user_password", obj.password)
                     editor.putString("phone", obj.mobile)
+                    editor.putString("is_profile_complete", obj.is_profile_complete)
                     editor.putString("company_type", obj.company_type)
                     editor.putString("company_id", obj.company_id)
                     editor.putBoolean("trader_logged_in", true)

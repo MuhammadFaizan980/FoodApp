@@ -90,11 +90,6 @@ class ActivityCompanyType : AppCompatActivity() {
             }
         }
 
-        linearback.setOnClickListener {
-            startActivity(Intent(this, ActivitySelect::class.java))
-            finish()
-        }
-
     }
 
     private fun initViews() {
@@ -124,7 +119,6 @@ class ActivityCompanyType : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivitySelect::class.java))
         finish()
     }
 

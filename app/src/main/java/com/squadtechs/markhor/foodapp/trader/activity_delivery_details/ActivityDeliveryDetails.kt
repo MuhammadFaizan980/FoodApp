@@ -93,7 +93,7 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
 
     override fun onAddDeliveryDetailsResult(status: Boolean) {
         if (status) {
-            editor.putString("current_screen", "prof_complete")
+            editor.putString("current_screen", "null")
             editor.apply()
             Toast.makeText(this, "Profile completed", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, ActivityTraderMain::class.java))

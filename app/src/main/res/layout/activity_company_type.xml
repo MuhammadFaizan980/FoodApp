@@ -18,6 +18,7 @@
             <LinearLayout
                 android:id="@+id/linear_go_back"
                 android:layout_width="65dp"
+                android:visibility="invisible"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 

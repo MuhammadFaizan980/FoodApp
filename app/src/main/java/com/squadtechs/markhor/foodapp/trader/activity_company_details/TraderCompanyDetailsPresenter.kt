@@ -54,7 +54,7 @@ class TraderCompanyDetailsPresenter(
                 pd.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("update_success")) {
-                    val pref = context.getSharedPreferences("company_data", Context.MODE_PRIVATE)
+                    val pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     val editor = pref.edit()
                     editor.putString("company_id", json.getString("company_id"))
                     editor.apply()
