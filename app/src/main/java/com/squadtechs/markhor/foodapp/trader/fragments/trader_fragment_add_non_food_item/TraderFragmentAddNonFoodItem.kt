@@ -9,8 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.TraderMainCallBack
+import org.json.JSONObject
 
 class TraderFragmentAddNonFoodItem : Fragment() {
 
@@ -23,21 +28,21 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     private lateinit var linearChildren: LinearLayout
     private lateinit var linearOneSize: LinearLayout
     //CHECK_BOXES
-    private lateinit var checkBoxZeroToSix: CheckBox
-    private lateinit var checkBoxSixYears: CheckBox
-    private lateinit var checkBoxSixToEight: CheckBox
-    private lateinit var checkBoxEightYears: CheckBox
-    private lateinit var checkBoxEightToTwelve: CheckBox
-    private lateinit var checkBoxTenYears: CheckBox
-    private lateinit var checkBoxTwoYears: CheckBox
-    private lateinit var checkBoxTwelveYears: CheckBox
-    private lateinit var checkBoxFourYears: CheckBox
-    private lateinit var checkBoxFourteenYears: CheckBox
-    private lateinit var checkBoxXSmall: CheckBox
-    private lateinit var checkBoxSmall: CheckBox
-    private lateinit var checkBoxMedium: CheckBox
-    private lateinit var checkBoxLarge: CheckBox
-    private lateinit var checkBoxXLarge: CheckBox
+    private lateinit var checkBoxZeroToSix: CheckBox //done
+    private lateinit var checkBoxSixYears: CheckBox //done
+    private lateinit var checkBoxSixToEight: CheckBox //done
+    private lateinit var checkBoxEightYears: CheckBox //done
+    private lateinit var checkBoxEightToTwelve: CheckBox //done
+    private lateinit var checkBoxTenYears: CheckBox //done
+    private lateinit var checkBoxTwoYears: CheckBox //done
+    private lateinit var checkBoxTwelveYears: CheckBox //done
+    private lateinit var checkBoxFourYears: CheckBox //done
+    private lateinit var checkBoxFourteenYears: CheckBox //done
+    private lateinit var checkBoxXSmall: CheckBox //done
+    private lateinit var checkBoxSmall: CheckBox //done
+    private lateinit var checkBoxMedium: CheckBox //done
+    private lateinit var checkBoxLarge: CheckBox //done
+    private lateinit var checkBoxXLarge: CheckBox //done
     private lateinit var checkBoxOneSize: CheckBox
     //CHECK_BOXES END
     private lateinit var obj: TraderMainCallBack
@@ -47,7 +52,10 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     private lateinit var edtProductName: EditText
     private lateinit var edtDescription: EditText
     private var listIteamAs: String = "Women Fashion"
-    private lateinit var size: String
+    private var size: String? = null
+    private var deliveryPrice: String = ""
+
+    private lateinit var API: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +66,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         populateListItemAsSpinner()
         populateSizeSpinner()
         setListeners()
+        setCheckBoxListeners()
         return mView
     }
 
@@ -94,23 +103,88 @@ class TraderFragmentAddNonFoodItem : Fragment() {
             size = "x-large"
         } else if (checkBoxOneSize.isChecked) {
             size = "one size"
+        } else {
+            size = null
         }
         sendData()
     }
 
     private fun sendData() {
-        Log.i("dxdiag", size + "\n")
-        Log.i("dxdiag", edtPrice.text.toString() + "\n")
-        Log.i("dxdiag", edtDeliveryPrice.text.toString() + "\n")
-        Log.i("dxdiag", edtDescription.text.toString() + "\n")
-        Log.i("dxdiag", edtProductName.text.toString() + "\n")
-        Log.i("dxdiag", listIteamAs)
+        if (activity!!.getSharedPreferences(
+                "add_item_preferences",
+                Context.MODE_PRIVATE
+            ).getBoolean(
+                "is_edit",
+                false
+            )
+        ) {
+            API = "http://squadtechsolution.com/android/v1/update_nonFood.php"
+        } else {
+            API = "http://squadtechsolution.com/android/v1/non_food_item.php"
+        }
+        val price = edtPrice.text.toString().trim()
+        deliveryPrice = edtDeliveryPrice.text.toString()
+        val description = edtDescription.text.toString().trim()
+        val title = edtProductName.text.toString().trim()
+        val requestQueue = Volley.newRequestQueue(activity!!)
+
+        if (size != null && !price.equals("") && !description.equals("") && !price.equals("")) {
+
+            val pd = MainUtils.getLoadingDialog(activity!!, "Adding", "Please wait", false)
+            pd.show()
+
+            val stringRequest = object : StringRequest(
+                Method.POST,
+                API,
+                Response.Listener { response ->
+                    pd.cancel()
+                    Log.i("dxdiag", response)
+                    try {
+                        val json = JSONObject(response)
+                        if (json.getString("status").equals("Item Uploaded ")) {
+                            val pref =
+                                activity!!.getSharedPreferences("item_id", Context.MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString("value", json.getInt("non_food_id").toString())
+                            editor.apply()
+                            obj.onFragmentTap("images")
+                        } else {
+                            Toast.makeText(activity!!, "There was an error", Toast.LENGTH_LONG)
+                                .show()
+                        }
+                    } catch (exc: Exception) {
+
+                    }
+                },
+                Response.ErrorListener { error ->
+                    pd.cancel()
+                    Toast.makeText(activity!!, error.toString(), Toast.LENGTH_LONG).show()
+                }) {
+                override fun getParams(): MutableMap<String, String> {
+                    val map = HashMap<String, String>()
+                    map["title"] = title
+                    map["description"] = description
+                    map["price"] = price
+                    map["list_item_as"] = listIteamAs
+                    map["delivery_price"] = deliveryPrice
+                    map["size"] = size!!
+                    map["trader_id"] = activity!!.getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).getString("id", "na") as String
+                    Log.i("dxdiag", "\n\n\n${map}\n\n\n$API")
+                    return map
+                }
+            }
+            requestQueue.add(stringRequest)
+        } else {
+            Toast.makeText(activity!!, "Invalid credentials", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setListeners() {
         btnNext.setOnClickListener {
             prepareData()
-            obj.onFragmentTap("images")
         }
     }
 
@@ -216,6 +290,328 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
         obj = activity!! as TraderMainCallBack
+    }
+
+    private fun setCheckBoxListeners() {
+
+        checkBoxXLarge.setOnClickListener {
+            if (checkBoxXLarge.isChecked) {
+                checkBoxZeroToSix.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightYears.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxOneSize.isChecked = false
+            }
+        }
+
+        checkBoxSixYears.setOnClickListener {
+            if (checkBoxSixYears.isChecked) {
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightYears.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxLarge.setOnClickListener {
+            if (checkBoxLarge.isChecked) {
+                checkBoxZeroToSix.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightYears.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+            }
+        }
+
+        checkBoxEightYears.setOnClickListener {
+            if (checkBoxEightYears.isChecked) {
+                checkBoxSixToEight.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxSixToEight.setOnClickListener {
+            if (checkBoxSixToEight.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxEightToTwelve.setOnClickListener {
+            if (checkBoxEightToTwelve.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxZeroToSix.setOnClickListener {
+            if (checkBoxZeroToSix.isChecked) {
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightYears.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+            }
+        }
+
+        checkBoxMedium.setOnClickListener {
+            if (checkBoxMedium.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxXSmall.setOnClickListener {
+            if (checkBoxXSmall.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxSmall.setOnClickListener {
+            if (checkBoxSmall.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxFourteenYears.setOnClickListener {
+            if (checkBoxFourteenYears.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxFourYears.setOnClickListener {
+            if (checkBoxFourYears.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxTwelveYears.setOnClickListener {
+            if (checkBoxTwelveYears.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxTwoYears.setOnClickListener {
+            if (checkBoxTwoYears.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxTenYears.setOnClickListener {
+            if (checkBoxTenYears.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxOneSize.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
+
+        checkBoxOneSize.setOnClickListener {
+            if (checkBoxOneSize.isChecked) {
+                checkBoxEightYears.isChecked = false
+                checkBoxSixYears.isChecked = false
+                checkBoxSixToEight.isChecked = false
+                checkBoxEightToTwelve.isChecked = false
+                checkBoxTwoYears.isChecked = false
+                checkBoxTwelveYears.isChecked = false
+                checkBoxFourYears.isChecked = false
+                checkBoxFourteenYears.isChecked = false
+                checkBoxXSmall.isChecked = false
+                checkBoxSmall.isChecked = false
+                checkBoxMedium.isChecked = false
+                checkBoxTenYears.isChecked = false
+                checkBoxXLarge.isChecked = false
+                checkBoxLarge.isChecked = false
+                checkBoxZeroToSix.isChecked = false
+            }
+        }
     }
 
 }

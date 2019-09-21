@@ -1,9 +1,15 @@
 package com.squadtechs.markhor.foodapp.trader.activity_trader_main
 
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squadtechs.markhor.foodapp.R
@@ -12,12 +18,6 @@ import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_f
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item.TraderFragmentAddNonFoodItem
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home.TraderFragmentHome
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_profile.TraderFragmentProfile
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.util.Log
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 
 
 class ActivityTraderMain : AppCompatActivity(),
@@ -72,7 +72,15 @@ class ActivityTraderMain : AppCompatActivity(),
                 changeFragment(TraderFragmentProfile())
             }
             R.id.item_add_item -> {
-                if (getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("company_type", "none").equals("Food & beverages")) {
+                val pref = getSharedPreferences("add_item_preferences", Context.MODE_PRIVATE)
+                val editor = pref.edit()
+                editor.putBoolean("is_edit", false)
+                editor.apply()
+                if (getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).getString("company_type", "none").equals("Food & beverages")
+                ) {
                     changeFragment(fragmentAddFood)
                 } else {
                     changeFragment(fragmentAddNonFood)
