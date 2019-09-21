@@ -259,7 +259,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
             "user_credentials",
             Context.MODE_PRIVATE
         ).getString("delivery_type", "none") as String
-        if (!doYouDeliver.equals("yes")) {
+        if (doYouDeliver.equals("yes")) {
             linearDeliveryPrice.visibility = View.VISIBLE
         }
 
