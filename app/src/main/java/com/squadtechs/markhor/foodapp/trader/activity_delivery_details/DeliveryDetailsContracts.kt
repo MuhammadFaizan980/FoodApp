@@ -6,7 +6,13 @@ interface DeliveryDetailsContracts {
     }
 
     interface IPresenter {
-        fun initValidation(deliver: Boolean, range: String, pickupInformation: String)
+        fun initValidation(
+            deliver: Boolean,
+            range: String,
+            pickupInformation: String,
+            deliveryTime: String
+        )
+
         fun addDeliveryDetails()
     }
 

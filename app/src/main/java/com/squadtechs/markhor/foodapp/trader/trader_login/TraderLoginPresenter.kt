@@ -70,6 +70,7 @@ class TraderLoginPresenter(
                         .signInWithEmailAndPassword(obj.email, obj.password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                                progressDialog.cancel()
                                 mView.onLoginResult(
                                     true,
                                     obj.account_status,

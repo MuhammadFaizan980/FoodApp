@@ -16,13 +16,20 @@ class DeliveryDetailsPresenter(
     private val API = "http://squadtechsolution.com/android/v1/company_deliveryDetail.php"
     private var deliver: Boolean = false
     private lateinit var range: String
+    private lateinit var deliveryTime: String
     private lateinit var pickupInformation: String
     private lateinit var mModel: DeliveryDetailsContracts.IModel
 
-    override fun initValidation(deliver: Boolean, range: String, pickupInformation: String) {
+    override fun initValidation(
+        deliver: Boolean,
+        range: String,
+        pickupInformation: String,
+        deliveryTime: String
+    ) {
         mModel = DeliveryDetailsModel(range, pickupInformation)
         this.deliver = deliver
         this.range = range
+        this.deliveryTime = deliveryTime
         this.pickupInformation = pickupInformation
         mView.onValidationResult(mModel.validate())
     }
@@ -57,7 +64,7 @@ class DeliveryDetailsPresenter(
                 val map = HashMap<String, String>()
                 val trader_id =
                     context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
-                        .getString("trader_id", "n/a") as String
+                        .getString("id", "n/a") as String
                 map["delivery_Range"] = range
                 map["delivery_Type"] = if (deliver) {
                     "yes"
@@ -65,8 +72,10 @@ class DeliveryDetailsPresenter(
                     "no"
                 }
                 map["delivery_pickupinfo"] = pickupInformation
+                map["delivery_fee"] = ""
                 map["trader_id"] = trader_id
                 map["is-profile-complete"] = "yes"
+                map["delivery_timing"] = deliveryTime
                 return map
             }
         }

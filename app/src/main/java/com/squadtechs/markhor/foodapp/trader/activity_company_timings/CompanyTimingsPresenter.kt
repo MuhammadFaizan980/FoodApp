@@ -122,8 +122,9 @@ class CompanyTimingsPresenter constructor(
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
-                val company_id = context.getSharedPreferences("company_data", Context.MODE_PRIVATE)
-                    .getString("company_id", "n/a") as String
+                val company_id =
+                    context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                        .getString("company_id", "n/a") as String
                 map["Monday"] = "$mondayStart, $mondayEnd"
                 map["Tuesday"] = "$tuesdayStart, $tuesdayEnd"
                 map["Wednesday"] = "$wednesdayStart, $wednesdayEnd"

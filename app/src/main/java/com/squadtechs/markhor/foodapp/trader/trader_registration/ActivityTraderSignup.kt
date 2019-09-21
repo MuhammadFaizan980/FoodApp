@@ -110,7 +110,6 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityTraderSignup, ActivitySelect::class.java))
         finish()
     }
 

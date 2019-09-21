@@ -73,7 +73,7 @@ class TraderRegistrationPresenter(
                     val pref =
                         context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
                     val editor = pref.edit()
-                    editor.putString("trader_id", trader_id)
+                    editor.putString("id", trader_id)
                     editor.apply()
 
                     FirebaseAuth.getInstance()

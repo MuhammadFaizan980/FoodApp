@@ -113,8 +113,7 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityDeliveryDetails::class.java))
-        finish()
+
     }
 
 }

@@ -48,7 +48,7 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         }
 
         linearTraderNoAccount.setOnClickListener {
-            startActivity(Intent(this@ActivityTraderLogin, ActivityCompanyType::class.java))
+            startActivity(Intent(this@ActivityTraderLogin, ActivityTraderSignup::class.java))
             finish()
         }
 
