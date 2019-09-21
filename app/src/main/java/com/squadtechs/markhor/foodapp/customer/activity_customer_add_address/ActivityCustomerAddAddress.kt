@@ -31,9 +31,9 @@ class ActivityCustomerAddAddress : AppCompatActivity(), CustomerAddAddressMainCo
         btnSaveAddress.setOnClickListener {
             mPresenter.initValidation(
                 edtAddess.text.toString(), if (addressCheckBox.isChecked) {
-                    "yes"
+                    "Yes"
                 } else {
-                    "no"
+                    "No"
                 }
             )
         }

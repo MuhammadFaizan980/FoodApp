@@ -6,7 +6,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
-import org.json.JSONObject
 
 class CustomerAddAddressPresenter(
     private val mView: CustomerAddAddressMainContracts.IView,
@@ -16,6 +15,7 @@ class CustomerAddAddressPresenter(
     private lateinit var address: String
     private lateinit var defaultString: String
     private lateinit var customerID: String
+
     override fun initValidation(address: String, defaultString: String) {
         mModel = CustomerAddAddressModel(address)
         if (mModel.validate()) {
@@ -41,14 +41,14 @@ class CustomerAddAddressPresenter(
             API,
             Response.Listener { response ->
                 pd.cancel()
-                val json = JSONObject(response)
                 try {
-                    if (json.getString("status").equals("Address Uploaded")) {
+                    if (response.contains("Address Uploaded")) {
                         mView.onSaveAddressResult(true)
                     } else {
                         mView.onSaveAddressResult(false)
                     }
                 } catch (exc: Exception) {
+                    Log.i("dxdiag", exc.toString())
                     mView.onSaveAddressResult(false)
                 }
             },
