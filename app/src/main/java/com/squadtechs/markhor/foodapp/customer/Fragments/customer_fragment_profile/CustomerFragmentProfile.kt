@@ -66,6 +66,7 @@ class CustomerFragmentProfile : Fragment() {
             )
             dialog.setPositiveButton("Log out") { dialogInterface, i ->
                 editor.putBoolean("customer_logged_in", false)
+                editor.putString("default_address", "null")
                 editor.apply()
                 startActivity(Intent(activity!!, ActivityCustomerLogin::class.java))
                 activity!!.finish()
