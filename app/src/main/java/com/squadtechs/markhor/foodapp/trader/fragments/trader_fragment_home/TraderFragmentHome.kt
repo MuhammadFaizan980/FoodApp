@@ -70,6 +70,13 @@ class TraderFragmentHome : Fragment() {
                     txtTime.text = json.getString("delivery_fee")
                     txtDescription.text = json.getString("company_description")
 
+                    val editor = activity!!.getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).edit()
+                    editor.putString("delivery_type", json.getString("delivery_type"))
+                    editor.apply()
+
                 } catch (exc: Exception) {
                     Log.i("dxdiag", exc.toString())
                 }

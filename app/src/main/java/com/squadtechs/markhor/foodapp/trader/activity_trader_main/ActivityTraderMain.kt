@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.activity_trader_main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -71,7 +72,11 @@ class ActivityTraderMain : AppCompatActivity(),
                 changeFragment(TraderFragmentProfile())
             }
             R.id.item_add_item -> {
-                changeFragment(fragmentAddNonFood)
+                if (getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("company_type", "none").equals("Food & beverages")) {
+                    changeFragment(fragmentAddFood)
+                } else {
+                    changeFragment(fragmentAddNonFood)
+                }
             }
         }
         return true

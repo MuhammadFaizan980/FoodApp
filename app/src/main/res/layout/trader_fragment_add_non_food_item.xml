@@ -218,8 +218,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:visibility="gone">
+                    android:paddingLeft="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -276,7 +275,7 @@
                         android:weightSum="2">
 
                         <CheckBox
-                            android:id="@+id/check_nuts"
+                            android:id="@+id/eight_to_twelve"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -353,7 +352,7 @@
                     android:visibility="gone">
 
                     <CheckBox
-                        android:id="@+id/x-small"
+                        android:id="@+id/x_small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -385,7 +384,7 @@
                         android:textSize="12sp" />
 
                     <CheckBox
-                        android:id="@+id/x-large"
+                        android:id="@+id/x_large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -395,13 +394,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/linear_one_size"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:orientation="vertical"
-                    android:paddingLeft="16dp">
+                    android:paddingLeft="16dp"
+                    android:visibility="gone">
 
                     <CheckBox
                         android:id="@+id/single"
