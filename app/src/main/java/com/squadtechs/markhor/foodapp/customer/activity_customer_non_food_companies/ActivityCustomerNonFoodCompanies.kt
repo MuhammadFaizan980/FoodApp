@@ -52,9 +52,72 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                     list = Gson().fromJson(response, type)
                     when (intent!!.extras!!.getInt("position")) {
                         0 -> {
-                            var count =  (list.size - 1 )
+                            var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Clothes")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        1 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Accessories")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        2 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Skincare")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        3 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Homeware")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        4 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Toys")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        5 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Shoes")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        6 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Bags")) {
+                                    list.removeAt(count)
+                                }
+                                count--
+                            }
+                        }
+                        7 -> {
+                            var count = (list.size - 1)
+                            while (count >= 0) {
+                                if (!list[count].company_type.equals("Other")) {
                                     list.removeAt(count)
                                 }
                                 count--

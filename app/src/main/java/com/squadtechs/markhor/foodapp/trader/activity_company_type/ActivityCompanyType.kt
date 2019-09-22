@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
 
 class ActivityCompanyType : AppCompatActivity() {
@@ -38,11 +37,6 @@ class ActivityCompanyType : AppCompatActivity() {
 
     private fun setLisetener() {
         btnNext.setOnClickListener {
-
-            if (radioOthers.isChecked) {
-                selectedValue = edtType.text.toString().trim()
-            }
-
             if (selectedValue.equals("")) {
                 Toast.makeText(
                     this,
@@ -86,7 +80,7 @@ class ActivityCompanyType : AppCompatActivity() {
                 edtType.isEnabled = false
             } else if (radioOthers.isChecked) {
                 edtType.isEnabled = true
-                selectedValue = ""
+                selectedValue = "Other"
             }
         }
 
