@@ -153,22 +153,7 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
             txtDescription.text = responseObj?.company_description
             txtDeliveryType.text = "Delivery Type: ${responseObj?.delivery_type}"
             val companyLatLng = CustomerUtils.decodeCoordinates(responseObj?.address as String)
-            val mLatLng = LatLng(
-                getSharedPreferences(
-                    "customer_current_location",
-                    Context.MODE_PRIVATE
-                ).getString("lat", "n/a")!!.toDouble(), getSharedPreferences(
-                    "customer_current_location",
-                    Context.MODE_PRIVATE
-                ).getString("lng", "n/a")!!.toDouble()
-            )
-            val time = roundOffDecimal(
-                (((SphericalUtil.computeDistanceBetween(
-                    mLatLng,
-                    companyLatLng
-                ) / 1000) / 50) / 60)
-            )
-            txtTime.text = "$time minutes"
+            txtTime.text = responseObj?.delivery_timing
         } else {
             Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
         }

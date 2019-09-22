@@ -10,5 +10,6 @@ class CustomerFoodCompanyDetailsResponseHandler {
     var company_type: String = ""
     var delivery_type: String = ""
     var delivery_range: String = ""
+    var delivery_timing: String = ""
     var address: String = ""
 }

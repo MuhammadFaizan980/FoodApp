@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -55,27 +56,46 @@ class TraderFragmentHome : Fragment() {
     }
 
     private fun fetchSingleCompanyData() {
-        val API = "http://squadtechsolution.com/android/v1/singleCompanyDetail.php"
+        val API = "http://squadtechsolution.com/android/v1/allcompany.php"
         val requestQueue = Volley.newRequestQueue(activity!!)
-        val stringRequest = object : StringRequest(Method.POST, API,
+        val stringRequest = StringRequest(
+            Request.Method.GET, API,
             Response.Listener { response ->
                 Log.i("dxdiag", response)
                 try {
-                    val json = JSONArray(response).getJSONObject(0)
-                    Picasso.get()
-                        .load("http://squadtechsolution.com/android/v1/${json.getString("company_logo")}")
-                        .into(imgCompany)
-                    txtTitle.text = json.getString("company_name")
-                    txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"
-                    txtTime.text = json.getString("delivery_timing")
-                    txtDescription.text = json.getString("company_description")
 
-                    val editor = activity!!.getSharedPreferences(
-                        "user_credentials",
-                        Context.MODE_PRIVATE
-                    ).edit()
-                    editor.putString("delivery_type", json.getString("delivery_type"))
-                    editor.apply()
+                    val jsonArr = JSONArray(response)
+                    var count = (jsonArr.length() - 1)
+                    while (count >= 0) {
+                        val json = jsonArr.getJSONObject(count)
+                        if (json.getString("id").equals(
+                                activity!!.getSharedPreferences(
+                                    "user_credentials",
+                                    Context.MODE_PRIVATE
+                                ).getString("company_id", "none")
+                            )
+                        ) {
+                            Picasso.get()
+                                .load("http://squadtechsolution.com/android/v1/${json.getString("company_logo")}")
+                                .into(imgCompany)
+                            txtTitle.text = json.getString("company_name")
+                            txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"
+                            txtTime.text = json.getString("delivery_timing")
+                            txtDescription.text = json.getString("company_description")
+                            break
+                        }
+                        count--
+                    }
+
+
+//                    val json = JSONArray(response).getJSONObject(0)
+//
+//                    val editor = activity!!.getSharedPreferences(
+//                        "user_credentials",
+//                        Context.MODE_PRIVATE
+//                    ).edit()
+//                    editor.putString("delivery_type", json.getString("delivery_type"))
+//                    editor.apply()
 
                 } catch (exc: Exception) {
                     Log.i("dxdiag", exc.toString())
@@ -83,17 +103,7 @@ class TraderFragmentHome : Fragment() {
             },
             Response.ErrorListener { error ->
                 Toast.makeText(activity!!, error.toString(), Toast.LENGTH_LONG).show()
-            }) {
-            override fun getParams(): MutableMap<String, String> {
-                val map = HashMap<String, String>()
-                map["id"] = activity!!.getSharedPreferences(
-                    "user_credentials",
-                    Context.MODE_PRIVATE
-                ).getString("company_id", "none") as String
-                Log.i("dxdiag", map["id"])
-                return map
-            }
-        }
+            })
         requestQueue.add(stringRequest)
     }
 
