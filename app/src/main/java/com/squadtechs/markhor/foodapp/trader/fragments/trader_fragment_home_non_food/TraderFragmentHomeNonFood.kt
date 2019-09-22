@@ -173,7 +173,7 @@ class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
                         .into(imgCompany)
                     txtTitle.text = json.getString("company_name")
                     txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"
-                    txtTime.text = json.getString("delivery_fee")
+                    txtTime.text = json.getString("delivery_timing")
                     txtDescription.text = json.getString("company_description")
 
                     val editor = activity!!.getSharedPreferences(
