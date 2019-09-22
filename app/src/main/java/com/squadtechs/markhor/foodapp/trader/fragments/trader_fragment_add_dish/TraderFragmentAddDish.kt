@@ -319,7 +319,7 @@ class TraderFragmentAddDish : Fragment() {
         arr[0] = "Main"
         arr[1] = "Side"
         arr[2] = "Desert"
-        arr[3] = "Starters"
+        arr[3] = "Starter"
         val arrayAdapter = ArrayAdapter<String>(
             activity!!,
             R.layout.list_dish_as_spinner_row,
@@ -373,6 +373,7 @@ class TraderFragmentAddDish : Fragment() {
             )
         ) {
             txtTitle.text = "Edit Dish"
+            btnAddDish.text = "Edit Dish"
         }
 
     }

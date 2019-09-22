@@ -69,7 +69,7 @@ class TraderFragmentFood : Fragment(), FragmentFoodCallback {
             1 -> {
                 var count = (list.size - 1)
                 while (count >= 0) {
-                    if (!list[count].list_dish_as.equals("Main")) {
+                    if (!list[count].list_dish_as.equals("Starter")) {
                         list.removeAt(count)
                     }
                     count--
@@ -78,7 +78,7 @@ class TraderFragmentFood : Fragment(), FragmentFoodCallback {
             2 -> {
                 var count = (list.size - 1)
                 while (count >= 0) {
-                    if (!list[count].list_dish_as.equals("Side")) {
+                    if (!list[count].list_dish_as.equals("Main")) {
                         list.removeAt(count)
                     }
                     count--
@@ -87,7 +87,7 @@ class TraderFragmentFood : Fragment(), FragmentFoodCallback {
             3 -> {
                 var count = (list.size - 1)
                 while (count >= 0) {
-                    if (!list[count].list_dish_as.equals("Desert")) {
+                    if (!list[count].list_dish_as.equals("Side")) {
                         list.removeAt(count)
                     }
                     count--
@@ -96,7 +96,7 @@ class TraderFragmentFood : Fragment(), FragmentFoodCallback {
             4 -> {
                 var count = (list.size - 1)
                 while (count >= 0) {
-                    if (!list[count].list_dish_as.equals("Starters")) {
+                    if (!list[count].list_dish_as.equals("Desert")) {
                         list.removeAt(count)
                     }
                     count--
