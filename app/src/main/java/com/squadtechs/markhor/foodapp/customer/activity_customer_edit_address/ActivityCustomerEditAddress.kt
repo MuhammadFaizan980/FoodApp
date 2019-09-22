@@ -66,6 +66,12 @@ class ActivityCustomerEditAddress : AppCompatActivity() {
                                 .show()
                             startActivity(Intent(this, ActivityCustomerMain::class.java))
                             finish()
+                        } else if (response.contains("You must make Atleast one Address As_default")) {
+                            Toast.makeText(
+                                this,
+                                "At least one address must be made default",
+                                Toast.LENGTH_LONG
+                            ).show()
                         } else {
                             Toast.makeText(
                                 this,

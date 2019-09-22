@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_food
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +51,17 @@ class TraderFragmentFood : Fragment(), FragmentFoodCallback {
                 try {
                     val type = object : TypeToken<ArrayList<TraderFoodModel>>() {}.type
                     list = Gson().fromJson(response, type)
+                    val id =
+                        activity!!.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                            .getString("id", "none") as String
+
+                    var count = (list.size - 1)
+                    while (count >= 0) {
+                        if (!list[count].trader_id.equals(id)) {
+                            list.removeAt(count)
+                        }
+                        count--
+                    }
                     populateRecyclerView()
                 } catch (exc: Exception) {
                     Toast.makeText(activity!!, "There is no dish to display", Toast.LENGTH_LONG)

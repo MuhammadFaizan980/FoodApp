@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.activity_customer_add_address
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -40,10 +41,17 @@ class CustomerAddAddressPresenter(
             Method.POST,
             API,
             Response.Listener { response ->
+                Log.i("address_response", response)
                 pd.cancel()
                 try {
                     if (response.contains("Address Uploaded")) {
                         mView.onSaveAddressResult(true)
+                    } else if (response.contains("You must make Atleast one Address As_default")) {
+                        Toast.makeText(
+                            context,
+                            "At least one address must be made default",
+                            Toast.LENGTH_LONG
+                        ).show()
                     } else {
                         mView.onSaveAddressResult(false)
                     }

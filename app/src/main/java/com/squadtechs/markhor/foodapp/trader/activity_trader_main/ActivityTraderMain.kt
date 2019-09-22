@@ -54,7 +54,16 @@ class ActivityTraderMain : AppCompatActivity(),
         fragmentAddNonFood = TraderFragmentAddNonFoodItem()
         fragmentAddNonFoodImages = TraderFragmentAddNonFoodImages()
         bottomNavigation = findViewById(R.id.bottom_navigation_view)
-        changeFragment(fragmentHome)
+        if (getSharedPreferences(
+                "user_credentials",
+                Context.MODE_PRIVATE
+            ).getString("company_type", "none").equals("Food & beverages")
+        ) {
+            changeFragment(fragmentHome)
+
+        } else {
+            changeFragment(fragmentHomeNonFood)
+        }
     }
 
     private fun changeFragment(fragment: Fragment) {
@@ -69,14 +78,13 @@ class ActivityTraderMain : AppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_home -> {
-                changeFragment(fragmentHome)
-
                 if (getSharedPreferences(
                         "user_credentials",
                         Context.MODE_PRIVATE
                     ).getString("company_type", "none").equals("Food & beverages")
                 ) {
                     changeFragment(fragmentHome)
+
                 } else {
                     changeFragment(fragmentHomeNonFood)
                 }

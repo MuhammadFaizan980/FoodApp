@@ -31,7 +31,7 @@ class CustomerAddressAdapter(
     override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
         val obj = list[position]
         holder.txtAddress.text = obj.address
-        if (obj.is_default.equals("no") || obj.is_default.equals("Yes")) {
+        if (obj.is_default.equals("Yes")) {
             holder.txtDefaultAddress.visibility = View.VISIBLE
             val pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
             val editor = pref.edit()
