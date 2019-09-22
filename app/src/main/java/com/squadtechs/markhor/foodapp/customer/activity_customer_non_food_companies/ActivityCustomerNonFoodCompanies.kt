@@ -52,6 +52,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                     list = Gson().fromJson(response, type)
                     when (intent!!.extras!!.getInt("position")) {
                         0 -> {
+                            txtTitle.text = "Clothes"
+                            txtSubTitle.text = "Browse for your next outfit"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Clothes")) {
@@ -61,6 +63,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         1 -> {
+                            txtTitle.text = "Accessories"
+                            txtSubTitle.text = "Browse what suites your need"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Accessories")) {
@@ -70,6 +74,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         2 -> {
+                            txtTitle.text = "Skincare"
+                            txtSubTitle.text = "Take care of your skin"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Skincare")) {
@@ -79,6 +85,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         3 -> {
+                            txtTitle.text = "Homeware"
+                            txtSubTitle.text = "Make your home prettier"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Homeware")) {
@@ -88,6 +96,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         4 -> {
+                            txtTitle.text = "Toys"
+                            txtSubTitle.text = "Let your kids enjoy"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Toys")) {
@@ -97,6 +107,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         5 -> {
+                            txtTitle.text = "Shoes"
+                            txtSubTitle.text = "Browse through best footwear"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Shoes")) {
@@ -106,6 +118,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         6 -> {
+                            txtTitle.text = "Bags"
+                            txtSubTitle.text = "Stand out of the crowd with your style"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Bags")) {
@@ -115,6 +129,8 @@ class ActivityCustomerNonFoodCompanies : AppCompatActivity() {
                             }
                         }
                         7 -> {
+                            txtTitle.text = "Other"
+                            txtSubTitle.text = "Browse as per your need"
                             var count = (list.size - 1)
                             while (count >= 0) {
                                 if (!list[count].company_type.equals("Other")) {
