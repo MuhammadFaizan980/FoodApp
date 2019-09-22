@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,8 @@ import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.TraderMainCallBack
 import com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_main.ActivityTraderToCustomerChatMain
+import com.squareup.picasso.Picasso
+import org.json.JSONArray
 
 class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
     private lateinit var mView: View
@@ -37,6 +40,11 @@ class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
     private lateinit var txtNewMessage: TextView
     private lateinit var obj: TraderMainCallBack
     private var serverTimeValue: Long = 0
+    private lateinit var imgCompany: ImageView
+    private lateinit var txtTitle: TextView
+    private lateinit var txtTime: TextView
+    private lateinit var txtDeliveryType: TextView
+    private lateinit var txtDescription: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +54,7 @@ class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
         initViews()
         getChatCount()
         getData()
+        fetchSingleCompanyData()
 
         imgChat.setOnClickListener {
             val editor =
@@ -98,6 +107,11 @@ class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
     }
 
     private fun initViews() {
+        txtTitle = mView.findViewById(R.id.txt_title)
+        txtDescription = mView.findViewById(R.id.txt_description)
+        txtTime = mView.findViewById(R.id.txt_time)
+        txtDeliveryType = mView.findViewById(R.id.txt_delivery_type)
+        imgCompany = mView.findViewById(R.id.img_company_image)
         txtNewMessage = mView.findViewById(R.id.new_message_badge)
         imgChat = mView.findViewById(R.id.img_chat)
         recyclerView = mView.findViewById(R.id.recycler)
@@ -144,6 +158,49 @@ class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
         )
         startActivity(mIntent)
         activity!!.finish()
+    }
+
+    private fun fetchSingleCompanyData() {
+        val API = "http://squadtechsolution.com/android/v1/singleCompanyDetail.php"
+        val requestQueue = Volley.newRequestQueue(activity!!)
+        val stringRequest = object : StringRequest(Method.POST, API,
+            Response.Listener { response ->
+                Log.i("dxdiag", response)
+                try {
+                    val json = JSONArray(response).getJSONObject(0)
+                    Picasso.get()
+                        .load("http://squadtechsolution.com/android/v1/${json.getString("company_logo")}")
+                        .into(imgCompany)
+                    txtTitle.text = json.getString("company_name")
+                    txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"
+                    txtTime.text = json.getString("delivery_fee")
+                    txtDescription.text = json.getString("company_description")
+
+                    val editor = activity!!.getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).edit()
+                    editor.putString("delivery_type", json.getString("delivery_type"))
+                    editor.apply()
+
+                } catch (exc: Exception) {
+                    Log.i("dxdiag", exc.toString())
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(activity!!, error.toString(), Toast.LENGTH_LONG).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val map = HashMap<String, String>()
+                map["id"] = activity!!.getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("company_id", "none") as String
+                Log.i("dxdiag", map["id"])
+                return map
+            }
+        }
+        requestQueue.add(stringRequest)
     }
 
     override fun onEditTapped() {
