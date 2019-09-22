@@ -17,6 +17,7 @@ import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_dish.
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_images.TraderFragmentAddNonFoodImages
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item.TraderFragmentAddNonFoodItem
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home.TraderFragmentHome
+import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home_non_food.TraderFragmentHomeNonFood
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_profile.TraderFragmentProfile
 
 
@@ -25,6 +26,7 @@ class ActivityTraderMain : AppCompatActivity(),
 
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var fragmentHome: TraderFragmentHome
+    private lateinit var fragmentHomeNonFood: TraderFragmentHomeNonFood
     private lateinit var fragmentProfile: TraderFragmentProfile
     private lateinit var fragmentAddFood: TraderFragmentAddDish
     private lateinit var fragmentAddNonFood: TraderFragmentAddNonFoodItem
@@ -46,6 +48,7 @@ class ActivityTraderMain : AppCompatActivity(),
 
     private fun initViews() {
         fragmentHome = TraderFragmentHome()
+        fragmentHomeNonFood = TraderFragmentHomeNonFood()
         fragmentProfile = TraderFragmentProfile()
         fragmentAddFood = TraderFragmentAddDish()
         fragmentAddNonFood = TraderFragmentAddNonFoodItem()
@@ -67,6 +70,17 @@ class ActivityTraderMain : AppCompatActivity(),
         when (item.itemId) {
             R.id.item_home -> {
                 changeFragment(fragmentHome)
+
+                if (getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).getString("company_type", "none").equals("Food & beverages")
+                ) {
+                    changeFragment(fragmentHome)
+                } else {
+                    changeFragment(fragmentHomeNonFood)
+                }
+
             }
             R.id.item_profile -> {
                 changeFragment(TraderFragmentProfile())

@@ -41,6 +41,7 @@ class CustomerLoginPresenter(
             Response.Listener { response ->
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
+                    progressDialog.cancel()
                     mView.onLoginResult(
                         false,
                         json.getString("label") + " try using different credentials"

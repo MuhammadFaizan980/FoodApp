@@ -67,6 +67,7 @@ class TraderRegistrationPresenter(
                 progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
+                    progressDialog.cancel()
                     mView.onRegistrationResult(false, json.getString("label"))
                 } else {
                     val trader_id = JSONObject(response).getInt("trader_id").toString()

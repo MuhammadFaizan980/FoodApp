@@ -3,37 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="90dp"
+    android:layout_marginTop="8dp"
     android:orientation="horizontal">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/img_company"
-        android:layout_width="140dp"
-        android:layout_height="match_parent"
-        android:src="@drawable/food"
-        app:riv_corner_radius="16dp" />
+    <FrameLayout
+        android:id="@+id/touch_frame"
+        android:layout_width="110dp"
+        android:layout_height="match_parent">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/img_company"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/food"
+            app:riv_corner_radius="24dp" />
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/txt_home_back"
+            android:gravity="center"
+            android:text="@string/edit_dish"
+            android:textColor="@color/colorWhite"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingLeft="8dp">
 
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:text="@string/biryani"
             android:textColor="@color/colorBlack"
-            android:textSize="21sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_description"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:paddingEnd="8dp"
             android:text="@string/this_is_just_a_demo_description_in_order_to_dtect_the_behaviour_of_the_food_row_design_and_determine_whether_this_row_design_needs_to_be_changed_or_onot"
             android:textSize="10sp"
@@ -51,7 +68,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/aed"
                 android:textColor="@color/colorBlack"
-                android:textSize="19sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -61,7 +78,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/_23"
                 android:textColor="@color/colorBlack"
-                android:textSize="19sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>

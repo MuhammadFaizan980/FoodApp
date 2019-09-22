@@ -206,7 +206,10 @@ class TraderFragmentAddDish : Fragment() {
                         Toast.makeText(activity!!, error.toString(), Toast.LENGTH_LONG).show()
                     }) {
 
-                    override fun getParams(): MutableMap<String, String> = map
+                    override fun getParams(): MutableMap<String, String> {
+                        Log.i("dxdiag", "\n\n\n${map["dash_contain"]}\n\n\n")
+                        return map
+                    }
                 }
                 requestQueue.add(stringRequest)
 

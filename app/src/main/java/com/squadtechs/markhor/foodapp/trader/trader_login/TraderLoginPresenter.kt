@@ -44,6 +44,7 @@ class TraderLoginPresenter(
                 Log.i("m_resp", response)
                 val json = JSONObject(response)
                 if (json.getString("status").equals("login_failed")) {
+                    progressDialog.cancel()
                     mView.onLoginResult(
                         false,
                         "n/a",

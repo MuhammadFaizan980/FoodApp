@@ -65,6 +65,7 @@ class CustomerRegistrationPresenter(
             Response.Listener { response ->
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
+                    progressDialog.cancel()
                     mView.onRegistrationResult(
                         false,
                         json.getString("label") + " try with different credentials"
