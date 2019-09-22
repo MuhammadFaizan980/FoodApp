@@ -53,6 +53,7 @@ class TraderFragmentAddDish : Fragment() {
     private lateinit var map: HashMap<String, String>
     private lateinit var API: String
     private lateinit var imageAPI: String
+    private lateinit var food_id: String
 
     //CHECK_BOXES
     private lateinit var checkMeat: CheckBox
@@ -173,7 +174,7 @@ class TraderFragmentAddDish : Fragment() {
                     map["dash_description"] = description
                     map["price"] = price
                     map["list_dish_as"] = listDishAs
-                    map["dash_contain"] = dishContains
+                    map["dish_contain"] = dishContains
                     map["food_deliveryPrice"] = deliveryPrice
                     map["trader_id"] = activity!!.getSharedPreferences(
                         "user_credentials",
@@ -206,15 +207,23 @@ class TraderFragmentAddDish : Fragment() {
                         Log.i("m_response", response)
                         try {
                             val json = JSONObject(response)
-                            if (json.getString("status").equals("Food Uploaded ")) {
-                                val food_id = json.getInt("food_id").toString()
+                            if (json.getString("status").equals("Food Uploaded ") || json.getString(
+                                    "status"
+                                ).equals("Food Updated ")
+                            ) {
+                                food_id = json.getInt("food_id").toString()
                                 uploadImage(food_id)
                             } else {
                                 Toast.makeText(activity!!, "There was an error", Toast.LENGTH_LONG)
                                     .show()
                             }
                         } catch (exc: Exception) {
-                            Log.i("dxdiag", exc.toString())
+                            Log.i("exception_update_dish", exc.toString())
+                            food_id = activity!!.getSharedPreferences(
+                                "add_item_preferences",
+                                Context.MODE_PRIVATE
+                            ).getString("food_id", "null") as String
+                            uploadImage(food_id)
                         }
                     },
                     Response.ErrorListener { error ->
@@ -265,10 +274,14 @@ class TraderFragmentAddDish : Fragment() {
             Method.POST,
             imageAPI,
             Response.Listener { response ->
+                Log.i("image_response", response)
                 pd.cancel()
                 try {
                     val json = JSONObject(response)
-                    if (json.getString("status").equals("Images Uploaded")) {
+                    if (json.getString("status").equals("Images Uploaded") || json.getString("status").equals(
+                            "Images Updated"
+                        )
+                    ) {
                         Toast.makeText(activity!!, "Product added successfully", Toast.LENGTH_LONG)
                             .show()
                         startActivity(Intent(activity!!, ActivityTraderMain::class.java))
