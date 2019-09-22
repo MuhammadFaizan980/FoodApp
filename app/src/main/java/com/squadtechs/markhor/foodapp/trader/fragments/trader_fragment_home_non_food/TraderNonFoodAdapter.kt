@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
 import com.squareup.picasso.Picasso
 
 class TraderNonFoodAdapter(
     private val list: ArrayList<TraderNonFoodModel>,
-    private val context: Context
+    private val context: Context,
+    private val mView: TraderNonFoodCallBack
 ) : RecyclerView.Adapter<TraderNonFoodAdapter.NonFoodViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NonFoodViewHolder =
         NonFoodViewHolder(
@@ -35,6 +35,16 @@ class TraderNonFoodAdapter(
         Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.image_path}")
             .into(holder.imgItem)
         adjustScreen(holder, position)
+
+        holder.touchView.setOnClickListener {
+            val pref = context.getSharedPreferences("add_item_preferences", Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putBoolean("is_edit", true)
+            editor.putString("item_id", obj.id)
+            editor.apply()
+            mView.onEditTapped()
+        }
+
     }
 
     private fun adjustScreen(holder: NonFoodViewHolder, position: Int) {
@@ -53,5 +63,6 @@ class TraderNonFoodAdapter(
     inner class NonFoodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgItem: ImageView = view.findViewById(R.id.img_item)
         val frame: FrameLayout = view.findViewById(R.id.main_frame)
+        val touchView: View = view.findViewById(R.id.touch_view)
     }
 }

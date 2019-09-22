@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home_non_food
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,16 +25,17 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.TraderMainCallBack
 import com.squadtechs.markhor.foodapp.trader.activity_trader_to_customer_chat_main.ActivityTraderToCustomerChatMain
 
-class TraderFragmentHomeNonFood : Fragment() {
-
+class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
     private lateinit var mView: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TraderNonFoodAdapter
     private lateinit var imgChat: ImageView
     private lateinit var list: ArrayList<TraderNonFoodModel>
     private lateinit var txtNewMessage: TextView
+    private lateinit var obj: TraderMainCallBack
     private var serverTimeValue: Long = 0
 
     override fun onCreateView(
@@ -81,7 +83,7 @@ class TraderFragmentHomeNonFood : Fragment() {
                         count--
                     }
                     recyclerView.layoutManager = GridLayoutManager(activity!!, 2)
-                    adapter = TraderNonFoodAdapter(list, activity!!)
+                    adapter = TraderNonFoodAdapter(list, activity!!, this)
                     recyclerView.adapter = adapter
 
                 } catch (exc: Exception) {
@@ -144,5 +146,13 @@ class TraderFragmentHomeNonFood : Fragment() {
         activity!!.finish()
     }
 
+    override fun onEditTapped() {
+        obj.onEditNonFoodClicked()
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        obj = activity as TraderMainCallBack
+    }
 
 }

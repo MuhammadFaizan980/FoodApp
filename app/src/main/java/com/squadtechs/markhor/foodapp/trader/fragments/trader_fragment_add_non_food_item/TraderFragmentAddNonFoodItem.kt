@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -23,6 +24,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     private lateinit var spinnerListItemAs: Spinner
     private lateinit var mView: View
     private lateinit var btnNext: Button
+    private lateinit var txtTitle: TextView
     private lateinit var linearDeliveryPrice: LinearLayout
     private lateinit var linearXsXl: LinearLayout
     private lateinit var linearChildren: LinearLayout
@@ -110,6 +112,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         sendData()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun sendData() {
         val price = edtPrice.text.toString().trim()
         deliveryPrice = edtDeliveryPrice.text.toString()
@@ -139,9 +142,9 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                 map["delivery_price"] = deliveryPrice
                 map["size"] = size!!
                 map["id"] = activity!!.getSharedPreferences(
-                    "user_credentials",
+                    "add_item_preferences",
                     Context.MODE_PRIVATE
-                ).getString("id", "na") as String
+                ).getString("item_id", "na") as String
             } else {
                 API = "http://squadtechsolution.com/android/v1/non_food_item.php"
                 map["title"] = title
@@ -164,7 +167,10 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                     Log.i("dxdiag", response)
                     try {
                         val json = JSONObject(response)
-                        if (json.getString("status").equals("Item Uploaded ")) {
+                        if (json.getString("status").equals("Item Uploaded ") || json.getString("status").equals(
+                                "Non Food Item Updated "
+                            )
+                        ) {
                             val pref =
                                 activity!!.getSharedPreferences("item_id", Context.MODE_PRIVATE)
                             val editor = pref.edit()
@@ -176,7 +182,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                                 .show()
                         }
                     } catch (exc: Exception) {
-
+                        obj.onFragmentTap("images")
                     }
                 },
                 Response.ErrorListener { error ->
@@ -260,6 +266,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     }
 
     private fun initViews() {
+        txtTitle = mView.findViewById(R.id.txt_title)
         spinnerListItemAs = mView.findViewById(R.id.spinner_list_item_as)
         spinnerSizes = mView.findViewById(R.id.spinner_size)
         linearDeliveryPrice = mView.findViewById(R.id.linear_delivery_price)
@@ -296,6 +303,17 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         edtDescription = mView.findViewById(R.id.edt_product_description)
         edtDeliveryPrice = mView.findViewById(R.id.edt_dish_delivery_price)
         edtPrice = mView.findViewById(R.id.edt_product_price)
+
+        if (activity!!.getSharedPreferences(
+                "add_item_preferences",
+                Context.MODE_PRIVATE
+            ).getBoolean(
+                "is_edit",
+                false
+            )
+        ) {
+            txtTitle.text = "Edit Item"
+        }
 
     }
 

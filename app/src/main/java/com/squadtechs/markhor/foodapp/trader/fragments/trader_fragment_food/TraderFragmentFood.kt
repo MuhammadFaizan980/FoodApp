@@ -130,7 +130,7 @@ class TraderFragmentFood : Fragment(), FragmentFoodCallback {
     }
 
     override fun onEditClicked() {
-        obj.onEditClicked()
+        obj.onEditFoodClicked()
     }
 
     override fun onAttach(activity: Activity?) {

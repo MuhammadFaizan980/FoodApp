@@ -89,6 +89,7 @@ class TraderFragmentAddNonFoodImages : Fragment() {
         imgSecondImage = mView.findViewById(R.id.img_product_second)
         imgThirdImage = mView.findViewById(R.id.img_product_third)
         btnUpload = mView.findViewById(R.id.btn_upload)
+
         btnUpload.setOnClickListener {
             if (uri1 != null && uri2 != null && uri3 != null) {
 
@@ -102,8 +103,11 @@ class TraderFragmentAddNonFoodImages : Fragment() {
                     )
                 ) {
                     API = "http://squadtechsolution.com/android/v1/update_NonFoodImages.php"
-                    map["id"] = pref.getString("value", "null") as String
-                    map["nonFoodImage"] = getImageString(uri1)
+                    map["id"] = activity!!.getSharedPreferences(
+                        "add_item_preferences",
+                        Context.MODE_PRIVATE
+                    ).getString("item_id", "none") as String
+                    map["nonfoodImage"] = getImageString(uri1)
                     map["nonFoodImage2"] = getImageString(uri2)
                     map["nonFoodImage3"] = getImageString(uri3)
                 } else {
@@ -125,7 +129,10 @@ class TraderFragmentAddNonFoodImages : Fragment() {
                         pd.cancel()
                         try {
                             val json = JSONObject(response)
-                            if (json.getString("status").equals("Images Uploaded")) {
+                            if (json.getString("status").equals("Images Uploaded") || json.getString(
+                                    "status"
+                                ).equals("Images Updated")
+                            ) {
                                 Toast.makeText(
                                     activity!!,
                                     "Images added successfully",

@@ -142,8 +142,12 @@ class ActivityTraderMain : AppCompatActivity(),
         }
     }
 
-    override fun onEditClicked() {
+    override fun onEditFoodClicked() {
         changeFragment(fragmentAddFood)
+    }
+
+    override fun onEditNonFoodClicked() {
+        changeFragment(fragmentAddNonFood)
     }
 
     override fun onRequestPermissionsResult(
