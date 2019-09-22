@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_food
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,13 +17,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
+import com.squadtechs.markhor.foodapp.trader.activity_trader_main.TraderMainCallBack
 
-class TraderFragmentFood : Fragment() {
+class TraderFragmentFood : Fragment(), FragmentFoodCallback {
 
     private lateinit var mView: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TraderFoodAdapter
     private lateinit var list: ArrayList<TraderFoodModel>
+    private lateinit var obj: TraderMainCallBack
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,7 +103,7 @@ class TraderFragmentFood : Fragment() {
                 }
             }
         }
-        adapter = TraderFoodAdapter(list, activity!!)
+        adapter = TraderFoodAdapter(list, activity!!, this)
         inflate()
     }
 
@@ -112,6 +115,15 @@ class TraderFragmentFood : Fragment() {
     private fun initViews() {
         recyclerView = mView.findViewById(R.id.recycler)
         list = ArrayList()
+    }
+
+    override fun onEditClicked() {
+        obj.onEditClicked()
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        obj = activity!! as TraderMainCallBack
     }
 
 }

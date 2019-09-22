@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_dish
 
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
@@ -33,6 +34,7 @@ class TraderFragmentAddDish : Fragment() {
     private lateinit var edtTitle: EditText
     private lateinit var edtDescription: EditText
     private lateinit var edtPrice: EditText
+    private lateinit var txtTitle: TextView
     private lateinit var edtDeliveryPrice: EditText
     private lateinit var imgDish: ImageView
     private lateinit var btnAddDish: Button
@@ -162,7 +164,21 @@ class TraderFragmentAddDish : Fragment() {
                 ) {
                     API = "http://squadtechsolution.com/android/v1/updateFood.php"
                     imageAPI = "http://squadtechsolution.com/android/v1/update_FoodImages.php"
-                    TODO("prepare map accordingly")
+
+                    map["food_id"] = activity!!.getSharedPreferences(
+                        "add_item_preferences",
+                        Context.MODE_PRIVATE
+                    ).getString("food_id", "null") as String
+                    map["dash_name"] = title
+                    map["dash_description"] = description
+                    map["price"] = price
+                    map["list_dish_as"] = listDishAs
+                    map["dash_contain"] = dishContains
+                    map["food_deliveryPrice"] = deliveryPrice
+                    map["trader_id"] = activity!!.getSharedPreferences(
+                        "user_credentials",
+                        Context.MODE_PRIVATE
+                    ).getString("id", "na") as String
                 } else {
                     API = "http://squadtechsolution.com/android/v1/food.php"
                     imageAPI = "http://squadtechsolution.com/android/v1/foodImages.php"
@@ -308,7 +324,9 @@ class TraderFragmentAddDish : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initViews() {
+        txtTitle = mView.findViewById(R.id.txt_title)
         spinnerListDishAs = mView.findViewById(R.id.spinner_list_dish_as)
         linearDeliveryPrice = mView.findViewById(R.id.linear_delivery_price)
         edtTitle = mView.findViewById(R.id.edt_dish_name)
@@ -332,6 +350,18 @@ class TraderFragmentAddDish : Fragment() {
         checkSeaFood = mView.findViewById(R.id.check_sea_food)
         checkVegan = mView.findViewById(R.id.check_vegan)
         checkVegetarian = mView.findViewById(R.id.check_vegetarian)
+
+        if (activity!!.getSharedPreferences(
+                "add_item_preferences",
+                Context.MODE_PRIVATE
+            ).getBoolean(
+                "is_edit",
+                false
+            )
+        ) {
+            txtTitle.text = "Edit Dish"
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,8 @@ import com.squareup.picasso.Picasso
 
 class TraderFoodAdapter(
     private val list: ArrayList<TraderFoodModel>,
-    private val context: Context
+    private val context: Context,
+    private val mView: FragmentFoodCallback
 ) : RecyclerView.Adapter<TraderFoodAdapter.TraderFoodHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TraderFoodHolder =
         TraderFoodHolder(
@@ -34,6 +36,14 @@ class TraderFoodAdapter(
         holder.txtPrice.text = obj.price
         Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.image_path}")
             .into(holder.imgCompany)
+        holder.touchFrame.setOnClickListener {
+            val pref = context.getSharedPreferences("add_item_preferences", Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putBoolean("is_edit", true)
+            editor.putString("food_id", obj.id)
+            editor.apply()
+            mView.onEditClicked()
+        }
     }
 
     inner class TraderFoodHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,5 +51,6 @@ class TraderFoodAdapter(
         val txtDescription: TextView = view.findViewById(R.id.txt_description)
         val txtPrice: TextView = view.findViewById(R.id.txt_price)
         val imgCompany: ImageView = view.findViewById(R.id.img_company)
+        val touchFrame: FrameLayout = view.findViewById(R.id.touch_frame)
     }
 }
