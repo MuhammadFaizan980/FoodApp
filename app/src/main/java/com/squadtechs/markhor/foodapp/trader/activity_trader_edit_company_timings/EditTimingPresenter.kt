@@ -156,10 +156,10 @@ class EditTimingPresenter(
                 ).getString("image_string", "n/a") as String
                 map["address"] = companyCoordinates
                 if (companyDeliveryType.equals("yes")) {
-                    map["delivery_fee"] = companyDeliveryTime
+                    map["delivery_timing"] = companyDeliveryTime
                     map["delivery_range"] = companyDeliveryRange
                 } else {
-                    map["delivery_fee"] = "n/a"
+                    map["delivery_timing"] = "n/a"
                     map["delivery_range"] = "n/a"
                 }
                 Log.i("dxdiag", map.toString())
