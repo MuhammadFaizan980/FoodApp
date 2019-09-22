@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="32dp"
-    android:paddingTop="32dp"
-    android:paddingRight="32dp"
     tools:context=".customer.activity_customer_non_food_companies.ActivityCustomerNonFoodCompanies">
 
     <EditText
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:id="@+id/edt_customer_home_search"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -34,72 +34,11 @@
     <TextView
         android:id="@+id/txt_subtitle"
         android:layout_width="match_parent"
+        android:layout_marginBottom="16dp"
         android:layout_height="wrap_content"
         android:text="@string/browse_to_find_your_next_new_outfit"
         android:textAlignment="center" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
-
-        <TextView
-            android:id="@+id/txt_all"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tab_back_selected"
-            android:gravity="center"
-            android:text="@string/all"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_women"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/women"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_men"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/men"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_children"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/children"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/my_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include layout="@layout/recycler_view" />
 
 </LinearLayout>

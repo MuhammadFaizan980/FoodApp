@@ -62,17 +62,13 @@ class CustomerFragmentHomeAdapter(
         }
 
         holder.touchView.setOnClickListener {
-            when (position) {
-                0 -> {
-                    context.startActivity(
-                        Intent(
-                            context,
-                            ActivityCustomerNonFoodCompanies::class.java
-                        ).putExtra("position", position)
-                    )
-                    mActivity.finish()
-                }
-            }
+            context.startActivity(
+                Intent(
+                    context,
+                    ActivityCustomerNonFoodCompanies::class.java
+                ).putExtra("position", position)
+            )
+            mActivity.finish()
         }
 
     }
