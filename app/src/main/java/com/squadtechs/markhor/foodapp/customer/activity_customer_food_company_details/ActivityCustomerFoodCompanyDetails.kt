@@ -121,7 +121,6 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
 
     private fun initViews() {
         imgChat = findViewById(R.id.img_chat)
-        txtNewMessage = findViewById(R.id.new_message_badge)
         viewPackage = findViewById(R.id.company_view_pager)
         txtAll = findViewById(R.id.txt_all)
         txtStarters = findViewById(R.id.txt_starters)
