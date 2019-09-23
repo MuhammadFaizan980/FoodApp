@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="120dp"
+    android:layout_marginTop="8dp"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -14,6 +15,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/img_company"
             android:layout_width="140dp"
+            android:scaleType="fitXY"
             android:layout_height="match_parent"
             android:src="@drawable/food"
             app:riv_corner_radius="16dp" />
@@ -78,6 +80,6 @@
     <View
         android:id="@+id/touch_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

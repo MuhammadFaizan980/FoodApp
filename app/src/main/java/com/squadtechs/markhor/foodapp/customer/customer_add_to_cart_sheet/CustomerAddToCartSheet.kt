@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.customer_add_to_cart_sheet
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,18 +48,28 @@ class CustomerAddToCartSheet : BottomSheetDialogFragment() {
                 txtItemCount.text = "$itemCount"
             }
         }
+        val pref = activity!!.getSharedPreferences("bc", Context.MODE_PRIVATE)
         Picasso.get().load(
             activity!!.getSharedPreferences(
                 "bc",
                 Context.MODE_PRIVATE
             ).getString("cart_item_url", "none")
         ).into(itemImage)
-        txtTitle.text = activity!!.getSharedPreferences("bc", Context.MODE_PRIVATE)
-            .getString("cart_item_title", "none")
-        txtDescription.text = activity!!.getSharedPreferences("bc", Context.MODE_PRIVATE)
-            .getString("cart_item_description", "none")
-        txtPrice.text = activity!!.getSharedPreferences("bc", Context.MODE_PRIVATE)
-            .getString("cart_item_price", "none")
+        txtTitle.text = pref.getString("cart_item_title", "none")
+        txtDescription.text = pref.getString("cart_item_description", "none")
+        txtPrice.text = "AED " + pref.getString("cart_item_price", "none")
+
+        btnAddToBasket.setOnClickListener {
+            Log.i("cart_items", pref.getString("company_id", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("cart_item_title", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("cart_item_description", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("cart_item_price", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("cart_item_delivery_price", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("item_id", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("is_food", "none").toString() + "\n")
+            Log.i("cart_items", pref.getString("customer_id", "none").toString() + "\n")
+            Log.i("cart_items", itemCount.toString())
+        }
     }
 
     private fun initViews() {

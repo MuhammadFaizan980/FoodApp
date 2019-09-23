@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_food.FragmentFoodCallback
-import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_food.TraderFoodModel
+import com.squadtechs.markhor.foodapp.customer.customer_add_to_cart_sheet.CustomerAddToCartSheet
 import com.squareup.picasso.Picasso
 
 
 class CustomerFoodFragmentAdapter(
     private val list: ArrayList<CustomerFoodFragmentModel>,
-    private val context: Context
+    private val context: Context,
+    private var companyID: String,
+    private val manager: FragmentManager
 ) : RecyclerView.Adapter<CustomerFoodFragmentAdapter.CustomerFoodHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerFoodHolder =
         CustomerFoodHolder(
@@ -37,6 +39,34 @@ class CustomerFoodFragmentAdapter(
         holder.txtPrice.text = obj.price
         Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.image_path}")
             .into(holder.imgCompany)
+        holder.touchView.setOnLongClickListener {
+
+            val pref = context.getSharedPreferences("bc", Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putString(
+                "cart_item_url",
+                "http://squadtechsolution.com/android/v1/${obj.image_path}"
+            )
+            editor.putString("cart_item_title", obj.name)
+            editor.putString("cart_item_description", obj.description)
+            editor.putString("cart_item_price", obj.price)
+            editor.putString("cart_item_delivery_price", obj.food_deliveryPrice)
+            editor.putString("company_id", companyID)
+            editor.putString("item_id", obj.id)
+            editor.putString("is_food", "yes")
+            editor.putString(
+                "customer_id",
+                context.getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("id", "none")
+            )
+            editor.apply()
+
+            val bottomSheet = CustomerAddToCartSheet()
+            bottomSheet.show(manager, "lol")
+            return@setOnLongClickListener true
+        }
     }
 
     inner class CustomerFoodHolder(view: View) : RecyclerView.ViewHolder(view) {

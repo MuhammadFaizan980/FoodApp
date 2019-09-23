@@ -88,7 +88,12 @@ class CustomerFragmentFood : Fragment() {
                         }
                     }
                     recyclerView.layoutManager = LinearLayoutManager(activity!!)
-                    adapter = CustomerFoodFragmentAdapter(list, activity!!)
+                    adapter = CustomerFoodFragmentAdapter(
+                        list,
+                        activity!!,
+                        arguments!!.getString("company_id") as String,
+                        childFragmentManager
+                    )
                     recyclerView.adapter = adapter
                 } catch (exc: Exception) {
                     Log.i("food_exception", exc.toString())
