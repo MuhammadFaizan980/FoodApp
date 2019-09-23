@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.activity_customer_edit_address.ActivityCustomerEditAddress"></activity>
+        <activity android:name=".customer.activity_customer_non_food_item_details.ActivityCustomerNonFoodItemDetails"></activity>
+        <activity android:name=".customer.activity_customer_edit_address.ActivityCustomerEditAddress" />
         <activity
             android:name=".trader.activity_trader_to_customer_chat_screen.ActivityTraderToCustomerChatScreen"
             android:screenOrientation="portrait" />

@@ -2,6 +2,7 @@ package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_non_
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_non_food_item_details.ActivityCustomerNonFoodItemDetails
 import com.squareup.picasso.Picasso
 
 class CustomerFragmentNonFoodAdapter(
@@ -36,6 +38,16 @@ class CustomerFragmentNonFoodAdapter(
             .into(holder.imgItem)
         holder.txtTitle.text = obj.name
         adjustScreen(holder, position)
+        holder.touchView.setOnClickListener {
+            val intent = Intent(context, ActivityCustomerNonFoodItemDetails::class.java)
+            intent.putExtra("title", obj.name)
+            intent.putExtra("price", obj.price)
+            intent.putExtra("description", obj.description)
+            intent.putExtra("image1", obj.image_path)
+            intent.putExtra("image2", obj.image_path2)
+            intent.putExtra("image3", obj.image_path3)
+            context.startActivity(intent)
+        }
     }
 
     private fun adjustScreen(holder: CustomerNonFoodViewHolder, position: Int) {
