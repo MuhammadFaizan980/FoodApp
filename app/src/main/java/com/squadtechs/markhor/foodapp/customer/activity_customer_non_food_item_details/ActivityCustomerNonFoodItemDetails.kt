@@ -36,7 +36,7 @@ class ActivityCustomerNonFoodItemDetails : AppCompatActivity() {
 
     private fun populateViews() {
         txtTitle.text = intent!!.extras!!.getString("title")
-        txtPrice.text = intent!!.extras!!.getString("price")
+        txtPrice.text = "AED ${intent!!.extras!!.getString("price")}"
         txtDescription.text = intent!!.extras!!.getString("description")
     }
 
