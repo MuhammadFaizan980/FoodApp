@@ -186,4 +186,5 @@
     <string name="i_have_an_issue_with_an_order">I HAVE AN ISSUE WITH AN ORDER</string>
     <string name="send_us_feedback_abut_the_app">SEND US FEEDBACK ABUT THE APP</string>
     <string name="rate_us_on_the_play_store">RATE US ON THE PLAY STORE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

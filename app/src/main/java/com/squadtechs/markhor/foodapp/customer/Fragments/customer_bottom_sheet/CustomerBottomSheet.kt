@@ -1,4 +1,4 @@
-package com.squadtechs.markhor.foodapp.trader.fragments.trader_bottom_sheet
+package com.squadtechs.markhor.foodapp.customer.Fragments.customer_bottom_sheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squadtechs.markhor.foodapp.R
 
-class TraderBottomSheet : BottomSheetDialogFragment() {
+class CustomerBottomSheet : BottomSheetDialogFragment() {
     private lateinit var mView: View
     private lateinit var txtIssue: TextView
     private lateinit var txtFeedback: TextView

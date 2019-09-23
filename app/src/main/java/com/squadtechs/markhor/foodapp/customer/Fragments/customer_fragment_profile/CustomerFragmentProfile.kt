@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.Fragments.customer_bottom_sheet.CustomerBottomSheet
 import com.squadtechs.markhor.foodapp.customer.activity_customer_address.ActivityCustomerAddress
 import com.squadtechs.markhor.foodapp.customer.activity_customer_change_password.ActivityCustomerChangePassword
 import com.squadtechs.markhor.foodapp.customer.activity_customer_edit_profile.ActivityCustomerEditProfile
@@ -22,6 +23,7 @@ class CustomerFragmentProfile : Fragment() {
 
     private lateinit var mView: View
     private lateinit var txtMyDetails: TextView
+    private lateinit var txtContactUs: TextView
     private lateinit var txtChangePassword: TextView
     private lateinit var txtAddress: TextView
     private lateinit var txtSignOut: TextView
@@ -77,6 +79,11 @@ class CustomerFragmentProfile : Fragment() {
             dialog.show()
         }
 
+        txtContactUs.setOnClickListener {
+            val bottomSheet = CustomerBottomSheet()
+            bottomSheet.show(childFragmentManager, "customer_dxdiag")
+        }
+
     }
 
     private fun populateUserName() {
@@ -85,6 +92,7 @@ class CustomerFragmentProfile : Fragment() {
     }
 
     private fun initViews() {
+        txtContactUs = mView.findViewById(R.id.txt_customer_contact_us)
         txtMyDetails = mView.findViewById(R.id.txt_customer_profile)
         txtChangePassword = mView.findViewById(R.id.txt_customer_change_password)
         txtSignOut = mView.findViewById(R.id.txt_customer_sign_out)
