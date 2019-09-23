@@ -13,6 +13,7 @@ import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_trader_change_password.ActivityTraderChangePassword
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_profile.ActivityTraderEditProfile
+import com.squadtechs.markhor.foodapp.trader.fragments.trader_bottom_sheet.TraderBottomSheet
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class TraderFragmentProfile : Fragment() {
@@ -20,6 +21,7 @@ class TraderFragmentProfile : Fragment() {
     private lateinit var mView: View
     private lateinit var txtMyDetails: TextView
     private lateinit var txtChangePassword: TextView
+    private lateinit var txtContactUs: TextView
     private lateinit var txtSignOut: TextView
     private lateinit var txtUserName: TextView
     private lateinit var pref: SharedPreferences
@@ -45,6 +47,11 @@ class TraderFragmentProfile : Fragment() {
         txtChangePassword.setOnClickListener {
             startActivity(Intent(activity!!, ActivityTraderChangePassword::class.java))
             activity!!.finish()
+        }
+
+        txtContactUs.setOnClickListener {
+            val bottomSheet = TraderBottomSheet()
+            bottomSheet.show(childFragmentManager, "dxdiag")
         }
 
         txtSignOut.setOnClickListener {
@@ -78,6 +85,7 @@ class TraderFragmentProfile : Fragment() {
         txtChangePassword = mView.findViewById(R.id.txt_trader_change_password)
         txtSignOut = mView.findViewById(R.id.txt_trader_sign_out)
         txtUserName = mView.findViewById(R.id.txt_trader_name)
+        txtContactUs = mView.findViewById(R.id.txt_trader_contact_us)
         pref = activity!!.applicationContext.getSharedPreferences(
             "user_credentials",
             Context.MODE_PRIVATE
