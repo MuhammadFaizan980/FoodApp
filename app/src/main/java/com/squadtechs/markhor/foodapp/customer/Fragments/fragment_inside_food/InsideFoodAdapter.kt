@@ -73,16 +73,7 @@ class InsideFoodAdapter(
             ).getString("lng", "n/a")!!.toDouble()
             val companyLatLng = CustomerUtils.decodeCoordinates(obj.address)
 
-            if (!lat.equals("n/a")) {
-                val mLatLng = LatLng(lat, lng)
-                val time = roundOffDecimal(
-                    (((SphericalUtil.computeDistanceBetween(
-                        mLatLng,
-                        companyLatLng
-                    ) / 1000) / 50) / 60)
-                )
-                holder.txtTime.text = "$time minutes"
-            }
+            holder.txtTime.text = obj.delivery_timing
 
             Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
                 .into(holder.imageView)
