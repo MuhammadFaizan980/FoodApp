@@ -31,12 +31,4 @@
         <include layout="@layout/recycler_view" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_go_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/ic_left_arrow_filled" />
-
 </FrameLayout>
