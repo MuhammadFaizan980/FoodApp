@@ -30,4 +30,51 @@ class DbUtils(private val context: Context) : SQLiteOpenHelper(context, "custome
         Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
     }
 
+    fun getData(companyID: String, customerID: String): ArrayList<CartUtil> {
+        val db: SQLiteDatabase = this.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM customer_cart WHERE customer_id = $customerID AND company_id = $companyID",
+            null
+        )
+        val list: ArrayList<CartUtil> = ArrayList()
+        if (cursor.count > 0) {
+            cursor.moveToFirst()
+            var count = cursor.count
+            while (count > 0) {
+                val obj = CartUtil()
+                obj.cart_item_title = cursor.getString(1)
+                obj.cart_item_quantity = cursor.getString(6)
+                obj.cart_item_price = cursor.getString(3)
+                obj.item_id = cursor.getString(2)
+                obj.cart_item_delivery_price = cursor.getString(4)
+                obj.company_id = cursor.getString(7)
+                obj.is_food = cursor.getString(5)
+                obj.customer_id = cursor.getString(8)
+                list.add(obj)
+                count--
+            }
+        } else {
+            Toast.makeText(context, "No item found", Toast.LENGTH_LONG).show()
+        }
+        return list
+    }
+
+    fun getCompanies(): ArrayList<String> {
+        val db: SQLiteDatabase = this.readableDatabase
+        val cursor = db.rawQuery("SELECT DISTINCT company_id FROM customer_cart", null)
+        val list: ArrayList<String> = ArrayList()
+        if (cursor.count > 0) {
+            cursor.moveToFirst()
+            var count = cursor.count
+            while (count > 0) {
+                val companyID = cursor.getString(0)
+                list.add(companyID)
+                count--
+            }
+        } else {
+            Toast.makeText(context, "No item found", Toast.LENGTH_LONG).show()
+        }
+        return list
+    }
+
 }
