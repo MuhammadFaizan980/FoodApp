@@ -193,4 +193,10 @@
     <string name="order_1">ORDER # 1</string>
     <string name="item_collections">ITEM COLLECTIONS</string>
     <string name="browse_through_your_cart_item_collections">Browse through your cart item collections</string>
+    <string name="my_basket">MY BASKET</string>
+    <string name="items_for_checkout">Items for checkout</string>
+    <string name="items">Items:</string>
+    <string name="sub_total">SUB TOTAL</string>
+    <string name="aed_200">AED 200</string>
+    <string name="delivery_price">DELIVERY PRICE</string>
 </resources>
