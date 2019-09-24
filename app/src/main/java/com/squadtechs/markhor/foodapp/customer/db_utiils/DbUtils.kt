@@ -67,6 +67,7 @@ class DbUtils(private val context: Context) : SQLiteOpenHelper(context, "custome
                 val companyID = cursor.getString(0)
                 list.add(companyID)
                 count--
+                cursor.moveToNext()
             }
         } else {
             Toast.makeText(context, "No item found", Toast.LENGTH_LONG).show()
