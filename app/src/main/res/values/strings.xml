@@ -191,4 +191,6 @@
     <string name="aed_680">AED 680</string>
     <string name="this_is_just_a_demo_description">This is just a demo description</string>
     <string name="order_1">ORDER # 1</string>
+    <string name="item_collections">ITEM COLLECTIONS</string>
+    <string name="browse_through_your_cart_item_collections">Browse through your cart item collections</string>
 </resources>
