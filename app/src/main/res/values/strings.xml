@@ -198,9 +198,10 @@
     <string name="items">Items:</string>
     <string name="sub_total">SUB TOTAL</string>
     <string name="aed_200">AED 200</string>
-    <string name="delivery_price">DELIVERY PRICE</string>
     <string name="method_of_receiving_items">Method of receiving items</string>
     <string name="deliver_to_me">Deliver to me</string>
     <string name="i_will_collect">I will collect</string>
     <string name="checkout">CHECKOUT</string>
+    <string name="x1">x1</string>
+    <string name="shrimp_biryani">Shrimp biryani</string>
 </resources>

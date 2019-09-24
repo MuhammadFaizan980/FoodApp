@@ -32,7 +32,7 @@ class DbUtils(private val context: Context) : SQLiteOpenHelper(context, "custome
 
     fun getData(companyID: String): ArrayList<CartUtil> {
         val db: SQLiteDatabase = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM customer_cart", null)
+        val cursor = db.rawQuery("SELECT * FROM customer_cart WHERE company_id = $companyID", null)
         val list: ArrayList<CartUtil> = ArrayList()
         if (cursor.count > 0) {
             cursor.moveToFirst()
