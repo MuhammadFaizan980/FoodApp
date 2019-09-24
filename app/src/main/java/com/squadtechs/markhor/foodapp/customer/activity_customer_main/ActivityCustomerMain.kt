@@ -18,6 +18,7 @@ import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_food_
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home.CustomerFragmentHome
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_orders.CustomerFragmentOrders
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_profile.CustomerFragmentProfile
+import com.squadtechs.markhor.foodapp.customer.db_utiils.DbUtils
 
 class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
     //  private lateinit var bottomNavigation: BottomNavigationView
@@ -28,11 +29,13 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
     private lateinit var item3: AHBottomNavigationItem
     private lateinit var item4: AHBottomNavigationItem
     private lateinit var item5: AHBottomNavigationItem
+    private lateinit var bottomNavigation: AHBottomNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_main)
         checkPermissions()
+        createBottomNav()
         initViews()
         //       setNavigationListener()
     }
@@ -45,11 +48,10 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         fragmentHome = CustomerFragmentHome()
 //        bottomNavigation = findViewById(R.id.bottom_navigation_view)
         changeFragment(CustomerFragmentHome())
-        createBottomNav()
     }
 
     private fun createBottomNav() {
-        val bottomNavigation: AHBottomNavigation = findViewById(R.id.bottom_navigation)
+        bottomNavigation = findViewById(R.id.bottom_navigation)
         item1 =
             AHBottomNavigationItem(R.string.home, R.drawable.ic_home, R.color.colorBlack)
         item2 =
@@ -115,6 +117,13 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
 //    }
 
     private fun changeFragment(fragment: Fragment) {
+        val db = DbUtils(this)
+        val cartCount = db.getTotalCount()
+        if (cartCount > 0) {
+            bottomNavigation.setNotification(cartCount.toString(), 2)
+        } else {
+            bottomNavigation.setNotification("", 2)
+        }
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
         transaction.addToBackStack(null)

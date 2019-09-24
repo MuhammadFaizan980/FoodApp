@@ -76,4 +76,10 @@ class DbUtils(private val context: Context) : SQLiteOpenHelper(context, "custome
         return list
     }
 
+    fun getTotalCount(): Int {
+        val db: SQLiteDatabase = this.readableDatabase
+        val cursor = db.rawQuery("SELECT DISTINCT company_id FROM customer_cart", null)
+        return cursor.count
+    }
+
 }
