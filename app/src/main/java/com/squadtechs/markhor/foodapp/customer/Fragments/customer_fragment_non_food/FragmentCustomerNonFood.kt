@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -79,7 +78,11 @@ class FragmentCustomerNonFood : Fragment() {
                         }
                     }
                     recyclerView.layoutManager = GridLayoutManager(activity!!, 2)
-                    adapter = CustomerFragmentNonFoodAdapter(list, activity!!)
+                    adapter = CustomerFragmentNonFoodAdapter(
+                        list,
+                        activity!!,
+                        arguments!!.getString("company_id")!!
+                    )
                     recyclerView.adapter = adapter
                 } catch (exc: Exception) {
                     Log.i("food_exception", exc.toString())

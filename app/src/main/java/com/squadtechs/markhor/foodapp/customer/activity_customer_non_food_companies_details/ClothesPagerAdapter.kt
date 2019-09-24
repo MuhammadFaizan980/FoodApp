@@ -6,11 +6,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_non_food.FragmentCustomerNonFood
 
-class ClothesPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+class ClothesPagerAdapter(private val companyID: String, manager: FragmentManager) :
+    FragmentStatePagerAdapter(manager) {
     override fun getItem(position: Int): Fragment {
         val fragment = FragmentCustomerNonFood()
         val bundle = Bundle()
         bundle.putInt("position", position)
+        bundle.putString("company_id", companyID)
         fragment.arguments = bundle
         return fragment
     }

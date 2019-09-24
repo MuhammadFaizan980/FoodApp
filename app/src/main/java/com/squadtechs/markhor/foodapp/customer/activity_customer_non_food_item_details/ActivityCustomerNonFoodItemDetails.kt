@@ -1,12 +1,13 @@
 package com.squadtechs.markhor.foodapp.customer.activity_customer_non_food_item_details
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.customer_add_to_cart_sheet.CustomerAddToCartSheet
 
 class ActivityCustomerNonFoodItemDetails : AppCompatActivity() {
 
@@ -30,7 +31,31 @@ class ActivityCustomerNonFoodItemDetails : AppCompatActivity() {
 
     private fun setFabListener() {
         fabAdd.setOnClickListener {
-            Toast.makeText(this, "fab clicked", Toast.LENGTH_SHORT).show()
+            val pref = getSharedPreferences("bc", Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putString(
+                "cart_item_url",
+                "http://squadtechsolution.com/android/v1/${intent!!.extras!!.getString("image1")}"
+            )
+            editor.putString("cart_item_title", intent!!.extras!!.getString("title"))
+            editor.putString("cart_item_description", intent!!.extras!!.getString("description"))
+            editor.putString("cart_item_price", intent!!.extras!!.getString("price"))
+            editor.putString(
+                "cart_item_delivery_price",
+                intent!!.extras!!.getString("delivery_price")
+            )
+            editor.putString("company_id", intent!!.extras!!.getString("company_id"))
+            editor.putString("item_id", intent!!.extras!!.getString("item_id"))
+            editor.putString("is_food", "no")
+            editor.putString(
+                "customer_id", getSharedPreferences(
+                    "user_credentials",
+                    Context.MODE_PRIVATE
+                ).getString("id", "none")
+            )
+            editor.apply()
+            val bottomSheet = CustomerAddToCartSheet()
+            bottomSheet.show(supportFragmentManager, "lol")
         }
     }
 

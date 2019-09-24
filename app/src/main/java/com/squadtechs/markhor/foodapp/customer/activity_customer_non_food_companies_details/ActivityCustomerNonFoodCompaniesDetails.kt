@@ -40,7 +40,10 @@ class ActivityCustomerNonFoodCompaniesDetails : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        viewPackage.adapter = ClothesPagerAdapter(supportFragmentManager)
+        viewPackage.adapter = ClothesPagerAdapter(
+            intent!!.extras!!.get("company_id") as String,
+            supportFragmentManager
+        )
         viewPackage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 

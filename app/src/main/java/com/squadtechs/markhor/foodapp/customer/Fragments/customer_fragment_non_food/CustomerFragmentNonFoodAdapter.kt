@@ -17,7 +17,8 @@ import com.squareup.picasso.Picasso
 
 class CustomerFragmentNonFoodAdapter(
     private val list: ArrayList<CustomerFragmentNonFoodModel>,
-    private val context: Context
+    private val context: Context,
+    private val company_id: String
 ) : RecyclerView.Adapter<CustomerFragmentNonFoodAdapter.CustomerNonFoodViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerNonFoodViewHolder =
         CustomerNonFoodViewHolder(
@@ -42,6 +43,9 @@ class CustomerFragmentNonFoodAdapter(
             val intent = Intent(context, ActivityCustomerNonFoodItemDetails::class.java)
             intent.putExtra("title", obj.name)
             intent.putExtra("price", obj.price)
+            intent.putExtra("delivery_price", obj.delivery_price)
+            intent.putExtra("company_id", company_id)
+            intent.putExtra("item_id", obj.id)
             intent.putExtra("description", obj.description)
             intent.putExtra("image1", obj.image_path)
             intent.putExtra("image2", obj.image_path2)
