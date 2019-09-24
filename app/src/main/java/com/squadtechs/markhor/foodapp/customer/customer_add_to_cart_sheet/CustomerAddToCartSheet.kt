@@ -2,16 +2,18 @@ package com.squadtechs.markhor.foodapp.customer.customer_add_to_cart_sheet
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.db_utiils.CartUtil
+import com.squadtechs.markhor.foodapp.customer.db_utiils.DbUtils
 import com.squareup.picasso.Picasso
 
 class CustomerAddToCartSheet : BottomSheetDialogFragment() {
@@ -60,15 +62,23 @@ class CustomerAddToCartSheet : BottomSheetDialogFragment() {
         txtPrice.text = "AED " + pref.getString("cart_item_price", "none")
 
         btnAddToBasket.setOnClickListener {
-            Log.i("cart_items", pref.getString("company_id", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("cart_item_title", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("cart_item_description", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("cart_item_price", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("cart_item_delivery_price", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("item_id", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("is_food", "none").toString() + "\n")
-            Log.i("cart_items", pref.getString("customer_id", "none").toString() + "\n")
-            Log.i("cart_items", itemCount.toString())
+            if (itemCount > 0) {
+                val obj = CartUtil()
+                obj.cart_item_title = pref.getString("cart_item_title", "none").toString()
+                obj.cart_item_quantity = itemCount.toString()
+                obj.cart_item_price = pref.getString("cart_item_price", "none").toString()
+                obj.item_id = pref.getString("item_id", "none").toString()
+                obj.cart_item_delivery_price =
+                    pref.getString("cart_item_delivery_price", "none").toString()
+                obj.company_id = pref.getString("company_id", "none").toString()
+                obj.is_food = pref.getString("is_food", "none").toString()
+                obj.customer_id = pref.getString("customer_id", "none").toString()
+                val db = DbUtils(activity!!)
+                db.insertData(obj)
+                dismiss()
+            } else {
+                Toast.makeText(activity!!, "Item count cannot be 0", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
