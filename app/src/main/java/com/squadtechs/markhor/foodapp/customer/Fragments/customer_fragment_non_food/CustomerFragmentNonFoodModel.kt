@@ -7,6 +7,7 @@ class CustomerFragmentNonFoodModel {
     var price: String = ""
     var list_item_as: String = ""
     var delivery_price: String = ""
+    var company_id: String = ""
     var size: String = ""
     var trader_id: String = ""
     var image_path: String = ""

@@ -49,6 +49,15 @@ class CustomerFragmentFood : Fragment() {
                 try {
                     val type = object : TypeToken<ArrayList<CustomerFoodFragmentModel>>() {}.type
                     list = Gson().fromJson(response, type)
+
+                    var count = (list.size - 1)
+                    while (count >= 0) {
+                        if (!list[count].company_id.equals(arguments!!.getString("company_id"))) {
+                            list.removeAt(count)
+                        }
+                        count--
+                    }
+
                     when (arguments!!.getInt("key")) {
                         1 -> {
                             var count = (list.size - 1)

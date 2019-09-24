@@ -8,5 +8,6 @@ class CustomerFoodFragmentModel {
     var list_dish_as: String = ""
     var trader_id: String = ""
     var image_path: String = ""
+    var company_id: String = ""
     var food_deliveryPrice: String = ""
 }
