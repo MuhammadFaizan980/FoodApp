@@ -1,7 +1,9 @@
 package com.squadtechs.markhor.foodapp.customer.activity_cutomer_cart_items_details
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.TextView
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.activity_customer_select_address.ActivityCustomerSelectAddress
 import com.squadtechs.markhor.foodapp.customer.db_utiils.CartUtil
 import com.squadtechs.markhor.foodapp.customer.db_utiils.DbUtils
 
@@ -26,6 +29,7 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
     private lateinit var txtChangeAddress: TextView
     private var address: String = "none"
     private lateinit var pref: SharedPreferences
+    private var deliverToMe: String = "yes"
     private var totalPrice: Int = 0
     private var totalDeliveryPrice: Int = 0
 
@@ -48,13 +52,20 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
 
     private fun setListeners() {
         txtDeliverToMe.setOnClickListener {
+            deliverToMe = "yes"
             txtDeliverToMe.setBackgroundResource(R.drawable.tab_back_selected)
             txtIWillCollect.setBackgroundResource(R.drawable.tab_back_unselected)
         }
         txtIWillCollect.setOnClickListener {
+            deliverToMe = "no"
             txtDeliverToMe.setBackgroundResource(R.drawable.tab_back_unselected)
             txtIWillCollect.setBackgroundResource(R.drawable.tab_back_selected)
         }
+
+        txtChangeAddress.setOnClickListener {
+            startActivityForResult(Intent(this, ActivityCustomerSelectAddress::class.java), 88)
+        }
+
     }
 
     private fun calculateTotalPrice() {
@@ -100,6 +111,13 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
             txtAddress.text = address
         } else {
             txtAddress.text = "No address found, consider adding address from profile section"
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 88 && resultCode == Activity.RESULT_OK) {
+            address = data!!.extras!!.getString("selected_address")!!
+            populateAddress()
         }
     }
 
