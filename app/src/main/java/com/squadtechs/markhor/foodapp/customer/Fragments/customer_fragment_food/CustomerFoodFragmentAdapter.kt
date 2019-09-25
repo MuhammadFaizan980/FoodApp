@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_add_to_cart_sheet.CustomerAddToCartSheet
 import com.squareup.picasso.Picasso
@@ -37,7 +38,7 @@ class CustomerFoodFragmentAdapter(
         holder.txtTitle.text = obj.name
         holder.txtDescription.text = obj.description
         holder.txtPrice.text = obj.price
-        Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.image_path}")
+        Picasso.get().load("${CONSTANTS.imgPre}${obj.image_path}")
             .into(holder.imgCompany)
         holder.touchView.setOnLongClickListener {
 
@@ -45,7 +46,7 @@ class CustomerFoodFragmentAdapter(
             val editor = pref.edit()
             editor.putString(
                 "cart_item_url",
-                "http://squadtechsolution.com/android/v1/${obj.image_path}"
+                "${CONSTANTS.imgPre}${obj.image_path}"
             )
             editor.putString("cart_item_title", obj.name)
             editor.putString("cart_item_description", obj.description)

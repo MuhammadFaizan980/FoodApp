@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_non_food_companies_details.ActivityCustomerNonFoodCompaniesDetails
 import com.squareup.picasso.Picasso
@@ -34,7 +35,7 @@ class CustomerNonFoodCompaniesAdapter(
 
     override fun onBindViewHolder(holder: CustomerNonFoodHolder, position: Int) {
         val obj = list[position]
-        Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
+        Picasso.get().load("${CONSTANTS.imgPre}${obj.company_logo}")
             .into(holder.imgCompany)
         holder.txtTitle.text = obj.company_name
         adjustScreen(holder, position)

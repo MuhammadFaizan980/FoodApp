@@ -12,6 +12,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_to_trader_chat.ActivityCustomerToTraderChat
 import com.squareup.picasso.Picasso
@@ -136,7 +137,7 @@ class ActivityCustomerNonFoodCompaniesDetails : AppCompatActivity() {
                         if (json.getString("id").equals(intent!!.extras!!.get("company_id") as String)
                         ) {
                             Picasso.get()
-                                .load("http://squadtechsolution.com/android/v1/${json.getString("company_logo")}")
+                                .load("${CONSTANTS.imgPre}${json.getString("company_logo")}")
                                 .into(imgCompany)
                             txtTitle.text = json.getString("company_name")
                             txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"

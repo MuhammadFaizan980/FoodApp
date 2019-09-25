@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squareup.picasso.Picasso
 
@@ -32,7 +33,7 @@ class TraderNonFoodAdapter(
 
     override fun onBindViewHolder(holder: NonFoodViewHolder, position: Int) {
         val obj = list[position]
-        Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.image_path}")
+        Picasso.get().load("${CONSTANTS.imgPre}${obj.image_path}")
             .into(holder.imgItem)
         adjustScreen(holder, position)
 

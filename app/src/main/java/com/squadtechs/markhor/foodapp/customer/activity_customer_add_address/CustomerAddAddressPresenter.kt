@@ -45,6 +45,11 @@ class CustomerAddAddressPresenter(
                 pd.cancel()
                 try {
                     if (response.contains("Address Uploaded")) {
+                        val pref =
+                            context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                        val editor = pref.edit()
+                        editor.putString("default_address", address)
+                        editor.apply()
                         mView.onSaveAddressResult(true)
                     } else if (response.contains("You must make Atleast one Address As_default")) {
                         Toast.makeText(

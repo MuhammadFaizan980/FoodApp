@@ -3,6 +3,7 @@ package com.squadtechs.markhor.foodapp.customer.activity_customer_address
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class CustomerAddressAdapter(
             val editor = pref.edit()
             editor.putString("default_address", obj.address)
             editor.apply()
+            Log.i("address_log", obj.address)
         }
         holder.txtEdit.setOnClickListener {
             context.startActivity(

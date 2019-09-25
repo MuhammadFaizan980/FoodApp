@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_add_to_cart_sheet.CustomerAddToCartSheet
 
@@ -35,7 +36,7 @@ class ActivityCustomerNonFoodItemDetails : AppCompatActivity() {
             val editor = pref.edit()
             editor.putString(
                 "cart_item_url",
-                "http://squadtechsolution.com/android/v1/${intent!!.extras!!.getString("image1")}"
+                "${CONSTANTS.imgPre}${intent!!.extras!!.getString("image1")}"
             )
             editor.putString("cart_item_title", intent!!.extras!!.getString("title"))
             editor.putString("cart_item_description", intent!!.extras!!.getString("description"))

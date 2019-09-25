@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_to_trader_chat.ActivityCustomerToTraderChat
 import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
@@ -144,7 +145,7 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
     ) {
         if (!error) {
             Picasso.get()
-                .load("http://squadtechsolution.com/android/v1/${responseObj?.company_logo}")
+                .load("${CONSTANTS.imgPre}${responseObj?.company_logo}")
                 .into(imgCompany)
             txtTitle.text = responseObj?.company_name
             txtDescription.text = responseObj?.company_description

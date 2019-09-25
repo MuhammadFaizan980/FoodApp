@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squareup.picasso.Picasso
 
@@ -19,7 +20,7 @@ class FragmentImage : Fragment() {
         val mView = inflater.inflate(R.layout.fragment_image, container, false)
         val imgView: ImageView = mView.findViewById(R.id.img_item)
         Picasso.get()
-            .load("http://squadtechsolution.com/android/v1/${arguments!!.getString("url")}")
+            .load("${CONSTANTS.imgPre}${arguments!!.getString("url")}")
             .into(imgView)
         return mView
     }

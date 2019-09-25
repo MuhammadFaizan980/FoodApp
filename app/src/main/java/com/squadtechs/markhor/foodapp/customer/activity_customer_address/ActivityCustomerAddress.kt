@@ -56,6 +56,16 @@ class ActivityCustomerAddress : AppCompatActivity() {
                     list = ArrayList()
                     val type = object : TypeToken<ArrayList<CustomerAddressModel>>() {}.type
                     list = Gson().fromJson(response, type)
+                    for (obj in list) {
+                        if (obj.is_default.equals("Yes")) {
+                            val pref =
+                                getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString("default_address", obj.address)
+                            editor.apply()
+                            Log.i("address_log", obj.address)
+                        }
+                    }
                     populateRecyclerView()
                 } catch (exc: Exception) {
                     Toast.makeText(

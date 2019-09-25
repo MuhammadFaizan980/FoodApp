@@ -62,6 +62,11 @@ class ActivityCustomerEditAddress : AppCompatActivity() {
                         pd.cancel()
                         Log.i("dxdiag", response)
                         if (response.contains("Address Updated")) {
+                            val pref =
+                                getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString("default_address", address)
+                            editor.apply()
                             Toast.makeText(this, "Address updated successfully", Toast.LENGTH_LONG)
                                 .show()
                             startActivity(Intent(this, ActivityCustomerMain::class.java))

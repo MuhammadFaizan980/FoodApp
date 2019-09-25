@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.SphericalUtil
 import com.makeramen.roundedimageview.RoundedImageView
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_customer_food_company_details.ActivityCustomerFoodCompanyDetails
 import com.squadtechs.markhor.foodapp.customer.customer_util.CustomerUtils
@@ -51,7 +50,7 @@ class InsideFoodAdapter(
     override fun onBindViewHolder(holder: FoodHolder, position: Int) {
         val obj = list[position]
         if (tabPosition == 1) {
-            Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
+            Picasso.get().load("${CONSTANTS.imgPre}${obj.company_logo}")
                 .into(holder.imageView)
             holder.txtCuisine.text = obj.cuisine
             holder.txtCuisine.setOnClickListener {
@@ -75,7 +74,7 @@ class InsideFoodAdapter(
 
             holder.txtTime.text = obj.delivery_timing
 
-            Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.company_logo}")
+            Picasso.get().load("${CONSTANTS.imgPre}${obj.company_logo}")
                 .into(holder.imageView)
             holder.txtTitle.text = obj.company_name
             holder.txtCuisine.text = obj.cuisine

@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squareup.picasso.Picasso
 
@@ -34,7 +35,7 @@ class TraderFoodAdapter(
         holder.txtTitle.text = obj.name
         holder.txtDescription.text = obj.description
         holder.txtPrice.text = obj.price
-        Picasso.get().load("http://squadtechsolution.com/android/v1/${obj.image_path}")
+        Picasso.get().load("${CONSTANTS.imgPre}${obj.image_path}")
             .into(holder.imgCompany)
         holder.touchFrame.setOnClickListener {
             val pref = context.getSharedPreferences("add_item_preferences", Context.MODE_PRIVATE)

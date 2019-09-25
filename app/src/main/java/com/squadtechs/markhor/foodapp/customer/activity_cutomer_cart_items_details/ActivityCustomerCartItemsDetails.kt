@@ -1,5 +1,8 @@
 package com.squadtechs.markhor.foodapp.customer.activity_cutomer_cart_items_details
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +22,10 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
     private lateinit var txtTotalDeliveryPrice: TextView
     private lateinit var txtDeliverToMe: TextView
     private lateinit var txtIWillCollect: TextView
+    private lateinit var txtAddress: TextView
+    private lateinit var txtChangeAddress: TextView
+    private var address: String = "none"
+    private lateinit var pref: SharedPreferences
     private var totalPrice: Int = 0
     private var totalDeliveryPrice: Int = 0
 
@@ -67,7 +74,7 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
                 continue
             }
         }
-        if (count != 0  )
+        if (count != 0)
             txtTotalDeliveryPrice.text = "AED ${totalDeliveryPrice / count}"
     }
 
@@ -80,6 +87,20 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
         txtTotalPrice = findViewById(R.id.txt_total)
         txtTotalDeliveryPrice = findViewById(R.id.txt_delivery_total)
         companyID = intent!!.extras!!.getString("company_id")!!
+        txtAddress = findViewById(R.id.txt_address)
+        txtChangeAddress = findViewById(R.id.txt_change_address)
+        pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+        address = pref.getString("default_address", "none") as String
+        populateAddress()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun populateAddress() {
+        if (!address.equals("none")) {
+            txtAddress.text = address
+        } else {
+            txtAddress.text = "No address found, consider adding address from profile section"
+        }
     }
 
 }

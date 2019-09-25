@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.squadtechs.markhor.foodapp.CONSTANTS
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.TraderMainCallBack
@@ -181,7 +182,7 @@ class TraderFragmentHomeNonFood : Fragment(), TraderNonFoodCallBack {
                             )
                         ) {
                             Picasso.get()
-                                .load("http://squadtechsolution.com/android/v1/${json.getString("company_logo")}")
+                                .load("${CONSTANTS.imgPre}${json.getString("company_logo")}")
                                 .into(imgCompany)
                             txtTitle.text = json.getString("company_name")
                             txtDeliveryType.text = "Delivery: ${json.getString("delivery_type")}"
