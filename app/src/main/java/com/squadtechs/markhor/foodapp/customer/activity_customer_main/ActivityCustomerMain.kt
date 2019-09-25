@@ -116,7 +116,7 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
 //        return true
 //    }
 
-    private fun changeFragment(fragment: Fragment) {
+    private fun updateBadges() {
         val db = DbUtils(this)
         val cartCount = db.getTotalCount()
         if (cartCount > 0) {
@@ -124,6 +124,10 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         } else {
             bottomNavigation.setNotification("", 2)
         }
+    }
+
+    private fun changeFragment(fragment: Fragment) {
+        updateBadges()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
         transaction.addToBackStack(null)
@@ -179,6 +183,10 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         } else {
             finish()
         }
+    }
+
+    override fun onCartItemDeleted() {
+        updateBadges()
     }
 
 }

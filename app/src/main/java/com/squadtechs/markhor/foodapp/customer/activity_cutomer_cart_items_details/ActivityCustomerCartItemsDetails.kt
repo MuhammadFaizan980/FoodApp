@@ -17,6 +17,8 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
     private lateinit var companyID: String
     private lateinit var txtTotalPrice: TextView
     private lateinit var txtTotalDeliveryPrice: TextView
+    private lateinit var txtDeliverToMe: TextView
+    private lateinit var txtIWillCollect: TextView
     private var totalPrice: Int = 0
     private var totalDeliveryPrice: Int = 0
 
@@ -34,27 +36,44 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
         recyclerView.adapter = adapter
         calculateTotalPrice()
         calculateDeliveryPrice()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        txtDeliverToMe.setOnClickListener {
+            txtDeliverToMe.setBackgroundResource(R.drawable.tab_back_selected)
+            txtIWillCollect.setBackgroundResource(R.drawable.tab_back_unselected)
+        }
+        txtIWillCollect.setOnClickListener {
+            txtDeliverToMe.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtIWillCollect.setBackgroundResource(R.drawable.tab_back_selected)
+        }
     }
 
     private fun calculateTotalPrice() {
         for (i in list) {
-            totalPrice += (i.cart_item_price.toInt()*i.cart_item_quantity.toInt())
+            totalPrice += (i.cart_item_price.toInt() * i.cart_item_quantity.toInt())
         }
         txtTotalPrice.text = "AED $totalPrice"
     }
 
     private fun calculateDeliveryPrice() {
+        var count = 0;
         for (i in list) {
             if (!i.cart_item_delivery_price.equals("") && i.cart_item_delivery_price != null) {
                 totalDeliveryPrice += i.cart_item_delivery_price.toInt()
+                count++
             } else {
                 continue
             }
         }
-        txtTotalDeliveryPrice.text = "AED $totalDeliveryPrice"
+        if (count != 0  )
+            txtTotalDeliveryPrice.text = "AED ${totalDeliveryPrice / count}"
     }
 
     private fun initViews() {
+        txtIWillCollect = findViewById(R.id.i_will_collect)
+        txtDeliverToMe = findViewById(R.id.txt_deliver_to_me)
         recyclerView = findViewById(R.id.cart_list)
         list = ArrayList()
         db = DbUtils(this)

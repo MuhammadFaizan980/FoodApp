@@ -82,4 +82,11 @@ class DbUtils(private val context: Context) : SQLiteOpenHelper(context, "custome
         return cursor.count
     }
 
+    fun deleteCollection(companyID: String) : Boolean{
+        val db: SQLiteDatabase = this.writableDatabase
+        val arr = arrayOfNulls<String>(1)
+        arr[0] = companyID
+        return db.delete("customer_cart", "company_id=?", arr) > 0
+    }
+
 }
