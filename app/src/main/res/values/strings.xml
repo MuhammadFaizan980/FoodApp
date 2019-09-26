@@ -209,4 +209,6 @@
     <string name="select_address">SELECT ADDRESS</string>
     <string name="delivery_address">Delivery address</string>
     <string name="track_order">TRACK ORDER</string>
+    <string name="current_orders">Current orders</string>
+    <string name="past_orders">Past orders</string>
 </resources>
