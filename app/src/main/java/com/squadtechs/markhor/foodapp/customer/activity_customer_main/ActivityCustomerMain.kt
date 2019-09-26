@@ -16,6 +16,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me.CustomerFragmentAroundMe
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_cart.CustomerFragmentCart
+import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_end_of_cart.CustomerFragmentEndOfCart
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_food_companies.CustomerFragmentFoodCompanies
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_home.CustomerFragmentHome
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_orders.CustomerFragmentOrders
@@ -181,7 +182,7 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
-            changeFragment(CustomerFragmentOrders())
+            changeFragment(CustomerFragmentEndOfCart())
         }
     }
 
@@ -196,6 +197,10 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
 
     override fun onCartItemDeleted() {
         updateBadges()
+    }
+
+    override fun onTrackOrderPressed() {
+        changeFragment(CustomerFragmentOrders())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
