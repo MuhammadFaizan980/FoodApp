@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squadtechs.markhor.foodapp.R
 
 class OrderMainAdapter(
-    private val list: ArrayList<String>, private val context: Context
+    private val list: ArrayList<OrderMainModel>, private val context: Context
 ) :
     RecyclerView.Adapter<OrderMainAdapter.CartMainHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartMainHolder =
@@ -26,8 +26,7 @@ class OrderMainAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CartMainHolder, position: Int) {
-        val obj = list[position]
-        holder.txtOrder.text = "COLLECTION # ${position + 1}"
+        holder.txtOrder.text = "ORDER # ${position + 1}"
         holder.txtOrder.setOnClickListener {
             //TODO: start order main adapter
         }
