@@ -3,28 +3,27 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_main
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_dish.TraderFragmentAddDish
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_images.TraderFragmentAddNonFoodImages
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item.TraderFragmentAddNonFoodItem
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home.TraderFragmentHome
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home_non_food.TraderFragmentHomeNonFood
+import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_orders.TraderFragmentOrders
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_profile.TraderFragmentProfile
 
 
-class ActivityTraderMain : AppCompatActivity(),
-    BottomNavigationView.OnNavigationItemSelectedListener, TraderMainCallBack {
-
-    private lateinit var bottomNavigation: BottomNavigationView
+class ActivityTraderMain : AppCompatActivity(), TraderMainCallBack {
     private lateinit var fragmentHome: TraderFragmentHome
     private lateinit var fragmentHomeNonFood: TraderFragmentHomeNonFood
     private lateinit var fragmentProfile: TraderFragmentProfile
@@ -32,19 +31,79 @@ class ActivityTraderMain : AppCompatActivity(),
     private lateinit var fragmentAddNonFood: TraderFragmentAddNonFoodItem
     private lateinit var fragmentAddNonFoodImages: TraderFragmentAddNonFoodImages
     private var currentFragment: Fragment? = null
+    private lateinit var item1: AHBottomNavigationItem
+    private lateinit var item2: AHBottomNavigationItem
+    private lateinit var item3: AHBottomNavigationItem
+    private lateinit var item4: AHBottomNavigationItem
+    private lateinit var bottomNavigation: AHBottomNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trader_main)
         checkPermissions()
         initViews()
-        setNavigationListener()
+        createBottomNav()
     }
 
-    private fun setNavigationListener() {
-        bottomNavigation.setOnNavigationItemSelectedListener(this)
-    }
+    private fun createBottomNav() {
+        bottomNavigation = findViewById(R.id.bottom_navigation)
+        item1 =
+            AHBottomNavigationItem(R.string.home, R.drawable.ic_home, R.color.colorBlack)
+        item2 =
+            AHBottomNavigationItem(R.string.add, R.drawable.ic_add_circle, R.color.colorBlack)
+        item3 =
+            AHBottomNavigationItem(R.string.my_orders, R.drawable.ic_notes, R.color.colorBlack)
+        item4 =
+            AHBottomNavigationItem(R.string.profile, R.drawable.ic_person, R.color.colorBlack)
+        bottomNavigation.addItem(item1)
+        bottomNavigation.addItem(item2)
+        bottomNavigation.addItem(item3)
+        bottomNavigation.addItem(item4)
+        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW)
+        bottomNavigation.setForceTint(true)
+        bottomNavigation.setInactiveColor(Color.parseColor("#000000"))
+        bottomNavigation.setAccentColor(Color.parseColor("#9C9C9C"))
 
+        bottomNavigation.setOnTabSelectedListener { position, wasSelected ->
+            when (position) {
+                0 -> {
+                    if (getSharedPreferences(
+                            "user_credentials",
+                            Context.MODE_PRIVATE
+                        ).getString("company_type", "none").equals("Food & beverages")
+                    ) {
+                        changeFragment(fragmentHome)
+
+                    } else {
+                        changeFragment(fragmentHomeNonFood)
+                    }
+                }
+                1 -> {
+                    val pref = getSharedPreferences("add_item_preferences", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putBoolean("is_edit", false)
+                    editor.apply()
+                    if (getSharedPreferences(
+                            "user_credentials",
+                            Context.MODE_PRIVATE
+                        ).getString("company_type", "none").equals("Food & beverages")
+                    ) {
+                        changeFragment(fragmentAddFood)
+                    } else {
+                        changeFragment(fragmentAddNonFood)
+                    }
+                }
+                2 -> {
+                    changeFragment(TraderFragmentOrders())
+                }
+                3 -> {
+                    changeFragment(TraderFragmentProfile())
+                }
+            }
+            true
+        }
+
+    }
 
     private fun initViews() {
         fragmentHome = TraderFragmentHome()
@@ -53,7 +112,6 @@ class ActivityTraderMain : AppCompatActivity(),
         fragmentAddFood = TraderFragmentAddDish()
         fragmentAddNonFood = TraderFragmentAddNonFoodItem()
         fragmentAddNonFoodImages = TraderFragmentAddNonFoodImages()
-        bottomNavigation = findViewById(R.id.bottom_navigation_view)
         if (getSharedPreferences(
                 "user_credentials",
                 Context.MODE_PRIVATE
@@ -72,44 +130,6 @@ class ActivityTraderMain : AppCompatActivity(),
         transaction.addToBackStack(null)
         transaction.commit()
         currentFragment = fragment
-    }
-
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_home -> {
-                if (getSharedPreferences(
-                        "user_credentials",
-                        Context.MODE_PRIVATE
-                    ).getString("company_type", "none").equals("Food & beverages")
-                ) {
-                    changeFragment(fragmentHome)
-
-                } else {
-                    changeFragment(fragmentHomeNonFood)
-                }
-
-            }
-            R.id.item_profile -> {
-                changeFragment(TraderFragmentProfile())
-            }
-            R.id.item_add_item -> {
-                val pref = getSharedPreferences("add_item_preferences", Context.MODE_PRIVATE)
-                val editor = pref.edit()
-                editor.putBoolean("is_edit", false)
-                editor.apply()
-                if (getSharedPreferences(
-                        "user_credentials",
-                        Context.MODE_PRIVATE
-                    ).getString("company_type", "none").equals("Food & beverages")
-                ) {
-                    changeFragment(fragmentAddFood)
-                } else {
-                    changeFragment(fragmentAddNonFood)
-                }
-            }
-        }
-        return true
     }
 
     override fun onFragmentTap(key: String) {
