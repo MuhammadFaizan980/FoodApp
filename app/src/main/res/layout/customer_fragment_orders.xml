@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/item_collections"
+            android:text="@string/my_orders_a"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="25sp"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="@string/browse_through_your_cart_item_collections"
+            android:text="@string/view_your_current_and_past_orders"
             android:textAlignment="center" />
 
         <LinearLayout

@@ -211,4 +211,6 @@
     <string name="track_order">TRACK ORDER</string>
     <string name="current_orders">Current orders</string>
     <string name="past_orders">Past orders</string>
+    <string name="my_orders_a">MY ORDERS</string>
+    <string name="view_your_current_and_past_orders">VIew your current and past orders</string>
 </resources>
