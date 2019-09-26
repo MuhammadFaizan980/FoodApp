@@ -1,5 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.activity_customer_main
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
@@ -131,7 +133,8 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
         transaction.addToBackStack(null)
-        transaction.commit()
+        transaction.commitAllowingStateLoss()
+//        transaction.commit()
 
     }
 
@@ -176,6 +179,12 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         changeFragment(CustomerFragmentFoodCompanies())
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
+            changeFragment(CustomerFragmentOrders())
+        }
+    }
+
     override fun onBackPressed() {
         if (isInFoodCompanies) {
             isInFoodCompanies = false
@@ -187,6 +196,10 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
 
     override fun onCartItemDeleted() {
         updateBadges()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+
     }
 
 }

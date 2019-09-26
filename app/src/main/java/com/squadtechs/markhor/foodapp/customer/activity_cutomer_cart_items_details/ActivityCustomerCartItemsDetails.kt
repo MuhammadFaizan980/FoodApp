@@ -138,7 +138,8 @@ class ActivityCustomerCartItemsDetails : AppCompatActivity() {
             requestQueue.add(stringRequestQueue)
         } else {
             if (db.deleteCollection(companyID)) {
-                TODO("start main activity in such a way that cart is updated")
+                setResult(Activity.RESULT_OK)
+                finish()
             }
             return
         }

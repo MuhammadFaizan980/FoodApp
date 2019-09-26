@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_cart
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -35,11 +36,11 @@ class CartMainAdapter(
         val obj = list[position]
         holder.txtOrder.text = "COLLECTION # ${position + 1}"
         holder.txtOrder.setOnClickListener {
-            context.startActivity(
+            (context as Activity).startActivityForResult(
                 Intent(
                     context,
                     ActivityCustomerCartItemsDetails::class.java
-                ).putExtra("company_id", obj)
+                ).putExtra("company_id", obj), 12
             )
         }
 
