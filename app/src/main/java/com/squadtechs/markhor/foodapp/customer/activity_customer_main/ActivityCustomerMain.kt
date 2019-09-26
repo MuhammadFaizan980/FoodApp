@@ -200,6 +200,7 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
     }
 
     override fun onTrackOrderPressed() {
+        bottomNavigation.setCurrentItem(3)
         changeFragment(CustomerFragmentOrders())
     }
 
