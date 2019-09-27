@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.customer.activity_customer_order_details
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -66,9 +68,14 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
                         Log.i("m_faizan", response)
                         try {
                             if (JSONObject(response).getString("status").equals("Order Status Updated")) {
-                                //TODO: handle success
+                                setResult(Activity.RESULT_OK)
+                                finish()
                             } else {
-                                //TODO: handle failure
+                                Toast.makeText(
+                                    this,
+                                    "There wad an error marking this order as complete",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         } catch (exc: Exception) {
                             Log.i("m_exception", exc.toString())
@@ -198,6 +205,11 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         btnMarkAsComplete.visibility = View.GONE
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 
 }

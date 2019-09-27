@@ -184,6 +184,9 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
             changeFragment(CustomerFragmentEndOfCart())
         }
+        if (requestCode == 75 && resultCode == Activity.RESULT_OK) {
+            changeFragment(CustomerFragmentOrders())
+        }
     }
 
     override fun onBackPressed() {

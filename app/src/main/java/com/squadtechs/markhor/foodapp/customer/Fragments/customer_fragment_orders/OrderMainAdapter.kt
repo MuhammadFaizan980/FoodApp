@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_orders
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -31,14 +32,14 @@ class OrderMainAdapter(
     override fun onBindViewHolder(holder: CartMainHolder, position: Int) {
         holder.txtOrder.text = "ORDER # ${position + 1}"
         holder.txtOrder.setOnClickListener {
-            context.startActivity(
+            (context as Activity).startActivityForResult(
                 Intent(
                     context,
                     ActivityCustomerOrderDetails::class.java
                 ).putExtra("position", tabPosition).putExtra(
                     "company_id",
                     list[position].company_id
-                )
+                ), 75
             )
         }
     }
