@@ -61,7 +61,7 @@ class FragmentOrderMain : Fragment() {
                 try {
                     val type = object : TypeToken<ArrayList<OrderMainModel>>() {}.type
                     list = Gson().fromJson(response, type)
-                    adapter = OrderMainAdapter(list, activity!!)
+                    adapter = OrderMainAdapter(list, activity!!, arguments!!.getInt("key"))
                     recyclerView.layoutManager = LinearLayoutManager(activity!!)
                     recyclerView.adapter = adapter
                 } catch (exc: Exception) {

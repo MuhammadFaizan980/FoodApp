@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".customer.activity_customer_order_details.ActivityCustomerOrderDetails">
 
     <LinearLayout
@@ -53,7 +54,7 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cart_list"
+                    android:id="@+id/order_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -125,10 +126,11 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/txt_allergy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
             android:text="@string/allergy_request_no_carrots"
             android:textColor="@color/colorTabBack"
@@ -138,7 +140,8 @@
             android:id="@+id/img_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
             android:src="@drawable/status_waiting" />
 
         <Button
@@ -146,7 +149,6 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/button_background"
             android:text="@string/mark_order_as_complete"
