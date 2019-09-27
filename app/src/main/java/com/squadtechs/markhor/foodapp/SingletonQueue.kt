@@ -3,6 +3,7 @@ package com.squadtechs.markhor.foodapp
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
+
 class SingletonQueue {
     companion object {
         var requestQueue: RequestQueue? = null
