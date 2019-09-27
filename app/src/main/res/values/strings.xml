@@ -213,4 +213,8 @@
     <string name="past_orders">Past orders</string>
     <string name="my_orders_a">MY ORDERS</string>
     <string name="view_your_current_and_past_orders">VIew your current and past orders</string>
+    <string name="order_details">ORDER DETAILS</string>
+    <string name="track_this_order">Track this order</string>
+    <string name="allergy_request_no_carrots">Allergy request: No carrots</string>
+    <string name="mark_order_as_complete">MARK ORDER AS COMPLETE?</string>
 </resources>
