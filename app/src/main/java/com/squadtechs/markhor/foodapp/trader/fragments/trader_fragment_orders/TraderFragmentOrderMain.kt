@@ -64,7 +64,7 @@ class TraderFragmentOrderMain : Fragment() {
                     val type = object : TypeToken<ArrayList<TraderOrderMainModel>>() {}.type
                     list = Gson().fromJson(response, type)
                     recyclerView.layoutManager = LinearLayoutManager(activity!!)
-                    adapter = TraderOrderMainAdapter(list, activity!!)
+                    adapter = TraderOrderMainAdapter(list, activity!!, arguments!!.getInt("key"))
                     recyclerView.adapter = adapter
                 } catch (exc: Exception) {
                     Log.i("trader_order_exception", exc.toString())

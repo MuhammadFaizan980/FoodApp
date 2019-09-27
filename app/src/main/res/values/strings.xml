@@ -218,4 +218,9 @@
     <string name="allergy_request_no_carrots">Allergy request: No carrots</string>
     <string name="mark_order_as_complete">MARK ORDER AS COMPLETE?</string>
     <string name="details_of_your_orders">Details of your orders</string>
+    <string name="being_prepared">Being prepared</string>
+    <string name="on_the_way">On the way</string>
+    <string name="ready_for_pickup">Ready for pickup</string>
+    <string name="update_status">UPDATE STATUS</string>
+    <string name="ghazi_camp_paf_base_kohat_kpk_pakistan">Ghazi Camp, PAF Base, Kohat, KPK, Pakistan</string>
 </resources>
