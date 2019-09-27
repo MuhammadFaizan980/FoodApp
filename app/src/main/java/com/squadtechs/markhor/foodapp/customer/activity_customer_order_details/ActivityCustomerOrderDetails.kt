@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.SingletonQueue
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
+import org.json.JSONObject
 
 class ActivityCustomerOrderDetails : AppCompatActivity() {
 
@@ -63,6 +64,15 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
                     Response.Listener { response ->
                         pd.dismiss()
                         Log.i("m_faizan", response)
+                        try {
+                            if (JSONObject(response).getString("status").equals("Order Status Updated")) {
+                                //TODO: handle success
+                            } else {
+                                //TODO: handle failure
+                            }
+                        } catch (exc: Exception) {
+                            Log.i("m_exception", exc.toString())
+                        }
                     },
                     Response.ErrorListener { error ->
                         pd.dismiss()
@@ -148,7 +158,6 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
     }
 
     private fun setOrderProgress() {
-
         when (list[0].status) {
             "pending" -> {
                 imgProgress.setImageResource(R.drawable.status_waiting)
@@ -162,6 +171,17 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
             "ready" -> {
                 btnMarkAsComplete.visibility = View.VISIBLE
                 imgProgress.setImageResource(R.drawable.status_ready_for_pick_up)
+            }
+        }
+        setVisibilities()
+    }
+
+    private fun setVisibilities() {
+        when (intent!!.extras!!.getInt("position")) {
+            1 -> {
+                imgProgress.visibility = View.GONE
+                txtAllergyRequest.visibility = View.GONE
+                btnMarkAsComplete.visibility = View.GONE
             }
         }
     }

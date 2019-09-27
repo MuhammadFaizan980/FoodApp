@@ -217,4 +217,5 @@
     <string name="track_this_order">Track this order</string>
     <string name="allergy_request_no_carrots">Allergy request: No carrots</string>
     <string name="mark_order_as_complete">MARK ORDER AS COMPLETE?</string>
+    <string name="details_of_your_orders">Details of your orders</string>
 </resources>
