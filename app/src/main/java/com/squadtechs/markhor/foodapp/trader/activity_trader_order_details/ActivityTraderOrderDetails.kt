@@ -3,6 +3,8 @@ package com.squadtechs.markhor.foodapp.trader.activity_trader_order_details
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +26,12 @@ class ActivityTraderOrderDetails : AppCompatActivity() {
     private lateinit var txtDeliveryPrice: TextView
     private lateinit var txtAllergyRequest: TextView
     private lateinit var txtAddress: TextView
+    private lateinit var txtDeliverTo: TextView
+    private lateinit var txtBeingPrepared: TextView
+    private lateinit var txtOnTheWay: TextView
+    private lateinit var txtReady: TextView
+    private lateinit var linearUpdateStatus: LinearLayout
+    private lateinit var linearUpdate: LinearLayout
     private var totalPrice: Int = 0
     private var totalDeliveryPrice: Int = 0
 
@@ -32,6 +40,57 @@ class ActivityTraderOrderDetails : AppCompatActivity() {
         setContentView(R.layout.activity_trader_order_details)
         initViews()
         populateRecyclerView()
+        setTxtListeners()
+    }
+
+    private fun setTxtListeners() {
+        txtBeingPrepared.setOnClickListener {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_unselected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            updateStatus("being prepared")
+        }
+        txtOnTheWay.setOnClickListener {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_unselected)
+            updateStatus("on the way")
+        }
+        txtReady.setOnClickListener {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_unselected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            updateStatus("ready")
+        }
+    }
+
+    private fun updateStatus(status: String) {
+        val pd = MainUtils.getLoadingDialog(this, "Updating", "Please wait", false)
+        pd.show()
+        val API = "http://squadtechsolution.com/android/v1/update_order_status.php"
+        val map = HashMap<String, String>()
+        map["company_id"] =
+            getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString(
+                "company_id",
+                "none"
+            )!!
+        map["customer_id"] = intent!!.extras!!.getString("customer_id")!!
+        map["status"] = status
+        val requestQueue = SingletonQueue.getRequestQueue(this)
+        val stringRequest = object : StringRequest(
+            Method.POST,
+            API,
+            Response.Listener { response ->
+                pd.cancel()
+                Log.i("update_response", response)
+            },
+            Response.ErrorListener { error ->
+                pd.cancel()
+                Log.i("update_response", error.toString())
+            }) {
+            override fun getParams(): MutableMap<String, String> = map
+        }
+        requestQueue.add(stringRequest)
     }
 
     private fun populateRecyclerView() {
@@ -49,6 +108,11 @@ class ActivityTraderOrderDetails : AppCompatActivity() {
             }
             1 -> {
                 map["is_complete"] = "yes"
+                linearUpdate.visibility = View.GONE
+                linearUpdateStatus.visibility = View.GONE
+                txtDeliverTo.visibility = View.GONE
+                txtAddress.visibility = View.GONE
+                txtAllergyRequest.visibility = View.GONE
             }
         }
         val pd = MainUtils.getLoadingDialog(this, "Loading", "Please wait", false)
@@ -107,9 +171,37 @@ class ActivityTraderOrderDetails : AppCompatActivity() {
     private fun populateAddressAndAllergy() {
         txtAddress.text = list[0].address
         txtAllergyRequest.text = "Allergy request: ${list[0].request}"
+        setTxtStatus()
+    }
+
+    private fun setTxtStatus() {
+        if (list[0].status.equals("pending")) {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_selected)
+        } else if (list[0].status.equals("being prepared")) {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_unselected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_selected)
+        } else if (list[0].status.equals("on the way")) {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_unselected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_selected)
+        } else {
+            txtBeingPrepared.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtOnTheWay.setBackgroundResource(R.drawable.txt_edit_range_selected)
+            txtReady.setBackgroundResource(R.drawable.txt_edit_range_unselected)
+        }
     }
 
     private fun initViews() {
+        txtDeliverTo = findViewById(R.id.txt_deliver_to)
+        linearUpdateStatus = findViewById(R.id.linear_update_status)
+        linearUpdate = findViewById(R.id.linear_status)
+        txtBeingPrepared = findViewById(R.id.txt_being_prepared)
+        txtOnTheWay = findViewById(R.id.txt_on_the_way)
+        txtReady = findViewById(R.id.txt_ready)
+        txtBeingPrepared = findViewById(R.id.txt_being_prepared)
         txtAddress = findViewById(R.id.txt_address)
         txtAllergyRequest = findViewById(R.id.txt_allergy)
         recyclerView = findViewById(R.id.order_list)
