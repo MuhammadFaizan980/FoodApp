@@ -223,4 +223,6 @@
     <string name="ready_for_pickup">Ready for pickup</string>
     <string name="update_status">UPDATE STATUS</string>
     <string name="ghazi_camp_paf_base_kohat_kpk_pakistan">Ghazi Camp, PAF Base, Kohat, KPK, Pakistan</string>
+    <string name="how_was_your_order_with_this_company">How was your order with this company?</string>
+    <string name="submit">Submit</string>
 </resources>
