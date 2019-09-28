@@ -64,7 +64,6 @@ class TraderRegistrationPresenter(
             Request.Method.POST,
             API,
             Response.Listener { response ->
-                progressDialog.cancel()
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
                     progressDialog.cancel()
