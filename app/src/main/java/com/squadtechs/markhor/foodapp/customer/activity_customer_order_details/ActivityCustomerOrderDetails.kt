@@ -18,10 +18,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.SingletonQueue
+import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fargment_review_sheet.ReviewBottomSheet
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import org.json.JSONObject
 
-class ActivityCustomerOrderDetails : AppCompatActivity() {
+class ActivityCustomerOrderDetails : AppCompatActivity(), CustomerOrderDetailsCallback {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CustomerOrderDetailsAdapter
@@ -68,8 +69,10 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
                         Log.i("m_faizan", response)
                         try {
                             if (JSONObject(response).getString("status").equals("Order Status Updated")) {
-                                setResult(Activity.RESULT_OK)
-                                finish()
+                                ReviewBottomSheet(list[0].company_id).show(
+                                    supportFragmentManager,
+                                    "o"
+                                )
                             } else {
                                 Toast.makeText(
                                     this,
@@ -200,6 +203,11 @@ class ActivityCustomerOrderDetails : AppCompatActivity() {
         txtAllergyRequest = findViewById(R.id.txt_allergy)
         btnMarkAsComplete = findViewById(R.id.btn_complete)
         imgProgress = findViewById(R.id.img_progress)
+    }
+
+    override fun onReviewAdded() {
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 
     override fun onStart() {

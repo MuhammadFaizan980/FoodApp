@@ -25,8 +25,10 @@
             android:id="@+id/rating_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:rating="1"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:progressTint="@color/colorBlack" />
 
         <Button
             android:id="@+id/btn_submit"
@@ -34,17 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_background"
             android:text="@string/submit"
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/img_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_cross" />
 
 </FrameLayout>

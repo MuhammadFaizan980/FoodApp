@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fargment_review_sheet.ReviewBottomSheet
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_around_me.CustomerFragmentAroundMe
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_cart.CustomerFragmentCart
 import com.squadtechs.markhor.foodapp.customer.Fragments.customer_fragment_end_of_cart.CustomerFragmentEndOfCart
@@ -40,16 +41,10 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         checkPermissions()
         createBottomNav()
         initViews()
-        //       setNavigationListener()
     }
-
-//    private fun setNavigationListener() {
-//        bottomNavigation.setOnNavigationItemSelectedListener(this)
-//    }
 
     private fun initViews() {
         fragmentHome = CustomerFragmentHome()
-//        bottomNavigation = findViewById(R.id.bottom_navigation_view)
         changeFragment(CustomerFragmentHome())
     }
 
@@ -98,27 +93,6 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
 
     }
 
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.item_home -> {
-//                changeFragment(fragmentHome)
-//            }
-//            R.id.item_location -> {
-//                changeFragment(CustomerFragmentAroundMe())
-//            }
-//            R.id.item_cart -> {
-//                changeFragment(CustomerFragmentCart())
-//            }
-//            R.id.item_orders -> {
-//                changeFragment(CustomerFragmentOrders())
-//            }
-//            R.id.item_profile -> {
-//                changeFragment(CustomerFragmentProfile())
-//            }
-//        }
-//        return true
-//    }
-
     private fun updateBadges() {
         val db = DbUtils(this)
         val cartCount = db.getTotalCount()
@@ -135,7 +109,6 @@ class ActivityCustomerMain : AppCompatActivity(), CustomerFoodFragmetnCallback {
         transaction.replace(R.id.main_frame, fragment)
         transaction.addToBackStack(null)
         transaction.commitAllowingStateLoss()
-//        transaction.commit()
 
     }
 

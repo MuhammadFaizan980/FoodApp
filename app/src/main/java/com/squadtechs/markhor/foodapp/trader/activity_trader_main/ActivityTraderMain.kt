@@ -142,7 +142,6 @@ class ActivityTraderMain : AppCompatActivity(), TraderMainCallBack {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Toast.makeText(this, "Main Called", Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
