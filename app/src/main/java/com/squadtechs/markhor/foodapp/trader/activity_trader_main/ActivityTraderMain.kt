@@ -11,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.SingletonQueue
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_dish.TraderFragmentAddDish
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_images.TraderFragmentAddNonFoodImages
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_add_non_food_item.TraderFragmentAddNonFoodItem
@@ -21,6 +24,7 @@ import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home.Trad
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_home_non_food.TraderFragmentHomeNonFood
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_orders.TraderFragmentOrders
 import com.squadtechs.markhor.foodapp.trader.fragments.trader_fragment_profile.TraderFragmentProfile
+import org.json.JSONArray
 
 
 class ActivityTraderMain : AppCompatActivity(), TraderMainCallBack {
@@ -125,11 +129,45 @@ class ActivityTraderMain : AppCompatActivity(), TraderMainCallBack {
     }
 
     private fun changeFragment(fragment: Fragment) {
+        getOrderCount()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_frame, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
         currentFragment = fragment
+    }
+
+    private fun getOrderCount() {
+        val API = "http://squadtechsolution.com/android/v1/get_company_order.php"
+        val requestQueue = SingletonQueue.getRequestQueue(this)
+        val map = HashMap<String, String>()
+        map["company_id"] =
+            getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString(
+                "company_id",
+                "none"
+            )!!
+        map["is_complete"] = ""
+        val stringRequest = object : StringRequest(
+            Method.POST,
+            API,
+            Response.Listener { response ->
+                try {
+                    val arr = JSONArray(response)
+                    if (arr.length() > 0) {
+                        bottomNavigation.setNotification(arr.length().toString(), 2)
+                    } else {
+                        bottomNavigation.setNotification("0", 2)
+                    }
+                } catch (exc: Exception) {
+                    Log.i("count_exception", exc.toString())
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.i("count_error", error.toString())
+            }) {
+            override fun getParams(): MutableMap<String, String> = map
+        }
+        requestQueue.add(stringRequest)
     }
 
     override fun onFragmentTap(key: String) {
