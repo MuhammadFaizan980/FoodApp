@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
@@ -112,6 +113,7 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     }
 
     override fun onBackPressed() {
+        startActivity(Intent(this, ActivitySelect::class.java))
         finish()
     }
 
