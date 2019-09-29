@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.activity_phone_verification.ActivityPhoneVerification
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
-import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContracts.IView {
@@ -109,7 +108,7 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ActivityCustomerSignup, ActivityCompanyType::class.java))
+        startActivity(Intent(this@ActivityCustomerSignup, ActivityCustomerLogin::class.java))
         finish()
     }
 

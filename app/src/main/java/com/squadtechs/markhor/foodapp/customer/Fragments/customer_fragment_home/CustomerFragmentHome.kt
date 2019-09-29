@@ -55,7 +55,7 @@ class CustomerFragmentHome : Fragment() {
         list.add("Skincare")
         list.add("Homeware")
         list.add("Toys")
-        list.add("Sheos")
+        list.add("Shoes")
         list.add("Bags")
         list.add("Other")
         adapter =

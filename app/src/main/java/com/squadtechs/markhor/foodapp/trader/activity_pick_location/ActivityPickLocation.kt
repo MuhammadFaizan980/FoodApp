@@ -3,11 +3,18 @@ package com.squadtechs.markhor.foodapp.trader.activity_pick_location
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 
 class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
 
@@ -35,17 +43,17 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        addDraggableMarker()
+        checkPermissions()
     }
 
-    private fun addDraggableMarker() {
+    private fun addDraggableMarker(lat: Double, lng: Double) {
         shoeInfoDialog()
         marker = MarkerOptions()
-        marker.position(LatLng(23.656444, 54.006528))
+        marker.position(LatLng(lat, lng))
         marker.draggable(true)
         mMap.clear()
         mMap.addMarker(marker)
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(23.656444, 54.006528), 7f))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lng), 7f))
         mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
             override fun onMarkerDragEnd(p0: Marker?) {
                 btnPickLocation.visibility = View.VISIBLE
@@ -91,6 +99,79 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
             dialogInterface.cancel()
         }
         dialog.show()
+    }
+
+    fun checkPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_DENIED
+        ) {
+            val permissionArray = arrayOfNulls<String>(1)
+            permissionArray[0] = android.Manifest.permission.ACCESS_FINE_LOCATION
+            ActivityCompat.requestPermissions(this@ActivityPickLocation, permissionArray, 99)
+        } else {
+            getCurrentLocation()
+        }
+    }
+
+    fun getCurrentLocation(
+    ) {
+        var location: Location?
+        val locationProvider = LocationServices.getFusedLocationProviderClient(this)
+        locationProvider.lastLocation.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                location = task.result
+                if (location != null) {
+                    addDraggableMarker(location!!.latitude, location!!.longitude)
+                } else {
+                    val ad = MainUtils.getMessageDialog(
+                        this,
+                        "Message!",
+                        "location currently not available",
+                        false
+                    )
+                    ad.setPositiveButton("Close") { dialogInterface, i ->
+                        dialogInterface.dismiss()
+                    }
+                    ad.show()
+                }
+            } else {
+                val ad = MainUtils.getMessageDialog(
+                    this,
+                    "Message!",
+                    "location currently not available",
+                    false
+                )
+                ad.setPositiveButton("Close") { dialogInterface, i ->
+                    dialogInterface.dismiss()
+                }
+                ad.show()
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 99 && grantResults.isNotEmpty()) {
+            for (i in grantResults) {
+                Log.i("dxdiag", i.toString())
+                if (i == PackageManager.PERMISSION_GRANTED) {
+                    continue
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Permissions are required for the app to work properly",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return
+                }
+            }
+            getCurrentLocation()
+        }
     }
 
 }

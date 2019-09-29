@@ -58,7 +58,7 @@ class InsideFoodAdapter(
                     Intent(
                         context,
                         ActivityCustomerFoodCompanyDetails::class.java
-                    ).putExtra("company_id", obj.id)
+                    ).putExtra("company_id", obj.id).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 )
             }
         } else {
@@ -84,7 +84,7 @@ class InsideFoodAdapter(
                     Intent(
                         context,
                         ActivityCustomerFoodCompanyDetails::class.java
-                    ).putExtra("company_id", obj.id)
+                    ).putExtra("company_id", obj.id).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 )
             }
         }

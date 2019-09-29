@@ -66,7 +66,7 @@ class CustomerFragmentHomeAdapter(
                 Intent(
                     context,
                     ActivityCustomerNonFoodCompanies::class.java
-                ).putExtra("position", position)
+                ).putExtra("position", position).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             )
             mActivity.finish()
         }
