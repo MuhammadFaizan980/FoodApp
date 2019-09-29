@@ -18,9 +18,9 @@
             <LinearLayout
                 android:id="@+id/linear_go_back"
                 android:layout_width="65dp"
-                android:visibility="invisible"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="invisible">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -119,6 +119,7 @@
             </RadioGroup>
 
             <TextView
+                android:id="@+id/lora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -130,10 +131,9 @@
             <EditText
                 android:id="@+id/edt_other"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="textMultiLine"
-                android:minHeight="100dp"
                 android:padding="16dp" />
 
         </LinearLayout>

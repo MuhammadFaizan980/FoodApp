@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.activity_select.ActivitySelect
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_electronic_license.ActivityElectronicLicense
@@ -28,6 +27,7 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
     private lateinit var iAmCustomer: LinearLayout
     private lateinit var pref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+    private var companyPhone: String = ""
     private lateinit var mPresenter: TraderRegistrationContracts.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +45,14 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
             val userLastName = lastName.text.toString().trim()
             val userConfirmPassword = confirmPassword.text.toString().trim()
             val mobile = mobile.text.toString().trim()
-            val companyMobil = companyMobile.text.toString().trim()
+            if (!companyMobile.text.toString().trim().equals("")) {
+                companyPhone = companyMobile.text.toString().trim()
+            }
             mPresenter.initValidation(
                 userFirstName,
                 userLastName,
                 mobile,
-                companyMobil,
+                companyPhone,
                 userEmail,
                 userpassword,
                 userConfirmPassword,

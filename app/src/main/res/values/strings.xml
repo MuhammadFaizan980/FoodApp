@@ -16,7 +16,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="i_m_already_registered">I\'m already registered</string>
     <string name="i_am_a_customer">I am a customer</string>
-    <string name="company_landline">COMPANY LANDLINE</string>
+    <string name="company_landline">COMPANY LANDLINE (optional)</string>
     <string name="i_want_to_be_a_customer">I want to be a customer</string>
     <string name="back"><![CDATA[<< Back]]></string>
     <string name="company_name">COMPANY NAME</string>

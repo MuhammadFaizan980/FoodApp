@@ -1,6 +1,7 @@
 package com.squadtechs.markhor.foodapp.trader.trader_registration
 
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -64,6 +65,7 @@ class TraderRegistrationPresenter(
             Request.Method.POST,
             API,
             Response.Listener { response ->
+                Log.i("ggggg", response)
                 val json = JSONObject(response)
                 if (json.getString("status").equals("reg_failed")) {
                     progressDialog.cancel()

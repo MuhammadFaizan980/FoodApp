@@ -12,10 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 import com.squadtechs.markhor.foodapp.main_utils.MainUtils
-import com.squadtechs.markhor.foodapp.trader.activity_company_details.ActivityCompanyDetails
-import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.activity_company_type.ActivityCompanyType
-import com.squadtechs.markhor.foodapp.trader.activity_delivery_details.ActivityDeliveryDetails
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 import com.squadtechs.markhor.foodapp.trader.trader_registration.ActivityTraderSignup
 
@@ -92,38 +89,15 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
                 }
                 dialog.show()
             } else if (profileStatus.equals("yes")) {
+                val pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                val editor = pref.edit()
+                editor.putBoolean("trader_logged_in", true)
+                editor.apply()
                 startActivity(Intent(this, ActivityTraderMain::class.java))
                 finish()
             } else {
-                val isProfileInProgress =
-                    getSharedPreferences("reg_progress", Context.MODE_PRIVATE).getString(
-                        "current_screen",
-                        "null"
-                    ) as String
-                if (!isProfileInProgress.equals("prof_complete") && !profileStatus.equals("yes")) {
-
-                    when (isProfileInProgress) {
-                        "trader company details" -> {
-                            startActivity(Intent(this, ActivityCompanyDetails::class.java))
-                            finish()
-                        }
-                        "trader company timings" -> {
-                            startActivity(Intent(this, ActivityCompanyTimings::class.java))
-                            finish()
-                        }
-                        "trader delivery details" -> {
-                            startActivity(Intent(this, ActivityDeliveryDetails::class.java))
-                            finish()
-                        }
-                        else -> {
-                            startActivity(Intent(this, ActivityCompanyType::class.java))
-                            finish()
-                        }
-                    }
-                } else {
-                    startActivity(Intent(this, ActivityTraderMain::class.java))
-                    finish()
-                }
+                startActivity(Intent(this, ActivityCompanyType::class.java))
+                finish()
             }
         } else {
             Toast.makeText(this@ActivityTraderLogin, "Login error, $message", Toast.LENGTH_LONG)

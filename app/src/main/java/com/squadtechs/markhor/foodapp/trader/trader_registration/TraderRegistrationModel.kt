@@ -12,7 +12,7 @@ class TraderRegistrationModel(
 ) : TraderRegistrationContracts.IModel {
     override fun validate(): Boolean =
         firstName.isNotEmpty() && lastName.isNotEmpty() && mobileNumber.isNotEmpty()
-                && companyMobile.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()
+                && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()
                 && password.equals(confirmPassword) && agreement && android.util.Patterns.EMAIL_ADDRESS.matcher(
             email
         ).matches()

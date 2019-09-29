@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
@@ -27,6 +28,7 @@ class ActivityCompanyType : AppCompatActivity() {
     private lateinit var selectedValue: String
     private lateinit var pref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+    private lateinit var txtLora: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,18 @@ class ActivityCompanyType : AppCompatActivity() {
     }
 
     private fun setLisetener() {
+
+
+        radioOthers.setOnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                edtType.visibility = View.VISIBLE
+                txtLora.visibility = View.VISIBLE
+            } else {
+                txtLora.visibility = View.GONE
+                edtType.visibility = View.GONE
+            }
+        }
+
         btnNext.setOnClickListener {
             if (selectedValue.equals("")) {
                 Toast.makeText(
@@ -44,12 +58,18 @@ class ActivityCompanyType : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                val pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
-                val editor = pref.edit()
-                editor.putString("company_type", selectedValue)
-                editor.apply()
-                startActivity(Intent(this, ActivityCompanyDetails::class.java))
-                finish()
+                if (radioOthers.isChecked && edtType.text.toString().trim().equals("")) {
+                    Toast.makeText(this, "Please fill in company type first", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    val pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putString("company_type", selectedValue)
+                    editor.apply()
+                    startActivity(Intent(this, ActivityCompanyDetails::class.java))
+                    finish()
+                }
+
             }
         }
 
@@ -80,6 +100,7 @@ class ActivityCompanyType : AppCompatActivity() {
                 edtType.isEnabled = false
             } else if (radioOthers.isChecked) {
                 edtType.isEnabled = true
+                edtType.visibility = View.VISIBLE
                 selectedValue = "Other"
             }
         }
@@ -87,6 +108,7 @@ class ActivityCompanyType : AppCompatActivity() {
     }
 
     private fun initViews() {
+        txtLora = findViewById(R.id.lora)
         btnNext = findViewById(R.id.btn_trader_next)
         radioGroup = findViewById(R.id.m_group)
         edtType = findViewById(R.id.edt_other)
@@ -110,6 +132,8 @@ class ActivityCompanyType : AppCompatActivity() {
         super.onStart()
         editor.putString("current_screen", "company type")
         editor.apply()
+        edtType.visibility = View.GONE
+        txtLora.visibility = View.GONE
     }
 
     override fun onBackPressed() {
