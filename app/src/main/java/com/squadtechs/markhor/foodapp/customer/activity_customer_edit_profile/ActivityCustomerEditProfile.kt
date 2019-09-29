@@ -52,7 +52,7 @@ class ActivityCustomerEditProfile : AppCompatActivity(), CustomerProfileEditCont
         if (status) {
             mPresenter.editProfile()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "All fields must be filled properly", Toast.LENGTH_LONG).show()
         }
     }
 

@@ -99,7 +99,7 @@ class ActivityElectronicLicense : AppCompatActivity(), View.OnClickListener,
         if (status) {
             mPresenter.saveLicense()
         } else {
-            Toast.makeText(this, "Please select all license files first", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please select at least one license file first", Toast.LENGTH_LONG).show()
         }
     }
 

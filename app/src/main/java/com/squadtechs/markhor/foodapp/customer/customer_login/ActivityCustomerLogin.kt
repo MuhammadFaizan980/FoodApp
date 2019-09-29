@@ -60,7 +60,7 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         if (status) {
             mPresenter.initLogin()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Invalid email or password", Toast.LENGTH_LONG).show()
         }
     }
 

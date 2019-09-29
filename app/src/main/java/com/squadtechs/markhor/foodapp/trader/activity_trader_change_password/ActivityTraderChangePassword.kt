@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 
 class ActivityTraderChangePassword : AppCompatActivity(), TraderChangePasswordMainContracts.IView {
@@ -59,7 +58,7 @@ class ActivityTraderChangePassword : AppCompatActivity(), TraderChangePasswordMa
         if (status) {
             mPresenter.changePassword()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Invalid user password", Toast.LENGTH_LONG).show()
         }
     }
 

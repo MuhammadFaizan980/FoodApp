@@ -49,7 +49,8 @@ class ActivityCustomerEditAddress : AppCompatActivity() {
                 ) as String
 
             if (address.equals("") || isDefault.equals("") || customer_id.equals("none")) {
-                Toast.makeText(this, "Please fill in properly", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "All fields must be filled properly", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 val pd = MainUtils.getLoadingDialog(this, "Editing", "Please wait", false)
                 pd.show()

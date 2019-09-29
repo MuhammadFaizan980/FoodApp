@@ -70,7 +70,7 @@ class ActivityCompanyDetails : AppCompatActivity(), TraderCompanyDetailsContract
         if (valid) {
             mPresenter.addCompanyDetails()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "All fields must be filled first", Toast.LENGTH_LONG).show()
         }
     }
 

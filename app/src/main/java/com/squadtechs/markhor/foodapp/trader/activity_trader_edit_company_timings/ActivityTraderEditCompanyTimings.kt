@@ -130,7 +130,7 @@ class ActivityTraderEditCompanyTimings : AppCompatActivity(), EditTimingContract
         if (status) {
             mPresenter.editCompanyTimings()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please fill the form properly", Toast.LENGTH_SHORT).show()
         }
     }
 

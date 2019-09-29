@@ -107,7 +107,7 @@ class ActivityTraderEditDeliveryRangeType : AppCompatActivity(), EditDeliveryRan
             startActivity(mIntent)
             finish()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please fill the form properly", Toast.LENGTH_SHORT).show()
         }
     }
 

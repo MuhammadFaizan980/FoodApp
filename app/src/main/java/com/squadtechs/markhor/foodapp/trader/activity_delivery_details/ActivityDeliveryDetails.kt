@@ -87,7 +87,7 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
         if (status) {
             mPresenter.addDeliveryDetails()
         } else {
-            Toast.makeText(this, "Invalid data entry", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Delivery info must be filled", Toast.LENGTH_LONG).show()
         }
     }
 

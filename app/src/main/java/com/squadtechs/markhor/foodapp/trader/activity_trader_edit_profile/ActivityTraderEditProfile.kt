@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_food_company_details_first_screen.ActivityTraderEditFoodCompanyDetailsFirstScreen
 import com.squadtechs.markhor.foodapp.trader.activity_trader_edit_non_food_company_details_first_screen.ActivityTraderEditNonFoodCompanyDetailsFirstScreen
-import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
 
 class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainContracts.IView {
 
@@ -56,7 +55,7 @@ class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainCont
         if (status) {
             mPresenter.editProfile()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please fill the form properly", Toast.LENGTH_LONG).show()
         }
     }
 

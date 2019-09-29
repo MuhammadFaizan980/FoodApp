@@ -83,7 +83,11 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
         if (status) {
             mPresenter.initRegistration()
         } else {
-            Toast.makeText(this@ActivityCustomerSignup, "Invalid credentials", Toast.LENGTH_LONG)
+            Toast.makeText(
+                this@ActivityCustomerSignup,
+                "All fields must be filled properly",
+                Toast.LENGTH_LONG
+            )
                 .show()
         }
     }

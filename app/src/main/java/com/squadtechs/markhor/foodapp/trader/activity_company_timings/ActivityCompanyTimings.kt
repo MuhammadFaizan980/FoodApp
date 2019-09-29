@@ -149,7 +149,7 @@ class ActivityCompanyTimings : AppCompatActivity(), CompanyTimingsContracts.IVie
         if (status) {
             mPresenter.addCompanyTimings()
         } else {
-            Toast.makeText(this, "Invalid data entry", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Location and timings are required to proceed", Toast.LENGTH_LONG).show()
         }
     }
 

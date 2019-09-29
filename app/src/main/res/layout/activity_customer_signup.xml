@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="48dp">
+            android:padding="32dp">
 
             <LinearLayout
                 android:id="@+id/linear_i_am_trader"
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/sign_up"
                 android:textColor="@color/colorBlack"
                 android:textSize="35sp"
@@ -98,7 +98,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/first_name"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"
@@ -125,7 +125,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/last_name"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"
@@ -160,7 +160,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/mobile_number"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"
@@ -188,7 +188,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="48dp"
+                        android:layout_marginTop="40dp"
                         android:text="@string/birthday"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"

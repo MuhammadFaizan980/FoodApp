@@ -64,7 +64,7 @@ class ActivityTraderLogin : AppCompatActivity(), TraderLoginContracts.IView {
         if (status) {
             mPresenter.initLogin()
         } else {
-            Toast.makeText(this@ActivityTraderLogin, "Invalid credentials", Toast.LENGTH_LONG)
+            Toast.makeText(this@ActivityTraderLogin, "Invalid email or password", Toast.LENGTH_LONG)
                 .show()
         }
     }

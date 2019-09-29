@@ -94,7 +94,11 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         if (status) {
             mPresenter.initRegistration()
         } else {
-            Toast.makeText(this@ActivityTraderSignup, "Invalid credentials", Toast.LENGTH_LONG)
+            Toast.makeText(
+                this@ActivityTraderSignup,
+                "All fields must be filled properly",
+                Toast.LENGTH_LONG
+            )
                 .show()
         }
     }

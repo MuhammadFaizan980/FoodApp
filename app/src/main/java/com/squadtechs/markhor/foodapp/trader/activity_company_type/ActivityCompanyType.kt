@@ -59,7 +59,7 @@ class ActivityCompanyType : AppCompatActivity() {
                 ).show()
             } else {
                 if (radioOthers.isChecked && edtType.text.toString().trim().equals("")) {
-                    Toast.makeText(this, "Please fill in company type first", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Please select company type properly", Toast.LENGTH_SHORT)
                         .show()
                 } else {
                     val pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE)

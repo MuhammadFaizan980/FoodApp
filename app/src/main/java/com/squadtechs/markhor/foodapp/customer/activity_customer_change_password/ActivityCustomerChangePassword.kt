@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
-import com.squadtechs.markhor.foodapp.customer.activity_customer_main.ActivityCustomerMain
 import com.squadtechs.markhor.foodapp.customer.customer_login.ActivityCustomerLogin
 
 class ActivityCustomerChangePassword : AppCompatActivity(),
@@ -46,7 +45,7 @@ class ActivityCustomerChangePassword : AppCompatActivity(),
         }
     }
 
-   private  fun initViews() {
+    private fun initViews() {
         btnBack = findViewById(R.id.img_go_back)
         edtCurrentPassword = findViewById(R.id.edt_current_password)
         edtNewPassword = findViewById(R.id.edt_new_password)
@@ -59,7 +58,7 @@ class ActivityCustomerChangePassword : AppCompatActivity(),
         if (status) {
             mPresenter.changePassword()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Invalid password", Toast.LENGTH_LONG).show()
         }
     }
 

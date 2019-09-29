@@ -51,7 +51,7 @@ class ActivityCustomerAddAddress : AppCompatActivity(), CustomerAddAddressMainCo
         if (status) {
             mPresenter.saveCustomerAddress()
         } else {
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Address must be filled properly", Toast.LENGTH_LONG).show()
         }
     }
 
