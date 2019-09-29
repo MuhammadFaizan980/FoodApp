@@ -27,6 +27,18 @@ class TraderFragmentOrders : Fragment() {
     }
 
     private fun setUpViewPager() {
+
+        txtCurrentOrders.setOnClickListener {
+            txtCurrentOrders.setBackgroundResource(R.drawable.tab_back_selected)
+            txtPastOrders.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPager.currentItem = 0
+        }
+        txtPastOrders.setOnClickListener {
+            txtCurrentOrders.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtPastOrders.setBackgroundResource(R.drawable.tab_back_selected)
+            viewPager.currentItem = 1
+        }
+
         val adapter = TraderOrderPagerAdapter(childFragmentManager)
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

@@ -41,6 +41,36 @@ class ActivityCustomerNonFoodCompaniesDetails : AppCompatActivity() {
     }
 
     private fun setListeners() {
+
+        txtAll.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_selected)
+            txtWomen.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMen.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtChildren.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(0)
+        }
+        txtWomen.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtWomen.setBackgroundResource(R.drawable.tab_back_selected)
+            txtMen.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtChildren.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(1)
+        }
+        txtMen.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtWomen.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMen.setBackgroundResource(R.drawable.tab_back_selected)
+            txtChildren.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(2)
+        }
+        txtChildren.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtWomen.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMen.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtChildren.setBackgroundResource(R.drawable.tab_back_selected)
+            viewPackage.setCurrentItem(3)
+        }
+
         viewPackage.adapter = ClothesPagerAdapter(
             intent!!.extras!!.get("company_id") as String,
             supportFragmentManager

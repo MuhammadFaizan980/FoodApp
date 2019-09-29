@@ -29,7 +29,6 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
     private lateinit var txtTime: TextView
     private lateinit var txtDeliveryType: TextView
     private lateinit var txtDescription: TextView
-    //  private lateinit var txtNewMessage: TextView
     private lateinit var imgCompany: ImageView
     private lateinit var imgChat: ImageView
     private lateinit var imgBack: ImageView
@@ -44,6 +43,48 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
     }
 
     private fun setListeners() {
+
+        txtAll.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_selected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(0)
+        }
+        txtStarters.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_selected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(1)
+        }
+        txtMain.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_selected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(2)
+        }
+        txtSides.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_selected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.setCurrentItem(3)
+        }
+        txtDeserts.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_selected)
+            viewPackage.setCurrentItem(4)
+        }
+
         viewPackage.adapter =
             CompanyInformationPagerAdapter(
                 supportFragmentManager,
@@ -66,6 +107,7 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
                         txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
                         txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
                         txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+                        txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
                     }
 
                     1 -> {
