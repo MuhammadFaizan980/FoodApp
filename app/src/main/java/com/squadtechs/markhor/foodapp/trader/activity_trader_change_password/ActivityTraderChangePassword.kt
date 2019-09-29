@@ -30,7 +30,6 @@ class ActivityTraderChangePassword : AppCompatActivity(), TraderChangePasswordMa
 
     private fun setListeners() {
         btnBack.setOnClickListener {
-            startActivity(Intent(this, ActivityTraderMain::class.java))
             finish()
         }
         btnSaveData.setOnClickListener {
@@ -74,7 +73,6 @@ class ActivityTraderChangePassword : AppCompatActivity(), TraderChangePasswordMa
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityTraderMain::class.java))
         finish()
     }
 

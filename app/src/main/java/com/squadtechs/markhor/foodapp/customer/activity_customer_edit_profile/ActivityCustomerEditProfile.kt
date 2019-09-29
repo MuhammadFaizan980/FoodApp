@@ -28,7 +28,6 @@ class ActivityCustomerEditProfile : AppCompatActivity(), CustomerProfileEditCont
 
     private fun setListeners() {
         btnBack.setOnClickListener {
-            startActivity(Intent(this, ActivityCustomerMain::class.java))
             finish()
         }
         btnSaveData.setOnClickListener {
@@ -68,7 +67,6 @@ class ActivityCustomerEditProfile : AppCompatActivity(), CustomerProfileEditCont
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityCustomerMain::class.java))
         finish()
     }
 

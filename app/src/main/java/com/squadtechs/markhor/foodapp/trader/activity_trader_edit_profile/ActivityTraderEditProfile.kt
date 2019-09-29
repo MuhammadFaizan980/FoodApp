@@ -31,7 +31,6 @@ class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainCont
 
     private fun setListeners() {
         btnBack.setOnClickListener {
-            startActivity(Intent(this, ActivityTraderMain::class.java))
             finish()
         }
         btnSaveData.setOnClickListener {
@@ -91,7 +90,6 @@ class ActivityTraderEditProfile : AppCompatActivity(), TraderEditProfileMainCont
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityTraderMain::class.java))
         finish()
     }
 

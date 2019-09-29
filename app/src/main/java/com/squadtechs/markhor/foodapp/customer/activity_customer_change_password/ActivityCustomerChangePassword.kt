@@ -30,7 +30,6 @@ class ActivityCustomerChangePassword : AppCompatActivity(),
 
     private fun setListeners() {
         btnBack.setOnClickListener {
-            startActivity(Intent(this, ActivityCustomerMain::class.java))
             finish()
         }
         btnSaveData.setOnClickListener {
@@ -74,7 +73,6 @@ class ActivityCustomerChangePassword : AppCompatActivity(),
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityCustomerMain::class.java))
         finish()
     }
 

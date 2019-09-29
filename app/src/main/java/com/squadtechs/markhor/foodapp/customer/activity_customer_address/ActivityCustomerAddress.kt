@@ -102,7 +102,6 @@ class ActivityCustomerAddress : AppCompatActivity() {
         }
 
         imgGoBack.setOnClickListener {
-            startActivity(Intent(this, ActivityCustomerMain::class.java))
             finish()
         }
     }
@@ -114,7 +113,6 @@ class ActivityCustomerAddress : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, ActivityCustomerMain::class.java))
         finish()
     }
 

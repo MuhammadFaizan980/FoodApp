@@ -41,12 +41,10 @@ class TraderFragmentProfile : Fragment() {
     private fun setListeners() {
         txtMyDetails.setOnClickListener {
             startActivity(Intent(activity!!, ActivityTraderEditProfile::class.java))
-            activity!!.finish()
         }
 
         txtChangePassword.setOnClickListener {
             startActivity(Intent(activity!!, ActivityTraderChangePassword::class.java))
-            activity!!.finish()
         }
 
         txtContactUs.setOnClickListener {

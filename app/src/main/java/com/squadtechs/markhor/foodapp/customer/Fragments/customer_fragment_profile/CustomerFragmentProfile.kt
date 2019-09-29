@@ -45,17 +45,14 @@ class CustomerFragmentProfile : Fragment() {
     private fun setListeners() {
         txtMyDetails.setOnClickListener {
             startActivity(Intent(activity!!, ActivityCustomerEditProfile::class.java))
-            activity!!.finish()
         }
 
         txtChangePassword.setOnClickListener {
             startActivity(Intent(activity!!, ActivityCustomerChangePassword::class.java))
-            activity!!.finish()
         }
 
         txtAddress.setOnClickListener {
             startActivity(Intent(activity!!, ActivityCustomerAddress::class.java))
-            activity!!.finish()
         }
 
         txtSignOut.setOnClickListener {
