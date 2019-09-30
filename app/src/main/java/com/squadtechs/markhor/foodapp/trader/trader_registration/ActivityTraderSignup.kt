@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
@@ -90,13 +91,14 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         mPresenter = TraderRegistrationPresenter(this@ActivityTraderSignup, this)
     }
 
-    override fun onValidationResult(status: Boolean) {
+    override fun onValidationResult(status: Boolean, message: String) {
+        Log.i("message_reg", message)
         if (status) {
             mPresenter.initRegistration()
         } else {
             Toast.makeText(
                 this@ActivityTraderSignup,
-                "All fields must be filled properly",
+                message,
                 Toast.LENGTH_LONG
             )
                 .show()
@@ -109,7 +111,7 @@ class ActivityTraderSignup : AppCompatActivity(), TraderRegistrationContracts.IV
         } else {
             Toast.makeText(
                 this@ActivityTraderSignup,
-                "Registration error $message",
+                message,
                 Toast.LENGTH_LONG
             )
                 .show()

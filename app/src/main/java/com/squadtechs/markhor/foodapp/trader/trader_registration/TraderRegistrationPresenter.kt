@@ -36,6 +36,7 @@ class TraderRegistrationPresenter(
         agreement: Boolean
     ) {
         mModel = TraderRegistrationModel(
+            this,
             firstName,
             lastName,
             mobileNumber,
@@ -45,17 +46,19 @@ class TraderRegistrationPresenter(
             confirmPassword,
             agreement
         )
-        if (mModel.validate()) {
-            this.firstName = firstName
-            this.lastName = lastName
-            this.mobileNumber = mobileNumber
-            this.companyMobile = companyMobile
-            this.email = email
-            this.password = password
-        }
-        mView.onValidationResult(mModel.validate())
+        this.firstName = firstName
+        this.lastName = lastName
+        this.mobileNumber = mobileNumber
+        this.companyMobile = companyMobile
+        this.email = email
+        this.password = password
+
+        mModel.validateFields()
     }
 
+    override fun validationCallback(status: Boolean, message: String) {
+        mView.onRegistrationResult(status, message)
+    }
 
     override fun initRegistration() {
         val progressDialog = MainUtils.getLoadingDialog(context, "Loading", "Please Wait", false)
