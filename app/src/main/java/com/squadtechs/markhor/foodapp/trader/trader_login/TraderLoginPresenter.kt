@@ -29,8 +29,12 @@ class TraderLoginPresenter(
     override fun initValidation(email: String, password: String) {
         this.email = email
         this.password = password
-        mModel = TraderLoginModel(this.email, this.password)
-        mView.onValidationResult(mModel.validateFields())
+        mModel = TraderLoginModel(this, this.email, this.password)
+        mModel.validateFields()
+    }
+
+    override fun validationCallback(status: Boolean, message: String) {
+        mView.onValidationResult(status, message)
     }
 
     override fun initLogin() {
