@@ -2,10 +2,11 @@ package com.squadtechs.markhor.foodapp.customer.customer_signup
 
 interface CustomerRegistrationContracts {
     interface IModel {
-        fun validate(): Boolean
+        fun validate()
     }
 
     interface IPresenter {
+        fun validationCallback(status: Boolean, message: String)
         fun initValidation(
             firstName: String,
             lastName: String,
@@ -21,7 +22,7 @@ interface CustomerRegistrationContracts {
     }
 
     interface IView {
-        fun onValidationResult(status: Boolean)
+        fun onValidationResult(status: Boolean, message: String)
         fun onRegistrationResult(status: Boolean, message: String)
     }
 

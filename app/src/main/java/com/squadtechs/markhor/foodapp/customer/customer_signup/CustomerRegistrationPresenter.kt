@@ -35,6 +35,7 @@ class CustomerRegistrationPresenter(
         userAgreement: Boolean
     ) {
         mModel = CustomerRegistrationModel(
+            this,
             firstName,
             lastName,
             mobileNumber,
@@ -44,15 +45,17 @@ class CustomerRegistrationPresenter(
             confirmPassword,
             userAgreement
         )
-        if (mModel.validate()) {
-            this.firstName = firstName
-            this.lastName = lastName
-            this.mobileNumber = mobileNumber
-            this.birthday = birthday
-            this.email = email
-            this.password = password
-        }
-        mView.onValidationResult(mModel.validate())
+        this.firstName = firstName
+        this.lastName = lastName
+        this.mobileNumber = mobileNumber
+        this.birthday = birthday
+        this.email = email
+        this.password = password
+        mModel.validate()
+    }
+
+    override fun validationCallback(status: Boolean, message: String) {
+        mView.onValidationResult(status, message)
     }
 
     override fun initRegistration() {

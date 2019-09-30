@@ -79,13 +79,13 @@ class ActivityCustomerSignup : AppCompatActivity(), CustomerRegistrationContract
         traderRegister = findViewById(R.id.linear_i_am_trader)
     }
 
-    override fun onValidationResult(status: Boolean) {
+    override fun onValidationResult(status: Boolean, message: String) {
         if (status) {
             mPresenter.initRegistration()
         } else {
             Toast.makeText(
                 this@ActivityCustomerSignup,
-                "All fields must be filled properly",
+                message,
                 Toast.LENGTH_LONG
             )
                 .show()
