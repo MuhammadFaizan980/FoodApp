@@ -56,11 +56,11 @@ class ActivityCustomerLogin : AppCompatActivity(), CustomerLoginContracts.IView 
         linearTraderLogin = findViewById(R.id.linear_i_am_trader)
     }
 
-    override fun onValidationResult(status: Boolean) {
+    override fun onValidationResult(status: Boolean, message: String) {
         if (status) {
             mPresenter.initLogin()
         } else {
-            Toast.makeText(this, "Invalid email or password", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
     }
 
