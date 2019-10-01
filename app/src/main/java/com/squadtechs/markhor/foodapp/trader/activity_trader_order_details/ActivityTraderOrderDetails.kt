@@ -171,6 +171,9 @@ class ActivityTraderOrderDetails : AppCompatActivity() {
     private fun populateAddressAndAllergy() {
         txtAddress.text = list[0].address
         txtAllergyRequest.text = "Allergy request: ${list[0].request}"
+        if (list[0].request.equals("")) {
+            txtAllergyRequest.visibility = View.GONE
+        }
         setTxtStatus()
     }
 

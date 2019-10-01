@@ -87,17 +87,6 @@ class TraderFragmentHome : Fragment() {
                         }
                         count--
                     }
-
-
-//                    val json = JSONArray(response).getJSONObject(0)
-//
-//                    val editor = activity!!.getSharedPreferences(
-//                        "user_credentials",
-//                        Context.MODE_PRIVATE
-//                    ).edit()
-//                    editor.putString("delivery_type", json.getString("delivery_type"))
-//                    editor.apply()
-
                 } catch (exc: Exception) {
                     Log.i("dxdiag", exc.toString())
                 }
@@ -138,6 +127,48 @@ class TraderFragmentHome : Fragment() {
     }
 
     private fun setListeners() {
+
+        txtAll.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_selected_admin)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.currentItem = 0
+        }
+        txtStarters.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_selected_admin)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.currentItem = 1
+        }
+        txtMain.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_selected_admin)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.currentItem = 2
+        }
+        txtSides.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_selected_admin)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_unselected)
+            viewPackage.currentItem = 3
+        }
+        txtDeserts.setOnClickListener {
+            txtAll.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtStarters.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtMain.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtSides.setBackgroundResource(R.drawable.tab_back_unselected)
+            txtDeserts.setBackgroundResource(R.drawable.tab_back_selected_admin)
+            viewPackage.currentItem = 4
+        }
+
         viewPackage.adapter =
             TraderHomePagerAdapter(childFragmentManager)
         viewPackage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
