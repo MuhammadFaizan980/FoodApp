@@ -83,6 +83,7 @@ class TraderLoginPresenter(
                                     "n/a"
                                 )
                             } else {
+                                Log.i("firebase_exception", task.exception!!.message!!)
                                 mView.onLoginResult(false, "n/a", "n/a", "n/a")
                                 progressDialog.cancel()
                             }

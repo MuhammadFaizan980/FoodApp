@@ -57,7 +57,7 @@ class TraderRegistrationPresenter(
     }
 
     override fun validationCallback(status: Boolean, message: String) {
-        mView.onRegistrationResult(status, message)
+        mView.onValidationResult(status, message)
     }
 
     override fun initRegistration() {

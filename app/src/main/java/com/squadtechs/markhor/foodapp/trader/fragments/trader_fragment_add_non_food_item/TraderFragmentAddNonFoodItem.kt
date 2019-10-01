@@ -244,25 +244,238 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     }
 
     private fun populateListItemAsSpinner() {
-        val arr = arrayOfNulls<String>(3)
-        arr[0] = "Women Fashion"
-        arr[1] = "Men Fashion"
-        arr[2] = "Children"
-        val arrayAdapter = ArrayAdapter<String>(
-            activity!!,
-            R.layout.list_dish_as_spinner_row,
-            R.id.txt_list_dish_as_row_design,
-            arr
-        )
-        spinnerListItemAs.adapter = arrayAdapter
-        spinnerListItemAs.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        val pref = activity!!.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+        val traderType = pref.getString("company_type", "none") as String
+        when (traderType) {
+            "Clothes" -> {
+                val arr = arrayOfNulls<String>(3)
+                arr[0] = "Women Fashion"
+                arr[1] = "Men Fashion"
+                arr[2] = "Children"
 
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                listIteamAs = arr[p2] as String
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
             }
+            "Accessories" -> {
+                val arr = arrayOfNulls<String>(5)
+                arr[0] = "Women Fashion"
+                arr[1] = "Men Fashion"
+                arr[2] = "Children"
+                arr[3] = "Unisex"
+                arr[4] = "Other"
 
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
+            "Skincare" -> {
+                val arr = arrayOfNulls<String>(3)
+                arr[0] = "Face & Body"
+                arr[1] = "Nails"
+                arr[2] = "Other"
+
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
+            "Homeware" -> {
+                val arr = arrayOfNulls<String>(4)
+                arr[0] = "Bed Room"
+                arr[1] = "Living Room"
+                arr[2] = "Patio"
+                arr[3] = "Other"
+
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
+            "Toys" -> {
+                val arr = arrayOfNulls<String>(5)
+                arr[0] = "Boys"
+                arr[1] = "Girls"
+                arr[2] = "Unisex"
+                arr[3] = "Adults"
+                arr[4] = "Other"
+
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
+            "Shoes" -> {
+                val arr = arrayOfNulls<String>(4)
+                arr[0] = "Men"
+                arr[1] = "Women"
+                arr[2] = "Children"
+                arr[3] = "Other"
+
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
+            "Bags" -> {
+                val arr = arrayOfNulls<String>(2)
+                arr[0] = "Hand Bags"
+                arr[1] = "Other"
+
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
+            "Other" -> {
+                val arr = arrayOfNulls<String>(1)
+                arr[0] = "Other"
+
+                val arrayAdapter = ArrayAdapter<String>(
+                    activity!!,
+                    R.layout.list_dish_as_spinner_row,
+                    R.id.txt_list_dish_as_row_design,
+                    arr
+                )
+                spinnerListItemAs.adapter = arrayAdapter
+                spinnerListItemAs.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            listIteamAs = arr[p2] as String
+                        }
+
+                    }
+            }
         }
+
     }
 
     private fun initViews() {
