@@ -1,5 +1,6 @@
 package com.squadtechs.markhor.foodapp.trader.activity_pick_location
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -46,26 +47,44 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
         checkPermissions()
     }
 
-    private fun addDraggableMarker(lat: Double, lng: Double) {
+    private fun addDraggableMarker(location: Location?) {
         shoeInfoDialog()
-        marker = MarkerOptions()
-        marker.position(LatLng(lat, lng))
-        marker.draggable(true)
-        mMap.clear()
-        mMap.addMarker(marker)
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lng), 7f))
-        mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
-            override fun onMarkerDragEnd(p0: Marker?) {
-                btnPickLocation.visibility = View.VISIBLE
-                latLng = LatLng(p0!!.position.latitude, p0.position.longitude)
-            }
+        if (location != null) {
+            marker = MarkerOptions()
+            marker.position(LatLng(location.latitude, location.longitude))
+            marker.draggable(true)
+            mMap.addMarker(marker)
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 7f))
+            mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
+                override fun onMarkerDragEnd(p0: Marker?) {
+                    btnPickLocation.visibility = View.VISIBLE
+                    latLng = LatLng(p0!!.position.latitude, p0.position.longitude)
+                }
 
-            override fun onMarkerDragStart(p0: Marker?) {
-                btnPickLocation.visibility = View.GONE
-            }
+                override fun onMarkerDragStart(p0: Marker?) {
+                    btnPickLocation.visibility = View.GONE
+                }
 
-            override fun onMarkerDrag(p0: Marker?) {}
-        })
+                override fun onMarkerDrag(p0: Marker?) {}
+            })
+        } else {
+            marker = MarkerOptions().position(LatLng(-33.874716, 151.191156))
+            marker.draggable(true)
+            mMap.addMarker(marker)
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-33.874716, 151.191156), 7f))
+            mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
+                override fun onMarkerDragEnd(p0: Marker?) {
+                    btnPickLocation.visibility = View.VISIBLE
+                    latLng = LatLng(p0!!.position.latitude, p0.position.longitude)
+                }
+
+                override fun onMarkerDragStart(p0: Marker?) {
+                    btnPickLocation.visibility = View.GONE
+                }
+
+                override fun onMarkerDrag(p0: Marker?) {}
+            })
+        }
     }
 
     private fun shoeInfoDialog() {
@@ -115,6 +134,7 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    @SuppressLint("MissingPermission")
     fun getCurrentLocation(
     ) {
         var location: Location?
@@ -123,12 +143,14 @@ class ActivityPickLocation : AppCompatActivity(), OnMapReadyCallback {
             if (task.isSuccessful) {
                 location = task.result
                 if (location != null) {
-                    addDraggableMarker(location!!.latitude, location!!.longitude)
+                    Log.i("current_location", "${location!!.latitude}, ${location!!.longitude}")
+                    addDraggableMarker(location)
                 } else {
+                    addDraggableMarker(null)
                     val ad = MainUtils.getMessageDialog(
                         this,
                         "Message!",
-                        "location currently not available",
+                        "location currently not available, marker will be initially set to default location",
                         false
                     )
                     ad.setPositiveButton("Close") { dialogInterface, i ->
