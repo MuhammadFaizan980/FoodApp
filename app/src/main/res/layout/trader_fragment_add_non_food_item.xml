@@ -191,158 +191,161 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/faizan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="@string/list_item_as"
+                        android:text="@string/enter_size_n_optional"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+
+                    <EditText
+                        android:id="@+id/edt_product_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/edit_text_background"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textAlignment="center"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/edit_text_background">
-
-                        <Spinner
-                            android:id="@+id/spinner_size"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </FrameLayout>
-
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linear_children"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical"
-                    android:paddingLeft="16dp">
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/linear_children"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:orientation="vertical"-->
+                <!--                    android:paddingLeft="16dp"-->
+                <!--                    android:visibility="gone">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:orientation="horizontal"-->
+                <!--                        android:weightSum="2">-->
 
-                        <CheckBox
-                            android:id="@+id/zero_six_months"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="0-6 months"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/zero_six_months"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="0-6 months"-->
+                <!--                            android:textSize="12sp" />-->
 
-                        <CheckBox
-                            android:id="@+id/six_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="6 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/six_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="6 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
+                <!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:orientation="horizontal"-->
+                <!--                        android:weightSum="2">-->
 
-                        <CheckBox
-                            android:id="@+id/six_eight_months"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="6-8 months"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/six_eight_months"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="6-8 months"-->
+                <!--                            android:textSize="12sp" />-->
 
-                        <CheckBox
-                            android:id="@+id/eight_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="8 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/eight_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="8 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
+                <!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:orientation="horizontal"-->
+                <!--                        android:weightSum="2">-->
 
-                        <CheckBox
-                            android:id="@+id/eight_to_twelve"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="8-12 months"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/eight_to_twelve"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="8-12 months"-->
+                <!--                            android:textSize="12sp" />-->
 
-                        <CheckBox
-                            android:id="@+id/ten_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="10 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/ten_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="10 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
+                <!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:orientation="horizontal"-->
+                <!--                        android:weightSum="2">-->
 
-                        <CheckBox
-                            android:id="@+id/two_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="2 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/two_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="2 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                        <CheckBox
-                            android:id="@+id/twelve_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="12 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/twelve_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="12 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
+                <!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:orientation="horizontal"-->
+                <!--                        android:weightSum="2">-->
 
-                        <CheckBox
-                            android:id="@+id/four_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="4 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/four_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="4 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                        <CheckBox
-                            android:id="@+id/fourteen_years"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="14 years"
-                            android:textSize="12sp" />
+                <!--                        <CheckBox-->
+                <!--                            android:id="@+id/fourteen_years"-->
+                <!--                            android:layout_width="0dp"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:text="14 years"-->
+                <!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
+                <!--                    </LinearLayout>-->
 
-                </LinearLayout>
+                <!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/linear_xs_xl"
@@ -401,8 +404,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:visibility="gone">
+                    android:paddingLeft="16dp">
 
                     <CheckBox
                         android:id="@+id/single"
