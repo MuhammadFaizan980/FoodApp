@@ -397,7 +397,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                 arr[0] = "Men"
                 arr[1] = "Women"
                 arr[2] = "Children"
-                arr[3] = "Other"
+                arr[3] = "Unisex"
 
                 val arrayAdapter = ArrayAdapter<String>(
                     activity!!,

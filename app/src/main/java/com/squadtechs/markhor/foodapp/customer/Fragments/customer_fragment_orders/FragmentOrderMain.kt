@@ -64,7 +64,6 @@ class FragmentOrderMain : Fragment() {
                     adapter = OrderMainAdapter(list, activity!!, arguments!!.getInt("key"))
                     recyclerView.layoutManager = LinearLayoutManager(activity!!)
                     recyclerView.adapter = adapter
-                    Toast.makeText(context, list[0].company_id.toString(), Toast.LENGTH_LONG).show()
                 } catch (exc: Exception) {
                     Log.i("order_exception", exc.toString())
                 }
