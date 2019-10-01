@@ -42,6 +42,7 @@ class CustomerNonFoodCompaniesAdapter(
         holder.touchView.setOnClickListener {
             val intent = Intent(context, ActivityCustomerNonFoodCompaniesDetails::class.java)
             intent.putExtra("company_id", obj.id)
+            intent.putExtra("company_type", obj.company_type)
             context.startActivity(intent)
         }
     }
