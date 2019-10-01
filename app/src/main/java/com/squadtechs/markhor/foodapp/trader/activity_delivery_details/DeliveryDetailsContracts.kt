@@ -2,10 +2,11 @@ package com.squadtechs.markhor.foodapp.trader.activity_delivery_details
 
 interface DeliveryDetailsContracts {
     interface IModel {
-        fun validate(): Boolean
+        fun validate()
     }
 
     interface IPresenter {
+        fun validationCallBack(status: Boolean, message: String)
         fun initValidation(
             deliver: Boolean,
             range: String,
@@ -17,7 +18,7 @@ interface DeliveryDetailsContracts {
     }
 
     interface IView {
-        fun onValidationResult(status: Boolean)
+        fun onValidationResult(status: Boolean, message: String)
         fun onAddDeliveryDetailsResult(status: Boolean)
     }
 }

@@ -26,12 +26,16 @@ class DeliveryDetailsPresenter(
         pickupInformation: String,
         deliveryTime: String
     ) {
-        mModel = DeliveryDetailsModel(range, pickupInformation)
+        mModel = DeliveryDetailsModel(this, deliver, deliveryTime, range, pickupInformation)
         this.deliver = deliver
         this.range = range
         this.deliveryTime = deliveryTime
         this.pickupInformation = pickupInformation
-        mView.onValidationResult(mModel.validate())
+        mModel.validate()
+    }
+
+    override fun validationCallBack(status: Boolean, message: String) {
+        mView.onValidationResult(status, message)
     }
 
     override fun addDeliveryDetails() {

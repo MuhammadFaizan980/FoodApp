@@ -196,7 +196,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
             }
             requestQueue.add(stringRequest)
         } else {
-            Toast.makeText(activity!!, "Invalid credentials", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity!!, "Fill all fields first", Toast.LENGTH_LONG).show()
         }
     }
 

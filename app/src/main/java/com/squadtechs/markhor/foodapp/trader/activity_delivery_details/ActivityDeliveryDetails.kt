@@ -8,8 +8,10 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squadtechs.markhor.foodapp.R
+import com.squadtechs.markhor.foodapp.main_utils.MainUtils
 import com.squadtechs.markhor.foodapp.trader.activity_company_timings.ActivityCompanyTimings
 import com.squadtechs.markhor.foodapp.trader.activity_trader_main.ActivityTraderMain
+import com.squadtechs.markhor.foodapp.trader.trader_login.ActivityTraderLogin
 import com.xw.repo.BubbleSeekBar
 
 class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IView {
@@ -24,8 +26,6 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
     private lateinit var bubbleSeekBar: BubbleSeekBar
     private lateinit var mPresenter: DeliveryDetailsContracts.IPresenter
     private var deliver: Boolean = true
-    private lateinit var pref: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,35 +79,32 @@ class ActivityDeliveryDetails : AppCompatActivity(), DeliveryDetailsContracts.IV
         bubbleSeekBar = findViewById(R.id.delivery_range)
         edtPickUpInformation = findViewById(R.id.edt_pick_up_information)
         edtDeliveryTime = findViewById(R.id.edt_delivery_time)
-        pref = getSharedPreferences("reg_progress", Context.MODE_PRIVATE)
-        editor = pref.edit()
     }
 
-    override fun onValidationResult(status: Boolean) {
+    override fun onValidationResult(status: Boolean, message: String) {
         if (status) {
             mPresenter.addDeliveryDetails()
         } else {
-            Toast.makeText(this, "Delivery info must be filled", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
     }
 
     override fun onAddDeliveryDetailsResult(status: Boolean) {
         if (status) {
-            editor.putString("current_screen", "complete")
-            editor.apply()
-            Toast.makeText(this, "Profile completed", Toast.LENGTH_LONG).show()
-            startActivity(Intent(this, ActivityTraderMain::class.java))
-            finish()
+            val ad = MainUtils.getMessageDialog(this, "Info", "You have successfully completed your profile\nYou must login again", false)
+            ad.setPositiveButton("Login") {dialogInterface, i ->
+                startActivity(Intent(this, ActivityTraderLogin::class.java))
+                finish()
+            }
+            ad.setNegativeButton("Close App") {dialogInterface, i ->
+                finish()
+            }
+            ad.show()
         } else {
             Toast.makeText(this, "There was an error", Toast.LENGTH_LONG).show()
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        editor.putString("current_screen", "trader delivery details")
-        editor.apply()
-    }
 
     override fun onBackPressed() {
         startActivity(Intent(this, ActivityCompanyTimings::class.java))

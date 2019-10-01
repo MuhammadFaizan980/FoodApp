@@ -151,7 +151,11 @@ class TraderFragmentAddDish : Fragment() {
             if (title.equals("") || description.equals("") || price.equals("")
                 || dishContains.equals("") || uri == null
             ) {
-                Toast.makeText(activity!!, "Fill all fields first", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    activity!!,
+                    "Fill all fields first and select a proper image",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
 
                 map = HashMap<String, String>()
