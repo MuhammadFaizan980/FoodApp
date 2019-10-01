@@ -163,7 +163,7 @@ class ActivityCustomerFoodCompanyDetails : AppCompatActivity(),
     private fun initViews() {
         imgChat = findViewById(R.id.img_chat)
         viewPackage = findViewById(R.id.company_view_pager)
-        txtAll = findViewById(R.id.txt_all)
+        txtAll = findViewById(R.id.txt_all_clothes)
         txtStarters = findViewById(R.id.txt_starters)
         txtMain = findViewById(R.id.txt_main_course)
         txtSides = findViewById(R.id.txt_sides)

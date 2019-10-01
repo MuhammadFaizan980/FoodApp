@@ -251,7 +251,7 @@ class TraderFragmentHome : Fragment() {
         imgChat = mView.findViewById(R.id.img_chat)
         txtNewMessage = mView.findViewById(R.id.new_message_badge)
         viewPackage = mView.findViewById(R.id.company_view_pager)
-        txtAll = mView.findViewById(R.id.txt_all)
+        txtAll = mView.findViewById(R.id.txt_all_clothes)
         txtStarters = mView.findViewById(R.id.txt_starters)
         txtMain = mView.findViewById(R.id.txt_main_course)
         txtSides = mView.findViewById(R.id.txt_sides)

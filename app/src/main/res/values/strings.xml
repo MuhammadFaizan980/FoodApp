@@ -225,4 +225,14 @@
     <string name="ghazi_camp_paf_base_kohat_kpk_pakistan">Ghazi Camp, PAF Base, Kohat, KPK, Pakistan</string>
     <string name="how_was_your_order_with_this_company">How was your order with this company?</string>
     <string name="submit">Submit</string>
+    <string name="unisex">Unisex</string>
+    <string name="other">Other</string>
+    <string name="skin_body"><![CDATA[Skin & Body]]></string>
+    <string name="bedroom">Bedroom</string>
+    <string name="living_room">Living Room</string>
+    <string name="patio">Patio</string>
+    <string name="boys">Boys</string>
+    <string name="girls">Girls</string>
+    <string name="adults">Adults</string>
+    <string name="hand_bags">Hand Bags</string>
 </resources>

@@ -131,10 +131,10 @@ class ActivityCustomerNonFoodCompaniesDetails : AppCompatActivity() {
     private fun initViews() {
         imgChat = findViewById(R.id.img_chat)
         viewPackage = findViewById(R.id.clothes_view_pager)
-        txtAll = findViewById(R.id.txt_all)
-        txtWomen = findViewById(R.id.txt_women)
-        txtMen = findViewById(R.id.txt_men)
-        txtChildren = findViewById(R.id.txt_children)
+        txtAll = findViewById(R.id.txt_all_clothes)
+        txtWomen = findViewById(R.id.txt_women_clothes)
+        txtMen = findViewById(R.id.txt_men_clothes)
+        txtChildren = findViewById(R.id.txt_children_clothes)
 
         txtTitle = findViewById(R.id.txt_title)
         txtDescription = findViewById(R.id.txt_description)
