@@ -57,8 +57,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
     private lateinit var edtProductName: EditText
     private lateinit var edtDescription: EditText
     private var listIteamAs: String = "Women Fashion"
-    private var size: String? = null
-    private var sizeValue: String = ""
+    private var size: String = ""
     private var deliveryPrice: String = ""
     private var isOptional: Boolean = false
 
@@ -146,10 +145,9 @@ class TraderFragmentAddNonFoodItem : Fragment() {
         } else if (checkBoxXLarge.isChecked) {
             size = "x-large"
         } else if (checkBoxOneSize.isChecked) {
-            size = "one size"
-            sizeValue = edtSize.text.toString().trim()
+            size = edtSize.text.toString().trim()
         } else {
-            size = null
+            size = ""
         }
 
         sendData()
@@ -165,7 +163,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
 
 
         if (isOptional) {
-            if (price.equals("") || description.equals("") || title.equals("") || size == null) {
+            if (price.equals("") || description.equals("") || title.equals("")) {
                 Toast.makeText(activity!!, "Fill all fields first", Toast.LENGTH_SHORT).show()
             } else {
                 val pd = MainUtils.getLoadingDialog(activity!!, "Adding", "Please wait", false)
@@ -186,7 +184,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                     map["price"] = price
                     map["list_item_as"] = listIteamAs
                     map["delivery_price"] = deliveryPrice
-                    map["size"] = size!!
+                    map["size"] = size
                     map["id"] = activity!!.getSharedPreferences(
                         "add_item_preferences",
                         Context.MODE_PRIVATE
@@ -198,7 +196,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                     map["price"] = price
                     map["list_item_as"] = listIteamAs
                     map["delivery_price"] = deliveryPrice
-                    map["size"] = size!!
+                    map["size"] = size
                     map["trader_id"] = activity!!.getSharedPreferences(
                         "user_credentials",
                         Context.MODE_PRIVATE
@@ -245,8 +243,8 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                 requestQueue.add(stringRequest)
             }
         } else {
-            if (price.equals("") || description.equals("") || title.equals("") || size == null
-                || sizeValue.equals("")
+            if (price.equals("") || description.equals("") || title.equals("")
+                || size.equals("")
             ) {
                 Toast.makeText(activity!!, "Fill all fields first", Toast.LENGTH_SHORT).show()
             } else {
@@ -268,7 +266,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                     map["price"] = price
                     map["list_item_as"] = listIteamAs
                     map["delivery_price"] = deliveryPrice
-                    map["size"] = size!!
+                    map["size"] = size
                     map["id"] = activity!!.getSharedPreferences(
                         "add_item_preferences",
                         Context.MODE_PRIVATE
@@ -280,7 +278,7 @@ class TraderFragmentAddNonFoodItem : Fragment() {
                     map["price"] = price
                     map["list_item_as"] = listIteamAs
                     map["delivery_price"] = deliveryPrice
-                    map["size"] = size!!
+                    map["size"] = size
                     map["trader_id"] = activity!!.getSharedPreferences(
                         "user_credentials",
                         Context.MODE_PRIVATE
